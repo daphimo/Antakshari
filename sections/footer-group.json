@@ -1,1 +1,130 @@
-{"type":"footer","name":"Footer","sections":{"custom_footer_HRx6E4":{"type":"custom-footer","blocks":{"menu_kUpLTb":{"type":"menu","settings":{"heading":"Collections","menu":"about"}},"menu_nGNcEm":{"type":"menu","settings":{"heading":"Discover","menu":"explore"}},"menu_Piicxz":{"type":"menu","settings":{"heading":"Assistance","menu":"help"}},"service_card_b73nqJ":{"type":"service_card","settings":{"icon":"✦","caption":"Personal assistance","heading":"Private Styling","text":"<p>Book a personal consultation for weddings, festive events and special occasions.<\/p>","link_label":"Book an appointment","link_url":""}}},"block_order":["menu_kUpLTb","menu_nGNcEm","menu_Piicxz","service_card_b73nqJ"],"name":"Festive heritage footer","settings":{"show_marquee":true,"marquee_text_1":"Celebration wear","marquee_text_2":"Heritage textiles","marquee_text_3":"Modern craft","marquee_symbol":"◆","marquee_accessibility_label":"Brand highlights","marquee_size":14,"marquee_speed":28,"show_ornament":true,"show_middle_divider":true,"caption":"Made for meaningful moments","heading":"Dress the celebration.","highlighted_heading":"Carry the heritage.","heading_tag":"h2","heading_size":76,"mobile_heading_size":48,"heading_line_height":98,"heading_letter_spacing":-2,"show_newsletter":true,"newsletter_text":"<p>Receive curated festive edits, styling inspiration and early access to new collections.<\/p>","email_label":"Email address","email_placeholder":"Your email address","newsletter_button_label":"Subscribe","show_button_arrow":false,"success_message":"Thank you for joining our community.","logo_width":200,"logo_caption":"","logo_text":"ANTAKSHARI","brand_description":"<p>Contemporary occasion wear shaped by Indian artistry, rich textiles and generations of craftsmanship.<\/p>","show_socials":true,"instagram_url":"","facebook_url":"","pinterest_url":"","youtube_url":"","tiktok_url":"","copyright_text":"","show_policy_links":true,"policy_navigation_label":"Store policies","bottom_menu":"","bottom_navigation_label":"Footer navigation","show_payment_icons":true,"payment_label":"Accepted payment methods","heading_font":"fraunces_n4","body_font":"fraunces_n4","body_size":14,"menu_heading_size":18,"menu_link_size":13,"background_color":"#18100f","secondary_background_color":"{{ settings.color_palette.color2 }}","text_color":"#fffaf2","muted_text_color":"#b8aaa0","accent_color":"#c99a4a","accent_hover_color":"#e7c888","border_color":"{{ settings.color_palette.color11 }}","card_background_color":"#241815","enable_background_grid":false,"layout_style":"left","page_width":1400,"side_padding":40,"card_radius":2,"button_radius":30,"input_radius":30,"padding_top":55,"padding_bottom":35,"mobile_padding_top":40,"mobile_padding_bottom":30}}},"order":["custom_footer_HRx6E4"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "custom_footer_HRx6E4": {
+      "type": "custom-footer",
+      "blocks": {
+        "menu_kUpLTb": {
+          "type": "menu",
+          "settings": {
+            "heading": "Collections",
+            "menu": "about"
+          }
+        },
+        "menu_nGNcEm": {
+          "type": "menu",
+          "settings": {
+            "heading": "Discover",
+            "menu": "explore"
+          }
+        },
+        "menu_Piicxz": {
+          "type": "menu",
+          "settings": {
+            "heading": "Assistance",
+            "menu": "help"
+          }
+        },
+        "service_card_b73nqJ": {
+          "type": "service_card",
+          "settings": {
+            "icon": "✦",
+            "caption": "Personal assistance",
+            "heading": "Private Styling",
+            "text": "<p>Book a personal consultation for weddings, festive events and special occasions.</p>",
+            "link_label": "Book an appointment",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "menu_kUpLTb",
+        "menu_nGNcEm",
+        "menu_Piicxz",
+        "service_card_b73nqJ"
+      ],
+      "name": "Festive heritage footer",
+      "settings": {
+        "show_marquee": true,
+        "marquee_text_1": "Celebration wear",
+        "marquee_text_2": "Heritage textiles",
+        "marquee_text_3": "Modern craft",
+        "marquee_symbol": "◆",
+        "marquee_accessibility_label": "Brand highlights",
+        "marquee_size": 14,
+        "marquee_speed": 28,
+        "show_ornament": true,
+        "show_middle_divider": true,
+        "caption": "Made for meaningful moments",
+        "heading": "Dress the celebration.",
+        "highlighted_heading": "Carry the heritage.",
+        "heading_tag": "h2",
+        "heading_size": 76,
+        "mobile_heading_size": 48,
+        "heading_line_height": 98,
+        "heading_letter_spacing": -2,
+        "show_newsletter": true,
+        "newsletter_text": "<p>Receive curated festive edits, styling inspiration and early access to new collections.</p>",
+        "email_label": "Email address",
+        "email_placeholder": "Your email address",
+        "newsletter_button_label": "Subscribe",
+        "show_button_arrow": false,
+        "success_message": "Thank you for joining our community.",
+        "logo_width": 200,
+        "logo_caption": "",
+        "logo_text": "ANTAKSHARI",
+        "brand_description": "<p>Contemporary occasion wear shaped by Indian artistry, rich textiles and generations of craftsmanship.</p>",
+        "show_socials": true,
+        "instagram_url": "",
+        "facebook_url": "",
+        "pinterest_url": "",
+        "youtube_url": "",
+        "tiktok_url": "",
+        "copyright_text": "",
+        "show_policy_links": true,
+        "policy_navigation_label": "Store policies",
+        "bottom_menu": "",
+        "bottom_navigation_label": "Footer navigation",
+        "show_payment_icons": true,
+        "payment_label": "Accepted payment methods",
+        "heading_font": "fraunces_n4",
+        "body_font": "fraunces_n4",
+        "body_size": 14,
+        "menu_heading_size": 18,
+        "menu_link_size": 13,
+        "background_color": "#18100f",
+        "secondary_background_color": "{{ settings.color_palette.color2 }}",
+        "text_color": "#fffaf2",
+        "muted_text_color": "#b8aaa0",
+        "accent_color": "#c99a4a",
+        "accent_hover_color": "#e7c888",
+        "border_color": "{{ settings.color_palette.color11 }}",
+        "card_background_color": "#241815",
+        "enable_background_grid": false,
+        "layout_style": "left",
+        "page_width": 1400,
+        "side_padding": 40,
+        "card_radius": 2,
+        "button_radius": 30,
+        "input_radius": 30,
+        "padding_top": 55,
+        "padding_bottom": 35,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 30
+      }
+    }
+  },
+  "order": [
+    "custom_footer_HRx6E4"
+  ]
+}
