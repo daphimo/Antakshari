@@ -85,6 +85,18 @@ class PremiumHeader {
       { passive: true, signal: this.signal }
     );
 
+    document.querySelector('.page-wrapper')?.addEventListener(
+      'scroll',
+      () => {
+        if (this.scrollFrame) return;
+        this.scrollFrame = window.requestAnimationFrame(() => {
+          this.handleScroll();
+          this.scrollFrame = null;
+        });
+      },
+      { passive: true, signal: this.signal }
+    );
+
     window.addEventListener(
       'resize',
       () => {
@@ -311,7 +323,8 @@ class PremiumHeader {
   }
 
   handleScroll() {
-    this.root.classList.toggle('is-scrolled', window.scrollY > 10);
+    const pageScroll = document.querySelector('.page-wrapper')?.scrollTop || 0;
+    this.root.classList.toggle('is-scrolled', Math.max(window.scrollY, pageScroll) > 10);
   }
 
   destroy() {

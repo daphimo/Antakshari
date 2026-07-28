@@ -1,0 +1,294 @@
+{{ 'mobile-bottom-bar.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mobile-bottom-bar.js' | asset_url }}" defer="defer"></script>
+<script type="module" src="{{ 'cart-icon.js' | asset_url }}" fetchpriority="low"></script>
+
+{%- capture native_menu_icon -%}
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+{%- endcapture -%}
+
+{%- capture native_account_icon -%}
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M5 20c.7-4 3.1-6 7-6s6.3 2 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+{%- endcapture -%}
+
+<nav
+  class="mobile-bottom-bar"
+  aria-label="{{ section.settings.accessibility_label | escape }}"
+  style="
+    --mobile-bar-items: {{ section.blocks.size }};
+    --mobile-bar-background: {{ section.settings.background_color }};
+    --mobile-bar-text: {{ section.settings.text_color }};
+    --mobile-bar-accent: {{ section.settings.accent_color }};
+    --mobile-bar-border: {{ section.settings.border_color }};
+  "
+>
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign action_link = block.settings.link
+      if block.settings.action == 'account'
+        assign action_link = routes.account_url
+      elsif block.settings.action == 'cart'
+        assign action_link = routes.cart_url
+      endif
+    -%}
+
+    {%- capture block_icon -%}
+      {%- if block.settings.image_upload != blank -%}
+        {{
+          block.settings.image_upload
+          | image_url: width: 88
+          | image_tag:
+            width: 44,
+            height: 44,
+            loading: 'lazy',
+            alt: '',
+            class: 'mobile-bottom-bar__custom-image'
+        }}
+      {%- elsif block.settings.icon != 'none' -%}
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          {% render 'icon', icon: block.settings.icon %}
+        </svg>
+      {%- elsif block.settings.action == 'menu' -%}
+        {{ native_menu_icon }}
+      {%- elsif block.settings.action == 'account' -%}
+        {{ native_account_icon }}
+      {%- elsif block.settings.action == 'cart' -%}
+        {{ 'icon-cart.svg' | inline_asset_content }}
+      {%- else -%}
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          {% render 'icon', icon: 'heart' %}
+        </svg>
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <div class="mobile-bottom-bar__item" {{ block.shopify_attributes }}>
+      {%- case block.settings.action -%}
+        {%- when 'menu' -%}
+          <button
+            type="button"
+            class="mobile-bottom-bar__action"
+            aria-label="{{ block.settings.label | escape }}"
+            data-mobile-bottom-menu
+          >
+            <span class="mobile-bottom-bar__icon">{{ block_icon }}</span>
+            <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+          </button>
+
+        {%- when 'account' -%}
+          {%- if shop.customer_accounts_enabled -%}
+            <div class="mobile-bottom-bar__account">
+              <shopify-account menu="{{ section.settings.customer_account_menu }}">
+                <span
+                  slot="signed-out-avatar"
+                  class="mobile-bottom-bar__account-fallback"
+                >
+                  <span class="mobile-bottom-bar__action">
+                    <span class="mobile-bottom-bar__icon">{{ block_icon }}</span>
+                    <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+                  </span>
+                </span>
+              </shopify-account>
+            </div>
+          {%- else -%}
+            <a href="{{ routes.account_url }}" class="mobile-bottom-bar__action">
+              <span class="mobile-bottom-bar__icon">{{ block_icon }}</span>
+              <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+            </a>
+          {%- endif -%}
+
+        {%- when 'cart' -%}
+          {%- capture mobile_cart_icon -%}
+            <cart-icon
+              class="header-actions__cart-icon{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
+              data-testid="cart-icon"
+            >
+              <span class="mobile-bottom-bar__icon">{{ block_icon }}</span>
+              {% render 'cart-bubble', limit: 100 %}
+            </cart-icon>
+          {%- endcapture -%}
+
+          {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+            <button
+              type="button"
+              class="mobile-bottom-bar__action"
+              on:click="#cart-drawer/toggle"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="cart-drawer"
+              aria-label="{{ block.settings.label | escape }}"
+            >
+              {{ mobile_cart_icon }}
+              <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+            </button>
+          {%- else -%}
+            <a
+              href="{{ routes.cart_url }}"
+              class="mobile-bottom-bar__action"
+              aria-label="{{ block.settings.label | escape }}"
+            >
+              {{ mobile_cart_icon }}
+              <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+            </a>
+          {%- endif -%}
+
+        {%- else -%}
+          <a
+            href="{{ action_link | default: routes.root_url }}"
+            class="mobile-bottom-bar__action"
+            {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+            {% if action_link == request.path %}aria-current="page"{% endif %}
+          >
+            <span class="mobile-bottom-bar__icon">{{ block_icon }}</span>
+            <span class="mobile-bottom-bar__label">{{ block.settings.label | escape }}</span>
+          </a>
+      {%- endcase -%}
+    </div>
+  {%- endfor -%}
+</nav>
+
+{% schema %}
+{
+  "name": "Mobile bottom bar",
+  "tag": "section",
+  "class": "section-mobile-bottom-bar",
+  "limit": 1,
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Mobile navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "customer_account_menu",
+      "label": "Customer account menu",
+      "default": "customer-account-main-menu"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FCFAF5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#2A1F1A"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#6B1F2A"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#C9A24C"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Bar item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "action",
+          "label": "Action",
+          "options": [
+            { "value": "link", "label": "Link" },
+            { "value": "menu", "label": "Premium menu drawer" },
+            { "value": "account", "label": "Customer account" },
+            { "value": "cart", "label": "Cart drawer" }
+          ],
+          "default": "link"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Leave as Automatic to use the native icon for menu, account or cart.",
+          "options": [
+            { "value": "none", "label": "Automatic" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "box", "label": "Box" },
+            { "value": "chat_bubble", "label": "Chat bubble" },
+            { "value": "eye", "label": "Eye" },
+            { "value": "map_pin", "label": "Map pin" },
+            { "value": "price_tag", "label": "Price tag" },
+            { "value": "return", "label": "Return" },
+            { "value": "shirt", "label": "Shirt" },
+            { "value": "star", "label": "Star" },
+            { "value": "truck", "label": "Truck" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_upload",
+          "label": "Custom icon image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "visible_if": "{{ block.settings.action == 'link' }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Open link in new tab",
+          "default": false,
+          "visible_if": "{{ block.settings.action == 'link' }}"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile bottom bar",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "action": "menu",
+            "icon": "none",
+            "label": "Menu"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "action": "account",
+            "icon": "none",
+            "label": "Account"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "action": "cart",
+            "icon": "none",
+            "label": "Cart"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

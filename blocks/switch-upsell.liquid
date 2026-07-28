@@ -6,18 +6,21 @@
     <div class="top_switch_bar">
       <label class="switch">
         <input
+          id="UpsellSwitch-{{ block.id }}"
           class="addonswitch is--active"
           type="checkbox"
           checked
-          data-id="addonproducts"
+          data-id="addonproducts-{{ block.id }}"
+          aria-controls="UpsellProducts-{{ block.id }}"
         >
         <span class="switch-slider round"></span>
       </label>
-      <div class="label_switch">{{ block.settings.label }}</div>
+      <label class="label_switch" for="UpsellSwitch-{{ block.id }}">{{ block.settings.label }}</label>
     </div>
     <div
+      id="UpsellProducts-{{ block.id }}"
       class="addonswitch_container is--active"
-      data-id="addonproducts"
+      data-id="addonproducts-{{ block.id }}"
     >
       <div class="upsell_container">
         {% for item in block.settings.products %}
@@ -30,7 +33,7 @@
             <div class="prop-content">
               <div class="prop-details">
                 <h4 class="prop-title">
-                  {{ item.title }}
+                  {{ item.title | escape }}
                 </h4>
 
                 <div class="prop-bottom">
@@ -42,8 +45,9 @@
                     <button
                       class="prop-add-btn"
                       type="button"
+                      {% unless first_variant.available %}disabled{% endunless %}
                     >
-                      Add Item
+                      {% if first_variant.available %}Add item{% else %}Sold out{% endif %}
                     </button>
 
                     <div class="prop-qty-wrap">
@@ -51,6 +55,7 @@
                         type="button"
                         class="prop-qty-btn"
                         data-action="minus"
+                        aria-label="Decrease quantity for {{ item.title | escape }}"
                       >
                         −
                       </button>
@@ -61,6 +66,7 @@
                         type="button"
                         class="prop-qty-btn"
                         data-action="plus"
+                        aria-label="Increase quantity for {{ item.title | escape }}"
                       >
                         +
                       </button>
@@ -70,22 +76,13 @@
               </div>
 
               <div class="prop-image-wrap">
-                <div class="prop-shape">
-                  <img
-                    src="{{ block.settings.image | image_url }}"
-                    alt="{{ item.title }}"
-                    width="{{ block.settings.image.width }}"
-                    height="{{ block.settings.image.height }}"
-                    class="product_image_bg"
-                  >
-                </div>
-
                 <img
-                  src="{{ item.featured_image | image_url }}"
-                  alt="{{ item.title }}"
+                  src="{{ item.featured_image | image_url: width: 240 }}"
+                  alt="{{ item.featured_image.alt | default: item.title | escape }}"
                   class="product_image"
                   width="{{ item.featured_image.width }}"
                   height="{{ item.featured_image.height }}"
+                  loading="lazy"
                 >
               </div>
             </div>

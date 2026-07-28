@@ -9,12 +9,15 @@ const selectors = {
   grid: "[grid-wishlist]",
   productCard: ".custom_card-product-card",
   wishlistCountBubble: ".wishlist-count-bubble",
+  addAllContainer: "[data-wishlist-add-all-container]",
+  addAllButton: "[data-wishlist-add-all]",
+  addAllLabel: "[data-wishlist-add-all-label]",
+  addAllLoader: "[data-wishlist-add-all-loader]",
+  emptyState: "[data-wishlist-empty]",
 };
 
 const tooltipStyles = document.createElement("style");
-tooltipStyles.textContent = `
- 
-`;
+tooltipStyles.textContent = "";
 document.head.appendChild(tooltipStyles);
 
 const createTooltip = () => {
@@ -26,143 +29,252 @@ const createTooltip = () => {
 
 const showTooltip = (message) => {
   let tooltip = document.querySelector(".wishlist-tooltip");
-  if (!tooltip) {
-    tooltip = createTooltip();
-  }
+  if (!tooltip) tooltip = createTooltip();
 
   tooltip.textContent = message;
   tooltip.classList.add("show");
 
-  setTimeout(() => {
+  window.setTimeout(() => {
     tooltip.classList.remove("show");
   }, TOOLTIP_DURATION);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+const getWishlist = () => {
+  try {
+    const storedWishlist = localStorage.getItem(LOCAL_STORAGE_WISHLIST_KEY) || "";
+    return storedWishlist
+      ? storedWishlist.split(LOCAL_STORAGE_DELIMITER).filter(Boolean)
+      : [];
+  } catch (error) {
+    console.error("Unable to read wishlist from localStorage.", error);
+    return [];
+  }
+};
+
+const setWishlist = (array) => {
+  try {
+    const storedWishlist = array.join(LOCAL_STORAGE_DELIMITER);
+    if (array.length) {
+      localStorage.setItem(LOCAL_STORAGE_WISHLIST_KEY, storedWishlist);
+    } else {
+      localStorage.removeItem(LOCAL_STORAGE_WISHLIST_KEY);
+    }
+  } catch (error) {
+    console.error("Unable to save wishlist to localStorage.", error);
+    return array;
+  }
+
+  document.dispatchEvent(
+    new CustomEvent("shopify-wishlist:updated", {
+      detail: { wishlist: array },
+    })
+  );
+
+  return array;
+};
+
+const updateWishlist = (handle) => {
+  const wishlist = getWishlist();
+  const indexInWishlist = wishlist.indexOf(handle);
+
+  if (indexInWishlist === -1) wishlist.push(handle);
+  else wishlist.splice(indexInWishlist, 1);
+
+  return setWishlist(wishlist);
+};
+
+const wishlistContains = (handle) => getWishlist().includes(handle);
+
+const updateWishlistCountBubble = () => {
+  const countBubble = document.querySelector(selectors.wishlistCountBubble);
+  if (!countBubble) return;
+
+  const count = getWishlist().length;
+  countBubble.textContent = count.toString();
+  countBubble.style.display = count > 0 ? "flex" : "none";
+};
+
+const updateWishlistPageState = (itemCount = getWishlist().length) => {
+  const hasItems = itemCount > 0;
+  const addAllContainer = document.querySelector(selectors.addAllContainer);
+  const emptyState = document.querySelector(selectors.emptyState);
+
+  addAllContainer?.classList.toggle("is-active", hasItems);
+  emptyState?.toggleAttribute("hidden", hasItems);
+};
+
+const fetchProductCardHTML = async (handle) => {
+  try {
+    const response = await fetch(`/products/${handle}?view=card`);
+    if (!response.ok) throw new Error(`Product card request failed: ${response.status}`);
+
+    const html = await response.text();
+    const htmlDocument = new DOMParser().parseFromString(html, "text/html");
+    return htmlDocument.querySelector(selectors.productCard)?.outerHTML || "";
+  } catch (error) {
+    console.error(`Unable to load wishlist product "${handle}".`, error);
+    return "";
+  }
+};
+
+const setupButtons = (buttons) => {
+  buttons.forEach((button) => {
+    const productHandle = button.dataset.productHandle;
+    if (!productHandle || button.dataset.wishlistBound === "true") return;
+
+    button.dataset.wishlistBound = "true";
+    button.classList.toggle(BUTTON_ACTIVE_CLASS, wishlistContains(productHandle));
+    button.setAttribute(
+      "aria-pressed",
+      button.classList.contains(BUTTON_ACTIVE_CLASS).toString()
+    );
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      updateWishlist(productHandle);
+      button.classList.toggle(BUTTON_ACTIVE_CLASS);
+      button.setAttribute(
+        "aria-pressed",
+        button.classList.contains(BUTTON_ACTIVE_CLASS).toString()
+      );
+
+      const productTitle = button.dataset.productTitle || "Product";
+      const isAdded = button.classList.contains(BUTTON_ACTIVE_CLASS);
+      showTooltip(
+        isAdded
+          ? `${productTitle} added to wishlist`
+          : `${productTitle} removed from wishlist`
+      );
+    });
+  });
+};
+
+const initButtons = () => {
+  const buttons = document.querySelectorAll(selectors.button);
+  setupButtons(buttons);
+
+  document.dispatchEvent(
+    new CustomEvent("shopify-wishlist:init-buttons", {
+      detail: { wishlist: getWishlist() },
+    })
+  );
+};
+
+const setupGrid = async (grid) => {
+  const wishlist = getWishlist();
+
+  if (!wishlist.length) {
+    grid.innerHTML = "";
+    grid.classList.add(GRID_LOADED_CLASS);
+    updateWishlistPageState(0);
+    return;
+  }
+
+  grid.setAttribute("aria-busy", "true");
+  const responses = await Promise.all(wishlist.map(fetchProductCardHTML));
+  grid.innerHTML = responses.join("");
+  grid.classList.add(GRID_LOADED_CLASS);
+  grid.removeAttribute("aria-busy");
+
+  const renderedCount = grid.querySelectorAll(selectors.productCard).length;
+  updateWishlistPageState(renderedCount);
+  initButtons();
+
+  document.dispatchEvent(
+    new CustomEvent("shopify-wishlist:init-product-grid", {
+      detail: { wishlist },
+    })
+  );
+};
+
+const initGrid = () => {
+  const grid = document.querySelector(selectors.grid);
+  if (!grid) return;
+
+  setupGrid(grid).catch((error) => {
+    console.error("Unable to initialize wishlist grid.", error);
+    grid.removeAttribute("aria-busy");
+  });
+};
+
+const setAddAllLoading = (button, loading) => {
+  const label = button.querySelector(selectors.addAllLabel);
+  const loader = button.querySelector(selectors.addAllLoader);
+
+  button.disabled = loading;
+  button.setAttribute("aria-busy", loading.toString());
+  if (label) label.hidden = loading;
+  if (loader) loader.hidden = !loading;
+};
+
+const addAllWishlistItemsToCart = async (button) => {
+  const cards = [...document.querySelectorAll(`${selectors.grid} ${selectors.productCard}`)];
+  const items = cards
+    .filter((card) => card.dataset.productAvailable === "true")
+    .map((card) => ({
+      id: Number(card.dataset.variantId),
+      quantity: 1,
+    }))
+    .filter((item) => Number.isInteger(item.id) && item.id > 0);
+
+  if (!items.length) {
+    showTooltip("No wishlist items are currently available.");
+    return;
+  }
+
+  setAddAllLoading(button, true);
+
+  try {
+    const response = await fetch(`${window.Shopify?.routes?.root || "/"}cart/add.js`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ items }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.description || "Unable to add wishlist items to cart.");
+    }
+
+    window.location.href = `${window.Shopify?.routes?.root || "/"}cart`;
+  } catch (error) {
+    console.error("Unable to add all wishlist items to cart.", error);
+    showTooltip(error.message || "Unable to add wishlist items to cart.");
+  } finally {
+    setAddAllLoading(button, false);
+  }
+};
+
+const initAddAllButton = () => {
+  const button = document.querySelector(selectors.addAllButton);
+  if (!button || button.dataset.wishlistBound === "true") return;
+
+  button.dataset.wishlistBound = "true";
+  button.addEventListener("click", () => addAllWishlistItemsToCart(button));
+};
+
+const initWishlist = () => {
   initButtons();
   initGrid();
-});
+  initAddAllButton();
+  updateWishlistCountBubble();
+  updateWishlistPageState();
+};
+
+document.addEventListener("shopify:section:load", initWishlist);
 
 document.addEventListener("shopify-wishlist:updated", () => {
   updateWishlistCountBubble();
   initGrid();
 });
 
-document.addEventListener("shopify-wishlist:init-product-grid", () => {});
-
-document.addEventListener("shopify-wishlist:init-buttons", () => {});
-
-const fetchProductCardHTML = (handle) => {
-  const productTileTemplateUrl = `/products/${handle}?view=card`;
-  return fetch(productTileTemplateUrl)
-    .then((res) => res.text())
-    .then((res) => {
-      const parser = new DOMParser();
-      const htmlDocument = parser.parseFromString(res, "text/html");
-      const productCard = htmlDocument.documentElement.querySelector(
-        selectors.productCard
-      );
-      return productCard.outerHTML;
-    })
-    .catch(() => {});
-};
-
-const setupGrid = async (grid) => {
-  const wishlist = getWishlist();
-  const requests = wishlist.map(fetchProductCardHTML);
-  const responses = await Promise.all(requests);
-  const wishlistProductCards = responses.join("");
-  grid.innerHTML = wishlistProductCards;
-  grid.classList.add(GRID_LOADED_CLASS);
-  initButtons();
-
-  const event = new CustomEvent("shopify-wishlist:init-product-grid", {
-    detail: { wishlist: wishlist },
-  });
-  document.dispatchEvent(event);
-};
-
-const setupButtons = (buttons) => {
-  buttons.forEach((button) => {
-    const productHandle = button.dataset.productHandle || false;
-    if (!productHandle) return;
-
-    if (wishlistContains(productHandle)) {
-      button.classList.add(BUTTON_ACTIVE_CLASS);
-    }
-
-    button.addEventListener("click", () => {
-      updateWishlist(productHandle);
-      button.classList.toggle(BUTTON_ACTIVE_CLASS);
-
-      const productTitle = button.dataset.productTitle || "Product";
-      const isAdded = button.classList.contains(BUTTON_ACTIVE_CLASS);
-      const message = isAdded
-        ? `${productTitle} added to wishlist`
-        : `${productTitle} removed from wishlist`;
-      showTooltip(message);
-    });
-  });
-};
-
-const initGrid = () => {
-  const grid = document.querySelector(selectors.grid) || false;
-  if (grid) setupGrid(grid);
-};
-
-const initButtons = () => {
-  const buttons = document.querySelectorAll(selectors.button) || [];
-  if (buttons.length) setupButtons(buttons);
-  else return;
-
-  const event = new CustomEvent("shopify-wishlist:init-buttons", {
-    detail: { wishlist: getWishlist() },
-  });
-  document.dispatchEvent(event);
-  updateWishlistCountBubble();
-};
-
-const getWishlist = () => {
-  const wishlist = localStorage.getItem(LOCAL_STORAGE_WISHLIST_KEY) || false;
-  if (wishlist) return wishlist.split(LOCAL_STORAGE_DELIMITER);
-  return [];
-};
-
-const setWishlist = (array) => {
-  const wishlist = array.join(LOCAL_STORAGE_DELIMITER);
-  if (array.length) localStorage.setItem(LOCAL_STORAGE_WISHLIST_KEY, wishlist);
-  else localStorage.removeItem(LOCAL_STORAGE_WISHLIST_KEY);
-
-  const event = new CustomEvent("shopify-wishlist:updated", {
-    detail: { wishlist: array },
-  });
-  document.dispatchEvent(event);
-
-  return wishlist;
-};
-
-const updateWishlist = (handle) => {
-  const wishlist = getWishlist();
-  const indexInWishlist = wishlist.indexOf(handle);
-  if (indexInWishlist === -1) wishlist.push(handle);
-  else wishlist.splice(indexInWishlist, 1);
-  return setWishlist(wishlist);
-};
-
-const wishlistContains = (handle) => {
-  const wishlist = getWishlist();
-  return wishlist.includes(handle);
-};
-
-const resetWishlist = () => {
-  return setWishlist([]);
-};
-
-const updateWishlistCountBubble = () => {
-  const countBubble = document.querySelector(selectors.wishlistCountBubble);
-  if (countBubble) {
-    const wishlist = getWishlist();
-    countBubble.textContent = wishlist.length.toString();
-    countBubble.style.display = wishlist.length > 0 ? "flex" : "none";
-  }
-};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initWishlist, { once: true });
+} else {
+  initWishlist();
+}
