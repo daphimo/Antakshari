@@ -1,0 +1,418 @@
+{% liquid
+  assign rendered_collections = collection.metafields.custom.sub_collections.value
+  assign use_fallback = false
+
+  if rendered_collections == blank
+    assign rendered_collections = section.settings.fallback_collections
+    assign use_fallback = true
+  endif
+%}
+
+{{ 'sub-collection-grid.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="sub-collection-grid"
+  id="sub-collection-grid-{{ section.id }}"
+  style="
+    --scg-background: {{ section.settings.background_color }};
+    --scg-caption-color: {{ section.settings.caption_color }};
+    --scg-title-color: {{ section.settings.title_color }};
+    --scg-card-title-color: {{ section.settings.card_title_color }};
+    --scg-card-background: {{ section.settings.card_background }};
+    --scg-caption-size-desktop: {{ section.settings.caption_size_desktop }}px;
+    --scg-caption-size-mobile: {{ section.settings.caption_size_mobile }}px;
+    --scg-title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --scg-title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --scg-card-title-size-desktop: {{ section.settings.card_title_size_desktop }}px;
+    --scg-card-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
+    --scg-columns-desktop: {{ section.settings.columns_desktop }};
+    --scg-columns-tablet: {{ section.settings.columns_tablet }};
+    --scg-columns-mobile: {{ section.settings.columns_mobile }};
+    --scg-gap-desktop: {{ section.settings.gap_desktop }}px;
+    --scg-gap-mobile: {{ section.settings.gap_mobile }}px;
+    --scg-image-ratio: {{ section.settings.image_ratio }};
+    --scg-card-radius: {{ section.settings.card_radius }}px;
+    --scg-section-padding-top: {{ section.settings.padding_top }}px;
+    --scg-section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --scg-content-width: {{ section.settings.content_width }}px;
+  "
+>
+  <div class="sub-collection-grid__inner">
+    {% if section.settings.caption != blank or section.settings.title != blank %}
+      <header class="sub-collection-grid__header sub-collection-grid__header--{{ section.settings.header_alignment }}">
+        {% if section.settings.caption != blank %}
+          <div class="sub-collection-grid__caption">
+            {{ section.settings.caption }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.title != blank %}
+          <h2 class="sub-collection-grid__title">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if rendered_collections != blank %}
+      <div class="sub-collection-grid__grid">
+        {% for sub_collection in rendered_collections %}
+          {% liquid
+            assign card_image = sub_collection.featured_image
+            if card_image == blank and sub_collection.products.first != blank
+              assign card_image = sub_collection.products.first.featured_image
+            endif
+          %}
+
+          <a
+            class="sub-collection-grid__card"
+            href="{{ sub_collection.url }}"
+            aria-label="{{ sub_collection.title | escape }}"
+          >
+            <div class="sub-collection-grid__media">
+              {% if card_image != blank %}
+                {{
+                  card_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '320, 480, 640, 800, 1000, 1200',
+                    sizes: '(min-width: 990px) calc((100vw - 120px) / var(--scg-columns-desktop)), (min-width: 750px) calc((100vw - 80px) / var(--scg-columns-tablet)), calc((100vw - 40px) / var(--scg-columns-mobile))',
+                    class: 'sub-collection-grid__image',
+                    alt: sub_collection.title
+                }}
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag: 'sub-collection-grid__placeholder' }}
+              {% endif %}
+
+              {% if section.settings.show_overlay %}
+                <span class="sub-collection-grid__overlay"></span>
+              {% endif %}
+            </div>
+
+            <div class="sub-collection-grid__content">
+              <h3 class="sub-collection-grid__card-title">
+                {{ sub_collection.title }}
+              </h3>
+
+              {% if section.settings.show_product_count %}
+                <span class="sub-collection-grid__count">
+                  {{ sub_collection.products_count }}
+                  {% if sub_collection.products_count == 1 %}
+                    product
+                  {% else %}
+                    products
+                  {% endif %}
+                </span>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% elsif request.design_mode %}
+      <div class="sub-collection-grid__empty">
+        <p>
+          Add collections to the current collection metafield
+          <strong>custom.sub_collections</strong>, or select fallback collections
+          in this section's settings.
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sub-collection grid",
+  "tag": "section",
+  "class": "section-sub-collection-grid",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collection source"
+    },
+    {
+      "type": "collection_list",
+      "id": "fallback_collections",
+      "label": "Fallback collections",
+      "info": "Used only when collection.metafields.custom.sub_collections is empty."
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Explore more"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by collection"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#8A6438"
+    },
+    {
+      "type": "range",
+      "id": "caption_size_desktop",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption size - desktop",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "caption_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption size - mobile",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1F1F1F"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 20,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size - desktop",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size - mobile",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Columns - desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns - tablet",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns - mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Grid gap - desktop",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Grid gap - mobile",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Tall portrait"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Wide"
+        }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show image overlay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#1F1F1F"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title size - desktop",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "min": 11,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card title size - mobile",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sub-collection grid"
+    }
+  ]
+}
+{% endschema %}

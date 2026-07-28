@@ -1,0 +1,111 @@
+{% comment %}
+  Collection mega menu.
+
+  Parameters:
+  - block
+  - menu_link
+  - section
+  - panel_id: desktop only
+  - drawer: boolean
+{% endcomment %}
+
+{% liquid
+  assign selected_collections = block.settings.collections
+  assign ratio_class = 'premium-ratio--portrait'
+
+  if block.settings.image_ratio == 'square'
+    assign ratio_class = 'premium-ratio--square'
+  elsif block.settings.image_ratio == 'landscape'
+    assign ratio_class = 'premium-ratio--landscape'
+  endif
+%}
+
+{% if drawer %}
+  <div class="premium-drawer__mega-content" data-mega-block-id="{{ block.id }}">
+    {% if block.settings.eyebrow != blank %}
+      <p class="premium-drawer__eyebrow">{{ block.settings.eyebrow }}</p>
+    {% endif %}
+    {% if block.settings.heading != blank %}
+      <h3 class="premium-drawer__mega-heading">{{ block.settings.heading }}</h3>
+    {% endif %}
+
+    {% if selected_collections != blank %}
+      <div class="premium-drawer__collection-grid">
+        {% for collection in selected_collections limit: 10 %}
+          <a href="{{ collection.url }}" class="premium-drawer__collection-card">
+            <div class="premium-drawer__collection-media {{ ratio_class }}">
+              {% if collection.featured_image != blank %}
+                {{
+                  collection.featured_image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '240, 360, 480, 600'
+                }}
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <span>{{ collection.title }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_view_all %}
+      <a href="{{ menu_link.url }}" class="premium-drawer__view-all">
+        View all {{ menu_link.title }} <span aria-hidden="true">→</span>
+      </a>
+    {% endif %}
+  </div>
+{% else %}
+  <div
+    id="{{ panel_id }}"
+    class="premium-mega-menu premium-mega-menu--collections"
+    data-nav-panel
+    {{ block.shopify_attributes }}
+  >
+    <div class="premium-mega-menu__inner premium-mega-menu__inner--collections">
+      <div class="premium-mega-menu__collection-header">
+        <div>
+          {% if block.settings.eyebrow != blank %}
+            <p class="premium-mega-menu__eyebrow">{{ block.settings.eyebrow }}</p>
+          {% endif %}
+          {% if block.settings.heading != blank %}
+            <h2 class="premium-mega-menu__heading">{{ block.settings.heading }}</h2>
+          {% endif %}
+        </div>
+
+        {% if block.settings.show_view_all %}
+          <a href="{{ menu_link.url }}" class="premium-mega-menu__view-all">
+            View all <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
+
+      {% if selected_collections != blank %}
+        <div class="premium-mega-menu__collection-grid">
+          {% for collection in selected_collections limit: 10 %}
+            <a href="{{ collection.url }}" class="premium-mega-menu__collection-card">
+              <div class="premium-mega-menu__collection-media {{ ratio_class }}">
+                {% if collection.featured_image != blank %}
+                  {{
+                    collection.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '240, 360, 480, 640, 800'
+                  }}
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <span class="premium-mega-menu__collection-arrow" aria-hidden="true">↗</span>
+              </div>
+              <span class="premium-mega-menu__collection-title">{{ collection.title }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

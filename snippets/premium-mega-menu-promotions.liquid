@@ -1,0 +1,143 @@
+{% comment %}
+  Promotion mega menu.
+
+  Parameters:
+  - block
+  - menu_link
+  - section
+  - panel_id: desktop only
+  - drawer: boolean
+{% endcomment %}
+
+{% if drawer %}
+  <div class="premium-drawer__mega-content" data-mega-block-id="{{ block.id }}">
+    {% if block.settings.eyebrow != blank %}
+      <p class="premium-drawer__eyebrow">{{ block.settings.eyebrow }}</p>
+    {% endif %}
+    {% if block.settings.heading != blank %}
+      <h3 class="premium-drawer__mega-heading">{{ block.settings.heading }}</h3>
+    {% endif %}
+
+    {% if menu_link.links != blank %}
+      <ul class="premium-drawer__submenu" role="list">
+        {% for childlink in menu_link.links %}
+          <li>
+            {% if childlink.links != blank %}
+              <details class="premium-drawer__nested-details">
+                <summary>
+                  <span>{{ childlink.title }}</span>
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <ul role="list">
+                  <li><a href="{{ childlink.url }}">View all {{ childlink.title }}</a></li>
+                  {% for grandchildlink in childlink.links %}
+                    <li><a href="{{ grandchildlink.url }}">{{ grandchildlink.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </details>
+            {% else %}
+              <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="premium-drawer__promotions">
+      {% for i in (1..3) %}
+        {% liquid
+          assign image_key = 'promotion_' | append: i | append: '_image'
+          assign title_key = 'promotion_' | append: i | append: '_title'
+          assign link_key = 'promotion_' | append: i | append: '_link'
+          assign promotion_image = block.settings[image_key]
+          assign promotion_title = block.settings[title_key]
+          assign promotion_link = block.settings[link_key] | default: menu_link.url
+        %}
+
+        {% if promotion_image != blank %}
+          <a href="{{ promotion_link }}" class="premium-drawer__promotion-card">
+            {{
+              promotion_image
+              | image_url: width: 720
+              | image_tag:
+                loading: 'lazy',
+                widths: '240, 360, 540, 720',
+                class: 'premium-drawer__promotion-image'
+            }}
+            {% if promotion_title != blank %}
+              <span class="premium-promotion-badge">{{ promotion_title }}</span>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  <div
+    id="{{ panel_id }}"
+    class="premium-mega-menu premium-mega-menu--promotions"
+    data-nav-panel
+    {{ block.shopify_attributes }}
+  >
+    <div class="premium-mega-menu__inner">
+      <div class="premium-mega-menu__intro">
+        {% if block.settings.eyebrow != blank %}
+          <p class="premium-mega-menu__eyebrow">{{ block.settings.eyebrow }}</p>
+        {% endif %}
+        {% if block.settings.heading != blank %}
+          <h2 class="premium-mega-menu__heading">{{ block.settings.heading }}</h2>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="premium-mega-menu__description rte">{{ block.settings.description }}</div>
+        {% endif %}
+        <a href="{{ menu_link.url }}" class="premium-mega-menu__view-all">
+          View all <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="premium-mega-menu__links">
+        {% for childlink in menu_link.links %}
+          <div class="premium-mega-menu__link-column">
+            <a href="{{ childlink.url }}" class="premium-mega-menu__column-title">{{ childlink.title }}</a>
+            {% if childlink.links != blank %}
+              <ul role="list">
+                {% for grandchildlink in childlink.links %}
+                  <li><a href="{{ grandchildlink.url }}">{{ grandchildlink.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="premium-mega-menu__promotions">
+        {% for i in (1..3) %}
+          {% liquid
+            assign image_key = 'promotion_' | append: i | append: '_image'
+            assign title_key = 'promotion_' | append: i | append: '_title'
+            assign link_key = 'promotion_' | append: i | append: '_link'
+            assign promotion_image = block.settings[image_key]
+            assign promotion_title = block.settings[title_key]
+            assign promotion_link = block.settings[link_key] | default: menu_link.url
+          %}
+
+          {% if promotion_image != blank %}
+            <a href="{{ promotion_link }}" class="premium-mega-menu__promotion-card">
+              {{
+                promotion_image
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '300, 450, 600, 750, 900',
+                  class: 'premium-mega-menu__promotion-image'
+              }}
+              {% if promotion_title != blank %}
+                <span class="premium-promotion-badge">{{ promotion_title }}</span>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}

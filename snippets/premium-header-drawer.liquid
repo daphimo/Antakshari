@@ -1,0 +1,150 @@
+{% comment %}
+  Responsive navigation drawer.
+
+  Parameters:
+  - section
+  - menu
+{% endcomment %}
+
+<aside
+  id="PremiumHeaderDrawer-{{ section.id }}"
+  class="premium-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label="Navigation drawer"
+  data-header-drawer
+  inert
+>
+  <div class="premium-drawer__header">
+    <span class="premium-drawer__title">Menu</span>
+    <button type="button" class="premium-drawer__close" aria-label="Close menu" data-drawer-close>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"></path></svg>
+    </button>
+  </div>
+
+  <div class="premium-drawer__scroll">
+    {% if menu != blank %}
+      <nav aria-label="Mobile navigation">
+        <ul class="premium-drawer__menu" role="list">
+          {% for link in menu.links %}
+            {% liquid
+              assign link_handle = link.title | handleize
+              assign promotion_mega_block = blank
+              assign collection_mega_block = blank
+
+              for block in section.blocks
+                assign block_menu_handle = block.settings.menu_item | handleize
+                if block_menu_handle == link_handle
+                  if block.type == 'promotion_mega_menu' and promotion_mega_block == blank
+                    assign promotion_mega_block = block
+                  elsif block.type == 'collection_mega_menu' and collection_mega_block == blank
+                    assign collection_mega_block = block
+                  endif
+                endif
+              endfor
+
+              assign has_expandable_content = false
+              if link.links != blank or promotion_mega_block != blank or collection_mega_block != blank
+                assign has_expandable_content = true
+              endif
+            %}
+
+            <li class="premium-drawer__item">
+              {% if has_expandable_content %}
+                <details class="premium-drawer__details">
+                  <summary class="premium-drawer__summary">
+                    <span>{{ link.title }}</span>
+                    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M1 6h10"></path></svg>
+                  </summary>
+
+                  <div class="premium-drawer__panel">
+                    <a href="{{ link.url }}" class="premium-drawer__parent-link">
+                      View all {{ link.title }} <span aria-hidden="true">→</span>
+                    </a>
+
+                    {% if promotion_mega_block != blank %}
+                      {% render 'premium-mega-menu-promotions',
+                        block: promotion_mega_block,
+                        menu_link: link,
+                        section: section,
+                        drawer: true
+                      %}
+                    {% elsif collection_mega_block != blank %}
+                      {% render 'premium-mega-menu-collections',
+                        block: collection_mega_block,
+                        menu_link: link,
+                        section: section,
+                        drawer: true
+                      %}
+                    {% elsif link.links != blank %}
+                      <ul class="premium-drawer__submenu" role="list">
+                        {% for childlink in link.links %}
+                          <li>
+                            {% if childlink.links != blank %}
+                              <details class="premium-drawer__nested-details">
+                                <summary>
+                                  <span>{{ childlink.title }}</span>
+                                  <span aria-hidden="true">+</span>
+                                </summary>
+                                <ul role="list">
+                                  <li><a href="{{ childlink.url }}">View all {{ childlink.title }}</a></li>
+                                  {% for grandchildlink in childlink.links %}
+                                    <li><a href="{{ grandchildlink.url }}">{{ grandchildlink.title }}</a></li>
+                                  {% endfor %}
+                                </ul>
+                              </details>
+                            {% else %}
+                              <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                </details>
+              {% else %}
+                <a href="{{ link.url }}" class="premium-drawer__direct-link">{{ link.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    {% if section.settings.show_drawer_promotion and section.settings.drawer_promotion_image != blank %}
+      <details class="premium-drawer__featured"{% if section.settings.drawer_promotion_open %} open{% endif %}>
+        <summary>
+          <span>{{ section.settings.drawer_promotion_caption | default: 'Featured' }}</span>
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M1 6h10"></path></svg>
+        </summary>
+        <a href="{{ section.settings.drawer_promotion_link | default: routes.all_products_collection_url }}" class="premium-drawer__featured-card">
+          {{
+            section.settings.drawer_promotion_image
+            | image_url: width: 1000
+            | image_tag:
+              loading: 'lazy',
+              widths: '360, 540, 720, 1000',
+              class: 'premium-drawer__featured-image'
+          }}
+          <span class="premium-drawer__featured-overlay">
+            {% if section.settings.drawer_promotion_caption != blank %}
+              <small>{{ section.settings.drawer_promotion_caption }}</small>
+            {% endif %}
+            {% if section.settings.drawer_promotion_title != blank %}
+              <strong>{{ section.settings.drawer_promotion_title }}</strong>
+            {% endif %}
+          </span>
+        </a>
+      </details>
+    {% endif %}
+  </div>
+
+  <div class="premium-drawer__footer">
+    {% if shop.customer_accounts_enabled and section.settings.show_account %}
+      <a href="{{ routes.account_url }}">Account</a>
+    {% endif %}
+    <a href="{{ routes.search_url }}">Search</a>
+    <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+  </div>
+</aside>

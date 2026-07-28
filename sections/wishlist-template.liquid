@@ -1,0 +1,161 @@
+{%- unless section.settings.quick_add == 'none' -%}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="page-width">
+  <div class="section-{{ section.id }}-padding">
+    <div class="wishlist__container">
+      <div class="wishlist__page-title">
+        <h2 class="wishlist__page-ttl" style="font-size:{{ section.settings.titlesize }}px">
+          {{ section.settings.title }}
+        </h2>
+        <div class="contains-wishlist-items" id="contains-wishlist-items">
+          <button class="wishlist-add-all-to-cart button button--primary" id="add-all-to-cart">
+            <span id="add-all-text-wish">Add all to cart</span>
+            <div id="addallcart-loader" style="display: none;">Adding...</div>
+          </button>
+        </div>
+      </div>
+      <div class="wishlist__grid flex container" grid-wishlist>
+        <p class="wishlist__loader full-width text-center">
+          <div class="loading-spinner"></div>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .wishlist__loader{
+    width:100%;
+    display:flex;
+    justify-content:center;
+  }
+   .loading-spinner {
+      border-width: {{ section.settings.loader_tk }}px;
+     border-style: solid;
+     border-color: {{ section.settings.loading_bg }};
+      border-top-width: {{ section.settings.loader_tk }}px;
+     border-top-style: solid;
+     border-top-color: {{ section.settings.loading_mn }};
+      border-radius: 50%;
+      width: {{ section.settings.loader_sz }}px;
+      height: {{ section.settings.loader_sz }}px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Wishlist Container",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Page Image",
+      "info": "Don't use portrait or square image use only wide images"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Page Image",
+      "info": "Don't use portrait or square image use only wide images"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Wishlist"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Page Title Align",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "titlesize",
+      "min": 2,
+      "max": 80,
+      "label": "Title Size",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_effect",
+      "label": "Hover Effect",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "loading_bg",
+      "label": "Loader Background Color",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "loading_mn",
+      "label": "Loader Main Color",
+      "default": "#fb56c1"
+    },
+    {
+      "type": "range",
+      "id": "loader_tk",
+      "min": 2,
+      "max": 100,
+      "label": "Loader Thickness",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "loader_sz",
+      "min": 2,
+      "max": 100,
+      "label": "Loader Size",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wishlist Container"
+    }
+  ]
+}
+{% endschema %}

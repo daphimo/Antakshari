@@ -1,0 +1,863 @@
+{{ 'collection-category-slider.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_class = 'collection-category-slider-' | append: section.id
+%}
+
+<section
+  class="collection-category-slider {{ section_class }}"
+  style="
+    --ccs-background: {{ section.settings.background_color }};
+    --ccs-content-width: {{ section.settings.content_width }}%;
+    --ccs-section-max-width: {{ section.settings.section_max_width }}px;
+
+    --ccs-padding-top: {{ section.settings.padding_top }}px;
+    --ccs-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --ccs-padding-inline: {{ section.settings.padding_inline }}px;
+    --ccs-column-gap: {{ section.settings.column_gap }}px;
+
+    --ccs-caption-color: {{ section.settings.caption_color }};
+    --ccs-caption-size: {{ section.settings.caption_size }}px;
+    --ccs-caption-mobile-size: {{ section.settings.caption_mobile_size }}px;
+    --ccs-caption-spacing: {{ section.settings.caption_spacing }}px;
+
+    --ccs-title-color: {{ section.settings.title_color }};
+    --ccs-title-size: {{ section.settings.title_size }}px;
+    --ccs-title-mobile-size: {{ section.settings.title_mobile_size }}px;
+    --ccs-title-line-height: {{ section.settings.title_line_height | divided_by: 100.0 }};
+    --ccs-title-spacing: {{ section.settings.title_spacing }}px;
+    --ccs-title-max-width: {{ section.settings.title_max_width }}px;
+
+    --ccs-text-color: {{ section.settings.text_color }};
+    --ccs-text-size: {{ section.settings.text_size }}px;
+    --ccs-text-mobile-size: {{ section.settings.text_mobile_size }}px;
+    --ccs-text-line-height: {{ section.settings.text_line_height | divided_by: 100.0 }};
+
+    --ccs-card-height: {{ section.settings.card_height }}px;
+    --ccs-card-mobile-height: {{ section.settings.card_mobile_height }}px;
+    --ccs-card-radius: {{ section.settings.card_radius }}px;
+    --ccs-card-lift: {{ section.settings.card_lift }}px;
+
+    --ccs-label-background: {{ section.settings.label_background }};
+    --ccs-label-color: {{ section.settings.label_color }};
+    --ccs-label-size: {{ section.settings.label_size }}px;
+    --ccs-label-mobile-size: {{ section.settings.label_mobile_size }}px;
+    --ccs-label-radius: {{ section.settings.label_radius }}px;
+    --ccs-label-padding-y: {{ section.settings.label_padding_y }}px;
+    --ccs-label-padding-x: {{ section.settings.label_padding_x }}px;
+    --ccs-label-top: {{ section.settings.label_top }}px;
+    --ccs-label-left: {{ section.settings.label_left }}px;
+
+    --ccs-arrow-background: {{ section.settings.arrow_background }};
+    --ccs-arrow-color: {{ section.settings.arrow_color }};
+    --ccs-arrow-size: {{ section.settings.arrow_size }}px;
+
+    --ccs-pagination-color: {{ section.settings.pagination_color }};
+    --ccs-pagination-active-color: {{ section.settings.pagination_active_color }};
+  "
+>
+  <div
+    class="
+      collection-category-slider__container
+      collection-category-slider__container--{{ section.settings.content_vertical_alignment }}
+    "
+  >
+    <div
+      class="
+        collection-category-slider__content
+        collection-category-slider__content--{{ section.settings.text_alignment }}
+      "
+    >
+      {% if section.settings.caption != blank %}
+        <div class="collection-category-slider__caption">
+          {{ section.settings.caption }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <{{ section.settings.heading_tag }} class="collection-category-slider__heading">
+          {{ section.settings.heading }}
+        </{{ section.settings.heading_tag }}>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="collection-category-slider__description rte">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="collection-category-slider__slider-wrapper">
+      <div
+        id="splide-{{ section.id }}"
+        class="splide collection-category-slider__splide{% if section.blocks.size <= 1 %} collection-category-slider__splide--single{% endif %}"
+      >
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for block in section.blocks %}
+              {% liquid
+                assign card_collection = block.settings.collection
+                assign card_image = block.settings.image
+
+                if card_image == blank and card_collection != blank
+                  assign card_image = card_collection.featured_image
+                endif
+
+                assign card_title = block.settings.title
+                if card_title == blank and card_collection != blank
+                  assign card_title = card_collection.title
+                endif
+
+                assign card_link = block.settings.link
+                if card_link == blank and card_collection != blank
+                  assign card_link = card_collection.url
+                endif
+              %}
+
+              <li
+                class="splide__slide collection-category-slider__slide"
+                data-block-id="{{ block.id }}"
+                data-slide-index="{{ forloop.index0 }}"
+                {{ block.shopify_attributes }}
+              >
+                {% if card_link != blank %}
+                  <a
+                    href="{{ card_link }}"
+                    class="collection-category-slider__card"
+                    aria-label="{{ card_title | default: 'View collection' | escape }}"
+                  >
+                {% else %}
+                  <div class="collection-category-slider__card">
+                {% endif %}
+
+                  <div class="collection-category-slider__media">
+                    {% if card_image != blank %}
+                      {{
+                        card_image
+                        | image_url: width: 1200
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '300, 450, 600, 800, 1000, 1200',
+                          sizes: '(min-width: 990px) 25vw, (min-width: 750px) 40vw, 75vw',
+                          class: 'collection-category-slider__image'
+                      }}
+                    {% else %}
+                      {{
+                        'collection-1'
+                        | placeholder_svg_tag:
+                          'collection-category-slider__placeholder'
+                      }}
+                    {% endif %}
+                  </div>
+
+                  {% if card_title != blank %}
+                    <span class="collection-category-slider__card-title">
+                      {{ card_title }}
+                    </span>
+                  {% endif %}
+
+                {% if card_link != blank %}
+                  </a>
+                {% else %}
+                  </div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if section.settings.show_arrows and section.blocks.size > 1 %}
+          <div class="splide__arrows collection-category-slider__arrows">
+            <button
+              class="splide__arrow splide__arrow--prev"
+              type="button"
+              aria-label="Previous slide"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M15 18 9 12l6-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="splide__arrow splide__arrow--next"
+              type="button"
+              aria-label="Next slide"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="m9 18 6-6-6-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_pagination and section.blocks.size > 1 %}
+          <ul class="splide__pagination"></ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% render 'splide-slider',
+  slider_id: section.id,
+  section_id: section.id
+%}
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "tag": "section",
+  "class": "section-collection-category-slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f7f1e5"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "label": "Maximum content width",
+      "min": 1000,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Left content width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between content and slider",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "select",
+      "id": "content_vertical_alignment",
+      "label": "Content vertical alignment",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_inline",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#c76536"
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "label": "Caption size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "caption_mobile_size",
+      "label": "Caption size on mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "caption_spacing",
+      "label": "Space below caption",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A wardrobe for every generation and every gathering."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Heading size",
+      "min": 18,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "title_mobile_size",
+      "label": "Heading size on mobile",
+      "min": 18,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "label": "Heading line height",
+      "min": 80,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "title_max_width",
+      "label": "Heading maximum width",
+      "min": 200,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 360
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Space below heading",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>We design across the household so the celebration feels harmonious, elegant, and personal.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "text_mobile_size",
+      "label": "Description size on mobile",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "label": "Description line height",
+      "min": 100,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "default": 140
+    },
+    {
+      "type": "header",
+      "content": "Collection cards"
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Card height",
+      "min": 200,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 340
+    },
+    {
+      "type": "range",
+      "id": "card_mobile_height",
+      "label": "Card height on mobile",
+      "min": 180,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_lift",
+      "label": "Hover lift amount",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Card title"
+    },
+    {
+      "type": "color",
+      "id": "label_background",
+      "label": "Title background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Title color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Title size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_mobile_size",
+      "label": "Title size on mobile",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "label_radius",
+      "label": "Title corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "label_padding_y",
+      "label": "Title vertical padding",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 7
+    },
+    {
+      "type": "range",
+      "id": "label_padding_x",
+      "label": "Title horizontal padding",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "label_top",
+      "label": "Title position from top",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_left",
+      "label": "Title position from left",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Splide settings"
+    },
+    {
+      "type": "select",
+      "id": "slider_type",
+      "label": "Slider type",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "loop",
+          "label": "Loop"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "loop"
+    },
+    {
+      "type": "range",
+      "id": "perPageDesktop",
+      "label": "Slides per view on desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "perPageMobile",
+      "label": "Slides per view on mobile",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "perMove",
+      "label": "Slides to move",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Desktop slide gap",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Mobile slide gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition speed",
+      "min": 300,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "default": 700
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause autoplay on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_focus",
+      "label": "Pause autoplay on focus",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Slider navigation style"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow icon color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow size",
+      "min": 28,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "pagination_color",
+      "label": "Pagination color",
+      "default": "#b8b8b8"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_color",
+      "label": "Active pagination color",
+      "default": "#111111"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title",
+          "info": "Leave empty to use the collection title."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link",
+          "info": "Leave empty to use the collection URL."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "collection_card"
+        },
+        {
+          "type": "collection_card"
+        },
+        {
+          "type": "collection_card"
+        },
+        {
+          "type": "collection_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

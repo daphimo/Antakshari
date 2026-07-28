@@ -1,0 +1,46 @@
+{% comment %}
+  Standard desktop dropdown.
+
+  Parameters:
+  - menu_link
+  - panel_id
+{% endcomment %}
+
+<div
+  id="{{ panel_id }}"
+  class="premium-header__dropdown"
+  data-nav-panel
+>
+  <div class="premium-header__dropdown-content">
+    <a href="{{ menu_link.url }}" class="premium-header__dropdown-view-all">
+      <span>View all {{ menu_link.title }}</span>
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <ul class="premium-header__dropdown-list" role="list">
+      {% for childlink in menu_link.links %}
+        <li class="premium-header__dropdown-item{% if childlink.links != blank %} has-children{% endif %}">
+          <a href="{{ childlink.url }}" class="premium-header__dropdown-link">
+            <span>{{ childlink.title }}</span>
+            {% if childlink.links != blank %}
+              <svg viewBox="0 0 8 12" aria-hidden="true"><path d="m1 1 5 5-5 5"></path></svg>
+            {% endif %}
+          </a>
+
+          {% if childlink.links != blank %}
+            <ul class="premium-header__dropdown-submenu" role="list">
+              <li class="premium-header__dropdown-submenu-heading">
+                <a href="{{ childlink.url }}">View all {{ childlink.title }}</a>
+              </li>
+              {% for grandchildlink in childlink.links %}
+                <li>
+                  <a href="{{ grandchildlink.url }}">{{ grandchildlink.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,805 @@
+{{ 'blog-guides.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign selected_blog = section.settings.blog
+
+  assign button_url = section.settings.button_link
+  if button_url == blank and selected_blog != blank
+    assign button_url = selected_blog.url
+  endif
+%}
+
+<section
+  id="blog-guides-{{ section.id }}"
+  class="blog-guides"
+  style="
+    --blog-guides-section-background: {{ section.settings.section_background }};
+    --blog-guides-card-background: {{ section.settings.card_background }};
+    --blog-guides-border-color: {{ section.settings.border_color }};
+    --blog-guides-container-width: {{ section.settings.container_width }}px;
+    --blog-guides-section-padding-top: {{ section.settings.padding_top }}px;
+    --blog-guides-section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --blog-guides-mobile-padding-top: {{ section.settings.mobile_padding_top }}px;
+    --blog-guides-mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    --blog-guides-horizontal-padding: {{ section.settings.horizontal_padding }}px;
+
+    --blog-guides-wrapper-padding-top: {{ section.settings.wrapper_padding_top }}px;
+    --blog-guides-wrapper-padding-bottom: {{ section.settings.wrapper_padding_bottom }}px;
+    --blog-guides-wrapper-padding-inline: {{ section.settings.wrapper_padding_inline }}px;
+    --blog-guides-mobile-wrapper-padding: {{ section.settings.mobile_wrapper_padding }}px;
+    --blog-guides-wrapper-radius: {{ section.settings.wrapper_radius }}px;
+    --blog-guides-wrapper-border-width: {{ section.settings.wrapper_border_width }}px;
+
+    --blog-guides-header-gap: {{ section.settings.header_gap }}px;
+    --blog-guides-cards-gap: {{ section.settings.cards_gap }}px;
+    --blog-guides-card-padding: {{ section.settings.card_padding }}px;
+    --blog-guides-card-min-height: {{ section.settings.card_min_height }}px;
+    --blog-guides-card-radius: {{ section.settings.card_radius }}px;
+    --blog-guides-card-border-width: {{ section.settings.card_border_width }}px;
+
+    --blog-guides-caption-size: {{ section.settings.caption_size }}px;
+    --blog-guides-caption-mobile-size: {{ section.settings.caption_mobile_size }}px;
+    --blog-guides-caption-color: {{ section.settings.caption_color }};
+    --blog-guides-caption-spacing: {{ section.settings.caption_letter_spacing | divided_by: 10.0 }}em;
+
+    --blog-guides-heading-size: {{ section.settings.heading_size }}px;
+    --blog-guides-heading-mobile-size: {{ section.settings.heading_mobile_size }}px;
+    --blog-guides-heading-color: {{ section.settings.heading_color }};
+    --blog-guides-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+
+    --blog-guides-content-size: {{ section.settings.content_size }}px;
+    --blog-guides-content-mobile-size: {{ section.settings.content_mobile_size }}px;
+    --blog-guides-content-color: {{ section.settings.content_color }};
+    --blog-guides-content-line-height: {{ section.settings.content_line_height | divided_by: 100.0 }};
+
+    --blog-guides-meta-size: {{ section.settings.meta_size }}px;
+    --blog-guides-meta-mobile-size: {{ section.settings.meta_mobile_size }}px;
+    --blog-guides-meta-color: {{ section.settings.meta_color }};
+    --blog-guides-meta-spacing: {{ section.settings.meta_letter_spacing | divided_by: 10.0 }}em;
+
+    --blog-guides-title-size: {{ section.settings.article_title_size }}px;
+    --blog-guides-title-mobile-size: {{ section.settings.article_title_mobile_size }}px;
+    --blog-guides-title-color: {{ section.settings.article_title_color }};
+    --blog-guides-title-line-height: {{ section.settings.article_title_line_height | divided_by: 100.0 }};
+
+    --blog-guides-button-size: {{ section.settings.button_size }}px;
+    --blog-guides-button-color: {{ section.settings.button_color }};
+    --blog-guides-hover-lift: {{ section.settings.hover_lift }}px;
+    --blog-guides-hover-shadow-opacity: {{ section.settings.hover_shadow_opacity | divided_by: 100.0 }};
+  "
+>
+  <div class="blog-guides__container">
+    <div class="blog-guides__wrapper">
+      <div class="blog-guides__header">
+        <div class="blog-guides__heading-area">
+          {% if section.settings.caption != blank %}
+            <div class="blog-guides__caption">
+              {{ section.settings.caption }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.heading_tag }} class="blog-guides__heading">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_tag }}>
+          {% endif %}
+        </div>
+
+        <div class="blog-guides__right-area">
+          {% if section.settings.content != blank %}
+            <div class="blog-guides__content rte">
+              {{ section.settings.content }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_label != blank %}
+            <a
+              href="{{ button_url | default: '#' }}"
+              class="blog-guides__button"
+            >
+              <span>{{ section.settings.button_label }}</span>
+
+              {% if section.settings.show_button_arrow %}
+                <span class="blog-guides__button-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 12H19M13 6L19 12L13 18"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              {% endif %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="blog-guides__articles">
+        {% if selected_blog != blank and selected_blog.articles_count > 0 %}
+          {% for article in selected_blog.articles limit: 3 %}
+            <article class="blog-guides__card">
+              <a
+                href="{{ article.url }}"
+                class="blog-guides__card-link"
+                aria-label="{{ article.title | escape }}"
+              >
+                {% if section.settings.show_article_label %}
+                  <div class="blog-guides__article-meta">
+                    {% if section.settings.use_article_tags and article.tags.size > 0 %}
+                      {{ article.tags.first }}
+                    {% else %}
+                      {{ selected_blog.title }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                <h3 class="blog-guides__article-title">
+                  {{ article.title }}
+                </h3>
+
+                {% if section.settings.show_excerpt %}
+                  <div class="blog-guides__excerpt">
+                    {% if article.excerpt != blank %}
+                      {{ article.excerpt | strip_html | truncatewords: section.settings.excerpt_words }}
+                    {% else %}
+                      {{ article.content | strip_html | truncatewords: section.settings.excerpt_words }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if section.settings.show_date or section.settings.show_author %}
+                  <div class="blog-guides__details">
+                    {% if section.settings.show_date %}
+                      <span>
+                        {{ article.published_at | date: section.settings.date_format }}
+                      </span>
+                    {% endif %}
+
+                    {% if section.settings.show_date and section.settings.show_author %}
+                      <span aria-hidden="true">•</span>
+                    {% endif %}
+
+                    {% if section.settings.show_author %}
+                      <span>{{ article.author }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </a>
+            </article>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..3) %}
+            <article class="blog-guides__card">
+              <div class="blog-guides__card-link">
+                <div class="blog-guides__article-meta">
+                  Article category
+                </div>
+
+                <h3 class="blog-guides__article-title">
+                  Select a blog to display article {{ i }}
+                </h3>
+              </div>
+            </article>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog guides",
+  "tag": "section",
+  "class": "section-blog-guides",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_article_label",
+      "label": "Show article label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "use_article_tags",
+      "label": "Use first article tag as label",
+      "info": "When disabled, the selected blog title is used.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show article excerpt",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "excerpt_words",
+      "label": "Excerpt length",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "wrd"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show publication date",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "label": "Date format",
+      "options": [
+        {
+          "value": "%b %d, %Y",
+          "label": "Jan 01, 2026"
+        },
+        {
+          "value": "%B %d, %Y",
+          "label": "January 01, 2026"
+        },
+        {
+          "value": "%d %b %Y",
+          "label": "01 Jan 2026"
+        },
+        {
+          "value": "%d/%m/%Y",
+          "label": "01/01/2026"
+        }
+      ],
+      "default": "%b %d, %Y"
+    },
+    {
+      "type": "header",
+      "content": "Top content"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "FESTIVAL GUIDES"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A thoughtful edit for styling, gifting, and celebrating with intention."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Right-side content",
+      "default": "<p>From fabrics to festive pairing, our guides bring warmth and clarity to every decision.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Explore link title"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Explore link",
+      "info": "Leave empty to use the selected blog URL."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Show explore arrow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 800,
+      "max": 1800,
+      "step": 20,
+      "default": 1320,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Page horizontal padding",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top spacing",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Outer wrapper"
+    },
+    {
+      "type": "range",
+      "id": "wrapper_padding_top",
+      "label": "Top padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "wrapper_padding_bottom",
+      "label": "Bottom padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "wrapper_padding_inline",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 100,
+      "step": 4,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_wrapper_padding",
+      "label": "Mobile padding",
+      "min": 12,
+      "max": 50,
+      "step": 2,
+      "default": 22,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "wrapper_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "wrapper_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "label": "Header columns gap",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Article cards"
+    },
+    {
+      "type": "range",
+      "id": "cards_gap",
+      "label": "Cards gap",
+      "min": 8,
+      "max": 50,
+      "step": 2,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_min_height",
+      "label": "Minimum card height",
+      "min": 90,
+      "max": 280,
+      "step": 5,
+      "default": 150,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Card border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Caption typography"
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "label": "Desktop size",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "default": 11,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "caption_mobile_size",
+      "label": "Mobile size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "caption_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Color",
+      "default": "#9B572F"
+    },
+    {
+      "type": "header",
+      "content": "Heading typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "default": 34,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_mobile_size",
+      "label": "Mobile size",
+      "min": 18,
+      "max": 50,
+      "step": 1,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "min": 80,
+      "max": 180,
+      "step": 5,
+      "default": 120,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#4A1D0E"
+    },
+    {
+      "type": "header",
+      "content": "Right content typography"
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Desktop size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_mobile_size",
+      "label": "Mobile size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_line_height",
+      "label": "Line height",
+      "min": 100,
+      "max": 220,
+      "step": 5,
+      "default": 155,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Color",
+      "default": "#714735"
+    },
+    {
+      "type": "header",
+      "content": "Article label typography"
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "Desktop size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "meta_mobile_size",
+      "label": "Mobile size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 9,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "meta_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Color",
+      "default": "#A05B36"
+    },
+    {
+      "type": "header",
+      "content": "Article title typography"
+    },
+    {
+      "type": "range",
+      "id": "article_title_size",
+      "label": "Desktop size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "article_title_mobile_size",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 17,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "article_title_line_height",
+      "label": "Line height",
+      "min": 90,
+      "max": 180,
+      "step": 5,
+      "default": 135,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "article_title_color",
+      "label": "Color",
+      "default": "#4A1D0E"
+    },
+    {
+      "type": "header",
+      "content": "Explore link typography"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Color",
+      "default": "#713923"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FAF5EB"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card and wrapper background",
+      "default": "#FFF9F1"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#DEBB8B"
+    },
+    {
+      "type": "header",
+      "content": "Hover animation"
+    },
+    {
+      "type": "range",
+      "id": "hover_lift",
+      "label": "Card lift",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_opacity",
+      "label": "Shadow strength",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 10,
+      "unit": "%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog guides"
+    }
+  ]
+}
+{% endschema %}

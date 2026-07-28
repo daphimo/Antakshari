@@ -1,0 +1,133 @@
+{{ 'sub-collection-grid.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign collections_to_show = collection.metafields.custom.sub_collections.value
+
+  if collections_to_show == blank
+    assign collections_to_show = section.settings.fallback_collections
+  endif
+-%}
+
+<section class="cust-subcollections">
+  <div class="page-width">
+
+    {% if section.settings.caption != blank %}
+      <p
+        class="cust-subcollections__caption"
+        style="color: {{ section.settings.caption_color }};"
+      >
+        {{ section.settings.caption }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.title != blank %}
+      <h2
+        class="cust-subcollections__title"
+        style="color: {{ section.settings.title_color }};"
+      >
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if collections_to_show != blank %}
+
+      <div class="cust-subcollections__grid">
+
+        {% for sub_collection in collections_to_show %}
+
+          <a
+            href="{{ sub_collection.url }}"
+            class="cust-subcollections__card"
+          >
+
+            <div class="cust-subcollections__image">
+
+              {% if sub_collection.featured_image %}
+                {{
+                  sub_collection.featured_image
+                  | image_url: width: 700
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '300,500,700',
+                    alt: sub_collection.title
+                }}
+
+              {% elsif sub_collection.products.first.featured_image %}
+                {{
+                  sub_collection.products.first.featured_image
+                  | image_url: width: 700
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '300,500,700',
+                    alt: sub_collection.title
+                }}
+              {% endif %}
+
+            </div>
+
+            <div class="cust-subcollections__content">
+              <h3>{{ sub_collection.title }}</h3>
+
+              <span class="cust-subcollections__button">
+                Shop Now →
+              </span>
+            </div>
+
+          </a>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <p>No collections available.</p>
+
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sub Collection Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption Color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading Color",
+      "default": "#111111"
+    },
+    {
+      "type": "collection_list",
+      "id": "fallback_collections",
+      "label": "Fallback Collections"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sub Collection Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,511 @@
+{{ 'split-editorial-statement.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+%}
+
+<section
+  id="SplitEditorial-{{ section.id }}"
+  class="
+    split-editorial-section
+    {% if section.settings.full_width %}split-editorial-section--full{% endif %}
+    {% if section.settings.use_theme_fonts %}split-editorial-section--theme-fonts{% endif %}
+  "
+  style="
+    --ses-section-bg: {{ section.settings.section_background }};
+    --ses-main-bg: {{ section.settings.main_background }};
+    --ses-main-text: {{ section.settings.main_text_color }};
+    --ses-caption-color: {{ section.settings.caption_color }};
+    --ses-highlight-color: {{ section.settings.highlight_color }};
+    --ses-aside-bg: {{ section.settings.aside_background }};
+    --ses-aside-text: {{ section.settings.aside_text_color }};
+    --ses-border-color: {{ section.settings.border_color }};
+    --ses-border-opacity: {{ section.settings.border_opacity | divided_by: 100.0 }};
+    --ses-border-opacity-percent: {{ section.settings.border_opacity }}%;
+
+    --ses-max-width: {{ section.settings.max_width }}px;
+    --ses-min-height: {{ section.settings.minimum_height }}px;
+    --ses-label-width: {{ section.settings.label_width }}px;
+    --ses-aside-min-width: {{ section.settings.aside_minimum_width }}px;
+    --ses-radius: {{ section.settings.border_radius }}px;
+
+    --ses-section-top: {{ section.settings.padding_top }}px;
+    --ses-section-bottom: {{ section.settings.padding_bottom }}px;
+    --ses-section-x: {{ section.settings.section_side_padding }}px;
+
+
+
+    --ses-number-size: {{ section.settings.number_font_size }}px;
+    --ses-label-size: {{ section.settings.label_font_size }}px;
+    --ses-caption-size: {{ section.settings.caption_font_size }}px;
+    --ses-heading-min-size: {{ section.settings.heading_min_font_size }}px;
+    --ses-heading-max-size: {{ section.settings.heading_max_font_size }}px;
+    --ses-heading-mobile-size: {{ section.settings.heading_mobile_font_size }}px;
+    --ses-description-size: {{ section.settings.description_font_size }}px;
+    --ses-button-size: {{ section.settings.button_font_size }}px;
+  "
+>
+  <div class="split-editorial-section__container">
+    <div class="split-editorial">
+      <div class="split-editorial__label">
+        {% if section.settings.label_number != blank %}
+          <span class="split-editorial__number">
+            {{ section.settings.label_number | escape }}
+          </span>
+        {% endif %}
+
+        {% if section.settings.label_text != blank %}
+          <p class="split-editorial__label-text">
+            {{ section.settings.label_text | escape }}
+          </p>
+        {% endif %}
+      </div>
+
+      <div class="split-editorial__content">
+        {% if section.settings.caption != blank %}
+          <p class="split-editorial__caption">
+            {{ section.settings.caption | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading_line_1 != blank
+          or section.settings.heading_highlight != blank
+          or section.settings.heading_line_3 != blank
+        %}
+          <{{ heading_tag }} class="split-editorial__heading">
+            {% if section.settings.heading_line_1 != blank %}
+              <span class="split-editorial__heading-line">
+                {{ section.settings.heading_line_1 | escape }}
+              </span>
+            {% endif %}
+
+            {% if section.settings.heading_highlight != blank %}
+              <span class="split-editorial__heading-line split-editorial__heading-line--highlight">
+                {{ section.settings.heading_highlight | escape }}
+              </span>
+            {% endif %}
+
+            {% if section.settings.heading_line_3 != blank %}
+              <span class="split-editorial__heading-line">
+                {{ section.settings.heading_line_3 | escape }}
+              </span>
+            {% endif %}
+          </{{ heading_tag }}>
+        {% endif %}
+      </div>
+
+      <div class="split-editorial__aside">
+        {% if section.settings.show_symbol and section.settings.symbol != blank %}
+          <span class="split-editorial__symbol" aria-hidden="true">
+            {{ section.settings.symbol | escape }}
+          </span>
+        {% endif %}
+
+        <div class="split-editorial__aside-bottom">
+          {% if section.settings.description != blank %}
+            <div class="split-editorial__description">
+              {{ section.settings.description | newline_to_br }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a
+              class="split-editorial__link"
+              href="{{ section.settings.button_link }}"
+              {% if section.settings.open_in_new_tab %}
+                target="_blank"
+                rel="noopener noreferrer"
+              {% endif %}
+            >
+              <span>{{ section.settings.button_label | escape }}</span>
+
+              {% if section.settings.show_link_arrow %}
+                <span class="split-editorial__link-arrow" aria-hidden="true">↗</span>
+              {% endif %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split editorial statement",
+  "tag": "section",
+  "class": "section-split-editorial",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Label column"
+    },
+    {
+      "type": "text",
+      "id": "label_number",
+      "label": "Number",
+      "default": "01"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "header",
+      "content": "Main content"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Born from Indian celebrations"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Festival led."
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlighted heading line",
+      "default": "Craft inspired."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Heading line 3",
+      "default": "Comfort first."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Aside content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_symbol",
+      "label": "Show symbol",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "symbol",
+      "label": "Symbol",
+      "default": "✦"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "India’s first ethnic wear label bringing regional artistry and contemporary comfort together."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Link label",
+      "default": "About the Brand"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link",
+    },
+    {
+      "type": "checkbox",
+      "id": "show_link_arrow",
+      "label": "Show link arrow",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Outer background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "main_background",
+      "label": "Main background",
+      "default": "#8d2f25"
+    },
+    {
+      "type": "color",
+      "id": "main_text_color",
+      "label": "Main text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption",
+      "default": "#e7c791"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlighted heading",
+      "default": "#f0d4a5"
+    },
+    {
+      "type": "color",
+      "id": "aside_background",
+      "label": "Aside background",
+      "default": "#d8a769"
+    },
+    {
+      "type": "color",
+      "id": "aside_text_color",
+      "label": "Aside text and link",
+      "default": "#211815"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Divider opacity",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Use full browser width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "minimum_height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop minimum height",
+      "default": 440
+    },
+    {
+      "type": "range",
+      "id": "label_width",
+      "min": 80,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Label column width",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "aside_minimum_width",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Aside minimum width",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_fonts",
+      "label": "Use theme fonts",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Section top spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Section bottom spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_side_padding",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Section side spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "number_font_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Number size",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Label size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "caption_font_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "heading_min_font_size",
+      "min": 28,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading minimum size",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "heading_max_font_size",
+      "min": 40,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading maximum size",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "heading_mobile_font_size",
+      "min": 28,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile heading size",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 9,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Link size",
+      "default": 13
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split editorial statement"
+    }
+  ]
+}
+{% endschema %}

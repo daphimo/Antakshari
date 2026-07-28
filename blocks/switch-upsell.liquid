@@ -1,0 +1,127 @@
+{% if block.settings.products != blank %}
+  {{ 'switch.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'switch.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'add-prod.js' | asset_url }}" defer="defer"></script>
+  <div class="switcher_container">
+    <div class="top_switch_bar">
+      <label class="switch">
+        <input
+          class="addonswitch is--active"
+          type="checkbox"
+          checked
+          data-id="addonproducts"
+        >
+        <span class="switch-slider round"></span>
+      </label>
+      <div class="label_switch">{{ block.settings.label }}</div>
+    </div>
+    <div
+      class="addonswitch_container is--active"
+      data-id="addonproducts"
+    >
+      <div class="upsell_container">
+        {% for item in block.settings.products %}
+          {% assign first_variant = item.selected_or_first_available_variant %}
+
+          <div
+            class="prop-card"
+            data-add-item-id="{{ first_variant.id }}"
+          >
+            <div class="prop-content">
+              <div class="prop-details">
+                <h4 class="prop-title">
+                  {{ item.title }}
+                </h4>
+
+                <div class="prop-bottom">
+                  <span class="prop-price">
+                    {{ item.price | money }}
+                  </span>
+
+                  <div class="prop-add-wrap">
+                    <button
+                      class="prop-add-btn"
+                      type="button"
+                    >
+                      Add Item
+                    </button>
+
+                    <div class="prop-qty-wrap">
+                      <button
+                        type="button"
+                        class="prop-qty-btn"
+                        data-action="minus"
+                      >
+                        −
+                      </button>
+
+                      <span class="prop-qty"> 1 </span>
+
+                      <button
+                        type="button"
+                        class="prop-qty-btn"
+                        data-action="plus"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prop-image-wrap">
+                <div class="prop-shape">
+                  <img
+                    src="{{ block.settings.image | image_url }}"
+                    alt="{{ item.title }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    class="product_image_bg"
+                  >
+                </div>
+
+                <img
+                  src="{{ item.featured_image | image_url }}"
+                  alt="{{ item.title }}"
+                  class="product_image"
+                  width="{{ item.featured_image.width }}"
+                  height="{{ item.featured_image.height }}"
+                >
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Switch Upsell",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Goes well With"
+    },
+    {
+      "type": "product_list",
+      "label": "Product List",
+      "id": "products"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Switch Upsell",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

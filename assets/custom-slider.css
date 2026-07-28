@@ -1,0 +1,65 @@
+/* Parent section */
+.parent-custom-slider {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Main wrapper */
+.customslider__container-box {
+  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Splide */
+.customslider__container-box .splide {
+  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Track */
+.customslider__container-box .splide__track {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* List */
+.customslider__container-box .splide__list {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Slides */
+.customslider__container-box .splide__slide {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Your block wrapper */
+.customslider__container-box .custom-hero-full {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Every Shopify block inside */
+.customslider__container-box .custom-hero-full > * {
+  flex: 1;
+}
+
+/* Images */
+.customslider__container-box img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,1129 @@
+{{ 'festive-heritage-footer.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_id = 'festive-heritage-footer-' | append: section.id
+  assign heading_font = section.settings.heading_font
+  assign body_font = section.settings.body_font
+%}
+
+{% style %}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ body_font | font_face: font_display: 'swap' }}
+
+  #{{ section_id }} {
+    --fhf-background: {{ section.settings.background_color }};
+    --fhf-secondary-background: {{ section.settings.secondary_background_color }};
+    --fhf-text: {{ section.settings.text_color }};
+    --fhf-muted-text: {{ section.settings.muted_text_color }};
+    --fhf-accent: {{ section.settings.accent_color }};
+    --fhf-accent-hover: {{ section.settings.accent_hover_color }};
+    --fhf-border: {{ section.settings.border_color }};
+    --fhf-card-background: {{ section.settings.card_background_color }};
+
+    --fhf-heading-font: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --fhf-heading-weight: {{ heading_font.weight }};
+    --fhf-heading-style: {{ heading_font.style }};
+
+    --fhf-body-font: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --fhf-body-weight: {{ body_font.weight }};
+    --fhf-body-style: {{ body_font.style }};
+
+    --fhf-page-width: {{ section.settings.page_width }}px;
+    --fhf-side-padding: {{ section.settings.side_padding }}px;
+
+    --fhf-top-padding: {{ section.settings.padding_top }}px;
+    --fhf-bottom-padding: {{ section.settings.padding_bottom }}px;
+
+    --fhf-mobile-top-padding: {{ section.settings.mobile_padding_top }}px;
+    --fhf-mobile-bottom-padding: {{ section.settings.mobile_padding_bottom }}px;
+
+    --fhf-heading-size: {{ section.settings.heading_size }}px;
+    --fhf-mobile-heading-size: {{ section.settings.mobile_heading_size }}px;
+    --fhf-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --fhf-heading-letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+
+    --fhf-body-size: {{ section.settings.body_size }}px;
+    --fhf-menu-heading-size: {{ section.settings.menu_heading_size }}px;
+    --fhf-menu-link-size: {{ section.settings.menu_link_size }}px;
+
+    --fhf-marquee-size: {{ section.settings.marquee_size }}px;
+    --fhf-marquee-speed: {{ section.settings.marquee_speed }}s;
+
+    --fhf-card-radius: {{ section.settings.card_radius }}px;
+    --fhf-button-radius: {{ section.settings.button_radius }}px;
+    --fhf-input-radius: {{ section.settings.input_radius }}px;
+  }
+{% endstyle %}
+
+<footer
+  id="{{ section_id }}"
+  class="
+    festive-heritage-footer
+    festive-heritage-footer--{{ section.settings.layout_style }}
+    {% if section.settings.enable_background_grid %} festive-heritage-footer--grid{% endif %}
+  "
+  {{ section.shopify_attributes }}
+>
+  {% if section.settings.show_marquee %}
+    <div
+      class="fhf-marquee"
+      aria-label="{{ section.settings.marquee_accessibility_label | escape }}"
+    >
+      <div class="fhf-marquee__track">
+        {% for repeat in (1..6) %}
+          {% if section.settings.marquee_text_1 != blank %}
+            <span class="fhf-marquee__text">
+              {{ section.settings.marquee_text_1 }}
+            </span>
+
+            <span class="fhf-marquee__symbol" aria-hidden="true">
+              {{ section.settings.marquee_symbol }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.marquee_text_2 != blank %}
+            <span class="fhf-marquee__text">
+              {{ section.settings.marquee_text_2 }}
+            </span>
+
+            <span class="fhf-marquee__symbol" aria-hidden="true">
+              {{ section.settings.marquee_symbol }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.marquee_text_3 != blank %}
+            <span class="fhf-marquee__text">
+              {{ section.settings.marquee_text_3 }}
+            </span>
+
+            <span class="fhf-marquee__symbol" aria-hidden="true">
+              {{ section.settings.marquee_symbol }}
+            </span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="fhf-main">
+    <div class="fhf-container">
+      {% if section.settings.show_ornament %}
+        <div class="fhf-ornament" aria-hidden="true">
+          <span class="fhf-ornament__line"></span>
+
+          <svg
+            class="fhf-ornament__icon"
+            viewBox="0 0 100 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M1 14H29C36 14 38 3 50 3C62 3 64 14 71 14H99"></path>
+            <path d="M34 14C39 14 41 25 50 25C59 25 61 14 66 14"></path>
+            <circle cx="50" cy="14" r="3.5"></circle>
+          </svg>
+
+          <span class="fhf-ornament__line"></span>
+        </div>
+      {% endif %}
+
+      <div class="fhf-top">
+        <div class="fhf-top__heading">
+          {% if section.settings.caption != blank %}
+            <p class="fhf-eyebrow">
+              {{ section.settings.caption }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.heading_tag }} class="fhf-heading">
+              {{ section.settings.heading }}
+
+              {% if section.settings.highlighted_heading != blank %}
+                <span>{{ section.settings.highlighted_heading }}</span>
+              {% endif %}
+            </{{ section.settings.heading_tag }}>
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_newsletter %}
+          <div class="fhf-newsletter">
+            {% if section.settings.newsletter_text != blank %}
+              <div class="fhf-newsletter__text rte">
+                {{ section.settings.newsletter_text }}
+              </div>
+            {% endif %}
+
+            {% form 'customer', class: 'fhf-newsletter__form' %}
+              <input
+                type="hidden"
+                name="contact[tags]"
+                value="newsletter"
+              >
+
+              <div class="fhf-newsletter__field">
+                <label
+                  class="visually-hidden"
+                  for="FhfNewsletterEmail-{{ section.id }}"
+                >
+                  {{ section.settings.email_label }}
+                </label>
+
+                <input
+                  id="FhfNewsletterEmail-{{ section.id }}"
+                  class="fhf-newsletter__input"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  placeholder="{{ section.settings.email_placeholder | escape }}"
+                  required
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="FhfNewsletterError-{{ section.id }}"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="FhfNewsletterSuccess-{{ section.id }}"
+                  {% endif %}
+                >
+
+                <button
+                  class="fhf-newsletter__button"
+                  type="submit"
+                  name="commit"
+                >
+                  <span>{{ section.settings.newsletter_button_label }}</span>
+
+                  {% if section.settings.show_button_arrow %}
+                    <span aria-hidden="true">→</span>
+                  {% endif %}
+                </button>
+              </div>
+
+              {% if form.errors %}
+                <small
+                  id="FhfNewsletterError-{{ section.id }}"
+                  class="fhf-form-message fhf-form-message--error"
+                >
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </small>
+              {% endif %}
+
+              {% if form.posted_successfully? %}
+                <p
+                  id="FhfNewsletterSuccess-{{ section.id }}"
+                  class="fhf-form-message fhf-form-message--success"
+                  tabindex="-1"
+                >
+                  {{ section.settings.success_message }}
+                </p>
+              {% endif %}
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_middle_divider %}
+        <div class="fhf-middle-divider" aria-hidden="true">
+          <span class="fhf-middle-divider__diamond"></span>
+        </div>
+      {% endif %}
+
+      <div class="fhf-content">
+        <div class="fhf-brand">
+          <a
+            class="fhf-logo"
+            href="{{ routes.root_url }}"
+            aria-label="{{ shop.name | escape }}"
+          >
+            {% if section.settings.logo != blank %}
+              {{
+                section.settings.logo
+                | image_url: width: 600
+                | image_tag:
+                  widths: '160, 240, 320, 480, 600',
+                  width: section.settings.logo_width,
+                  loading: 'lazy',
+                  class: 'fhf-logo__image',
+                  alt: section.settings.logo.alt
+              }}
+            {% else %}
+              {% if section.settings.logo_caption != blank %}
+                <span class="fhf-logo__caption">
+                  {{ section.settings.logo_caption }}
+                </span>
+              {% endif %}
+
+              <span class="fhf-logo__text">
+                {{ section.settings.logo_text | default: shop.name }}
+              </span>
+            {% endif %}
+          </a>
+
+          {% if section.settings.brand_description != blank %}
+            <div class="fhf-brand__description rte">
+              {{ section.settings.brand_description }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_socials %}
+            <div class="fhf-socials">
+              {% if section.settings.instagram_url != blank %}
+                <a
+                  href="{{ section.settings.instagram_url }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Instagram
+                </a>
+              {% endif %}
+
+              {% if section.settings.facebook_url != blank %}
+                <a
+                  href="{{ section.settings.facebook_url }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Facebook
+                </a>
+              {% endif %}
+
+              {% if section.settings.pinterest_url != blank %}
+                <a
+                  href="{{ section.settings.pinterest_url }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Pinterest
+                </a>
+              {% endif %}
+
+              {% if section.settings.youtube_url != blank %}
+                <a
+                  href="{{ section.settings.youtube_url }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  YouTube
+                </a>
+              {% endif %}
+
+              {% if section.settings.tiktok_url != blank %}
+                <a
+                  href="{{ section.settings.tiktok_url }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  TikTok
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="fhf-navigation">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'menu' %}
+                <div
+                  class="fhf-menu"
+                  {{ block.shopify_attributes }}
+                >
+                  {% if block.settings.heading != blank %}
+                    <h3 class="fhf-menu__heading">
+                      {{ block.settings.heading }}
+                    </h3>
+                  {% endif %}
+
+                  {% if block.settings.menu != blank %}
+                    <ul class="fhf-menu__list" role="list">
+                      {% for link in block.settings.menu.links %}
+                        <li class="fhf-menu__item">
+                          <a
+                            class="fhf-menu__link"
+                            href="{{ link.url }}"
+                            {% if link.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ link.title }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'service_card' %}
+              <div
+                class="fhf-service-card"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.icon != blank %}
+                  <div class="fhf-service-card__icon" aria-hidden="true">
+                    {{ block.settings.icon }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.caption != blank %}
+                  <p class="fhf-service-card__caption">
+                    {{ block.settings.caption }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.heading != blank %}
+                  <h3 class="fhf-service-card__heading">
+                    {{ block.settings.heading }}
+                  </h3>
+                {% endif %}
+
+                {% if block.settings.text != blank %}
+                  <div class="fhf-service-card__text rte">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.link_label != blank %}
+                  <a
+                    class="fhf-service-card__link"
+                    href="{{ block.settings.link_url | default: '#' }}"
+                  >
+                    <span>{{ block.settings.link_label }}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      <div class="fhf-bottom">
+        <div class="fhf-copyright">
+          {% if section.settings.copyright_text != blank %}
+            {{ section.settings.copyright_text }}
+          {% else %}
+            © {{ 'now' | date: '%Y' }} {{ shop.name }}
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_policy_links %}
+          <nav
+            class="fhf-policies"
+            aria-label="{{ section.settings.policy_navigation_label | escape }}"
+          >
+            {% if shop.privacy_policy != blank %}
+              <a href="{{ shop.privacy_policy.url }}">
+                {{ shop.privacy_policy.title }}
+              </a>
+            {% endif %}
+
+            {% if shop.refund_policy != blank %}
+              <a href="{{ shop.refund_policy.url }}">
+                {{ shop.refund_policy.title }}
+              </a>
+            {% endif %}
+
+            {% if shop.shipping_policy != blank %}
+              <a href="{{ shop.shipping_policy.url }}">
+                {{ shop.shipping_policy.title }}
+              </a>
+            {% endif %}
+
+            {% if shop.terms_of_service != blank %}
+              <a href="{{ shop.terms_of_service.url }}">
+                {{ shop.terms_of_service.title }}
+              </a>
+            {% endif %}
+
+            {% if shop.subscription_policy != blank %}
+              <a href="{{ shop.subscription_policy.url }}">
+                {{ shop.subscription_policy.title }}
+              </a>
+            {% endif %}
+          </nav>
+        {% endif %}
+
+        {% if section.settings.bottom_menu != blank %}
+          <nav
+            class="fhf-bottom-menu"
+            aria-label="{{ section.settings.bottom_navigation_label | escape }}"
+          >
+            {% for link in section.settings.bottom_menu.links %}
+              <a
+                href="{{ link.url }}"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ link.title }}
+              </a>
+            {% endfor %}
+          </nav>
+        {% endif %}
+
+        {% if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 %}
+          <div
+            class="fhf-payments"
+            aria-label="{{ section.settings.payment_label | escape }}"
+          >
+            {% for type in shop.enabled_payment_types %}
+              {{ type | payment_type_svg_tag: class: 'fhf-payment-icon' }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Festive heritage footer",
+  "tag": "section",
+  "class": "section-festive-heritage-footer",
+  "limit": 1,
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show marquee",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "marquee_text_1",
+      "label": "Marquee text 1",
+      "default": "Celebration wear"
+    },
+    {
+      "type": "text",
+      "id": "marquee_text_2",
+      "label": "Marquee text 2",
+      "default": "Heritage textiles"
+    },
+    {
+      "type": "text",
+      "id": "marquee_text_3",
+      "label": "Marquee text 3",
+      "default": "Modern craft"
+    },
+    {
+      "type": "text",
+      "id": "marquee_symbol",
+      "label": "Marquee divider symbol",
+      "default": "◆"
+    },
+    {
+      "type": "text",
+      "id": "marquee_accessibility_label",
+      "label": "Marquee accessibility label",
+      "default": "Brand highlights"
+    },
+    {
+      "type": "range",
+      "id": "marquee_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Marquee text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "sec",
+      "label": "Marquee speed",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Top ornament"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ornament",
+      "label": "Show ornamental divider",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_middle_divider",
+      "label": "Show middle diamond divider",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Main heading"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Made for meaningful moments"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dress the celebration."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "highlighted_heading",
+      "label": "Highlighted heading",
+      "default": "Carry the heritage."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 32,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop heading size",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 30,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 80,
+      "max": 140,
+      "step": 2,
+      "unit": "%",
+      "label": "Heading line height",
+      "default": 98
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -6,
+      "max": 6,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading letter spacing",
+      "default": -2
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "<p>Receive curated festive edits, styling inspiration and early access to new collections.</p>"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email field label",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Show button arrow",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you for joining our community."
+    },
+    {
+      "type": "header",
+      "content": "Brand area"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 360,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 200
+    },
+    {
+      "type": "text",
+      "id": "logo_caption",
+      "label": "Text logo caption",
+      "default": "Atelier"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Text logo",
+      "default": "NOOR"
+    },
+    {
+      "type": "richtext",
+      "id": "brand_description",
+      "label": "Brand description",
+      "default": "<p>Contemporary occasion wear shaped by Indian artistry, rich textiles and generations of craftsmanship.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Social links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_socials",
+      "label": "Show social links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "header",
+      "content": "Bottom area"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Custom copyright text",
+      "info": "Leave blank to use the current year and shop name."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy_links",
+      "label": "Show Shopify policy links",
+      "default": true,
+      "info": "Policies are managed in Shopify Settings > Policies."
+    },
+    {
+      "type": "text",
+      "id": "policy_navigation_label",
+      "label": "Policy navigation label",
+      "default": "Store policies"
+    },
+    {
+      "type": "link_list",
+      "id": "bottom_menu",
+      "label": "Additional bottom menu"
+    },
+    {
+      "type": "text",
+      "id": "bottom_navigation_label",
+      "label": "Bottom menu accessibility label",
+      "default": "Footer navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_label",
+      "label": "Payment icons accessibility label",
+      "default": "Accepted payment methods"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "playfair_display_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "menu_heading_size",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Menu heading size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "menu_link_size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Menu link size",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#18100f"
+    },
+    {
+      "type": "color",
+      "id": "secondary_background_color",
+      "label": "Marquee background",
+      "default": "#431414"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main text",
+      "default": "#fffaf2"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Muted text",
+      "default": "#b8aaa0"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#c99a4a"
+    },
+    {
+      "type": "color",
+      "id": "accent_hover_color",
+      "label": "Accent hover",
+      "default": "#e7c888"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Borders",
+      "default": "#634a36"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Service card background",
+      "default": "#241815"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_background_grid",
+      "label": "Show subtle background grid",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left aligned"
+        },
+        {
+          "value": "centered",
+          "label": "Centered heading"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Maximum content width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "side_padding",
+      "min": 15,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop side padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Service card corner radius",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button corner radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "input_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Newsletter field radius",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 30,
+      "max": 180,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop top padding",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop bottom padding",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu column",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Collections"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "service_card",
+      "name": "Service card",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon or symbol",
+          "default": "✦"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Personal assistance"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Private Styling"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Book a personal consultation for weddings, festive events and special occasions.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Book an appointment"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Festive heritage footer",
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Collections"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Discover"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Assistance"
+          }
+        },
+        {
+          "type": "service_card"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}

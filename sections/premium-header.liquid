@@ -1,0 +1,618 @@
+{{ 'premium-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'premium-header.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign header_menu = section.settings.menu
+  assign logo_width_2x = section.settings.logo_width | times: 2
+  assign logo_alt = section.settings.logo.alt | default: shop.name
+%}
+
+<style>
+  /* Critical closed state prevents the drawer flashing on screen before the asset CSS loads. */
+  #PremiumHeaderDrawer-{{ section.id }}[aria-hidden='true'] {
+    transform: translate3d(-110%, 0, 0);
+    pointer-events: none;
+  }
+</style>
+
+<header
+  id="PremiumHeader-{{ section.id }}"
+  class="premium-header{% if section.settings.enable_sticky %} premium-header--sticky{% endif %}{% if section.settings.enable_transparent %} premium-header--transparent{% endif %}"
+  data-premium-header
+  data-section-id="{{ section.id }}"
+  data-open-on-hover="{{ section.settings.open_on_hover }}"
+  style="
+    --ph-bg: {{ section.settings.background_color }};
+    --ph-text: {{ section.settings.text_color }};
+    --ph-accent: {{ section.settings.accent_color }};
+    --ph-border: {{ section.settings.border_color }};
+    --ph-dropdown-bg: {{ section.settings.dropdown_background }};
+    --ph-dropdown-text: {{ section.settings.dropdown_text_color }};
+    --ph-logo-width: {{ section.settings.logo_width }}px;
+    --ph-top-height: {{ section.settings.desktop_top_height }}px;
+    --ph-menu-height: {{ section.settings.desktop_menu_height }}px;
+    --ph-mobile-height: {{ section.settings.mobile_height }}px;
+    --ph-page-width: {{ section.settings.page_width }}px;
+    --ph-search-width: {{ section.settings.search_width }}px;
+    --ph-search-radius: {{ section.settings.search_radius }}px;
+  "
+>
+  <div class="premium-header__overlay" data-header-overlay aria-hidden="true"></div>
+
+  <div class="premium-header__masthead">
+    <div class="premium-header__top-row">
+      <div class="premium-header__mobile-toggle-wrap">
+        <button
+          type="button"
+          class="premium-header__icon-button premium-header__menu-toggle"
+          aria-label="Open Menu"
+          aria-controls="PremiumHeaderDrawer-{{ section.id }}"
+          aria-expanded="false"
+          data-drawer-open
+        >
+          <span class="premium-header__hamburger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </div>
+
+      <a class="premium-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+        {% if section.settings.logo != blank %}
+          {{
+            section.settings.logo
+            | image_url: width: logo_width_2x
+            | image_tag:
+              widths: '120, 180, 240, 320, 400, 500, 560',
+              width: section.settings.logo_width,
+              loading: 'eager',
+              class: 'premium-header__logo-image',
+              alt: logo_alt
+          }}
+        {% else %}
+          <span class="premium-header__shop-name">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+
+      {% if section.settings.show_search %}
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="premium-header__search"
+        >
+          <label class="visually-hidden" for="PremiumHeaderSearch-{{ section.id }}">
+            Search
+          </label>
+          <span class="premium-header__search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+          </span>
+          <input
+            id="PremiumHeaderSearch-{{ section.id }}"
+            class="premium-header__search-input"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ section.settings.search_placeholder | escape }}"
+            autocomplete="off"
+          >
+          <input type="hidden" name="options[prefix]" value="last">
+          <button class="premium-header__search-submit" type="submit">
+            {{ section.settings.search_button_label }}
+          </button>
+        </form>
+      {% else %}
+        <div class="premium-header__search-spacer" aria-hidden="true"></div>
+      {% endif %}
+
+      <div class="premium-header__actions">
+        {% if section.settings.show_mobile_search %}
+          <a
+            href="{{ routes.search_url }}"
+            class="premium-header__icon-button premium-header__mobile-search"
+            aria-label="Search"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+          </a>
+        {% endif %}
+
+        {% if shop.customer_accounts_enabled and section.settings.show_account %}
+          <a
+            href="{{ routes.account_url }}"
+            class="premium-header__utility premium-header__account"
+            aria-label="Account"
+          >
+            <span class="premium-header__utility-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.8-4.1 3.4-6 8-6s7.2 1.9 8 6"></path></svg>
+            </span>
+            {% if section.settings.show_utility_labels %}
+              <span class="premium-header__utility-label">Account</span>
+            {% endif %}
+          </a>
+        {% endif %}
+
+        <a
+          href="{{ routes.cart_url }}"
+          class="premium-header__utility premium-header__cart"
+          aria-label="Cart"
+        >
+          <span class="premium-header__utility-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+          </span>
+          {% if section.settings.show_utility_labels %}
+            <span class="premium-header__utility-label">Cart</span>
+          {% endif %}
+          <span class="premium-header__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>
+            {{ cart.item_count }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="premium-header__navigation-row">
+    <nav class="premium-header__nav" aria-label="Primary navigation">
+      {% if header_menu != blank %}
+        <ul class="premium-header__menu" role="list">
+          {% for link in header_menu.links %}
+            {% liquid
+              assign link_handle = link.title | handleize
+              assign promotion_mega_block = blank
+              assign collection_mega_block = blank
+
+              for block in section.blocks
+                assign block_menu_handle = block.settings.menu_item | handleize
+                if block_menu_handle == link_handle
+                  if block.type == 'promotion_mega_menu' and promotion_mega_block == blank
+                    assign promotion_mega_block = block
+                  elsif block.type == 'collection_mega_menu' and collection_mega_block == blank
+                    assign collection_mega_block = block
+                  endif
+                endif
+              endfor
+
+              assign has_custom_mega = false
+              if promotion_mega_block != blank or collection_mega_block != blank
+                assign has_custom_mega = true
+              endif
+
+              assign has_panel = false
+              if has_custom_mega or link.links != blank
+                assign has_panel = true
+              endif
+
+              assign panel_id = 'PremiumHeaderPanel-' | append: section.id | append: '-' | append: forloop.index
+            %}
+
+            <li
+              class="premium-header__menu-item{% if has_custom_mega %} premium-header__menu-item--mega{% endif %}{% if link.current or link.child_active %} is-active{% endif %}"
+              data-nav-item
+              data-menu-handle="{{ link_handle }}"
+            >
+              <a
+                href="{{ link.url }}"
+                class="premium-header__menu-link"
+                {% if link.current %}aria-current="page"{% endif %}
+                {% if has_panel %}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="{{ panel_id }}"
+                  data-nav-trigger
+                {% endif %}
+              >
+                <span>{{ link.title }}</span>
+                {% if has_panel %}
+                  <svg class="premium-header__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="m1 1 4 4 4-4"></path></svg>
+                {% endif %}
+              </a>
+
+              {% if promotion_mega_block != blank %}
+                {% render 'premium-mega-menu-promotions',
+                  block: promotion_mega_block,
+                  menu_link: link,
+                  section: section,
+                  panel_id: panel_id,
+                  drawer: false
+                %}
+              {% elsif collection_mega_block != blank %}
+                {% render 'premium-mega-menu-collections',
+                  block: collection_mega_block,
+                  menu_link: link,
+                  section: section,
+                  panel_id: panel_id,
+                  drawer: false
+                %}
+              {% elsif link.links != blank %}
+                {% render 'premium-header-dropdown',
+                  menu_link: link,
+                  panel_id: panel_id
+                %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+  </div>
+
+  {% render 'premium-header-drawer', section: section, menu: header_menu %}
+</header>
+
+{% schema %}
+{
+  "name": "Premium header",
+  "tag": "section",
+  "class": "section-premium-header",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo and navigation"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 70,
+      "max": 280,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 150
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_on_hover",
+      "label": "Open desktop menus on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Search bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show centered desktop search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search products, collections and more"
+    },
+    {
+      "type": "text",
+      "id": "search_button_label",
+      "label": "Search button label",
+      "default": "Search"
+    },
+    {
+      "type": "range",
+      "id": "search_width",
+      "min": 320,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "label": "Search width",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "search_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Search corner radius",
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_search",
+      "label": "Show mobile search icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Utilities"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_utility_labels",
+      "label": "Show desktop utility labels",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Header behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent",
+      "label": "Transparent over first section",
+      "info": "The header becomes solid after scrolling or opening a menu.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Sizing"
+    },
+    {
+      "type": "range",
+      "id": "desktop_top_height",
+      "min": 68,
+      "max": 130,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop top row height",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "desktop_menu_height",
+      "min": 42,
+      "max": 76,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop menu row height",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 54,
+      "max": 90,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 66
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 1440
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Header background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Header text",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#7a5c3e"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e8e5e1"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_background",
+      "label": "Menu and drawer background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Menu and drawer text",
+      "default": "#171717"
+    },
+    {
+      "type": "header",
+      "content": "Drawer promotion"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_drawer_promotion",
+      "label": "Show collapsible drawer promotion",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "drawer_promotion_image",
+      "label": "Promotion image"
+    },
+    {
+      "type": "text",
+      "id": "drawer_promotion_caption",
+      "label": "Caption",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "drawer_promotion_title",
+      "label": "Title",
+      "default": "Discover the latest collection"
+    },
+    {
+      "type": "url",
+      "id": "drawer_promotion_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_promotion_open",
+      "label": "Open promotion by default",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promotion_mega_menu",
+      "name": "Mega menu — promotions",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter an exact top-level menu title. Shopify handleizes both values, so Shop All matches shop-all. Only this item becomes a mega menu."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Menu caption",
+          "default": "Explore"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Menu heading",
+          "default": "Shop the collection"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Menu description"
+        },
+        {
+          "type": "image_picker",
+          "id": "promotion_1_image",
+          "label": "Promotion 1 image"
+        },
+        {
+          "type": "text",
+          "id": "promotion_1_title",
+          "label": "Promotion 1 badge",
+          "default": "New arrivals"
+        },
+        {
+          "type": "url",
+          "id": "promotion_1_link",
+          "label": "Promotion 1 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "promotion_2_image",
+          "label": "Promotion 2 image"
+        },
+        {
+          "type": "text",
+          "id": "promotion_2_title",
+          "label": "Promotion 2 badge",
+          "default": "Bestsellers"
+        },
+        {
+          "type": "url",
+          "id": "promotion_2_link",
+          "label": "Promotion 2 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "promotion_3_image",
+          "label": "Promotion 3 image"
+        },
+        {
+          "type": "text",
+          "id": "promotion_3_title",
+          "label": "Promotion 3 badge",
+          "default": "Limited edition"
+        },
+        {
+          "type": "url",
+          "id": "promotion_3_link",
+          "label": "Promotion 3 link"
+        }
+      ]
+    },
+    {
+      "type": "collection_mega_menu",
+      "name": "Mega menu — collections",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter an exact top-level menu title. Only the matching item becomes a collection mega menu."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Caption",
+          "default": "Curated edits"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop by collection"
+        },
+        {
+          "type": "collection_list",
+          "id": "collections",
+          "label": "Collections",
+          "limit": 10
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "label": "Image ratio",
+          "options": [
+            { "value": "square", "label": "Square" },
+            { "value": "portrait", "label": "Portrait" },
+            { "value": "landscape", "label": "Landscape" }
+          ],
+          "default": "portrait"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_view_all",
+          "label": "Show view all link",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium header"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

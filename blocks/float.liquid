@@ -1,0 +1,184 @@
+{% if block.settings.image != blank %}
+  <div
+    class="floating-image-category-asset"
+    id="floating-image-category-asset-{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    {{
+      block.settings.image
+      | image_url: width: 2000
+      | image_tag:
+        loading: 'lazy',
+        widths: '200, 300, 400, 500, 600, 800, 1000, 1200, 1600, 2000',
+        sizes: '(max-width: 749px) 100vw, 1000px',
+        class: 'floating-image-category-asset__image'
+    }}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .floating-image-category-asset {
+    pointer-events: none;
+  }
+
+  .floating-image-category-asset__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+{% endstylesheet %}
+
+{% style %}
+  #floating-image-category-asset-{{ block.id }} {
+    position: absolute;
+    left: {{ block.settings.desktop_left }}%;
+    bottom: {{ block.settings.desktop_top }}%;
+    width: {{ block.settings.desktop_size }}px;
+    max-width: none;
+    transform:
+      rotate({{ block.settings.desktop_rotation }}deg);
+    z-index: {{ block.settings.z_index }};
+    opacity: {{ block.settings.opacity | divided_by: 100.0 }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #floating-image-category-asset-{{ block.id }} {
+      left: {{ block.settings.mobile_left }}%;
+      bottom: {{ block.settings.mobile_top }}%;
+      width: {{ block.settings.mobile_size }}px;
+      transform:
+        rotate({{ block.settings.desktop_rotation }}deg);
+
+      {% unless block.settings.show_on_mobile %}
+        display: none;
+      {% endunless %}
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Float Image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop position"
+    },
+    {
+      "type": "range",
+      "id": "desktop_left",
+      "label": "Horizontal position",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_top",
+      "label": "Vertical position",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_size",
+      "label": "Image width",
+      "min": 50,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "desktop_rotation",
+      "label": "Rotation",
+      "min": -180,
+      "max": 180,
+      "step": 6,
+      "unit": "deg",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile position"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_left",
+      "label": "Horizontal position",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_top",
+      "label": "Vertical position",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_size",
+      "label": "Image width",
+      "min": 30,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "range",
+      "id": "opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "z_index",
+      "label": "Layer position",
+      "min": -10,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Float Image",
+      "category": "Custom Asset"
+    }
+  ]
+}
+{% endschema %}
