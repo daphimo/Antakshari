@@ -21,6 +21,18 @@
         "id": "cart_free_shipping_threshold",
         "label": "Free Shipping Limit",
         "default": "5000"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_unlocked_message",
+        "default": "Congratulations You got Free Shipping",
+        "label": "Freeshipping Message"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_message",
+        "default": "Add More",
+        "label": "Free Shipping Message old"
       }
     ]
   },
