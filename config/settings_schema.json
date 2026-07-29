@@ -48,7 +48,7 @@
       {
         "type": "product_list",
         "id": "cart_drawer_upsell_product",
-        "label": "Upsell product List"
+        "label": "Upsell product"
       }
     ]
   },
