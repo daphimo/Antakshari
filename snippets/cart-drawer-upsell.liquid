@@ -1,87 +1,141 @@
 {% liquid
-  assign upsell_product = settings.cart_drawer_upsell_product
-  assign upsell_in_cart = false
-
-  if upsell_product != blank
-    for item in cart.items
-      if item.product_id == upsell_product.id
-        assign upsell_in_cart = true
-        break
-      endif
-    endfor
-  endif
+  assign upsell_products = settings.cart_drawer_upsell_product
 %}
 
-{% if upsell_product != blank and upsell_product.available and upsell_in_cart == false %}
-  {% assign upsell_variant = upsell_product.selected_or_first_available_variant %}
-  <cart-drawer-upsell
-    class="cart-drawer-upsell"
-    data-product-id="{{ upsell_product.id }}"
-  >
+{% capture upsell_cards %}
+  {% if upsell_products != blank %}
+    {% for upsell_product in upsell_products %}
+      {% liquid
+        assign upsell_in_cart = false
+        assign upsell_variant = upsell_product.selected_or_first_available_variant
+
+        for item in cart.items
+          if item.product_id == upsell_product.id
+            assign upsell_in_cart = true
+            break
+          endif
+        endfor
+      %}
+
+      {% if upsell_product.available
+        and upsell_variant != blank
+        and upsell_in_cart == false
+      %}
+        <cart-drawer-upsell
+          class="cart-drawer-upsell"
+          data-product-id="{{ upsell_product.id }}"
+        >
+          <div class="cart-drawer-upsell__card">
+            <a
+              class="cart-drawer-upsell__media"
+              href="{{ upsell_product.url }}"
+              aria-label="{{ upsell_product.title | escape }}"
+            >
+              {% if upsell_product.featured_image != blank %}
+                {{
+                  upsell_product.featured_image
+                  | image_url: width: 240
+                  | image_tag:
+                    widths: '120, 180, 240',
+                    sizes: '72px',
+                    loading: 'lazy',
+                    class: 'cart-drawer-upsell__image',
+                    alt: upsell_product.featured_image.alt
+                }}
+              {% endif %}
+            </a>
+
+            <div class="cart-drawer-upsell__details">
+              <a
+                class="cart-drawer-upsell__title"
+                href="{{ upsell_product.url }}"
+              >
+                {{ upsell_product.title }}
+              </a>
+
+              {% if upsell_product.has_only_default_variant %}
+                <input
+                  type="hidden"
+                  data-upsell-variant
+                  value="{{ upsell_variant.id }}"
+                >
+
+                <span class="cart-drawer-upsell__price">
+                  {{ upsell_variant.price | money }}
+                </span>
+              {% else %}
+                <label
+                  class="visually-hidden"
+                  for="CartUpsellVariant-{{ upsell_product.id }}"
+                >
+                  Choose an option for {{ upsell_product.title | escape }}
+                </label>
+
+                <select
+                  id="CartUpsellVariant-{{ upsell_product.id }}"
+                  class="cart-drawer-upsell__variants"
+                  data-upsell-variant
+                >
+                  {% for variant in upsell_product.variants %}
+                    <option
+                      value="{{ variant.id }}"
+                      {% if variant.id == upsell_variant.id %}
+                        selected
+                      {% endif %}
+                      {% unless variant.available %}
+                        disabled
+                      {% endunless %}
+                    >
+                      {{ variant.title }} — {{ variant.price | money }}
+                      {% unless variant.available %}
+                        — Sold out
+                      {% endunless %}
+                    </option>
+                  {% endfor %}
+                </select>
+              {% endif %}
+            </div>
+
+            <button
+              class="button button-secondary cart-drawer-upsell__button"
+              type="button"
+              data-upsell-add
+            >
+              <span data-upsell-button-text>
+                {{ settings.cart_drawer_upsell_button_label | default: 'Add' }}
+              </span>
+
+              <span
+                class="cart-drawer-upsell__spinner"
+                aria-hidden="true"
+              ></span>
+            </button>
+          </div>
+
+          <p
+            class="cart-drawer-upsell__status visually-hidden"
+            role="status"
+            aria-live="polite"
+            data-upsell-status
+          ></p>
+        </cart-drawer-upsell>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endcapture %}
+
+{% assign upsell_cards = upsell_cards | strip %}
+
+{% if upsell_cards != blank %}
+  <div class="cart-drawer-upsells">
     {% if settings.cart_drawer_upsell_heading != blank %}
-      <h3 class="cart-drawer-upsell__heading">{{ settings.cart_drawer_upsell_heading }}</h3>
+      <h3 class="cart-drawer-upsells__heading">
+        {{ settings.cart_drawer_upsell_heading }}
+      </h3>
     {% endif %}
 
-    <div class="cart-drawer-upsell__card">
-      <a class="cart-drawer-upsell__media" href="{{ upsell_product.url }}">
-        {% if upsell_product.featured_image != blank %}
-          {{
-            upsell_product.featured_image
-            | image_url: width: 240
-            | image_tag:
-              widths: '120, 180, 240',
-              sizes: '80px',
-              loading: 'lazy',
-              class: 'cart-drawer-upsell__image',
-              alt: upsell_product.featured_image.alt
-          }}
-        {% endif %}
-      </a>
-
-      <div class="cart-drawer-upsell__details">
-        <a class="cart-drawer-upsell__title" href="{{ upsell_product.url }}">
-          {{ upsell_product.title }}
-        </a>
-
-        {% if upsell_product.has_only_default_variant %}
-          <input
-            type="hidden"
-            data-upsell-variant
-            value="{{ upsell_variant.id }}"
-          >
-          <span class="cart-drawer-upsell__price">{{ upsell_variant.price | money }}</span>
-        {% else %}
-          <label class="visually-hidden" for="CartUpsellVariant-{{ upsell_product.id }}">
-            Choose an option for {{ upsell_product.title | escape }}
-          </label>
-          <select
-            id="CartUpsellVariant-{{ upsell_product.id }}"
-            class="cart-drawer-upsell__variants"
-            data-upsell-variant
-          >
-            {% for variant in upsell_product.variants %}
-              <option
-                value="{{ variant.id }}"
-                {% if variant == upsell_variant %}selected{% endif %}
-                {% unless variant.available %}disabled{% endunless %}
-              >
-                {{ variant.title }} — {{ variant.price | money }}
-              </option>
-            {% endfor %}
-          </select>
-        {% endif %}
-      </div>
-
-      <button
-        class="button button-secondary cart-drawer-upsell__button"
-        type="button"
-        data-upsell-add
-      >
-        <span data-upsell-button-text>{{ settings.cart_drawer_upsell_button_label }}</span>
-        <span class="cart-drawer-upsell__spinner" aria-hidden="true"></span>
-      </button>
+    <div class="cart-drawer-upsells__list">
+      {{ upsell_cards }}
     </div>
-
-    <p class="cart-drawer-upsell__status visually-hidden" role="status" data-upsell-status></p>
-  </cart-drawer-upsell>
+  </div>
 {% endif %}
