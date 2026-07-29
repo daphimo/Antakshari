@@ -31,7 +31,7 @@
       {
         "type": "text",
         "id": "cart_free_shipping_message",
-        "default": "Add More",
+        "default": "Add More To get free Shipping",
         "label": "Free Shipping Message old"
       }
     ]
