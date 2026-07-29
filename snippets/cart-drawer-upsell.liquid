@@ -139,3 +139,14 @@
     </div>
   </div>
 {% endif %}
+
+<script>
+    connectedCallback() {
+    this.variantInput = this.querySelector('[data-upsell-variant]');
+    this.addButton = this.querySelector('[data-upsell-add]');
+    this.buttonText = this.querySelector('[data-upsell-button-text]');
+    this.statusElement = this.querySelector('[data-upsell-status]');
+
+    this.addButton?.addEventListener('click', this.handleAdd.bind(this));
+  }
+</script>
