@@ -35,15 +35,11 @@
             "menu": "help"
           }
         },
-        "service_card_b73nqJ": {
-          "type": "service_card",
+        "menu_more": {
+          "type": "menu",
           "settings": {
-            "icon": "✦",
-            "caption": "Personal assistance",
-            "heading": "Private Styling",
-            "text": "<p>Book a personal consultation for weddings, festive events and special occasions.</p>",
-            "link_label": "Book an appointment",
-            "link_url": ""
+            "heading": "More",
+            "menu": ""
           }
         }
       },
@@ -51,7 +47,7 @@
         "menu_kUpLTb",
         "menu_nGNcEm",
         "menu_Piicxz",
-        "service_card_b73nqJ"
+        "menu_more"
       ],
       "name": "Festive heritage footer",
       "settings": {
@@ -103,18 +99,15 @@
         "menu_heading_size": 18,
         "menu_link_size": 13,
         "background_color": "#2A1F1A",
-        "secondary_background_color": "#6B1F2A",
+        "primary_color": "#6B1F2A",
         "text_color": "#FCFAF5",
         "muted_text_color": "#F7F1E3",
         "accent_color": "#E8A53A",
         "accent_hover_color": "#C9A24C",
         "border_color": "#C56B3E",
-        "card_background_color": "#6B1F2A",
-        "enable_background_grid": false,
         "layout_style": "left",
         "page_width": 1400,
         "side_padding": 40,
-        "card_radius": 2,
         "button_radius": 30,
         "input_radius": 30,
         "padding_top": 55,

@@ -1,0 +1,287 @@
+{{ 'build-your-own-bundle.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'build-your-own-bundle.js' | asset_url }}"></script>
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} byob-section"
+  style="
+    --byob-columns: {{ section.settings.columns }};
+    --byob-padding-top: {{ section.settings.padding_top }}px;
+    --byob-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <build-your-own-bundle
+    id="BuildYourOwnBundle-{{ section.id }}"
+    class="byob"
+    data-required-quantity="{{ section.settings.required_quantity }}"
+    data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+  >
+    <div class="byob__products">
+      {% if section.settings.eyebrow != blank %}
+        <p class="byob__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.products_heading != blank %}
+        <h2 class="byob__products-heading">{{ section.settings.products_heading }}</h2>
+      {% endif %}
+
+      <div class="byob__grid">
+        {% for product in section.settings.products %}
+          {% liquid
+            assign selected_variant = product.selected_or_first_available_variant
+            assign product_image = selected_variant.featured_image | default: product.featured_image
+          %}
+          <article
+            class="byob-card{% unless product.available %} byob-card--sold-out{% endunless %}"
+            data-product-card
+          >
+            <div class="byob-card__media">
+              {% if product_image != blank %}
+                {{
+                  product_image
+                  | image_url: width: 720
+                  | image_tag:
+                    widths: '240, 360, 480, 720',
+                    sizes: '(max-width: 749px) 44vw, 24vw',
+                    loading: 'lazy',
+                    class: 'byob-card__image',
+                    alt: product_image.alt
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'byob-card__image byob-card__placeholder' }}
+              {% endif %}
+
+              {% unless product.available %}
+                <span class="byob-card__badge">{{ 'products.product.sold_out' | t }}</span>
+              {% endunless %}
+            </div>
+
+            <div class="byob-card__content">
+              <h3 class="byob-card__title">{{ product.title }}</h3>
+
+              {% if product.has_only_default_variant %}
+                <input
+                  type="hidden"
+                  data-variant
+                  value="{{ selected_variant.id }}"
+                  data-price="{{ selected_variant.price }}"
+                  data-available="{{ selected_variant.available }}"
+                >
+                <p class="byob-card__price" data-card-price>{{ selected_variant.price | money }}</p>
+              {% else %}
+                <label class="visually-hidden" for="ByobVariant-{{ section.id }}-{{ product.id }}">
+                  {{ 'products.product.choose_options' | t }}
+                </label>
+                <select
+                  id="ByobVariant-{{ section.id }}-{{ product.id }}"
+                  class="byob-card__variants"
+                  data-variant
+                  aria-label="{{ product.title | escape }}"
+                >
+                  {% for variant in product.variants %}
+                    <option
+                      value="{{ variant.id }}"
+                      data-price="{{ variant.price }}"
+                      data-price-formatted="{{ variant.price | money | escape }}"
+                      data-available="{{ variant.available }}"
+                      {% if variant == selected_variant %}selected{% endif %}
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                      {{ variant.title }} — {{ variant.price | money }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <p class="byob-card__price" data-card-price>{{ selected_variant.price | money }}</p>
+              {% endif %}
+
+              <div class="byob-quantity" data-quantity-control>
+                <button
+                  class="byob-quantity__button"
+                  type="button"
+                  data-quantity-minus
+                  aria-label="Decrease {{ product.title | escape }} quantity"
+                  {% unless product.available %}disabled{% endunless %}
+                >
+                  <span aria-hidden="true">−</span>
+                </button>
+                <input
+                  class="byob-quantity__input"
+                  type="number"
+                  value="0"
+                  min="0"
+                  max="{{ section.settings.required_quantity }}"
+                  inputmode="numeric"
+                  data-quantity
+                  aria-label="{{ product.title | escape }} quantity"
+                  {% unless product.available %}disabled{% endunless %}
+                >
+                <button
+                  class="byob-quantity__button"
+                  type="button"
+                  data-quantity-plus
+                  aria-label="Increase {{ product.title | escape }} quantity"
+                  {% unless product.available %}disabled{% endunless %}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        {% else %}
+          <div class="byob__empty">
+            <p>Select products in the section settings to build this bundle.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="byob__summary" aria-labelledby="ByobTitle-{{ section.id }}">
+      <div class="byob__summary-inner">
+        {% if section.settings.title != blank %}
+          <h2 id="ByobTitle-{{ section.id }}" class="byob__title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="byob__description rte">{{ section.settings.description }}</div>
+        {% endif %}
+
+        <div class="byob__selection" aria-live="polite">
+          <span data-count>0 / {{ section.settings.required_quantity }} selected</span>
+          <strong data-total>{{ 0 | money }}</strong>
+        </div>
+
+        <div
+          class="byob__progress"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="{{ section.settings.required_quantity }}"
+          aria-valuenow="0"
+          data-progress
+        >
+          <span data-progress-bar></span>
+        </div>
+
+        <ul class="byob__selected-list" role="list" data-selected-list></ul>
+
+        <p class="byob__message" data-message>
+          Choose exactly {{ section.settings.required_quantity }}
+          {% if section.settings.required_quantity == 1 %}item{% else %}items{% endif %} to continue.
+        </p>
+
+        <button class="button byob__add-button" type="button" data-add-button disabled>
+          <span data-button-text>{{ section.settings.button_label }}</span>
+          <span class="byob__spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="byob__status visually-hidden" role="status" data-status></p>
+      </div>
+    </aside>
+  </build-your-own-bundle>
+</div>
+
+{% schema %}
+{
+  "name": "Build your own bundle",
+  "tag": "section",
+  "class": "section-build-your-own-bundle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Create your edit"
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Products heading",
+      "default": "Choose your pieces"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Bundle title",
+      "default": "Build your own bundle"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Select the required number of pieces, then add the complete bundle to your cart.</p>"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 24
+    },
+    {
+      "type": "range",
+      "id": "required_quantity",
+      "label": "Required bundle quantity",
+      "info": "Customers must select exactly this total quantity before adding the bundle.",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add button label",
+      "default": "Add bundle to cart"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Desktop product columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Build your own bundle",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

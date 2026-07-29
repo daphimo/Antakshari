@@ -21,6 +21,12 @@
     src="{{ 'cart-drawer.js' | asset_url }}"
     fetchpriority="low"
   ></script>
+  {{ 'cart-drawer-enhancements.css' | asset_url | stylesheet_tag }}
+  <script
+    type="module"
+    src="{{ 'cart-drawer-enhancements.js' | asset_url }}"
+    fetchpriority="low"
+  ></script>
 
   {% capture empty_cart_drawer_content %}
     <div
@@ -102,6 +108,8 @@
             %}
           {%- endif -%}
 
+          {% render 'cart-drawer-free-shipping' %}
+
           {% capture cart_items_children %}
             {%- if cart.empty? -%}
               {{ empty_cart_drawer_content }}
@@ -113,6 +121,7 @@
               >
                 <scroll-hint class="cart-drawer__items">
                   {% render 'cart-products', context: 'drawer' %}
+                  {% render 'cart-drawer-upsell' %}
                 </scroll-hint>
 
                 <div class="cart-drawer__summary">

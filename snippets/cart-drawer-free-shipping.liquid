@@ -1,0 +1,37 @@
+{% liquid
+  assign threshold = settings.cart_free_shipping_threshold | times: 100
+  assign remaining = threshold | minus: cart.total_price
+  assign progress = 0
+  if threshold > 0
+    assign progress = cart.total_price | times: 100.0 | divided_by: threshold
+    if progress > 100
+      assign progress = 100
+    endif
+    if progress < 0
+      assign progress = 0
+    endif
+  endif
+%}
+
+{% if settings.cart_free_shipping_enabled and threshold > 0 and cart.item_count > 0 %}
+  <div class="cart-free-shipping" data-cart-free-shipping>
+    <p class="cart-free-shipping__message" aria-live="polite">
+      {% if remaining <= 0 %}
+        {{ settings.cart_free_shipping_unlocked_message }}
+      {% else %}
+        {% assign remaining_money = remaining | money_with_currency %}
+        {{ settings.cart_free_shipping_message | replace: '[amount]', remaining_money }}
+      {% endif %}
+    </p>
+    <div
+      class="cart-free-shipping__track"
+      role="progressbar"
+      aria-label="Free shipping progress"
+      aria-valuemin="0"
+      aria-valuemax="{{ threshold }}"
+      aria-valuenow="{{ cart.total_price | at_most: threshold }}"
+    >
+      <span class="cart-free-shipping__bar" style="width: {{ progress }}%;"></span>
+    </div>
+  </div>
+{% endif %}
