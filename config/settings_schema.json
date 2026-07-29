@@ -8,6 +8,39 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "New Cart Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_free_shipping_enabled",
+        "default": true,
+        "label": "Enable Free shipping bar"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_threshold",
+        "label": "Free Shipping Limit",
+        "default": "5000"
+      }
+    ]
+  },
+  {
+    "name": "New Cart Upsell",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cart_drawer_upsell_heading",
+        "default": "See Also",
+        "label": "Upsell Header"
+      },
+      {
+        "type": "product_list",
+        "id": "cart_drawer_upsell_product",
+        "label": "Upsell product List"
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {
