@@ -39,7 +39,7 @@
           "type": "menu",
           "settings": {
             "heading": "More",
-            "menu": ""
+            "menu": "footer"
           }
         }
       },
@@ -98,13 +98,13 @@
         "body_size": 14,
         "menu_heading_size": 18,
         "menu_link_size": 13,
-        "background_color": "#2A1F1A",
-        "primary_color": "#6B1F2A",
-        "text_color": "#FCFAF5",
-        "muted_text_color": "#F7F1E3",
-        "accent_color": "#E8A53A",
-        "accent_hover_color": "#C9A24C",
-        "border_color": "#C56B3E",
+        "background_color": "#2a1f1a",
+        "primary_color": "#6b1f2a",
+        "text_color": "#fcfaf5",
+        "muted_text_color": "#f7f1e3",
+        "accent_color": "#e8a53a",
+        "accent_hover_color": "#c9a24c",
+        "border_color": "#c56b3e",
         "layout_style": "left",
         "page_width": 1400,
         "side_padding": 40,
