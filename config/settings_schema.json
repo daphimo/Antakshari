@@ -34,7 +34,6 @@
         "step": 1,
         "unit": "px",
         "default": 36,
-        "visible_if": "{{ settings.logo != blank or settings.logo_inverse != blank }}",
         "info": "t:info.logo_height"
       },
       {
@@ -46,7 +45,6 @@
         "step": 1,
         "unit": "px",
         "default": 28,
-        "visible_if": "{{ settings.logo != blank or settings.logo_inverse != blank }}",
         "info": "t:info.logo_height"
       },
       {
@@ -1524,64 +1522,6 @@
         "label": "t:settings.auto_open_cart_drawer",
         "default": false,
         "visible_if": "{{ settings.cart_type == 'drawer' }}"
-      },
-      {
-        "type": "header",
-        "content": "Cart Drawer Free shipping"
-      },
-      {
-        "type": "checkbox",
-        "id": "cart_free_shipping_enabled",
-        "label": "Show free shipping progress",
-        "default": true,
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
-      },
-      {
-        "type": "number",
-        "id": "cart_free_shipping_threshold",
-        "label": "Free shipping price limit",
-        "info": "Enter the amount in your store currency, without a currency symbol.",
-        "default": 5000,
-        "visible_if": "{{ settings.cart_free_shipping_enabled == true }}"
-      },
-      {
-        "type": "text",
-        "id": "cart_free_shipping_message",
-        "label": "Progress message",
-        "info": "Use [amount] where the remaining amount should appear.",
-        "default": "You're [amount] away from free shipping.",
-        "visible_if": "{{ settings.cart_free_shipping_enabled == true }}"
-      },
-      {
-        "type": "text",
-        "id": "cart_free_shipping_unlocked_message",
-        "label": "Unlocked message",
-        "default": "You've unlocked free shipping!",
-        "visible_if": "{{ settings.cart_free_shipping_enabled == true }}"
-      },
-      {
-        "type": "header",
-        "content": "Cart drawer upsell"
-      },
-      {
-        "type": "product",
-        "id": "cart_drawer_upsell_product",
-        "label": "Upsell product",
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
-      },
-      {
-        "type": "text",
-        "id": "cart_drawer_upsell_heading",
-        "label": "Upsell heading",
-        "default": "You may also like",
-        "visible_if": "{{ settings.cart_drawer_upsell_product != blank }}"
-      },
-      {
-        "type": "text",
-        "id": "cart_drawer_upsell_button_label",
-        "label": "Upsell button label",
-        "default": "Add",
-        "visible_if": "{{ settings.cart_drawer_upsell_product != blank }}"
       },
       {
         "type": "header",
