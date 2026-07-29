@@ -3,6 +3,7 @@
   padding: 14px var(--theme-drawer-padding) 16px;
   border-bottom: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
   background: var(--color-background);
+  margin-bottom: 1rem;
 }
 
 .cart-free-shipping__message {
