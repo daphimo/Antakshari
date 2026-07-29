@@ -9,6 +9,38 @@
  */
 {
   "sections": {
+    "build_your_own_bundle_jQKQ4N": {
+      "type": "build-your-own-bundle",
+      "name": "Build your own bundle",
+      "settings": {
+        "eyebrow": "Create your edit",
+        "products_heading": "Choose your pieces",
+        "title": "Build your own bundle",
+        "description": "<p>Select the required number of pieces, then add the complete bundle to your cart.</p>",
+        "products": [
+          "6558-green",
+          "6609-black",
+          "6397",
+          "6730",
+          "m",
+          "6416-blue",
+          "black-floral-shirt",
+          "mm",
+          "6719",
+          "6576",
+          "6524",
+          "6354",
+          "charcol-rust-floral"
+        ],
+        "required_quantity": 5,
+        "button_label": "Add bundle to cart",
+        "columns": 3,
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -310,6 +342,7 @@
           ]
         }
       },
+      "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -530,6 +563,7 @@
     }
   },
   "order": [
+    "build_your_own_bundle_jQKQ4N",
     "main",
     "product_recommendations_qggXJq"
   ]
