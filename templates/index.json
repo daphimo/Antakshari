@@ -3829,7 +3829,7 @@
       "name": "Regional blog cards",
       "settings": {
         "blog": "festival-guides",
-        "articles_to_show": 3,
+        "articles_to_show": 4,
         "show_article_label": false,
         "use_first_tag": true,
         "show_excerpt": false,
@@ -3846,7 +3846,7 @@
         "show_explore_arrow": true,
         "container_width": 1360,
         "horizontal_padding": 24,
-        "desktop_columns": 3,
+        "desktop_columns": 4,
         "header_gap": 60,
         "header_bottom_spacing": 38,
         "grid_gap": 24,
