@@ -3016,6 +3016,70 @@
         "pagination_active_color": "#111111"
       }
     },
+    "trust_badges_home": {
+      "type": "trust-badges",
+      "blocks": {
+        "premium_fabrics": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Premium Fabrics",
+            "text": ""
+          }
+        },
+        "crafted_for_comfort": {
+          "type": "badge",
+          "settings": {
+            "icon": "heart",
+            "title": "Crafted for Comfort",
+            "text": ""
+          }
+        },
+        "easy_returns": {
+          "type": "badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Easy Returns",
+            "text": ""
+          }
+        },
+        "secure_payments": {
+          "type": "badge",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Payments",
+            "text": ""
+          }
+        },
+        "made_for_celebrations": {
+          "type": "badge",
+          "settings": {
+            "icon": "bolt",
+            "title": "Made for Celebrations",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "premium_fabrics",
+        "crafted_for_comfort",
+        "easy_returns",
+        "secure_payments",
+        "made_for_celebrations"
+      ],
+      "settings": {
+        "accessibility_label": "",
+        "eyebrow": "",
+        "heading": "",
+        "background": "{{ settings.color_palette.background }}",
+        "card_background": "#fcfaf5",
+        "heading_color": "#6b1f2a",
+        "text_color": "#2a1f1a",
+        "accent_color": "#c56b3e",
+        "icon_background": "#e8a53a",
+        "border_color": "#c9a24c"
+      }
+    },
     "section_gtE66B": {
       "type": "section",
       "blocks": {
@@ -3662,6 +3726,7 @@
         "group_6g8kEk",
         "group_tzEhke"
       ],
+      "disabled": true,
       "name": "t:names.icons_with_text",
       "settings": {
         "content_direction": "row",
@@ -3799,11 +3864,11 @@
         "caption_size": 11,
         "caption_mobile_size": 10,
         "caption_letter_spacing": 6,
-        "caption_color": "#9A5834",
+        "caption_color": "#9a5834",
         "heading_size": 34,
         "heading_mobile_size": 28,
         "heading_line_height": 120,
-        "heading_color": "#4A1D0E",
+        "heading_color": "#4a1d0e",
         "content_size": 14,
         "content_mobile_size": 14,
         "content_line_height": 155,
@@ -3811,85 +3876,21 @@
         "article_title_size": 20,
         "article_title_mobile_size": 18,
         "article_title_line_height": 130,
-        "article_title_color": "#4A1D0E",
+        "article_title_color": "#4a1d0e",
         "excerpt_size": 14,
         "excerpt_mobile_size": 14,
         "excerpt_line_height": 155,
         "excerpt_color": "#704636",
         "meta_size": 10,
         "meta_letter_spacing": 6,
-        "meta_color": "#9A5834",
+        "meta_color": "#9a5834",
         "explore_size": 14,
         "explore_color": "#713923",
-        "section_background": "#FAF5EB",
-        "card_background": "#FFF9F1",
-        "border_color": "#DEBB8B",
+        "section_background": "#faf5eb",
+        "card_background": "#fff9f1",
+        "border_color": "#debb8b",
         "hover_lift": 5,
         "hover_shadow_opacity": 10
-      }
-    },
-    "trust_badges_home": {
-      "type": "trust-badges",
-      "blocks": {
-        "premium_fabrics": {
-          "type": "badge",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Premium Fabrics",
-            "text": ""
-          }
-        },
-        "crafted_for_comfort": {
-          "type": "badge",
-          "settings": {
-            "icon": "heart",
-            "title": "Crafted for Comfort",
-            "text": ""
-          }
-        },
-        "easy_returns": {
-          "type": "badge",
-          "settings": {
-            "icon": "delivery",
-            "title": "Easy Returns",
-            "text": ""
-          }
-        },
-        "secure_payments": {
-          "type": "badge",
-          "settings": {
-            "icon": "lock",
-            "title": "Secure Payments",
-            "text": ""
-          }
-        },
-        "made_for_celebrations": {
-          "type": "badge",
-          "settings": {
-            "icon": "bolt",
-            "title": "Made for Celebrations",
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "premium_fabrics",
-        "crafted_for_comfort",
-        "easy_returns",
-        "secure_payments",
-        "made_for_celebrations"
-      ],
-      "settings": {
-        "accessibility_label": "Why shop with Antakshari",
-        "eyebrow": "The Antakshari promise",
-        "heading": "Made with care, delivered with confidence",
-        "background": "#F7F1E3",
-        "card_background": "#FCFAF5",
-        "heading_color": "#6B1F2A",
-        "text_color": "#2A1F1A",
-        "accent_color": "#C56B3E",
-        "icon_background": "#E8A53A",
-        "border_color": "#C9A24C"
       }
     },
     "regional_BENjCh": {
@@ -3964,12 +3965,12 @@
   },
   "order": [
     "hero_slider_horizon_tgC4cE",
-    "trust_badges_home",
     "carousel_RLmCcM",
     "section_AkXQkb",
     "collection_list_MUrf4Q",
     "product_list_ExE9XX",
     "slider_collection_Yhd6Uf",
+    "trust_badges_home",
     "section_gtE66B",
     "blogs_rKgVcy",
     "regional_MJ3Kwa",
