@@ -53,6 +53,7 @@
 
 .cart-free-shipping {
   flex: 0 0 auto;
+<<<<<<< HEAD
   margin: 0;
   padding: 0 16px 14px;
   border-bottom: 1px solid rgba(107, 31, 42, .12);
@@ -93,6 +94,12 @@
   width: 1px;
   height: 14px;
   background: rgba(252, 250, 245, .35);
+=======
+  padding: 14px var(--theme-drawer-padding) 16px;
+  border-bottom: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
+  background: var(--color-background);
+  margin-bottom: 1rem;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
 }
 
 .cart-free-shipping__message {
@@ -119,6 +126,7 @@
   transition: width 250ms ease;
 }
 
+<<<<<<< HEAD
 .cart-rewards {
   padding-top: 12px;
 }
@@ -282,6 +290,34 @@
 .cart-drawer-upsell {
   display: block;
   height: 100%;
+=======
+.cart-drawer-upsells {
+  display: block;
+  margin-top: var(--gap-xl);
+  padding-top: var(--gap-xl);
+  border-top: var(--style-border-width) solid
+    rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
+}
+
+.cart-drawer-upsells__heading {
+  margin: 0 0 var(--gap-md);
+  font-size: 0.95rem;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
+}
+
+.cart-drawer-upsells__list {
+  display: grid;
+  gap: 14px;
+}
+
+.cart-drawer-upsell {
+  display: block;
+}
+
+.cart-drawer-upsell:not(:last-child) {
+  padding-bottom: 14px;
+  border-bottom: var(--style-border-width) solid
+    rgb(var(--color-foreground-rgb) / 0.1);
 }
 
 .cart-drawer-upsell__card {
@@ -322,23 +358,43 @@
 .cart-drawer-upsell__title {
   display: -webkit-box;
   overflow: hidden;
+<<<<<<< HEAD
   color: var(--cart-ink);
   font-size: 12px;
   font-weight: 650;
+=======
+  color: inherit;
+  font-size: 0.85rem;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
   line-height: 1.3;
   text-decoration: none;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+<<<<<<< HEAD
 }
 
 .cart-drawer-upsell__price {
   color: var(--cart-maroon);
   font-size: 11px;
   font-weight: 750;
+=======
+}
+
+.cart-drawer-upsell__title:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cart-drawer-upsell__price {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  opacity: 0.75;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
 }
 
 .cart-drawer-upsell__variants {
   width: 100%;
+<<<<<<< HEAD
   min-height: 28px;
   padding: 4px 20px 4px 6px;
   border: 1px solid rgba(107, 31, 42, .2);
@@ -347,11 +403,23 @@
   background: var(--cart-white);
   font: inherit;
   font-size: 10px;
+=======
+  min-height: 34px;
+  padding: 6px 24px 6px 8px;
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.2);
+  border-radius: var(--style-border-radius-inputs, 0);
+  color: inherit;
+  background-color: var(--color-background);
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
 }
 
 .cart-drawer-upsell__button {
   position: relative;
   display: inline-flex;
+<<<<<<< HEAD
   min-width: 58px;
   min-height: 34px;
   align-items: center;
@@ -368,6 +436,18 @@
 .cart-drawer-upsell__button:disabled {
   cursor: not-allowed;
   opacity: .55;
+=======
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  min-height: 38px;
+  padding: 8px 12px;
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
+}
+
+.cart-drawer-upsell__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .cart-drawer-upsell__spinner {
@@ -385,7 +465,8 @@
   opacity: 0;
 }
 
-.cart-drawer-upsell__button[aria-busy="true"] .cart-drawer-upsell__spinner {
+.cart-drawer-upsell__button[aria-busy="true"]
+  .cart-drawer-upsell__spinner {
   display: block;
 }
 
@@ -405,7 +486,30 @@
   .cart-rewards__label { font-size: 8.5px; }
 }
 
+<<<<<<< HEAD
 @media (prefers-reduced-motion: reduce) {
   .cart-free-shipping__bar { transition: none; }
   .cart-drawer-upsell__spinner { animation-duration: .01ms; animation-iteration-count: 1; }
+=======
+@media screen and (max-width: 374px) {
+  .cart-drawer-upsell__card {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .cart-drawer-upsell__media {
+    width: 64px;
+  }
+
+  .cart-drawer-upsell__button {
+    grid-column: 2;
+    width: 100%;
+  }
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-drawer-upsell__spinner {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
 }

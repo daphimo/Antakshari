@@ -3781,7 +3781,11 @@
         "show_explore_arrow": true,
         "container_width": 1360,
         "horizontal_padding": 24,
+<<<<<<< HEAD
         "desktop_columns": 3,
+=======
+        "desktop_columns": "3",
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
         "header_gap": 60,
         "header_bottom_spacing": 38,
         "grid_gap": 24,
@@ -3964,7 +3968,10 @@
   },
   "order": [
     "hero_slider_horizon_tgC4cE",
+<<<<<<< HEAD
     "trust_badges_home",
+=======
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
     "carousel_RLmCcM",
     "section_AkXQkb",
     "collection_list_MUrf4Q",

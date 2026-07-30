@@ -31,6 +31,7 @@
       {
         "type": "text",
         "id": "cart_free_shipping_message",
+<<<<<<< HEAD
         "default": "Add [amount] more to unlock free shipping",
         "label": "Free shipping progress message"
       },
@@ -117,6 +118,10 @@
         "id": "cart_rewards_note",
         "default": "Two offers cannot be clubbed together",
         "label": "Rewards note"
+=======
+        "default": "Add More To get free Shipping",
+        "label": "Free Shipping Message old"
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
       }
     ]
   },
@@ -133,12 +138,15 @@
         "type": "product_list",
         "id": "cart_drawer_upsell_product",
         "label": "Upsell product"
+<<<<<<< HEAD
       },
       {
         "type": "text",
         "id": "cart_drawer_upsell_button_label",
         "default": "+ Add",
         "label": "Upsell button label"
+=======
+>>>>>>> 12a24e5a1ef7c2c2c0e4fa88cc9fce440c768eb0
       }
     ]
   },
