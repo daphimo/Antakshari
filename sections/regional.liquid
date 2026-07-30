@@ -419,24 +419,14 @@
       "unit": "px"
     },
     {
-      "type": "select",
+      "type": "range",
       "id": "desktop_columns",
-      "label": "Desktop columns",
-      "options": [
-        {
-          "value": "2",
-          "label": "2 columns"
-        },
-        {
-          "value": "3",
-          "label": "3 columns"
-        },
-        {
-          "value": "4",
-          "label": "4 columns"
-        }
-      ],
-      "default": "3"
+      "label": "Cards per row on desktop",
+      "info": "Mobile always displays one card per row.",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
     },
     {
       "type": "range",

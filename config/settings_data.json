@@ -9,6 +9,13 @@
  */
 {
   "current": {
+    "cart_drawer_upsell_product": [
+      "6558-green",
+      "6609-black",
+      "6397",
+      "6730",
+      "m"
+    ],
     "logo_height": 12,
     "logo_height_mobile": 12,
     "page_text_color": "{{ settings.color_palette.foreground }}",

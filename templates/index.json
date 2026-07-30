@@ -1245,53 +1245,6 @@
         "show_pagination": false
       }
     },
-    "split_editorial_statement_pMzbRE": {
-      "type": "split-editorial-statement",
-      "name": "Split editorial statement",
-      "settings": {
-        "label_number": "01",
-        "label_text": "Our Philosophy",
-        "caption": "Born from Indian celebrations",
-        "heading_line_1": "Festival led.",
-        "heading_highlight": "Craft inspired.",
-        "heading_line_3": "Comfort first.",
-        "heading_tag": "h2",
-        "show_symbol": true,
-        "symbol": "✦",
-        "description": "India’s first ethnic wear label bringing regional artistry and contemporary comfort together.",
-        "button_label": "About the Brand",
-        "button_link": "",
-        "show_link_arrow": true,
-        "open_in_new_tab": false,
-        "section_background": "{{ settings.color_palette.color8 }}",
-        "main_background": "#8d2f25",
-        "main_text_color": "#ffffff",
-        "caption_color": "#e7c791",
-        "highlight_color": "#f0d4a5",
-        "aside_background": "#d8a769",
-        "aside_text_color": "#211815",
-        "border_color": "#ffffff",
-        "border_opacity": 25,
-        "full_width": false,
-        "max_width": 1400,
-        "minimum_height": 440,
-        "label_width": 150,
-        "aside_minimum_width": 260,
-        "border_radius": 0,
-        "use_theme_fonts": false,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "section_side_padding": 20,
-        "number_font_size": 46,
-        "label_font_size": 11,
-        "caption_font_size": 12,
-        "heading_min_font_size": 42,
-        "heading_max_font_size": 75,
-        "heading_mobile_font_size": 44,
-        "description_font_size": 20,
-        "button_font_size": 13
-      }
-    },
     "carousel_RLmCcM": {
       "type": "carousel",
       "blocks": {
@@ -3741,9 +3694,10 @@
     },
     "blogs_rKgVcy": {
       "type": "blogs",
+      "disabled": true,
       "name": "Featured blog showcase",
       "settings": {
-        "blog": "the-edible-heritage",
+        "blog": "festival-guides",
         "caption": "",
         "heading": "Inspired by India's Living Traditions",
         "heading_tag": "h2",
@@ -3805,77 +3759,144 @@
         "hover_shadow_opacity": 12
       }
     },
-    "blog_guides_3RzkgE": {
-      "type": "blog-guides",
-      "name": "Blog guides",
+    "regional_MJ3Kwa": {
+      "type": "regional",
+      "name": "Regional blog cards",
       "settings": {
         "blog": "festival-guides",
-        "show_article_label": true,
-        "use_article_tags": true,
-        "show_excerpt": false,
+        "articles_to_show": 3,
+        "show_article_label": false,
+        "use_first_tag": true,
+        "show_excerpt": true,
         "excerpt_words": 14,
         "show_date": false,
         "show_author": false,
         "date_format": "%b %d, %Y",
-        "caption": "FESTIVAL GUIDES",
-        "heading": "Make Every Festival Meaningful",
+        "caption": "REGIONAL CRAFT STORIES",
+        "heading": "Inspired by India's Living Traditions",
         "heading_tag": "h2",
-        "content": "<p>Guides, Tips and Inspiration to help you celebrate with confidence</p>",
-        "button_label": "Visit Festival Guide",
-        "button_link": "shopify://blogs/festival-guides",
-        "show_button_arrow": true,
-        "container_width": 1600,
+        "content": "",
+        "explore_text": "",
+        "explore_link": "",
+        "show_explore_arrow": true,
+        "container_width": 1360,
         "horizontal_padding": 24,
+        "desktop_columns": 3,
+        "header_gap": 60,
+        "header_bottom_spacing": 38,
+        "grid_gap": 24,
+        "image_height": 310,
+        "mobile_image_height": 280,
         "padding_top": 64,
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
-        "wrapper_padding_top": 48,
-        "wrapper_padding_bottom": 48,
-        "wrapper_padding_inline": 48,
-        "mobile_wrapper_padding": 22,
-        "wrapper_radius": 32,
-        "wrapper_border_width": 1,
-        "header_gap": 60,
-        "cards_gap": 20,
-        "card_min_height": 150,
-        "card_padding": 26,
-        "card_radius": 20,
+        "card_radius": 24,
+        "image_radius": 22,
         "card_border_width": 1,
+        "card_content_padding": 24,
+        "image_overlay_opacity": 0,
         "caption_size": 11,
         "caption_mobile_size": 10,
         "caption_letter_spacing": 6,
-        "caption_color": "#9b572f",
+        "caption_color": "#9A5834",
         "heading_size": 34,
         "heading_mobile_size": 28,
         "heading_line_height": 120,
-        "heading_color": "#4a1d0e",
+        "heading_color": "#4A1D0E",
         "content_size": 14,
         "content_mobile_size": 14,
         "content_line_height": 155,
-        "content_color": "#714735",
+        "content_color": "#704636",
+        "article_title_size": 20,
+        "article_title_mobile_size": 18,
+        "article_title_line_height": 130,
+        "article_title_color": "#4A1D0E",
+        "excerpt_size": 14,
+        "excerpt_mobile_size": 14,
+        "excerpt_line_height": 155,
+        "excerpt_color": "#704636",
         "meta_size": 10,
-        "meta_mobile_size": 9,
         "meta_letter_spacing": 6,
-        "meta_color": "#a05b36",
-        "article_title_size": 18,
-        "article_title_mobile_size": 17,
-        "article_title_line_height": 135,
-        "article_title_color": "#4a1d0e",
-        "button_size": 14,
-        "button_color": "#713923",
-        "section_background": "{{ settings.color_palette.color11 }}",
-        "card_background": "{{ settings.color_palette.color8 }}",
-        "border_color": "#debb8b",
-        "hover_lift": 4,
+        "meta_color": "#9A5834",
+        "explore_size": 14,
+        "explore_color": "#713923",
+        "section_background": "#FAF5EB",
+        "card_background": "#FFF9F1",
+        "border_color": "#DEBB8B",
+        "hover_lift": 5,
         "hover_shadow_opacity": 10
+      }
+    },
+    "trust_badges_home": {
+      "type": "trust-badges",
+      "blocks": {
+        "premium_fabrics": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Premium Fabrics",
+            "text": ""
+          }
+        },
+        "crafted_for_comfort": {
+          "type": "badge",
+          "settings": {
+            "icon": "heart",
+            "title": "Crafted for Comfort",
+            "text": ""
+          }
+        },
+        "easy_returns": {
+          "type": "badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Easy Returns",
+            "text": ""
+          }
+        },
+        "secure_payments": {
+          "type": "badge",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Payments",
+            "text": ""
+          }
+        },
+        "made_for_celebrations": {
+          "type": "badge",
+          "settings": {
+            "icon": "bolt",
+            "title": "Made for Celebrations",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "premium_fabrics",
+        "crafted_for_comfort",
+        "easy_returns",
+        "secure_payments",
+        "made_for_celebrations"
+      ],
+      "settings": {
+        "accessibility_label": "Why shop with Antakshari",
+        "eyebrow": "The Antakshari promise",
+        "heading": "Made with care, delivered with confidence",
+        "background": "#F7F1E3",
+        "card_background": "#FCFAF5",
+        "heading_color": "#6B1F2A",
+        "text_color": "#2A1F1A",
+        "accent_color": "#C56B3E",
+        "icon_background": "#E8A53A",
+        "border_color": "#C9A24C"
       }
     },
     "regional_BENjCh": {
       "type": "regional",
       "name": "Regional blog cards",
       "settings": {
-        "blog": "heirloom-threads-festive-textures-and-regional-weaves",
+        "blog": "regional-crafts",
         "articles_to_show": 3,
         "show_article_label": false,
         "use_first_tag": true,
@@ -3893,7 +3914,7 @@
         "show_explore_arrow": true,
         "container_width": 1360,
         "horizontal_padding": 24,
-        "desktop_columns": "3",
+        "desktop_columns": 3,
         "header_gap": 60,
         "header_bottom_spacing": 38,
         "grid_gap": 24,
@@ -3943,7 +3964,7 @@
   },
   "order": [
     "hero_slider_horizon_tgC4cE",
-    "split_editorial_statement_pMzbRE",
+    "trust_badges_home",
     "carousel_RLmCcM",
     "section_AkXQkb",
     "collection_list_MUrf4Q",
@@ -3951,7 +3972,7 @@
     "slider_collection_Yhd6Uf",
     "section_gtE66B",
     "blogs_rKgVcy",
-    "blog_guides_3RzkgE",
+    "regional_MJ3Kwa",
     "regional_BENjCh"
   ]
 }

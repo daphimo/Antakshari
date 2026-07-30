@@ -84,96 +84,17 @@
         "arrow_size": 32
       }
     },
-    "header_announcements_J39Lrw": {
-      "type": "header-announcements",
-      "blocks": {
-        "announcement_NWcVDr": {
-          "type": "_announcement",
-          "settings": {
-            "text": "<em>India's First Festival Led, Regional Craft Inspired, Comfortable Ethnic Wear</em>",
-            "link": "",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none",
-            "text_color": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "announcement_NWcVDr"
-      ],
-      "name": "t:names.announcement_bar",
-      "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.color8 }}",
-        "divider_width": 0,
-        "divider_color": "",
-        "padding-block-start": 15,
-        "padding-block-end": 15
-      }
-    },
     "premium_header_DdLcTr": {
       "type": "premium-header",
-      "blocks": {
-        "promotion_mega_menu_GXzmap": {
-          "type": "promotion_mega_menu",
-          "settings": {
-            "menu_item": "Shop Festivals",
-            "eyebrow": "Explore",
-            "heading": "Shop the collection",
-            "description": "",
-            "promotion_1_image": "shopify://shop_images/1__Full-Length_Hero_Shot_generate_202606291208_60fdf3a7-e4e0-456a-9498-ab31d48348cc.jpg",
-            "promotion_1_title": "New arrivals",
-            "promotion_1_link": "shopify://products/m",
-            "promotion_2_title": "Bestsellers",
-            "promotion_2_link": "",
-            "promotion_3_title": "Limited edition",
-            "promotion_3_link": ""
-          }
-        },
-        "collection_mega_menu_KKFcCR": {
-          "type": "collection_mega_menu",
-          "settings": {
-            "menu_item": "Family Sets",
-            "eyebrow": "Curated edits",
-            "heading": "Shop by collection",
-            "collections": [
-              "for-family",
-              "for-her",
-              "for-him",
-              "for-kids"
-            ],
-            "image_ratio": "portrait",
-            "show_view_all": true
-          }
-        }
-      },
-      "block_order": [
-        "promotion_mega_menu_GXzmap",
-        "collection_mega_menu_KKFcCR"
-      ],
       "name": "Premium header",
       "settings": {
         "logo_width": 150,
         "menu": "main-menu",
         "open_on_hover": true,
-        "show_search": true,
-        "search_placeholder": "Search products, collections and more",
-        "search_button_label": "Search",
-        "search_width": 560,
-        "search_radius": 28,
-        "show_mobile_search": true,
-        "show_account": true,
-        "show_utility_labels": false,
+        "brand_statement": "India's First Festival Led, Regional Craft Inspired, Comfortable Ethnic Wear",
+        "customer_account_menu": "customer-account-main-menu",
         "enable_sticky": true,
         "enable_transparent": false,
-        "desktop_top_height": 68,
-        "desktop_menu_height": 42,
-        "mobile_height": 66,
         "page_width": 1600,
         "background_color": "{{ settings.color_palette.color8 }}",
         "text_color": "#171717",
@@ -275,7 +196,6 @@
   },
   "order": [
     "announce_bP8rtJ",
-    "header_announcements_J39Lrw",
     "premium_header_DdLcTr",
     "header_section"
   ]

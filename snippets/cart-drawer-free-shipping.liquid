@@ -1,6 +1,9 @@
 {% liquid
   assign threshold = settings.cart_free_shipping_threshold | times: 100
   assign remaining = threshold | minus: cart.total_price
+  assign reward_one_threshold = settings.cart_reward_one_threshold | times: 100
+  assign reward_two_threshold = settings.cart_reward_two_threshold | times: 100
+  assign reward_three_threshold = settings.cart_reward_three_threshold | times: 100
   assign progress = 0
   if threshold > 0
     assign progress = cart.total_price | times: 100.0 | divided_by: threshold
@@ -15,6 +18,17 @@
 
 {% if settings.cart_free_shipping_enabled and threshold > 0 and cart.item_count > 0 %}
   <div class="cart-free-shipping" data-cart-free-shipping>
+    <div class="cart-assurance" aria-label="Shopping assurances">
+      <span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 6h11v11H3zM14 10h3l4 4v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+        {{ settings.cart_assurance_shipping_text }}
+      </span>
+      <i aria-hidden="true"></i>
+      <span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 5.5 5.6v5.6c0 4.1 2.6 7.8 6.5 9.3 3.9-1.5 6.5-5.2 6.5-9.3V5.6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        {{ settings.cart_assurance_payment_text }}
+      </span>
+    </div>
     <p class="cart-free-shipping__message" aria-live="polite">
       {% if remaining <= 0 %}
         {{ settings.cart_free_shipping_unlocked_message }}
@@ -33,5 +47,49 @@
     >
       <span class="cart-free-shipping__bar" style="width: {{ progress }}%;"></span>
     </div>
+
+    {% if settings.cart_rewards_enabled %}
+      <div class="cart-rewards">
+        {% if settings.cart_rewards_heading != blank %}
+          <p class="cart-rewards__heading">{{ settings.cart_rewards_heading }}</p>
+        {% endif %}
+        <div class="cart-rewards__rail">
+          <span class="cart-rewards__line" aria-hidden="true"></span>
+          {% for reward_index in (1..3) %}
+            {% liquid
+              case reward_index
+                when 1
+                  assign reward_threshold = reward_one_threshold
+                  assign reward_label = settings.cart_reward_one_label
+                  assign reward_text = settings.cart_reward_one_text
+                when 2
+                  assign reward_threshold = reward_two_threshold
+                  assign reward_label = settings.cart_reward_two_label
+                  assign reward_text = settings.cart_reward_two_text
+                when 3
+                  assign reward_threshold = reward_three_threshold
+                  assign reward_label = settings.cart_reward_three_label
+                  assign reward_text = settings.cart_reward_three_text
+              endcase
+              assign reward_unlocked = false
+              if cart.total_price >= reward_threshold
+                assign reward_unlocked = true
+              endif
+              assign reward_money = reward_threshold | money_without_trailing_zeros
+            %}
+            <div class="cart-rewards__item{% if reward_unlocked %} is-unlocked{% endif %}">
+              <span class="cart-rewards__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 7h18v4H3zM12 7v13M12 7H8.7a2.2 2.2 0 1 1 2.2-2.2C10.9 6 12 7 12 7Zm0 0h3.3a2.2 2.2 0 1 0-2.2-2.2C13.1 6 12 7 12 7Z"/></svg>
+              </span>
+              <span class="cart-rewards__label">{{ reward_label | replace: '[amount]', reward_money }}</span>
+              <span class="cart-rewards__text">{{ reward_text }}</span>
+            </div>
+          {% endfor %}
+        </div>
+        {% if settings.cart_rewards_note != blank %}
+          <p class="cart-rewards__note">{{ settings.cart_rewards_note }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 {% endif %}

@@ -1,5 +1,81 @@
 import { CartLinesUpdateEvent, CartErrorEvent } from '@shopify/events';
 
+class CartDrawerUpsells extends HTMLElement {
+  connectedCallback() {
+    this.mount();
+    this.observer = new MutationObserver(this.handleMutation);
+    this.observer.observe(this, { childList: true, subtree: true });
+  }
+
+  disconnectedCallback() {
+    window.clearTimeout(this.retryTimer);
+    window.cancelAnimationFrame(this.refreshFrame);
+    this.observer?.disconnect();
+    this.splide?.destroy(true);
+    this.splide = null;
+    this.root = null;
+  }
+
+  mount = () => {
+    const root = this.querySelector('.cart-drawer-upsells__slider');
+    if (!root || this.splide) return;
+    if (typeof window.Splide === 'undefined') {
+      this.retryTimer = window.setTimeout(this.mount, 100);
+      return;
+    }
+
+    this.splide = new window.Splide(root, {
+      type: 'slide',
+      perPage: 1,
+      perMove: 1,
+      gap: '10px',
+      arrows: true,
+      pagination: false,
+      drag: false,
+      rewind: false,
+      speed: 350,
+      mediaQuery: 'min',
+      breakpoints: {
+        420: { perPage: 1.12 },
+      },
+    });
+    this.splide.mount();
+    this.root = root;
+  };
+
+  handleMutation = (mutations) => {
+    const hasRealDrawerChange = mutations.some((mutation) =>
+      [...mutation.addedNodes, ...mutation.removedNodes].some((node) => {
+        if (!(node instanceof Element)) return false;
+        if (node.matches('.splide__slide.is-clone') || node.closest('.splide__slide.is-clone')) return false;
+        return node.matches('.cart-drawer-upsells__slider, .splide__list, .splide__slide')
+          || Boolean(node.querySelector('.cart-drawer-upsells__slider, .splide__list, .splide__slide'));
+      })
+    );
+    if (!hasRealDrawerChange) return;
+
+    window.cancelAnimationFrame(this.refreshFrame);
+    this.refreshFrame = window.requestAnimationFrame(() => {
+      const currentRoot = this.querySelector('.cart-drawer-upsells__slider');
+      if (!currentRoot) return;
+
+      if (this.root !== currentRoot) {
+        this.splide?.destroy(true);
+        this.splide = null;
+        this.root = null;
+        this.mount();
+        return;
+      }
+
+      this.splide?.refresh();
+    });
+  };
+}
+
+if (!customElements.get('cart-drawer-upsells')) {
+  customElements.define('cart-drawer-upsells', CartDrawerUpsells);
+}
+
 class CartDrawerUpsell extends HTMLElement {
   connectedCallback() {
     this.button = this.querySelector('[data-upsell-add]');

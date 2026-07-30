@@ -257,7 +257,7 @@
   border-radius: inherit;
   outline: 0;
   color: var(--fhf-text);
-  background: transparent;
+  background-color: transparent !important;
 }
 
 .fhf-newsletter__input::placeholder {
