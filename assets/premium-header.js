@@ -13,10 +13,22 @@ class PremiumHeader {
     this.scrollFrame = null;
     this.abortController = new AbortController();
     this.signal = this.abortController.signal;
+    this.resizeObserver = new ResizeObserver(() => this.updateHeaderHeight());
 
     this.setInitialState();
     this.bindEvents();
+    this.resizeObserver.observe(this.root);
+    this.updateHeaderHeight();
     this.handleScroll();
+  }
+
+  updateHeaderHeight() {
+    const headerHeight = this.root.classList.contains('premium-header--sticky')
+      ? Math.ceil(this.root.getBoundingClientRect().height)
+      : 0;
+
+    document.body.style.setProperty('--premium-header-height', `${headerHeight}px`);
+    document.body.style.setProperty('--header-height', `${headerHeight}px`);
   }
 
   setInitialState() {
@@ -328,9 +340,12 @@ class PremiumHeader {
   }
 
   destroy() {
+    this.resizeObserver.disconnect();
     this.abortController.abort();
     this.closeAllMenus();
     this.closeDrawer();
+    document.body.style.removeProperty('--premium-header-height');
+    document.body.style.removeProperty('--header-height');
   }
 }
 

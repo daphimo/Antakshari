@@ -1,0 +1,85 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign care = product_resource.metafields.custom.care_profile.value
+%}
+
+{% if care %}
+  {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
+
+  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+    <button
+      class="metaobject-accordion__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="CareProfileContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="CareProfileContent-{{ block.id }}"
+      class="metaobject-accordion__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="metaobject-accordion__content-inner">
+        {% if care.name != blank %}<h3 class="metaobject-accordion__name">{{ care.name }}</h3>{% endif %}
+
+        {% if care.care_icon.value != blank %}
+          <div class="metaobject-accordion__icons" aria-label="Care symbols">
+            {% for care_icon in care.care_icon.value %}
+              {{
+                care_icon
+                | image_url: width: 160
+                | image_tag:
+                  class: 'metaobject-accordion__icon',
+                  loading: 'lazy',
+                  widths: '40, 80, 120, 160',
+                  sizes: '48px'
+              }}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <dl class="metaobject-accordion__details">
+          {% if care.wash_method != blank %}<div><dt>Wash method</dt><dd>{{ care.wash_method }}</dd></div>{% endif %}
+          {% if care.dry_clean_requirement != blank %}<div><dt>Dry-clean requirement</dt><dd>{{ care.dry_clean_requirement }}</dd></div>{% endif %}
+          {% if care.water_temperature != blank %}<div><dt>Water temperature</dt><dd>{{ care.water_temperature }}</dd></div>{% endif %}
+          {% if care.drying != blank %}<div><dt>Drying</dt><dd>{{ care.drying }}</dd></div>{% endif %}
+          {% if care.iron_setting != blank %}<div><dt>Iron setting</dt><dd>{{ care.iron_setting }}</dd></div>{% endif %}
+          {% if care.bleach_rule != blank %}<div><dt>Bleach rule</dt><dd>{{ care.bleach_rule }}</dd></div>{% endif %}
+          {% if care.special_handling != blank %}<div><dt>Special handling</dt><dd>{{ care.special_handling }}</dd></div>{% endif %}
+        </dl>
+      </div>
+    </div>
+  </metaobject-accordion>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Care Profile",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Care Profile"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Care Profile",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,72 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign styling_notes = product_resource.metafields.custom.styling_notes
+  assign design_artisan_story = product_resource.metafields.custom.design_artisan_story
+
+  assign has_style_inspiration = false
+  if styling_notes.value != blank or design_artisan_story.value != blank
+    assign has_style_inspiration = true
+  endif
+%}
+
+{% if has_style_inspiration %}
+  {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
+
+  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+    <button
+      class="metaobject-accordion__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="StyleInspirationContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="StyleInspirationContent-{{ block.id }}"
+      class="metaobject-accordion__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="metaobject-accordion__content-inner">
+        <dl class="metaobject-accordion__details">
+          {% if styling_notes.value != blank %}
+            <div><dt>Styling Notes</dt><dd>{{ styling_notes.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
+          {% if design_artisan_story.value != blank %}
+            <div><dt>Design / Artisan Story</dt><dd>{{ design_artisan_story.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  </metaobject-accordion>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Style & Inspiration",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Style & Inspiration"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Style & Inspiration",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

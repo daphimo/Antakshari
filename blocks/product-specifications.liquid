@@ -1,0 +1,90 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign structure_details = product_resource.metafields.custom.structure_details
+  assign silhouette = product_resource.metafields.custom.silhouette
+  assign movement_rating = product_resource.metafields.custom.movement_rating
+  assign sheer_opaque = product_resource.metafields.custom.sheer_opaque
+  assign stitching_type = product_resource.metafields.custom.stitching_type
+  assign back_design = product_resource.metafields.custom.back_design
+  assign lining_details = product_resource.metafields.custom.lining_details
+  assign fabric_gsm = product_resource.metafields.custom.fabric_gsm
+  assign fit_note = product_resource.metafields.custom.fit_note
+  assign dimensions_summary = product_resource.metafields.custom.dimensions_summary
+  assign included_items = product_resource.metafields.custom.included_items
+  assign component_fabrics = product_resource.metafields.custom.component_fabrics
+  assign key_details = product_resource.metafields.custom.key_details
+
+  assign has_specifications = false
+  if structure_details.value != blank or silhouette.value != blank or movement_rating.value != blank or sheer_opaque.value != blank or stitching_type.value != blank or back_design.value != blank or lining_details.value != blank or fabric_gsm.value != blank or fit_note.value != blank or dimensions_summary.value != blank or included_items.value != blank or component_fabrics.value != blank or key_details.value != blank
+    assign has_specifications = true
+  endif
+%}
+
+{% if has_specifications %}
+  {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
+
+  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+    <button
+      class="metaobject-accordion__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="ProductSpecificationsContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="ProductSpecificationsContent-{{ block.id }}"
+      class="metaobject-accordion__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="metaobject-accordion__content-inner">
+        <dl class="metaobject-accordion__details">
+          {% if structure_details.value != blank %}<div><dt>Structure Details</dt><dd>{{ structure_details.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if silhouette.value != blank %}<div><dt>Silhouette</dt><dd>{{ silhouette.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if movement_rating.value != blank %}<div><dt>Movement Rating</dt><dd>{{ movement_rating.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if sheer_opaque.value != blank %}<div><dt>Sheer / Opaque</dt><dd>{{ sheer_opaque.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if stitching_type.value != blank %}<div><dt>Stitching Type</dt><dd>{{ stitching_type.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if back_design.value != blank %}<div><dt>Back Design</dt><dd>{{ back_design.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if lining_details.value != blank %}<div><dt>Lining Details</dt><dd>{{ lining_details.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if fabric_gsm.value != blank %}<div><dt>Fabric GSM</dt><dd>{{ fabric_gsm.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if fit_note.value != blank %}<div><dt>Fit Note</dt><dd>{{ fit_note.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if dimensions_summary.value != blank %}<div><dt>Dimensions Summary</dt><dd>{{ dimensions_summary.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if included_items.value != blank %}<div><dt>Included Items</dt><dd>{{ included_items.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if component_fabrics.value != blank %}<div><dt>Component Fabrics</dt><dd>{{ component_fabrics.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if key_details.value != blank %}<div><dt>Key Details</dt><dd>{{ key_details.value | escape | newline_to_br }}</dd></div>{% endif %}
+        </dl>
+      </div>
+    </div>
+  </metaobject-accordion>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Specifications",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Product Specifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Specifications",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

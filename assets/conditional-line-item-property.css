@@ -1,0 +1,64 @@
+.conditional-property {
+  display: block;
+}
+
+.conditional-property__toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.conditional-property__checkbox {
+  appearance: none;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  display: grid;
+  place-content: center;
+}
+
+.conditional-property__checkbox::before {
+  content: '';
+  width: 10px;
+  height: 6px;
+  border-inline-start: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
+  opacity: 0;
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.conditional-property__checkbox:checked::before {
+  opacity: 1;
+}
+
+.conditional-property__checkbox:focus-visible,
+.conditional-property__input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.conditional-property__field {
+  margin-block-start: 12px;
+}
+
+.conditional-property__field[hidden] {
+  display: none;
+}
+
+.conditional-property__input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.35);
+  border-radius: 0;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font: inherit;
+  box-shadow: none;
+}

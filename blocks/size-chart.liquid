@@ -1,0 +1,309 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign size_chart = product_resource.metafields.custom.size_chart.value
+%}
+
+{% if size_chart %}
+  <size-chart-popup class="size-chart" {{ block.shopify_attributes }}>
+    <button
+      class="size-chart__trigger"
+      type="button"
+      aria-haspopup="dialog"
+      aria-controls="SizeChartDialog-{{ block.id }}"
+    >
+      {{ block.settings.trigger_text }}
+    </button>
+
+    <div
+      id="SizeChartDialog-{{ block.id }}"
+      class="size-chart__overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="SizeChartTitle-{{ block.id }}"
+    >
+      <div class="size-chart__panel" role="document">
+        <div class="size-chart__header">
+          <h2 id="SizeChartTitle-{{ block.id }}" class="size-chart__title">
+            {% if size_chart.name != blank %}{{ size_chart.name }}{% else %}Size guide{% endif %}
+          </h2>
+          <button class="size-chart__close" type="button" aria-label="Close size guide">
+            <span class="svg-wrapper" aria-hidden="true">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+        </div>
+
+        <div class="size-chart__body">
+          {% if size_chart.chart != blank %}
+            {{
+              size_chart.chart.value
+              | image_url: width: 1600
+              | image_tag:
+                class: 'size-chart__image',
+                loading: 'lazy',
+                widths: '320, 480, 720, 960, 1200, 1600',
+                sizes: '(min-width: 900px) 800px, 100vw'
+            }}
+          {% endif %}
+
+          <dl class="size-chart__details">
+            {% if size_chart.product_group != blank %}
+              <div><dt>Product group</dt><dd>{{ size_chart.product_group }}</dd></div>
+            {% endif %}
+            {% if size_chart.target_age_gender != blank %}
+              <div><dt>Target age / gender</dt><dd>{{ size_chart.target_age_gender }}</dd></div>
+            {% endif %}
+            {% if size_chart.unit != blank %}
+              <div><dt>Unit</dt><dd>{{ size_chart.unit }}</dd></div>
+            {% endif %}
+          </dl>
+
+          {% if size_chart.standard_fit_note.value != blank %}
+            <div class="size-chart__notes">
+              <h3>Standard fit notes</h3>
+              <ul>
+                {% for fit_note in size_chart.standard_fit_note.value %}
+                  {% if fit_note != blank %}<li>{{ fit_note }}</li>{% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if size_chart.measurement_guide != blank %}
+            <div class="size-chart__guide">
+              <h3>Measurement guide</h3>
+              <div>{{ size_chart.measurement_guide | escape | newline_to_br }}</div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </size-chart-popup>
+
+  <script>
+    if (!customElements.get('size-chart-popup')) {
+      customElements.define(
+        'size-chart-popup',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.trigger = this.querySelector('.size-chart__trigger');
+            this.overlay = this.querySelector('.size-chart__overlay');
+            this.closeButton = this.querySelector('.size-chart__close');
+            if (!this.trigger || !this.overlay || !this.closeButton) return;
+
+            this.handleKeydown = (event) => {
+              if (event.key === 'Escape' && this.isOpen) this.close();
+            };
+            this.trigger.addEventListener('click', () => this.open());
+            this.closeButton.addEventListener('click', () => this.close());
+            this.overlay.addEventListener('click', (event) => {
+              if (event.target === this.overlay) this.close();
+            });
+          }
+
+          disconnectedCallback() {
+            document.removeEventListener('keydown', this.handleKeydown);
+            if (this.isOpen) this.unlockPage();
+          }
+
+          get isOpen() {
+            return this.overlay?.classList.contains('is-open');
+          }
+
+          open() {
+            this.previousOverflow = document.documentElement.style.overflow;
+            this.previousBodyOverflow = document.body.style.overflow;
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            this.overlay.setAttribute('aria-hidden', 'false');
+            this.overlay.classList.add('is-open');
+            document.addEventListener('keydown', this.handleKeydown);
+            this.closeButton.focus({ preventScroll: true });
+          }
+
+          close() {
+            this.overlay.classList.remove('is-open');
+            this.overlay.setAttribute('aria-hidden', 'true');
+            document.removeEventListener('keydown', this.handleKeydown);
+            this.unlockPage();
+            this.trigger.focus({ preventScroll: true });
+          }
+
+          unlockPage() {
+            document.documentElement.style.overflow = this.previousOverflow || '';
+            document.body.style.overflow = this.previousBodyOverflow || '';
+          }
+        }
+      );
+    }
+  </script>
+{% endif %}
+
+{% stylesheet %}
+  .size-chart {
+    display: block;
+  }
+
+  .size-chart__trigger {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  .size-chart__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--layer-dialog, 1000);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgb(0 0 0 / 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 300ms ease, visibility 300ms ease;
+  }
+
+  .size-chart__overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .size-chart__panel {
+    width: min(100%, 900px);
+    max-height: 90dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: 0 -8px 30px rgb(0 0 0 / 0.2);
+    transform: translateY(100%);
+    transition: transform 350ms ease;
+  }
+
+  .size-chart__overlay.is-open .size-chart__panel {
+    transform: translateY(0);
+  }
+
+  .size-chart__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+  }
+
+  .size-chart__title {
+    margin: 0;
+  }
+
+  .size-chart__close {
+    appearance: none;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .size-chart__close svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .size-chart__body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 20px;
+  }
+
+  .size-chart__image {
+    display: block;
+    width: 30%;
+    height: auto;
+    margin-block-end: 20px;
+    border-radius: 0;
+  }
+
+  .size-chart__details {
+    margin: 0;
+  }
+
+  .size-chart__details > div {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.4fr) 1fr;
+    gap: 12px;
+    padding-block: 8px;
+    border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  .size-chart__details dt,
+  .size-chart__notes h3,
+  .size-chart__guide h3 {
+    font-weight: 600;
+  }
+
+  .size-chart__details dd {
+    margin: 0;
+  }
+
+  .size-chart__notes,
+  .size-chart__guide {
+    margin-block-start: 20px;
+  }
+
+  .size-chart__notes h3,
+  .size-chart__guide h3 {
+    margin: 0 0 8px;
+  }
+
+  .size-chart__notes ul {
+    margin-block: 0;
+    padding-inline-start: 20px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .size-chart__overlay,
+    .size-chart__panel {
+      transition-duration: 0.01ms;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Size Chart",
+  "tag": null,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "trigger_text",
+      "label": "Trigger text",
+      "default": "Size guide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Size Chart",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign safety_note = product_resource.metafields.custom.safety_note
+  assign shrinkage_note = product_resource.metafields.custom.shrinkage_note
+  assign handling_override = product_resource.metafields.custom.handling_override
+
+  assign has_care_handling = false
+  if safety_note.value != blank or shrinkage_note.value != blank or handling_override.value != blank
+    assign has_care_handling = true
+  endif
+%}
+
+{% if has_care_handling %}
+  {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
+
+  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+    <button
+      class="metaobject-accordion__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="CareHandlingContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="CareHandlingContent-{{ block.id }}"
+      class="metaobject-accordion__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="metaobject-accordion__content-inner">
+        <dl class="metaobject-accordion__details">
+          {% if safety_note.value != blank %}
+            <div><dt>Safety Note</dt><dd>{{ safety_note.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
+          {% if shrinkage_note.value != blank %}
+            <div><dt>Shrinkage Note</dt><dd>{{ shrinkage_note.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
+          {% if handling_override.value != blank %}
+            <div><dt>Handling Override</dt><dd>{{ handling_override.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  </metaobject-accordion>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Care & Handling",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Care & Handling"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Care & Handling",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

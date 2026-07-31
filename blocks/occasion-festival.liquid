@@ -1,9 +1,9 @@
 {% liquid
   assign product_resource = closest.product | default: product
-  assign craft = product_resource.metafields.custom.crafts.value
+  assign occasion = product_resource.metafields.custom[block.settings.metafield_key].value
 %}
 
-{% if craft %}
+{% if occasion %}
   {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
 
@@ -12,22 +12,22 @@
       class="metaobject-accordion__toggle"
       type="button"
       aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
-      aria-controls="CraftProfileContent-{{ block.id }}"
+      aria-controls="OccasionFestivalContent-{{ block.id }}"
     >
       <span>{{ block.settings.heading | escape }}</span>
       <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
     </button>
 
     <div
-      id="CraftProfileContent-{{ block.id }}"
+      id="OccasionFestivalContent-{{ block.id }}"
       class="metaobject-accordion__content"
       aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
       style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
     >
       <div class="metaobject-accordion__content-inner">
-        {% if craft.hero_image != blank %}
+        {% if occasion.hero_image != blank %}
           {{
-            craft.hero_image.value
+            occasion.hero_image.value
             | image_url: width: 1200
             | image_tag:
               class: 'metaobject-accordion__image',
@@ -37,21 +37,18 @@
           }}
         {% endif %}
 
-        {% if craft.name != blank %}<h3 class="metaobject-accordion__name">{{ craft.name }}</h3>{% endif %}
+        {% if occasion.name != blank %}<h3 class="metaobject-accordion__name">{{ occasion.name }}</h3>{% endif %}
 
         <dl class="metaobject-accordion__details">
-          {% if craft.region != blank %}<div><dt>Region</dt><dd>{{ craft.region }}</dd></div>{% endif %}
-          {% if craft.craft_family != blank %}<div><dt>Craft family</dt><dd>{{ craft.craft_family }}</dd></div>{% endif %}
-          {% if craft.production_method != blank %}<div><dt>Production method</dt><dd>{{ craft.production_method }}</dd></div>{% endif %}
-          {% if craft.default_artisan_cluster != blank %}<div><dt>Artisan cluster</dt><dd>{{ craft.default_artisan_cluster }}</dd></div>{% endif %}
-          {% if craft.gi_tagged != blank %}<div><dt>GI tagged</dt><dd>{{ craft.gi_tagged }}</dd></div>{% endif %}
-          {% if craft.certifications_marks != blank %}<div><dt>Certifications / marks</dt><dd>{{ craft.certifications_marks }}</dd></div>{% endif %}
-          {% if craft.guide_page != blank %}<div><dt>Guide page</dt><dd>{{ craft.guide_page }}</dd></div>{% endif %}
-          {% if craft.sort_order != blank %}<div><dt>Sort order</dt><dd>{{ craft.sort_order }}</dd></div>{% endif %}
+          {% if occasion.parent_group != blank %}<div><dt>Parent group</dt><dd>{{ occasion.parent_group }}</dd></div>{% endif %}
+          {% if occasion.festival_season != blank %}<div><dt>Festival season</dt><dd>{{ occasion.festival_season }}</dd></div>{% endif %}
+          {% if occasion.guide_page != blank %}<div><dt>Guide page</dt><dd>{{ occasion.guide_page }}</dd></div>{% endif %}
+          {% if occasion.active != blank %}<div><dt>Active</dt><dd>{{ occasion.active }}</dd></div>{% endif %}
+          {% if occasion.sort_order != blank %}<div><dt>Sort order</dt><dd>{{ occasion.sort_order }}</dd></div>{% endif %}
         </dl>
 
-        {% if craft.description != blank %}
-          <div class="metaobject-accordion__description rte">{{ craft.description | metafield_tag }}</div>
+        {% if occasion.short_description != blank %}
+          <div class="metaobject-accordion__description rte">{{ occasion.short_description | metafield_tag }}</div>
         {% endif %}
       </div>
     </div>
@@ -60,25 +57,32 @@
 
 {% schema %}
 {
-  "name": "Craft Profile",
+  "name": "Occasion & Festival",
   "tag": null,
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Craft Profile"
+      "default": "Occasion & Festival"
     },
     {
       "type": "checkbox",
       "id": "open_by_default",
       "label": "Open by default",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "label": "Product metafield key",
+      "default": "occasions",
+      "info": "The key after product.metafields.custom"
     }
   ],
   "presets": [
     {
-      "name": "Craft Profile",
+      "name": "Occasion & Festival",
       "category": "Product"
     }
   ]

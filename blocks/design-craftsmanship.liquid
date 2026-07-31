@@ -1,0 +1,88 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign print_placement = product_resource.metafields.custom.print_placement
+  assign print_technique = product_resource.metafields.custom.print_technique
+  assign pattern_placement = product_resource.metafields.custom.pattern_placement
+  assign embellishments = product_resource.metafields.custom.embellishments
+  assign embellishment_placement = product_resource.metafields.custom.embellishment_placement
+  assign flare_details = product_resource.metafields.custom.flare_details
+  assign drape_styles = product_resource.metafields.custom.drape_styles
+  assign pallu_design = product_resource.metafields.custom.pallu_design
+  assign border_type = product_resource.metafields.custom.border_type
+  assign zari_type = product_resource.metafields.custom.zari_type
+  assign weave_technique = product_resource.metafields.custom.weave_technique
+  assign waist_closure = product_resource.metafields.custom.waist_closure
+
+  assign has_design_details = false
+  if print_placement.value != blank or print_technique.value != blank or pattern_placement.value != blank or embellishments.value != blank or embellishment_placement.value != blank or flare_details.value != blank or drape_styles.value != blank or pallu_design.value != blank or border_type.value != blank or zari_type.value != blank or weave_technique.value != blank or waist_closure.value != blank
+    assign has_design_details = true
+  endif
+%}
+
+{% if has_design_details %}
+  {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
+
+  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+    <button
+      class="metaobject-accordion__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="DesignCraftsmanshipContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="metaobject-accordion__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="DesignCraftsmanshipContent-{{ block.id }}"
+      class="metaobject-accordion__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="metaobject-accordion__content-inner">
+        <dl class="metaobject-accordion__details">
+          {% if print_placement.value != blank %}<div><dt>Print Placement</dt><dd>{{ print_placement.value | escape }}</dd></div>{% endif %}
+          {% if print_technique.value != blank %}<div><dt>Print Technique</dt><dd>{{ print_technique.value | escape }}</dd></div>{% endif %}
+          {% if pattern_placement.value != blank %}<div><dt>Pattern Placement</dt><dd>{{ pattern_placement.value | escape }}</dd></div>{% endif %}
+          {% if embellishments.value != blank %}<div><dt>Embellishments</dt><dd>{{ embellishments.value | escape }}</dd></div>{% endif %}
+          {% if embellishment_placement.value != blank %}<div><dt>Embellishment Placement</dt><dd>{{ embellishment_placement.value | escape }}</dd></div>{% endif %}
+          {% if flare_details.value != blank %}<div><dt>Flare Details</dt><dd>{{ flare_details.value | escape }}</dd></div>{% endif %}
+          {% if drape_styles.value != blank %}<div><dt>Drape Styles</dt><dd>{{ drape_styles.value | escape }}</dd></div>{% endif %}
+          {% if pallu_design.value != blank %}<div><dt>Pallu Design</dt><dd>{{ pallu_design.value | escape }}</dd></div>{% endif %}
+          {% if border_type.value != blank %}<div><dt>Border Type</dt><dd>{{ border_type.value | escape }}</dd></div>{% endif %}
+          {% if zari_type.value != blank %}<div><dt>Zari Type</dt><dd>{{ zari_type.value | escape }}</dd></div>{% endif %}
+          {% if weave_technique.value != blank %}<div><dt>Weave / Technique</dt><dd>{{ weave_technique.value | escape }}</dd></div>{% endif %}
+          {% if waist_closure.value != blank %}<div><dt>Waist Closure</dt><dd>{{ waist_closure.value | escape }}</dd></div>{% endif %}
+        </dl>
+      </div>
+    </div>
+  </metaobject-accordion>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Design & Craftsmanship",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Design & Craftsmanship"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Design & Craftsmanship",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1295,6 +1295,13 @@ details[open] > summary .icon-plus .vertical {
     top: var(--sticky-header-offset, 0);
     z-index: var(--layer-flat);
   }
+
+  body:has(#header-group .premium-header--sticky) .sticky-content--desktop,
+  body:has(#header-group .premium-header--sticky)
+    .sticky-content--desktop.full-height--desktop
+    > .group-block {
+    --sticky-header-offset: var(--premium-header-height, 0px);
+  }
 }
 
 .price,

@@ -2,7 +2,11 @@
   {{ 'switch.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'switch.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'add-prod.js' | asset_url }}" defer="defer"></script>
-  <div class="switcher_container">
+  <div
+    class="switcher_container"
+    style="margin-top: {{ block.settings.padding_top }}px; margin-bottom: {{ block.settings.padding_bottom }}px;"
+    {{ block.shopify_attributes }}
+  >
     <div class="top_switch_bar">
       <label class="switch">
         <input
@@ -112,6 +116,30 @@
       "type": "image_picker",
       "label": "Background Image",
       "id": "image"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [

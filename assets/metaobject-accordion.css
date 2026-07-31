@@ -1,0 +1,118 @@
+.metaobject-accordion {
+  display: block;
+  border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.2);
+}
+
+.metaobject-accordion__toggle {
+  appearance: none;
+  width: 100%;
+  padding: 16px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.metaobject-accordion__symbol {
+  position: relative;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.metaobject-accordion__symbol::before,
+.metaobject-accordion__symbol::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.metaobject-accordion__symbol::after {
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 200ms ease;
+}
+
+.metaobject-accordion__toggle[aria-expanded='true'] .metaobject-accordion__symbol::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.metaobject-accordion__content {
+  overflow: hidden;
+  transition: height 300ms ease;
+}
+
+.metaobject-accordion__content-inner {
+  padding-block: 0 20px;
+}
+
+.metaobject-accordion__image {
+  display: none;
+  width: 100%;
+  height: auto;
+  margin-block-end: 16px;
+  border-radius: 0;
+}
+
+.metaobject-accordion__name {
+  margin: 0 0 12px;
+}
+
+.metaobject-accordion__icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-block-end: 16px;
+}
+
+.metaobject-accordion__icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.metaobject-accordion__details {
+  margin: 0;
+}
+
+.metaobject-accordion__details > div {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.4fr) 1fr;
+  gap: 12px;
+  padding-block: 8px;
+  border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+}
+
+.metaobject-accordion__details dt {
+  font-weight: 600;
+}
+
+.metaobject-accordion__details dd {
+  margin: 0;
+}
+
+.metaobject-accordion__description {
+  margin-block-start: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metaobject-accordion__content,
+  .metaobject-accordion__symbol::after {
+    transition-duration: 0.01ms;
+  }
+}
