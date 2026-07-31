@@ -1,0 +1,271 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign craft_profiles = product_resource.metafields[block.settings.metafield_namespace][block.settings.metafield_key].value
+  assign has_craft_profile = false
+
+  for profile in craft_profiles
+    if profile.name.value != blank or profile.region.value != blank or profile.craft_family.value != blank or profile.production_method.value != blank or profile.default_artisan_cluster.value != blank or profile.gi_tagged.value != blank or profile.certifications_marks.value != blank or profile.guide_page.value != blank or profile.sort_order.value != blank or profile.description.value != blank or profile.hero_image.value != blank
+      assign has_craft_profile = true
+      break
+    endif
+  endfor
+%}
+
+{% if has_craft_profile %}
+  <craft-profile-accordion
+    class="craft-profile"
+    {{ block.shopify_attributes }}
+  >
+    <button
+      class="craft-profile__toggle"
+      type="button"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="CraftProfileContent-{{ block.id }}"
+    >
+      <span>{{ block.settings.heading | escape }}</span>
+      <span class="craft-profile__symbol" aria-hidden="true"></span>
+    </button>
+
+    <div
+      id="CraftProfileContent-{{ block.id }}"
+      class="craft-profile__content"
+      aria-hidden="{% if block.settings.open_by_default %}false{% else %}true{% endif %}"
+      style="height: {% if block.settings.open_by_default %}auto{% else %}0px{% endif %};"
+    >
+      <div class="craft-profile__content-inner">
+        {% for profile in craft_profiles %}
+          {% liquid
+            assign profile_has_content = false
+            if profile.name.value != blank or profile.region.value != blank or profile.craft_family.value != blank or profile.production_method.value != blank or profile.default_artisan_cluster.value != blank or profile.gi_tagged.value != blank or profile.certifications_marks.value != blank or profile.guide_page.value != blank or profile.sort_order.value != blank or profile.description.value != blank or profile.hero_image.value != blank
+              assign profile_has_content = true
+            endif
+          %}
+
+          {% if profile_has_content %}
+            <article class="craft-profile__entry">
+              {% if profile.hero_image.value != blank %}
+                {{
+                  profile.hero_image.value
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'craft-profile__image',
+                    loading: 'lazy',
+                    widths: '320, 480, 720, 960, 1200',
+                    sizes: '(min-width: 750px) 40vw, 100vw'
+                }}
+              {% endif %}
+
+              {% if profile.name.value != blank %}
+                <h3 class="craft-profile__name">{{ profile.name.value | escape }}</h3>
+              {% endif %}
+
+              <dl class="craft-profile__details">
+                {% if profile.region.value != blank %}<div><dt>Region</dt><dd>{{ profile.region.value | escape }}</dd></div>{% endif %}
+                {% if profile.craft_family.value != blank %}<div><dt>Craft family</dt><dd>{{ profile.craft_family.value | escape }}</dd></div>{% endif %}
+                {% if profile.production_method.value != blank %}<div><dt>Production method</dt><dd>{{ profile.production_method.value | escape }}</dd></div>{% endif %}
+                {% if profile.default_artisan_cluster.value != blank %}<div><dt>Artisan cluster</dt><dd>{{ profile.default_artisan_cluster.value | escape }}</dd></div>{% endif %}
+                {% if profile.gi_tagged.value != blank %}<div><dt>GI tagged</dt><dd>{{ profile.gi_tagged.value | escape }}</dd></div>{% endif %}
+                {% if profile.certifications_marks.value != blank %}<div><dt>Certifications / marks</dt><dd>{{ profile.certifications_marks.value | escape }}</dd></div>{% endif %}
+                {% if profile.guide_page.value != blank %}<div><dt>Guide page</dt><dd>{{ profile.guide_page.value | escape }}</dd></div>{% endif %}
+                {% if profile.sort_order.value != blank %}<div><dt>Sort order</dt><dd>{{ profile.sort_order.value | escape }}</dd></div>{% endif %}
+              </dl>
+
+              {% if profile.description.value != blank %}
+                <div class="craft-profile__description rte">
+                  {{ profile.description | metafield_tag }}
+                </div>
+              {% endif %}
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </craft-profile-accordion>
+
+  <script>
+    if (!customElements.get('craft-profile-accordion')) {
+      customElements.define(
+        'craft-profile-accordion',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.button = this.querySelector('.craft-profile__toggle');
+            this.content = this.querySelector('.craft-profile__content');
+            if (!this.button || !this.content) return;
+
+            this.button.addEventListener('click', () => this.toggle());
+            this.content.addEventListener('transitionend', (event) => {
+              if (event.propertyName === 'height' && this.button.getAttribute('aria-expanded') === 'true') {
+                this.content.style.height = 'auto';
+              }
+            });
+          }
+
+          toggle() {
+            const isOpen = this.button.getAttribute('aria-expanded') === 'true';
+            this.button.setAttribute('aria-expanded', String(!isOpen));
+            this.content.setAttribute('aria-hidden', String(isOpen));
+
+            if (isOpen) {
+              this.content.style.height = `${this.content.scrollHeight}px`;
+              requestAnimationFrame(() => {
+                this.content.style.height = '0px';
+              });
+            } else {
+              this.content.style.height = `${this.content.scrollHeight}px`;
+            }
+          }
+        }
+      );
+    }
+  </script>
+{% endif %}
+
+{% stylesheet %}
+  .craft-profile {
+    display: block;
+    border-block: 1px solid rgb(var(--color-foreground-rgb) / 0.2);
+  }
+
+  .craft-profile__toggle {
+    appearance: none;
+    width: 100%;
+    padding: 16px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .craft-profile__symbol {
+    position: relative;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .craft-profile__symbol::before,
+  .craft-profile__symbol::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 16px;
+    height: 1px;
+    background: currentColor;
+    transform: translateY(-50%);
+  }
+
+  .craft-profile__symbol::after {
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 200ms ease;
+  }
+
+  .craft-profile__toggle[aria-expanded='true'] .craft-profile__symbol::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  .craft-profile__content {
+    overflow: hidden;
+    transition: height 300ms ease;
+  }
+
+  .craft-profile__content-inner {
+    padding-block: 0 20px;
+  }
+
+  .craft-profile__entry + .craft-profile__entry {
+    margin-block-start: 24px;
+    padding-block-start: 24px;
+    border-block-start: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+  }
+
+  .craft-profile__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-block-end: 16px;
+    border-radius: 0;
+  }
+
+  .craft-profile__name {
+    margin: 0 0 12px;
+  }
+
+  .craft-profile__details {
+    margin: 0;
+  }
+
+  .craft-profile__details > div {
+    display: grid;
+    grid-template-columns: minmax(120px, 0.4fr) 1fr;
+    gap: 12px;
+    padding-block: 8px;
+    border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  .craft-profile__details dt {
+    font-weight: 600;
+  }
+
+  .craft-profile__details dd {
+    margin: 0;
+  }
+
+  .craft-profile__description {
+    margin-block-start: 16px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .craft-profile__content,
+    .craft-profile__symbol::after {
+      transition-duration: 0.01ms;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Craft Profile",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Craft Profile"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "label": "Metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "label": "Metafield key",
+      "default": "craft_profile"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Craft Profile",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
