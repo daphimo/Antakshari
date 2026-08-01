@@ -56,16 +56,13 @@
   }
 
   .family-products__image {
-    display: block;
+   display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
-    transition: transform 200ms ease;
-  }
-
-  .family-products__item:hover .family-products__image {
-    transform: scale(1.03);
+    transition: transform .2s ease;
+    object-position: top;
   }
 
   .family-products__item:focus-visible {
@@ -111,7 +108,7 @@
       "id": "columns_desktop",
       "label": "Columns on desktop",
       "min": 2,
-      "max": 6,
+      "max": 10,
       "step": 1,
       "default": 4
     }

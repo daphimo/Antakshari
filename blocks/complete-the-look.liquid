@@ -25,7 +25,7 @@
     {{ block.shopify_attributes }}
   >
     {% if block.settings.heading != blank %}
-      <h2 class="complete-the-look__heading">{{ block.settings.heading | escape }}</h2>
+      <h4 class="complete-the-look__heading">{{ block.settings.heading | escape }}</h4>
     {% endif %}
 
     <div class="complete-the-look__products" role="list">
@@ -125,7 +125,7 @@
   .complete-the-look__product {
     color: inherit;
     display: flex;
-    flex: 0 0 min(36vw, 160px);
+    flex: 0 0 min(36vw, 110px);
     flex-direction: column;
     text-decoration: none;
   }
@@ -135,6 +135,7 @@
     display: block;
     height: auto;
     object-fit: cover;
+    object-position: top;
     width: 100%;
   }
 
