@@ -182,7 +182,7 @@
               "settings": {
                 "heading": "",
                 "columns_mobile": 2,
-                "columns_desktop": 7
+                "columns_desktop": 6
               },
               "blocks": {}
             },
@@ -367,6 +367,19 @@
               },
               "blocks": {}
             },
+            "divider_eFLEKk": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 0.5,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color8 }}",
+                "width_percent": 100,
+                "padding-block-start": 20,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "complete_the_look_C8wgRt": {
               "type": "complete-the-look",
               "name": "Complete the look",
@@ -409,6 +422,7 @@
             "design_craftsmanship_C93b9e",
             "care_profile_xTATRR",
             "claims_certifications_m8NwrU",
+            "divider_eFLEKk",
             "complete_the_look_C8wgRt",
             "switch_upsell_xWpLEx"
           ]
