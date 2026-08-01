@@ -307,6 +307,7 @@
                 "group_7rYftx": {
                   "type": "group",
                   "name": "t:names.group",
+                  "disabled": true,
                   "settings": {
                     "responsive": "desktop",
                     "content_direction": "row",
@@ -406,6 +407,7 @@
                 "group_bi93b6": {
                   "type": "group",
                   "name": "t:names.group",
+                  "disabled": true,
                   "settings": {
                     "responsive": "desktop",
                     "content_direction": "row",
@@ -505,6 +507,7 @@
                 "group_8r4cWV": {
                   "type": "group",
                   "name": "t:names.group",
+                  "disabled": true,
                   "settings": {
                     "responsive": "desktop",
                     "content_direction": "row",
