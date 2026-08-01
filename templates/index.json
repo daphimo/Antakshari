@@ -3077,7 +3077,7 @@
         "text_color": "#2a1f1a",
         "accent_color": "#c56b3e",
         "icon_background": "#e8a53a",
-        "border_color": "#c9a24c"
+        "border_color": "{{ settings.color_palette.color8 }}"
       }
     },
     "section_gtE66B": {
