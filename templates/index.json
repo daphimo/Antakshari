@@ -3859,7 +3859,7 @@
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
-        "card_content_padding": 24,
+        "card_content_padding": 18,
         "image_overlay_opacity": 0,
         "caption_size": 11,
         "caption_mobile_size": 10,
