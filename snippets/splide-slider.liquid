@@ -26,6 +26,7 @@
 {%- assign custom_slider_id = slider_id | default: section.id -%}
 {%- assign custom_section_id = section_id | default: section.id -%}
 {%- assign custom_safe_id = custom_slider_id | replace: '-', '_' | replace: '__', '_' -%}
+{%- assign custom_slider_type = slider_type | default: section.settings.slider_type | default: 'loop' -%}
 
 <script>
   (function () {
@@ -51,22 +52,22 @@
       }
 
       var defaultConfig = {
-        type: Shopify.designMode ? 'slide' : '{{ section.settings.slider_type | default: "loop" }}',
-        {% if section.settings.slider_type == 'slide' %}
-          rewind: true,
+        type: Shopify.designMode ? 'slide' : '{{ custom_slider_type }}',
+        {% if custom_slider_type == 'slide' %}
+          rewind: {{ rewind | default: true, allow_false: true | json }},
         {% endif %}
         perPage: {{ section.settings.perPageDesktop | default: 1 }},
         perMove: {{ section.settings.perMove | default: 1 }},
         autoplay: Shopify.designMode
           ? false
-          : {{ section.settings.autoplay | default: false | json }},
+          : {{ section.settings.autoplay | default: false, allow_false: true | json }},
         interval: {{ section.settings.autoplay_speed | default: 3 | times: 1000 }},
         speed: {{ section.settings.transition_speed | default: 400 }},
-        arrows: {{ section.settings.show_arrows | default: true | json }},
-        pagination: {{ section.settings.show_pagination | default: false | json }},
+        arrows: {{ section.settings.show_arrows | default: true, allow_false: true | json }},
+        pagination: {{ section.settings.show_pagination | default: false, allow_false: true | json }},
         gap: '{{ section.settings.gap | default: 10 }}px',
-        pauseOnHover: {{ section.settings.pause_on_hover | default: false | json }},
-        pauseOnFocus: {{ section.settings.pause_on_focus | default: false | json }},
+        pauseOnHover: {{ section.settings.pause_on_hover | default: false, allow_false: true | json }},
+        pauseOnFocus: {{ section.settings.pause_on_focus | default: false, allow_false: true | json }},
         focus: Shopify.designMode ? false : {{ section.settings.focus | json }},
         breakpoints: {
           768: {

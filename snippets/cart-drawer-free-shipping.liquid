@@ -4,14 +4,21 @@
   assign reward_one_threshold = settings.cart_reward_one_threshold | times: 100
   assign reward_two_threshold = settings.cart_reward_two_threshold | times: 100
   assign reward_three_threshold = settings.cart_reward_three_threshold | times: 100
-  assign progress = 0
-  if threshold > 0
-    assign progress = cart.total_price | times: 100.0 | divided_by: threshold
-    if progress > 100
-      assign progress = 100
+  assign rewards_progress = 0
+  if cart.total_price >= reward_three_threshold
+    assign rewards_progress = 100
+  elsif cart.total_price >= reward_two_threshold
+    assign reward_step_amount = reward_three_threshold | minus: reward_two_threshold
+    if reward_step_amount > 0
+      assign reward_step_progress = cart.total_price | minus: reward_two_threshold | times: 50.0 | divided_by: reward_step_amount
+      assign rewards_progress = 50 | plus: reward_step_progress
+    else
+      assign rewards_progress = 50
     endif
-    if progress < 0
-      assign progress = 0
+  elsif cart.total_price >= reward_one_threshold
+    assign reward_step_amount = reward_two_threshold | minus: reward_one_threshold
+    if reward_step_amount > 0
+      assign rewards_progress = cart.total_price | minus: reward_one_threshold | times: 50.0 | divided_by: reward_step_amount
     endif
   endif
 %}
@@ -37,24 +44,22 @@
         {{ settings.cart_free_shipping_message | replace: '[amount]', remaining_money }}
       {% endif %}
     </p>
-    <div
-      class="cart-free-shipping__track"
-      role="progressbar"
-      aria-label="Free shipping progress"
-      aria-valuemin="0"
-      aria-valuemax="{{ threshold }}"
-      aria-valuenow="{{ cart.total_price | at_most: threshold }}"
-    >
-      <span class="cart-free-shipping__bar" style="width: {{ progress }}%;"></span>
-    </div>
-
     {% if settings.cart_rewards_enabled %}
-      <div class="cart-rewards">
+      <div
+        class="cart-rewards"
+        role="region"
+        aria-label="Cart reward milestones"
+      >
         {% if settings.cart_rewards_heading != blank %}
           <p class="cart-rewards__heading">{{ settings.cart_rewards_heading }}</p>
         {% endif %}
         <div class="cart-rewards__rail">
-          <span class="cart-rewards__line" aria-hidden="true"></span>
+          <progress
+            class="cart-rewards__progress"
+            max="100"
+            value="{{ rewards_progress | at_most: 100 | at_least: 0 }}"
+            aria-label="Progress through cart reward milestones"
+          ></progress>
           {% for reward_index in (1..3) %}
             {% liquid
               case reward_index
@@ -77,9 +82,19 @@
               endif
               assign reward_money = reward_threshold | money_without_trailing_zeros
             %}
-            <div class="cart-rewards__item{% if reward_unlocked %} is-unlocked{% endif %}">
+            <div
+              class="cart-rewards__item{% if reward_unlocked %} is-unlocked{% endif %}"
+              data-threshold="{{ reward_threshold }}"
+            >
+              <span class="visually-hidden">
+                {% if reward_unlocked %}Unlocked:{% else %}Locked:{% endif %}
+              </span>
               <span class="cart-rewards__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 7h18v4H3zM12 7v13M12 7H8.7a2.2 2.2 0 1 1 2.2-2.2C10.9 6 12 7 12 7Zm0 0h3.3a2.2 2.2 0 1 0-2.2-2.2C13.1 6 12 7 12 7Z"/></svg>
+                {% if reward_unlocked %}
+                  <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.5 3.5 7.5-8"/></svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 7h18v4H3zM12 7v13M12 7H8.7a2.2 2.2 0 1 1 2.2-2.2C10.9 6 12 7 12 7Zm0 0h3.3a2.2 2.2 0 1 0-2.2-2.2C13.1 6 12 7 12 7Z"/></svg>
+                {% endif %}
               </span>
               <span class="cart-rewards__label">{{ reward_label | replace: '[amount]', reward_money }}</span>
               <span class="cart-rewards__text">{{ reward_text }}</span>

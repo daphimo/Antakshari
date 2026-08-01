@@ -1,0 +1,98 @@
+{% liquid
+  assign add_on_products = settings.cart_add_on_products
+  assign add_on_count = 0
+%}
+
+{% capture add_on_cards %}
+  {% for add_on_product in add_on_products %}
+    {% liquid
+      assign add_on_in_cart = false
+      assign add_on_variant = add_on_product.selected_or_first_available_variant
+      for item in cart.items
+        if item.product_id == add_on_product.id
+          assign add_on_in_cart = true
+          break
+        endif
+      endfor
+    %}
+    {% if add_on_product.available and add_on_variant != blank and add_on_in_cart == false %}
+      {% assign add_on_count = add_on_count | plus: 1 %}
+      <li class="splide__slide">
+        <cart-drawer-upsell class="cart-drawer-upsell" data-product-id="{{ add_on_product.id }}">
+          <div class="cart-drawer-upsell__card">
+            <span class="cart-drawer-upsell__media" href="{{ add_on_product.url }}" aria-label="{{ add_on_product.title | escape }}">
+              {% if add_on_product.featured_image != blank %}
+                {{
+                  add_on_product.featured_image
+                  | image_url: width: 240
+                  | image_tag:
+                    widths: '120, 180, 240',
+                    sizes: '68px',
+                    loading: 'lazy',
+                    class: 'cart-drawer-upsell__image',
+                    alt: add_on_product.featured_image.alt
+                }}
+              {% endif %}
+            </span>
+
+            <div class="cart-drawer-upsell__details">
+              <p class="cart-drawer-upsell__title">{{ add_on_product.title }}</p>
+              {% if add_on_product.has_only_default_variant %}
+                <input type="hidden" data-upsell-variant value="{{ add_on_variant.id }}">
+                <span class="cart-drawer-upsell__price">{{ add_on_variant.price | money }}</span>
+              {% else %}
+                <label class="visually-hidden" for="CartAddOnVariant-{{ add_on_product.id }}">
+                  Choose an option for {{ add_on_product.title | escape }}
+                </label>
+                <select
+                  id="CartAddOnVariant-{{ add_on_product.id }}"
+                  class="cart-drawer-upsell__variants"
+                  data-upsell-variant
+                >
+                  {% for variant in add_on_product.variants %}
+                    <option value="{{ variant.id }}" {% if variant.id == add_on_variant.id %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                      {{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} — Sold out{% endunless %}
+                    </option>
+                  {% endfor %}
+                </select>
+              {% endif %}
+            </div>
+
+            <button class="button cart-drawer-upsell__button" type="button" data-upsell-add>
+              <span data-upsell-button-text>{{ settings.cart_add_on_button_label | default: '+ Add' }}</span>
+              <span class="cart-drawer-upsell__spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="cart-drawer-upsell__status visually-hidden" role="status" aria-live="polite" data-upsell-status></p>
+        </cart-drawer-upsell>
+      </li>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% assign add_on_cards = add_on_cards | strip %}
+{% if add_on_cards != blank %}
+  <cart-drawer-upsells class="cart-drawer-upsells cart-drawer-add-ons">
+    <div class="cart-drawer-upsells__header">
+      <h3 class="cart-drawer-upsells__heading">{{ settings.cart_add_on_heading | default: 'Add ons' }}</h3>
+      {% if settings.cart_add_on_view_all_link != blank %}
+        <a class="cart-drawer-add-ons__view-all" href="{{ settings.cart_add_on_view_all_link }}">
+          {{ settings.cart_add_on_view_all_label | default: 'View all' }}
+        </a>
+      {% endif %}
+    </div>
+    <div
+      class="splide cart-drawer-upsells__slider"
+      data-slide-count="{{ add_on_count }}"
+      aria-label="Cart add ons"
+    >
+      <div class="splide__arrows cart-drawer-upsells__arrows">
+        <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous add on">‹</button>
+        <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next add on">›</button>
+      </div>
+      <div class="splide__track">
+        <ul class="splide__list">{{ add_on_cards }}</ul>
+      </div>
+    </div>
+  </cart-drawer-upsells>
+{% endif %}

@@ -143,6 +143,39 @@
     ]
   },
   {
+    "name": "Add on",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cart_add_on_heading",
+        "default": "You may also like",
+        "label": "Heading"
+      },
+      {
+        "type": "product_list",
+        "id": "cart_add_on_products",
+        "label": "Add on products"
+      },
+      {
+        "type": "text",
+        "id": "cart_add_on_button_label",
+        "default": "+ Add",
+        "label": "Add button label"
+      },
+      {
+        "type": "url",
+        "id": "cart_add_on_view_all_link",
+        "label": "View all link"
+      },
+      {
+        "type": "text",
+        "id": "cart_add_on_view_all_label",
+        "default": "View all",
+        "label": "View all label"
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

@@ -24,15 +24,16 @@ class CartDrawerUpsells extends HTMLElement {
       return;
     }
 
+    const slideCount = Number(root.dataset.slideCount) || root.querySelectorAll('.splide__slide:not(.is-clone)').length;
+
     this.splide = new window.Splide(root, {
-      type: 'slide',
+      type: slideCount > 1 ? 'loop' : 'slide',
       perPage: 1,
       perMove: 1,
       gap: '10px',
-      arrows: true,
+      arrows: slideCount > 1,
       pagination: false,
-      drag: false,
-      rewind: false,
+      drag: slideCount > 1,
       speed: 350,
       mediaQuery: 'min',
       breakpoints: {

@@ -1,5 +1,6 @@
 {% liquid
   assign upsell_products = settings.cart_drawer_upsell_product
+  assign upsell_count = 0
 %}
 
 {% capture upsell_cards %}
@@ -21,6 +22,7 @@
         and upsell_variant != blank
         and upsell_in_cart == false
       %}
+        {% assign upsell_count = upsell_count | plus: 1 %}
         <li class="splide__slide">
         <cart-drawer-upsell
           class="cart-drawer-upsell"
@@ -135,7 +137,11 @@
         <h3 class="cart-drawer-upsells__heading">{{ settings.cart_drawer_upsell_heading }}</h3>
       {% endif %}
     </div>
-    <div class="splide cart-drawer-upsells__slider" aria-label="Recommended products">
+    <div
+      class="splide cart-drawer-upsells__slider"
+      data-slide-count="{{ upsell_count }}"
+      aria-label="Recommended products"
+    >
       <div class="splide__arrows cart-drawer-upsells__arrows">
         <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous recommendation">‹</button>
         <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next recommendation">›</button>
@@ -146,14 +152,3 @@
     </div>
   </cart-drawer-upsells>
 {% endif %}
-
-<script>
-    connectedCallback() {
-    this.variantInput = this.querySelector('[data-upsell-variant]');
-    this.addButton = this.querySelector('[data-upsell-add]');
-    this.buttonText = this.querySelector('[data-upsell-button-text]');
-    this.statusElement = this.querySelector('[data-upsell-status]');
-
-    this.addButton?.addEventListener('click', this.handleAdd.bind(this));
-  }
-</script>

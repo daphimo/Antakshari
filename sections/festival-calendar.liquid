@@ -1,0 +1,318 @@
+<script type="module" src="{{ 'festival-calendar.js' | asset_url }}"></script>
+
+{% liquid
+  assign current_timestamp = 'now' | date: '%s' | plus: 0
+%}
+
+<section
+  class="festival-calendar color-{{ section.settings.color_scheme }}"
+  style="
+    --festival-padding-top: {{ section.settings.padding_top }}px;
+    --festival-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --festival-card-radius: {{ section.settings.card_radius }}px;
+  "
+>
+  <div class="festival-calendar__inner section section--page-width">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <header class="festival-calendar__header">
+        {% if section.settings.eyebrow != blank %}
+          <p class="festival-calendar__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="festival-calendar__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    <festival-calendar>
+      <div id="splide-{{ section.id }}" class="splide festival-calendar__slider">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for block in section.blocks %}
+              {% liquid
+                assign release_timestamp = block.settings.release_date | date: '%s' | plus: 0
+                assign is_upcoming = false
+                if block.settings.release_date != blank and release_timestamp > current_timestamp
+                  assign is_upcoming = true
+                endif
+              %}
+              <li
+                class="splide__slide festival-calendar__slide"
+                data-block-id="{{ block.id }}"
+                data-slide-index="{{ forloop.index0 }}"
+                {{ block.shopify_attributes }}
+              >
+                <a
+                  class="festival-card{% if is_upcoming %} is-upcoming{% else %} is-live{% endif %}"
+                  {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+                  data-festival-card
+                  data-release-date="{{ block.settings.release_date | escape }}"
+                  data-locked="{{ is_upcoming }}"
+                  aria-disabled="{{ is_upcoming }}"
+                  {% if is_upcoming or block.settings.link == blank %}tabindex="-1"{% endif %}
+                >
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        class: 'festival-card__image',
+                        loading: 'lazy',
+                        widths: '320, 480, 640, 800, 1000, 1200',
+                        sizes: '(min-width: 990px) 28vw, (min-width: 750px) 42vw, 82vw',
+                        alt: block.settings.image.alt
+                    }}
+                  {% else %}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'festival-card__image festival-card__placeholder' }}
+                  {% endif %}
+
+                  <span class="festival-card__shade" aria-hidden="true"></span>
+                  <span class="festival-card__upcoming-overlay" aria-hidden="true"></span>
+
+                  <span class="festival-card__content">
+                    {% if block.settings.release_date != blank %}
+                      <span class="festival-card__date">
+                        {{ block.settings.release_date | date: '%b %d' }}
+                        <span aria-hidden="true">·</span>
+                        <span class="festival-card__state">
+                          <i aria-hidden="true"></i>
+                          <span data-festival-state>{% if is_upcoming %}Coming up{% else %}Live{% endif %}</span>
+                        </span>
+                      </span>
+                    {% endif %}
+                    {% if block.settings.festival_name != blank %}
+                      <strong class="festival-card__title">{{ block.settings.festival_name }}</strong>
+                    {% endif %}
+                    <span class="festival-card__action" data-festival-action>
+                      {% if is_upcoming %}Available soon{% else %}Explore collection{% endif %}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            {% else %}
+              <li class="splide__slide festival-calendar__slide">
+                <div class="festival-card festival-card--empty">Add festival blocks to begin.</div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if section.blocks.size > 1 %}
+          <div class="splide__arrows festival-calendar__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous festival">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next festival">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </festival-calendar>
+  </div>
+</section>
+
+{% render 'splide-slider', slider_id: section.id, section_id: section.id, slider_type: 'slide', rewind: false %}
+
+{% stylesheet %}
+  .festival-calendar {
+    padding-block: var(--festival-padding-top) var(--festival-padding-bottom);
+    overflow: hidden;
+  }
+
+  .festival-calendar__header {
+    margin-block-end: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .festival-calendar__eyebrow {
+    margin: 0 0 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .festival-calendar__heading {
+    max-width: 50rem;
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    line-height: 1.05;
+  }
+
+  .festival-calendar__slider { overflow: visible; }
+  .festival-calendar__slider .splide__track { overflow: visible; cursor: grab; }
+  .festival-calendar__slider .splide__track:active { cursor: grabbing; }
+  .festival-calendar__slider .splide__list { align-items: stretch; }
+  .festival-calendar__slide { display: flex; height: auto; }
+
+  .festival-card {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    min-height: clamp(11rem, 17vw, 15rem);
+    align-items: flex-end;
+    isolation: isolate;
+    border-radius: var(--festival-card-radius);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .festival-card__image {
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .festival-card__shade {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: linear-gradient(to top, rgb(20 12 8 / 0.68), rgb(20 12 8 / 0.04) 72%);
+  }
+
+  .festival-card__upcoming-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(to top, rgb(255 255 255 / 0.94), rgb(255 255 255 / 0.3));
+    opacity: 0;
+  }
+
+  .festival-card.is-upcoming {
+    color: rgb(28 24 20 / 0.82);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .festival-card.is-upcoming .festival-card__shade { opacity: 0.12; }
+  .festival-card.is-upcoming .festival-card__upcoming-overlay { opacity: 1; }
+
+  .festival-card__content {
+    display: grid;
+    width: 100%;
+    gap: 0.3rem;
+    padding: clamp(1rem, 2.5vw, 1.4rem);
+  }
+
+  .festival-card__date {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .festival-card__state { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .festival-card__state i {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: currentcolor;
+  }
+
+  .festival-card.is-live .festival-card__state i {
+    background: #e8a53a;
+    box-shadow: 0 0 0 0 rgb(232 165 58 / 0.45);
+    animation: festival-live-pulse 2.2s ease-out infinite;
+  }
+
+  .festival-card__title {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    line-height: 1.15;
+  }
+
+  .festival-card__action {
+    width: fit-content;
+    padding-block-end: 0.12rem;
+    border-bottom: 1px solid currentcolor;
+    font-size: 0.78rem;
+  }
+
+  .festival-card--empty {
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed currentcolor;
+    color: inherit;
+  }
+
+  .festival-calendar__arrows {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .festival-calendar__arrows .splide__arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.14);
+    border-radius: 50%;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: 0 4px 14px rgb(var(--color-foreground-rgb) / 0.1);
+    pointer-events: auto;
+  }
+
+  .festival-calendar__arrows .splide__arrow--prev { left: -1rem; }
+  .festival-calendar__arrows .splide__arrow--next { right: -1rem; }
+  .festival-calendar__arrows svg { width: 1rem; fill: none; stroke: currentcolor; stroke-width: 1.8; }
+
+  @keyframes festival-live-pulse {
+    70%, 100% { box-shadow: 0 0 0 0.4rem rgb(232 165 58 / 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .festival-card.is-live .festival-card__state i { animation: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Festival calendar",
+  "tag": "section",
+  "class": "section-festival-calendar",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "This season" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything you need for this festival" },
+    { "type": "range", "id": "perPageDesktop", "label": "Cards on desktop", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "range", "id": "perPageMobile", "label": "Cards on mobile", "min": 1, "max": 2, "step": 0.5, "default": 1.5 },
+    { "type": "range", "id": "perMove", "label": "Cards per move", "min": 1, "max": 3, "step": 1, "default": 1 },
+    { "type": "range", "id": "gap", "label": "Desktop gap", "min": 4, "max": 40, "step": 2, "unit": "px", "default": 14 },
+    { "type": "range", "id": "gap_mobile", "label": "Mobile gap", "min": 4, "max": 24, "step": 2, "unit": "px", "default": 10 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+    { "type": "checkbox", "id": "show_pagination", "label": "Show pagination", "default": false },
+    { "type": "range", "id": "transition_speed", "label": "Transition speed", "min": 300, "max": 1200, "step": 100, "unit": "ms", "default": 500 },
+    { "type": "range", "id": "card_radius", "label": "Card corner radius", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "festival",
+      "name": "Festival",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "release_date", "label": "Date", "info": "Use ISO format with timezone, for example: 2026-08-26T00:00:00+05:30" },
+        { "type": "text", "id": "festival_name", "label": "Festival name", "default": "Festival name" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Festival calendar",
+      "category": "Promotional",
+      "blocks": [{ "type": "festival" }, { "type": "festival" }, { "type": "festival" }, { "type": "festival" }]
+    }
+  ]
+}
+{% endschema %}

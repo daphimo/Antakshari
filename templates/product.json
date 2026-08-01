@@ -186,6 +186,19 @@
               },
               "blocks": {}
             },
+            "lehenga_set_selector": {
+              "type": "lehenga-set-selector",
+              "name": "Lehenga set selector",
+              "settings": {
+                "single_tab_label": "Skirt only",
+                "bundle_tab_label": "3-piece set",
+                "select_option_label": "Select size",
+                "single_total_label": "Total",
+                "bundle_total_label": "Set total",
+                "button_label": "Add to cart"
+              },
+              "blocks": {}
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -411,6 +424,7 @@
             "group_icgrde",
             "divider_VJhene",
             "family_products_4HYeqL",
+            "lehenga_set_selector",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "size_chart_zCpF6H",

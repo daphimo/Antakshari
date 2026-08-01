@@ -1,0 +1,388 @@
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign lehenga_items = product_resource.metafields.custom.lehenga_items.value
+  assign main_variant = product_resource.selected_or_first_available_variant
+  assign main_image = main_variant.featured_image | default: product_resource.featured_image
+%}
+
+{% if lehenga_items != blank %}
+  <script type="module" src="{{ 'lehenga-set-selector.js' | asset_url }}"></script>
+
+  <lehenga-set-selector
+    id="LehengaSet-{{ block.id }}"
+    class="lehenga-set-selector"
+    data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="lehenga-set__tabs" role="tablist" aria-label="Choose purchase option">
+      <button
+        id="LehengaTabSingle-{{ block.id }}"
+        class="lehenga-set__tab is-active"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="LehengaPanelSingle-{{ block.id }}"
+        data-set-tab="single"
+      >
+        {{ block.settings.single_tab_label }}
+      </button>
+      <button
+        id="LehengaTabBundle-{{ block.id }}"
+        class="lehenga-set__tab"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="LehengaPanelBundle-{{ block.id }}"
+        tabindex="-1"
+        data-set-tab="bundle"
+      >
+        {{ block.settings.bundle_tab_label }}
+      </button>
+    </div>
+
+    {% capture main_product_row %}
+      <div class="lehenga-set__item" data-set-item data-product-id="{{ product_resource.id }}" data-base-price="{{ main_variant.price }}">
+        <a class="lehenga-set__item-media" href="{{ product_resource.url }}" tabindex="-1" aria-hidden="true">
+          {% if main_image != blank %}
+            {{
+              main_image
+              | image_url: width: 160
+              | image_tag:
+                class: 'lehenga-set__item-image',
+                loading: 'lazy',
+                widths: '64, 96, 128, 160',
+                sizes: '42px',
+                alt: main_image.alt
+            }}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'lehenga-set__item-image' }}
+          {% endif %}
+        </a>
+        <div class="lehenga-set__item-control">
+          <a class="lehenga-set__item-name" href="{{ product_resource.url }}">{{ product_resource.title }}</a>
+          {% if product_resource.has_only_default_variant %}
+            <input
+              type="hidden"
+              data-set-variant
+              value="{{ main_variant.id }}"
+              data-price="{{ main_variant.price }}"
+              data-available="{{ main_variant.available }}"
+            >
+          {% else %}
+            <label class="visually-hidden" for="LehengaMainVariant-{{ block.id }}-PANEL_ID">
+              Select an option for {{ product_resource.title | escape }}
+            </label>
+            <select
+              id="LehengaMainVariant-{{ block.id }}-PANEL_ID"
+              class="lehenga-set__variant"
+              data-set-variant
+              data-main-variant
+              aria-label="{{ product_resource.title | escape }}"
+            >
+              <option value="">{{ block.settings.select_option_label }}</option>
+              {% for variant in product_resource.variants %}
+                <option
+                  value="{{ variant.id }}"
+                  data-price="{{ variant.price }}"
+                  data-available="{{ variant.available }}"
+                  {% if product_resource.selected_variant.id == variant.id %}selected{% endif %}
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  {{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}
+                </option>
+              {% endfor %}
+            </select>
+          {% endif %}
+        </div>
+        <strong class="lehenga-set__item-price" data-item-price>{{ main_variant.price | money }}</strong>
+      </div>
+    {% endcapture %}
+
+    <div
+      id="LehengaPanelSingle-{{ block.id }}"
+      class="lehenga-set__panel"
+      role="tabpanel"
+      aria-labelledby="LehengaTabSingle-{{ block.id }}"
+      data-set-panel="single"
+    >
+      <div class="lehenga-set__card">
+        {{ main_product_row | replace: 'PANEL_ID', 'Single' }}
+        <div class="lehenga-set__total">
+          <span>{{ block.settings.single_total_label }}</span>
+          <strong data-set-total>{{ main_variant.price | money }}</strong>
+        </div>
+      </div>
+      <button class="button lehenga-set__add" type="button" data-set-add disabled>
+        <span data-set-button-label>{{ block.settings.button_label }}</span>
+        <span class="lehenga-set__spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div
+      id="LehengaPanelBundle-{{ block.id }}"
+      class="lehenga-set__panel"
+      role="tabpanel"
+      aria-labelledby="LehengaTabBundle-{{ block.id }}"
+      data-set-panel="bundle"
+      hidden
+    >
+      <div class="lehenga-set__card">
+        {{ main_product_row | replace: 'PANEL_ID', 'Bundle' }}
+        {% for set_product in lehenga_items limit: 2 %}
+          {% unless set_product.id == product_resource.id %}
+            {% assign set_variant = set_product.selected_or_first_available_variant %}
+            {% assign set_image = set_variant.featured_image | default: set_product.featured_image %}
+            <div class="lehenga-set__item" data-set-item data-product-id="{{ set_product.id }}" data-base-price="{{ set_variant.price }}">
+              <a class="lehenga-set__item-media" href="{{ set_product.url }}" tabindex="-1" aria-hidden="true">
+                {% if set_image != blank %}
+                  {{
+                    set_image
+                    | image_url: width: 160
+                    | image_tag:
+                      class: 'lehenga-set__item-image',
+                      loading: 'lazy',
+                      widths: '64, 96, 128, 160',
+                      sizes: '42px',
+                      alt: set_image.alt
+                  }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'lehenga-set__item-image' }}
+                {% endif %}
+              </a>
+              <div class="lehenga-set__item-control">
+                <a class="lehenga-set__item-name" href="{{ set_product.url }}">{{ set_product.title }}</a>
+                {% if set_product.has_only_default_variant %}
+                  <input
+                    type="hidden"
+                    data-set-variant
+                    value="{{ set_variant.id }}"
+                    data-price="{{ set_variant.price }}"
+                    data-available="{{ set_variant.available }}"
+                  >
+                {% else %}
+                  <label class="visually-hidden" for="LehengaItemVariant-{{ block.id }}-{{ set_product.id }}">
+                    Select an option for {{ set_product.title | escape }}
+                  </label>
+                  <select
+                    id="LehengaItemVariant-{{ block.id }}-{{ set_product.id }}"
+                    class="lehenga-set__variant"
+                    data-set-variant
+                    aria-label="{{ set_product.title | escape }}"
+                  >
+                    <option value="">{{ block.settings.select_option_label }}</option>
+                    {% for variant in set_product.variants %}
+                      <option
+                        value="{{ variant.id }}"
+                        data-price="{{ variant.price }}"
+                        data-available="{{ variant.available }}"
+                        {% unless variant.available %}disabled{% endunless %}
+                      >
+                        {{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}
+                      </option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              </div>
+              <strong class="lehenga-set__item-price" data-item-price>{{ set_variant.price | money }}</strong>
+            </div>
+          {% endunless %}
+        {% endfor %}
+        <div class="lehenga-set__total">
+          <span>{{ block.settings.bundle_total_label }}</span>
+          <strong data-set-total></strong>
+        </div>
+      </div>
+      <button class="button lehenga-set__add" type="button" data-set-add disabled>
+        <span data-set-button-label>{{ block.settings.button_label }}</span>
+        <span class="lehenga-set__spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <p class="lehenga-set__status visually-hidden" role="status" aria-live="polite" data-set-status></p>
+  </lehenga-set-selector>
+{% endif %}
+
+{% stylesheet %}
+  product-component:has(.lehenga-set-selector) variant-picker,
+  product-component:has(.lehenga-set-selector) .buy-buttons-block {
+    display: none;
+  }
+
+  .lehenga-set-selector {
+    display: block;
+    padding-block: 0.75rem 1rem;
+  }
+
+  .lehenga-set__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+    margin-block-end: 0.65rem;
+  }
+
+  .lehenga-set__tab {
+    min-height: 2.65rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid currentcolor;
+    border-radius: 0.45rem;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+  }
+
+  .lehenga-set__tab.is-active {
+    border-color: #7b2025;
+    background: #7b2025;
+    color: #fffaf3;
+  }
+
+  .lehenga-set__card {
+    overflow: hidden;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+    border-radius: 0.75rem;
+    background: var(--color-background);
+    box-shadow: 0 5px 18px rgb(var(--color-foreground-rgb) / 0.07);
+  }
+
+  .lehenga-set__item {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 4rem;
+    padding: 0.65rem 0.8rem;
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.09);
+  }
+
+  .lehenga-set__item-media {
+    display: block;
+    overflow: hidden;
+    width: 2.5rem;
+    height: 3rem;
+    border-radius: 0.45rem;
+    background: #fbf4df;
+  }
+
+  .lehenga-set__item-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .lehenga-set__item-control {
+    display: flex;
+    min-width: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .lehenga-set__item-name {
+    overflow: hidden;
+    color: inherit;
+    font-size: 0.8rem;
+    font-weight: 650;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lehenga-set__item-name:hover {
+    color: #7b2025;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .lehenga-set__variant {
+    width: 100%;
+    min-width: 0;
+    max-width: 10rem;
+    padding: 0.2rem 1.4rem 0.2rem 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .lehenga-set__item-price {
+    color: #5c2527;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .lehenga-set__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  .lehenga-set__total strong {
+    color: #7b2025;
+    font-size: 1rem;
+  }
+
+  .lehenga-set__add {
+    position: relative;
+    width: 100%;
+    min-height: 2.8rem;
+    margin-block-start: 0.65rem;
+    border-color: #7b2025;
+    background: #7b2025;
+    color: #fffaf3;
+  }
+
+  .lehenga-set__add:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .lehenga-set__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentcolor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    translate: -50% -50%;
+    animation: lehenga-set-spin 700ms linear infinite;
+  }
+
+  .lehenga-set__add[aria-busy='true'] [data-set-button-label] { opacity: 0; }
+  .lehenga-set__add[aria-busy='true'] .lehenga-set__spinner { display: block; }
+
+  @keyframes lehenga-set-spin { to { rotate: 360deg; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lehenga-set__tab { transition: none; }
+    .lehenga-set__spinner { animation-duration: 1.4s; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Lehenga set selector",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "single_tab_label", "label": "Single product tab", "default": "Skirt only" },
+    { "type": "text", "id": "bundle_tab_label", "label": "Bundle tab", "default": "3-piece set" },
+    { "type": "text", "id": "select_option_label", "label": "Variant prompt", "default": "Select size" },
+    { "type": "text", "id": "single_total_label", "label": "Single total label", "default": "Total" },
+    { "type": "text", "id": "bundle_total_label", "label": "Bundle total label", "default": "Set total" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" }
+  ],
+  "presets": [{ "name": "Lehenga set selector", "category": "Product" }]
+}
+{% endschema %}
