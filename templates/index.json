@@ -1894,43 +1894,6 @@
         "padding-block-end": 48
       }
     },
-    "premium_collection_list_home": {
-      "type": "premium-collection-list",
-      "name": "Premium collection list",
-      "settings": {
-        "collection_list": [
-          "blouses",
-          "lehengas",
-          "jaipur-shirts",
-          "skirts-lehengas"
-        ],
-        "eyebrow": "Discover our world",
-        "heading": "Collections made for every celebration",
-        "description": "<p>Modern heirlooms shaped by regional craft and designed for effortless comfort.</p>",
-        "show_product_count": true,
-        "slider_type": "slide",
-        "perPageDesktop": 4,
-        "perPageMobile": 1.5,
-        "perMove": 1,
-        "gap": 20,
-        "gap_mobile": 14,
-        "show_arrows": true,
-        "show_pagination": true,
-        "autoplay": false,
-        "autoplay_speed": 5,
-        "transition_speed": 600,
-        "pause_on_hover": true,
-        "pause_on_focus": true,
-        "image_height": 420,
-        "card_radius": 18,
-        "background": "#f8f3ea",
-        "text_color": "#3d1f15",
-        "muted_color": "#76594e",
-        "accent_color": "#b55f37",
-        "padding_top": 72,
-        "padding_bottom": 76
-      }
-    },
     "slider_collection_Yhd6Uf": {
       "type": "slider-collection",
       "blocks": {
@@ -2248,7 +2211,6 @@
     "section_AkXQkb",
     "premium_collection_list_P8eXQr",
     "product_list_ExE9XX",
-    "premium_collection_list_home",
     "slider_collection_Yhd6Uf",
     "trust_badges_home",
     "regional_MJ3Kwa",
