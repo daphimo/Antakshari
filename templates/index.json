@@ -2145,7 +2145,7 @@
       "name": "Regional blog cards",
       "settings": {
         "content_source": "articles",
-        "blog": "regional-crafts",
+        "blog": "",
         "article_list": [
           "festival-guides/heirloom-threads-festive-textures-and-regional-weaves",
           "regional-crafts/jamdani-know-your-craft",
