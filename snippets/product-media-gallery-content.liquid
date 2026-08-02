@@ -269,7 +269,11 @@
 
     /* Media fit for all media elements - default to cover */
    
-
+ .media-fit-cover :is(img, video, iframe, .deferred-media__poster-image) {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
     /* 3D Models (no object-fit support, just sizing) */
     .media-fit-cover model-viewer {
       width: 100%;
