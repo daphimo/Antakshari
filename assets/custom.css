@@ -20,3 +20,7 @@
 .shopify-section{
     position: relative;
 }
+
+.overflow_hidden{
+  overflow: hidden;
+}
