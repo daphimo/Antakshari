@@ -9,48 +9,6 @@
  */
 {
   "sections": {
-    "premium_blog_posts_wcF8Ay": {
-      "type": "premium-blog-posts",
-      "name": "Premium blog posts",
-      "settings": {
-        "blog": "festival-guides",
-        "articles_to_show": 6,
-        "layout": "featured",
-        "columns": 3,
-        "eyebrow": "",
-        "heading": "{{ section.settings.blog.title }}",
-        "heading_tag": "h2",
-        "description": "<p>Discover thoughtful stories, traditions and inspiration from our world.</p>",
-        "header_alignment": "left",
-        "show_tag": true,
-        "show_date": true,
-        "show_author": false,
-        "date_format": "%b %d, %Y",
-        "show_excerpt": true,
-        "excerpt_words": 20,
-        "show_read_more": true,
-        "read_more_label": "Read story",
-        "show_view_all": true,
-        "view_all_label": "Explore all stories",
-        "view_all_link": "",
-        "container_width": 1400,
-        "card_gap": 26,
-        "image_height": 320,
-        "card_radius": 18,
-        "image_radius": 14,
-        "card_padding": 12,
-        "heading_size": 48,
-        "article_title_size": 23,
-        "background": "#faf6ee",
-        "card_background": "#fffaf3",
-        "text_color": "#3d1f15",
-        "muted_color": "#755b50",
-        "accent_color": "#b55f37",
-        "border_color": "#e2d3c2",
-        "padding_top": 80,
-        "padding_bottom": 88
-      }
-    },
     "main": {
       "type": "main-blog",
       "blocks": {
@@ -169,7 +127,6 @@
       "block_order": [
         "title"
       ],
-      "disabled": true,
       "settings": {
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 0,
@@ -178,7 +135,6 @@
     }
   },
   "order": [
-    "premium_blog_posts_wcF8Ay",
     "main"
   ]
 }
