@@ -2454,6 +2454,7 @@
       ],
       "name": "t:names.image_with_text",
       "settings": {
+        "custom_class": "overflow_hidden",
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
