@@ -260,48 +260,82 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {
-                    "button_Nhpbnx": {
-                      "type": "button",
-                      "name": "t:names.button",
+                    "universal_button_EhLjEM": {
+                      "type": "universal-button",
+                      "name": "Universal button",
                       "settings": {
                         "label": "SHOP THIS FESTIVAL",
                         "link": "shopify://collections/all",
                         "open_in_new_tab": false,
-                        "style_class": "button-custom",
-                        "custom_button_background": "#c56b3e",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "#c56b3e",
-                        "link_text_color": "",
-                        "width": "fit-content",
-                        "custom_width": 100,
-                        "width_mobile": "fit-content",
-                        "custom_width_mobile": 100
+                        "button_style": "primary",
+                        "primary_background": "#3d1f15",
+                        "primary_text": "#ffffff",
+                        "primary_border": "#3d1f15",
+                        "primary_hover_background": "#a84e2c",
+                        "primary_hover_text": "#ffffff",
+                        "primary_hover_border": "#a84e2c",
+                        "secondary_background": "#ffffff00",
+                        "secondary_text": "#3d1f15",
+                        "secondary_border": "#3d1f15",
+                        "secondary_hover_background": "#3d1f15",
+                        "secondary_hover_text": "#ffffff",
+                        "secondary_hover_border": "#3d1f15",
+                        "alignment": "left",
+                        "full_width": false,
+                        "full_width_mobile": false,
+                        "padding_vertical": 13,
+                        "padding_horizontal": 28,
+                        "border_width": 1,
+                        "border_radius": 6,
+                        "font_size": 14,
+                        "font_weight": "600",
+                        "letter_spacing": 4,
+                        "text_transform": "none",
+                        "show_arrow": false,
+                        "hover_lift": 0
                       },
                       "blocks": {}
                     },
-                    "button_DKBtXT": {
-                      "type": "button",
-                      "name": "t:names.button",
+                    "universal_button_QgMKWm": {
+                      "type": "universal-button",
+                      "name": "Universal button",
                       "settings": {
                         "label": "EXPLORE FESTIVAL GUIDE",
                         "link": "shopify://blogs/festival-guides",
                         "open_in_new_tab": false,
-                        "style_class": "button-custom",
-                        "custom_button_background": "rgba(0,0,0,0)",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "#c56b3e",
-                        "link_text_color": "",
-                        "width": "fit-content",
-                        "custom_width": 100,
-                        "width_mobile": "fit-content",
-                        "custom_width_mobile": 100
+                        "button_style": "primary",
+                        "primary_background": "#3d1f15",
+                        "primary_text": "#ffffff",
+                        "primary_border": "#3d1f15",
+                        "primary_hover_background": "#a84e2c",
+                        "primary_hover_text": "#ffffff",
+                        "primary_hover_border": "#a84e2c",
+                        "secondary_background": "#ffffff00",
+                        "secondary_text": "#3d1f15",
+                        "secondary_border": "#3d1f15",
+                        "secondary_hover_background": "#3d1f15",
+                        "secondary_hover_text": "#ffffff",
+                        "secondary_hover_border": "#3d1f15",
+                        "alignment": "left",
+                        "full_width": false,
+                        "full_width_mobile": false,
+                        "padding_vertical": 13,
+                        "padding_horizontal": 28,
+                        "border_width": 1,
+                        "border_radius": 6,
+                        "font_size": 14,
+                        "font_weight": "600",
+                        "letter_spacing": 4,
+                        "text_transform": "none",
+                        "show_arrow": false,
+                        "hover_lift": 0
                       },
                       "blocks": {}
                     }
                   },
                   "block_order": [
-                    "button_Nhpbnx",
-                    "button_DKBtXT"
+                    "universal_button_EhLjEM",
+                    "universal_button_QgMKWm"
                   ]
                 },
                 "group_7rYftx": {
@@ -1997,7 +2031,12 @@
       "type": "premium-collection-list",
       "name": "Premium collection list",
       "settings": {
-        "collection_list": ["blouses", "lehengas", "jaipur-shirts", "skirts-lehengas"],
+        "collection_list": [
+          "blouses",
+          "lehengas",
+          "jaipur-shirts",
+          "skirts-lehengas"
+        ],
         "eyebrow": "Discover our world",
         "heading": "Collections made for every celebration",
         "description": "<p>Modern heirlooms shaped by regional craft and designed for effortless comfort.</p>",
@@ -2197,7 +2236,9 @@
       "type": "regional",
       "name": "Regional blog cards",
       "settings": {
+        "content_source": "blog",
         "blog": "festival-guides",
+        "article_list": [],
         "articles_to_show": 4,
         "show_article_label": false,
         "use_first_tag": true,
@@ -2266,7 +2307,9 @@
       "type": "regional",
       "name": "Regional blog cards",
       "settings": {
+        "content_source": "blog",
         "blog": "regional-crafts",
+        "article_list": [],
         "articles_to_show": 4,
         "show_article_label": false,
         "use_first_tag": true,
