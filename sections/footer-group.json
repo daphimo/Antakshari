@@ -17,29 +17,29 @@
         "menu_kUpLTb": {
           "type": "menu",
           "settings": {
-            "heading": "Collections",
-            "menu": "about"
+            "heading": "Shop",
+            "menu": "shop"
           }
         },
         "menu_nGNcEm": {
           "type": "menu",
           "settings": {
-            "heading": "Discover",
+            "heading": "Explore",
             "menu": "explore"
           }
         },
         "menu_Piicxz": {
           "type": "menu",
           "settings": {
-            "heading": "Assistance",
-            "menu": "help"
+            "heading": "About",
+            "menu": "about"
           }
         },
         "menu_more": {
           "type": "menu",
           "settings": {
-            "heading": "More",
-            "menu": "footer"
+            "heading": "Help",
+            "menu": "help"
           }
         }
       },
@@ -79,7 +79,7 @@
         "logo_width": 200,
         "logo_caption": "",
         "logo_text": "ANTAKSHARI",
-        "brand_description": "<p>Contemporary occasion wear shaped by Indian artistry, rich textiles and generations of craftsmanship.</p>",
+        "brand_description": "<p>Modern in every way. Rooted in what matters. Festive wear and celebration guidance for families who keep traditions alive.</p>",
         "show_socials": true,
         "instagram_url": "https://www.instagram.com/antakshari.fashion/",
         "facebook_url": "https://www.facebook.com/profile.php?id=61591200704786",
@@ -98,7 +98,7 @@
         "body_size": 14,
         "menu_heading_size": 18,
         "menu_link_size": 13,
-        "background_color": "#2A1F1A",
+        "background_color": "#2a1f1a",
         "primary_color": "#6b1f2a",
         "text_color": "#fcfaf5",
         "muted_text_color": "#f7f1e3",
