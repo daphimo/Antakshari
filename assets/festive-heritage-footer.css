@@ -378,7 +378,7 @@
 .fhf-logo__text {
   color: var(--fhf-text);
   font-family: var(--fhf-heading-font);
-  font-size: clamp(27px,3vw,38px);
+  font-size: 26px;
   font-style: var(--fhf-heading-style);
   font-weight: var(--fhf-heading-weight);
   letter-spacing: 4px;
