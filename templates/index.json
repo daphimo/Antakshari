@@ -1308,7 +1308,7 @@
       "settings": {
         "eyebrow": "This season",
         "heading": "Everything you need for this festival",
-        "perPageDesktop": 4,
+        "perPageDesktop": 5,
         "perPageMobile": 1.5,
         "perMove": 1,
         "gap": 14,
