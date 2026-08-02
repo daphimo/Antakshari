@@ -69,8 +69,8 @@
 .card___wishlist-wrap {
   position: absolute;
   z-index: 2;
-  right: 5px;
-  top: 5px;
+  right: 12px;
+  top: 12px;
   line-height: 0;
   transition: var(--transition);
 }
