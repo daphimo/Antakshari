@@ -154,7 +154,7 @@
             "text_CpFpAq": {
               "type": "text",
               "settings": {
-                "text": "<p>I realized millions of urban Indian families yearn for this exact cultural connectedness. That is why I left the corporate world to create Antakshari.</p><p>For two decades, I climbed the corporate ladder, traveling extensively and building an urban life. Yet, amid the busy schedules, festivals became rushed rituals. We paid the price of modern success in a currency of disconnection, missing the vibrant cultural roots and warmth of extended family.</p><p>Everything changed during a long-overdue visit to my ancestral home. My family was showered with love by aunts, uncles, and cousins. For the first time, my children experienced the true depth of togetherness and witnessed the rich heritage and colorful native attire of our region. It was a profound awakening: festivals are not just dates on a calendar. They are our identity, our belonging, and the ties that bind us.</p><p>We are India’s first festival-led, regional craft-inspired celebration wear for modern families. We solve a real urban problem: the lack of easy access to authentic, comfortable, and high-quality traditional attire for the entire family; how do we get our younger generation to stay connected with our cultural roots. We offer uncompromising commitment to festive celebration through comfort, convenience, and genuine cultural storytelling.</p>",
+                "text": "<p>I realized millions of urban Indian families yearn for this exact cultural connectedness. That is why I left the corporate world to create Antakshari.</p><p>For two decades, I climbed the corporate ladder, traveling extensively and building an urban life. Yet, amid the busy schedules, festivals became rushed rituals. We paid the price of modern success in a currency of disconnection, missing the vibrant cultural roots and warmth of extended family.</p><p>Everything changed during a long-overdue visit to my ancestral home. My family was showered with love by aunts, uncles, and cousins. For the first time, my children experienced the true depth of togetherness and witnessed the rich heritage and colorful native attire of our region. It was a profound awakening: festivals are not just dates on a calendar. They are our identity, our belonging, and the ties that bind us.</p><p>We are India’s first festival-led, regional craft-inspired celebration wear for modern families. We solve a real urban problem: the lack of easy access to authentic, comfortable, and high-quality traditional attire for the entire family; how do we get our younger generation to stay connected with our cultural roots. We offer uncompromising commitment to festive celebration through comfort, convenience, and genuine cultural storytelling.</p><p>Antakshari delivers rooted yet modern aesthetics that turn dressing up into joyful, stress-free family moments. Because you shouldn't have to choose between a modern life and a traditional soul. Wear your story, embrace your roots, and let’s celebrate together. </p>",
                 "width": "fit-content",
                 "max_width": "none",
                 "alignment": "left",
@@ -217,75 +217,10 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
-    },
-    "section_Mk93MH": {
-      "type": "section",
-      "blocks": {
-        "text_JiXxbU": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>Antakshari delivers rooted yet modern aesthetics that turn dressing up into joyful, stress-free family moments. Because you shouldn't have to choose between a modern life and a traditional soul. Wear your story, embrace your roots, and let’s celebrate together. </p>",
-            "width": "fit-content",
-            "max_width": "none",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_JiXxbU"
-      ],
-      "name": "t:names.rich_text_section",
-      "settings": {
-        "custom_class": "",
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 25,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 48
-      }
     }
   },
   "order": [
     "main",
-    "section_yd4QGw",
-    "section_Mk93MH"
+    "section_yd4QGw"
   ]
 }
