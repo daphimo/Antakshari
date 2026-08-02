@@ -27,6 +27,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -39,7 +40,9 @@
         },
         "page-content": {
           "type": "page-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -47,6 +50,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -54,9 +58,38 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "about_image_with_text_L7HwDF": {
+      "type": "about-image-with-text",
+      "name": "About image with text",
+      "settings": {
+        "image": "shopify://shop_images/model_side_beabee36-720e-45fc-93ba-93156d2f4f11.png",
+        "caption": "",
+        "image_position": "left",
+        "image_width": 40,
+        "image_height": 600,
+        "image_radius": 20,
+        "show_accent_shape": false,
+        "eyebrow": "",
+        "heading": "{{ page.title }}",
+        "heading_tag": "h2",
+        "text": "{{ page.content }}",
+        "button_label": "",
+        "button_link": "",
+        "content_alignment": "left",
+        "content_width": 520,
+        "column_gap": 72,
+        "background": "#faf5eb",
+        "text_color": "#3d1f15",
+        "muted_color": "#74594f",
+        "accent_color": "#b55f37",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "about_image_with_text_L7HwDF"
   ]
 }
