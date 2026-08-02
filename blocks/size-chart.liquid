@@ -4,7 +4,7 @@
 %}
 
 {% if size_chart %}
-  <size-chart-popup class="size-chart" {{ block.shopify_attributes }}>
+  <size-chart-popup class="size-chart" style="--sc-margin-top: {{ block.settings.margin_top }}px; --sc-margin-bottom: {{ block.settings.margin_bottom }}px; --sc-margin-inline: {{ block.settings.margin_inline }}px; --sc-padding-y: {{ block.settings.padding_vertical }}px; --sc-padding-x: {{ block.settings.padding_horizontal }}px; --sc-background: {{ block.settings.background_color }}; --sc-text: {{ block.settings.text_color }}; --sc-accent: {{ block.settings.accent_color }}; --sc-border: {{ block.settings.border_color }};" {{ block.shopify_attributes }}>
     <button
       class="size-chart__trigger"
       type="button"
@@ -143,19 +143,23 @@
 {% stylesheet %}
   .size-chart {
     display: block;
+    margin: var(--sc-margin-top) var(--sc-margin-inline) var(--sc-margin-bottom);
   }
 
   .size-chart__trigger {
     appearance: none;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
+    width: 100%;
+    padding: var(--sc-padding-y) var(--sc-padding-x);
+    color: var(--sc-text);
+    border: 1px solid var(--sc-border);
+    border-radius: 12px;
+    background: var(--sc-background);
     color: inherit;
     font: inherit;
     text-align: left;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    font-size: 0.85rem;
+    font-weight: 650;
+    text-decoration: none;
     cursor: pointer;
   }
 
@@ -185,9 +189,9 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border-radius: 0;
-    background: var(--color-background);
-    color: var(--color-foreground);
+    border-radius: 18px 18px 0 0;
+    background: var(--sc-background);
+    color: var(--sc-text);
     box-shadow: 0 -8px 30px rgb(0 0 0 / 0.2);
     transform: translateY(100%);
     transition: transform 350ms ease;
@@ -217,7 +221,8 @@
     height: 40px;
     padding: 10px;
     border: 0;
-    border-radius: 0;
+    border-radius: 50%;
+    background: rgb(var(--color-foreground-rgb) / 0.06);
     background: transparent;
     color: inherit;
     cursor: pointer;
@@ -297,7 +302,14 @@
       "id": "trigger_text",
       "label": "Trigger text",
       "default": "Size guide"
-    }
+    },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_vertical", "label": "Vertical padding", "min": 8, "max": 24, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "padding_horizontal", "label": "Side padding", "min": 10, "max": 36, "step": 2, "unit": "px", "default": 16 }
+    ,{ "type": "header", "content": "Colors" },{ "type": "color", "id": "background_color", "label": "Background and dialog", "default": "#fffaf3" },{ "type": "color", "id": "text_color", "label": "Text", "default": "#3d1f15" },{ "type": "color", "id": "accent_color", "label": "Accent", "default": "#a84e2c" },{ "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [
     {

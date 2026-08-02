@@ -1,0 +1,38 @@
+.about-image-text { overflow: hidden; background: var(--ait-background); color: var(--ait-text); }
+.about-image-text__inner { display: flex; width: min(100%, 1500px); margin-inline: auto; padding: var(--ait-padding-top) clamp(20px, 4vw, 64px) var(--ait-padding-bottom); align-items: center; gap: var(--ait-gap); }
+.about-image-text--image-right .about-image-text__inner { flex-direction: row-reverse; }
+.about-image-text__media-wrap { position: relative; width: var(--ait-image-width); flex: 0 0 var(--ait-image-width); }
+.about-image-text__media { position: relative; z-index: 1; height: var(--ait-image-height); overflow: hidden; border-radius: var(--ait-image-radius); }
+.about-image-text__image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about-image-text__placeholder { background: color-mix(in srgb, var(--ait-text) 7%, transparent); }
+.about-image-text__caption { position: absolute; right: 18px; bottom: 16px; left: 18px; margin: 0; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.about-image-text__shape { position: absolute; z-index: 0; right: -24px; bottom: -24px; width: 46%; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--ait-accent) 55%, transparent); border-radius: 50%; }
+.about-image-text--image-right .about-image-text__shape { right: auto; left: -24px; }
+.about-image-text__content { width: 100%; max-width: var(--ait-content-width); }
+.about-image-text__content--center { margin-inline: auto; text-align: center; }
+.about-image-text__eyebrow { margin: 0 0 13px; color: var(--ait-accent); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.about-image-text__heading { margin: 0; font-family: var(--font-heading--family); font-size: clamp(34px, 4.3vw, 62px); font-weight: var(--font-heading--weight); letter-spacing: -.035em; line-height: 1.04; }
+.about-image-text__copy { margin-top: 24px; color: var(--ait-muted); font-size: clamp(15px, 1.2vw, 17px); line-height: 1.8; }
+.about-image-text__copy > * { margin-block: 0 14px; }
+.about-image-text__highlights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; padding-top: 25px; border-top: 1px solid color-mix(in srgb, var(--ait-text) 16%, transparent); }
+.about-image-text__highlight { display: flex; flex-direction: column; gap: 5px; }
+.about-image-text__highlight strong { font-family: var(--font-heading--family); font-size: 17px; font-weight: 600; }
+.about-image-text__highlight span { color: var(--ait-muted); font-size: 12px; line-height: 1.5; }
+.about-image-text__button { display: inline-flex; min-height: 46px; margin-top: 32px; padding: 12px 23px; align-items: center; justify-content: center; gap: 11px; color: #fff; background: var(--ait-text); border: 1px solid var(--ait-text); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .25s ease, border-color .25s ease; }
+.about-image-text__button:hover { color: #fff; background: var(--ait-accent); border-color: var(--ait-accent); }
+.about-image-text__button[aria-disabled='true'] { pointer-events: none; opacity: .55; }
+.about-image-text__button svg { width: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.about-image-text__content--center .about-image-text__highlights { text-align: left; }
+@media (max-width: 989px) {
+  .about-image-text__inner, .about-image-text--image-right .about-image-text__inner { flex-direction: column; align-items: stretch; }
+  .about-image-text__media-wrap { width: 100%; flex-basis: auto; }
+  .about-image-text__media { height: min(var(--ait-image-height), 560px); }
+  .about-image-text__content { max-width: 680px; padding-top: 18px; }
+}
+@media (max-width: 749px) {
+  .about-image-text__inner { gap: 38px; }
+  .about-image-text__media { height: min(var(--ait-image-height), 440px); }
+  .about-image-text__heading { font-size: clamp(32px, 10vw, 44px); }
+  .about-image-text__highlights { grid-template-columns: 1fr; }
+  .about-image-text__shape { right: -14px; bottom: -14px; }
+}

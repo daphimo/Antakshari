@@ -6,7 +6,7 @@
 {% if family_products != blank %}
   <div
     class="family-products"
-    style="--family-products-columns-mobile: {{ block.settings.columns_mobile }}; --family-products-columns-desktop: {{ block.settings.columns_desktop }};"
+    style="--family-products-columns-mobile: {{ block.settings.columns_mobile }}; --family-products-columns-desktop: {{ block.settings.columns_desktop }}; --fp-margin-top: {{ block.settings.margin_top }}px; --fp-margin-bottom: {{ block.settings.margin_bottom }}px; --fp-margin-inline: {{ block.settings.margin_inline }}px; --fp-padding: {{ block.settings.inner_spacing }}px; --fp-background: {{ block.settings.background_color }}; --fp-surface: {{ block.settings.surface_color }}; --fp-text: {{ block.settings.text_color }}; --fp-accent: {{ block.settings.accent_color }}; --fp-border: {{ block.settings.border_color }};"
     {{ block.shopify_attributes }}
   >
     {% if block.settings.heading != blank %}
@@ -41,8 +41,19 @@
 {% endif %}
 
 {% stylesheet %}
+  .family-products {
+    margin: var(--fp-margin-top) var(--fp-margin-inline) var(--fp-margin-bottom);
+    padding: var(--fp-padding);
+    color: var(--fp-text);
+    background: var(--fp-background);
+    border: 1px solid var(--fp-border);
+    border-radius: 14px;
+  }
+
   .family-products__heading {
-    margin-block: 0 1rem;
+    margin-block: 0 0.75rem;
+    font-family: var(--font-heading--family);
+    font-size: 1rem;
   }
 
   .family-products__grid {
@@ -55,7 +66,8 @@
     position: relative;
     display: block;
     overflow: hidden;
-    border: 2px solid transparent;
+    background: var(--fp-surface);
+    border: 1px solid var(--fp-border);
     border-radius: var(--style-border-radius-inputs, 10px);
     background: var(--color-background);
     box-shadow: 0 1px 2px rgb(var(--color-foreground-rgb) / 0.04);
@@ -73,7 +85,7 @@
 
   .family-products__item--current,
   .family-products__item--current:hover {
-    border-color: var(--color-foreground);
+    border-color: var(--fp-accent);
     box-shadow: 0 0 0 1px var(--color-background), 0 0 0 3px rgb(var(--color-foreground-rgb) / 0.18);
   }
 
@@ -157,7 +169,13 @@
       "max": 10,
       "step": 1,
       "default": 4
-    }
+    },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "inner_spacing", "label": "Inner spacing", "min": 6, "max": 30, "step": 2, "unit": "px", "default": 12 }
+    ,{ "type": "header", "content": "Colors" },{ "type": "color", "id": "background_color", "label": "Background", "default": "#fffaf3" },{ "type": "color", "id": "surface_color", "label": "Product surface", "default": "#f7efe4" },{ "type": "color", "id": "text_color", "label": "Heading", "default": "#3d1f15" },{ "type": "color", "id": "accent_color", "label": "Selected border", "default": "#a84e2c" },{ "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [
     {

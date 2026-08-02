@@ -183,6 +183,7 @@
 }
 
 .prop-qty-wrap {
+  display: none !important;
   padding: 0 6px;
   display: flex;
   align-items: center;

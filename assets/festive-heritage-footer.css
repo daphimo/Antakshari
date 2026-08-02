@@ -394,44 +394,36 @@
 .fhf-socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 22px;
+  gap: 10px;
   margin-top: 30px;
 }
 
 .fhf-socials a {
-  position: relative;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
   color: color-mix(
     in srgb,
     var(--fhf-text) 76%,
     transparent
   );
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-}
-
-.fhf-socials a::after {
-  position: absolute;
-  right: 0;
-  bottom: -5px;
-  left: 0;
-  height: 1px;
-  background: var(--fhf-accent);
-  content: "";
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+  border: 1px solid color-mix(in srgb, var(--fhf-text) 24%, transparent);
+  border-radius: 50%;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .fhf-socials a:hover {
   color: var(--fhf-accent);
+  border-color: var(--fhf-accent);
 }
 
-.fhf-socials a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.fhf-socials svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 
@@ -761,7 +753,7 @@
   }
 
   .fhf-socials {
-    gap: 14px 18px;
+    gap: 10px;
   }
 
   .fhf-policies,

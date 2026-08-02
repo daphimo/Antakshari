@@ -4,6 +4,7 @@
   @param {string} [style] - The style of the search action.
   @param {string} [class] - Additional classes for the search action.
   @param {string} [display_style] - The display style ('icon' or 'text').
+  @param {string} [icon_style] - Optional matched icon set, such as 'premium'.
 
   @example
   {% render 'search', style: 'default', class: 'custom-class', display_style: 'icon' %}
@@ -24,7 +25,14 @@
       </span>
 
       <span class="svg-wrapper {% if display_style != 'icon' %}desktop:hidden{% endif %}">
-        {{ 'icon-search.svg' | inline_asset_content }}
+        {% if icon_style == 'premium' %}
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="m16 16 4.25 4.25"></path>
+          </svg>
+        {% else %}
+          {{ 'icon-search.svg' | inline_asset_content }}
+        {% endif %}
       </span>
     </button>
   </search-button>

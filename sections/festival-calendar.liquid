@@ -19,7 +19,7 @@
           <p class="festival-calendar__eyebrow">{{ section.settings.eyebrow }}</p>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h2 class="festival-calendar__heading">{{ section.settings.heading }}</h2>
+          <h3 class="festival-calendar__heading">{{ section.settings.heading }}</h3>
         {% endif %}
       </header>
     {% endif %}
@@ -135,7 +135,7 @@
   .festival-calendar__heading {
     max-width: 50rem;
     margin: 0;
-    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    font-size: clamp(1.75rem, 4vw, 2rem);
     line-height: 1.05;
   }
 
@@ -150,7 +150,7 @@
     display: flex;
     overflow: hidden;
     width: 100%;
-    min-height: clamp(11rem, 17vw, 15rem);
+    min-height: clamp(8rem,17vw,9rem);
     align-items: flex-end;
     isolation: isolate;
     border-radius: var(--festival-card-radius);
@@ -224,7 +224,7 @@
 
   .festival-card__title {
     font-family: var(--font-heading--family);
-    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-size: clamp(1.15rem, 2vw, 1.15rem);
     line-height: 1.15;
   }
 

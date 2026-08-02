@@ -25,6 +25,8 @@
     --ph-bg: {{ section.settings.background_color }};
     --ph-text: {{ section.settings.text_color }};
     --ph-accent: {{ section.settings.accent_color }};
+    --ph-statement-text: {{ section.settings.statement_text_color }};
+    --ph-statement-accent: {{ section.settings.statement_accent_color }};
     --ph-border: {{ section.settings.border_color }};
     --ph-dropdown-bg: {{ section.settings.dropdown_background }};
     --ph-dropdown-text: {{ section.settings.dropdown_text_color }};
@@ -53,9 +55,7 @@
           aria-expanded="false"
           data-drawer-open
         >
-          <span class="premium-header__hamburger" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
+          <span class="premium-header__hamburger" aria-hidden="true"> <span></span><span></span><span></span> </span>
         </button>
       </div>
 
@@ -79,10 +79,14 @@
       </div>
 
       <div class="premium-header__actions">
-        {% render 'search', style: 'modal', display_style: 'icon' %}
+        <a href="{{ section.settings.wishlist }}" aria-label="Wishlist">
+          {% render 'wishlist-header' %}
+        </a>
+        {% render 'search', style: 'modal', display_style: 'icon', icon_style: 'premium' %}
         {% render 'header-actions',
           customer_account_menu: section.settings.customer_account_menu,
           display_style: 'icon',
+          icon_style: 'premium',
           section: section
         %}
       </div>
@@ -131,7 +135,9 @@
               <a
                 href="{{ link.url }}"
                 class="premium-header__menu-link"
-                {% if link.current %}aria-current="page"{% endif %}
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
                 {% if has_panel %}
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -141,7 +147,9 @@
               >
                 <span>{{ link.title }}</span>
                 {% if has_panel %}
-                  <svg class="premium-header__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="m1 1 4 4 4-4"></path></svg>
+                  <svg class="premium-header__chevron" viewBox="0 0 10 6" aria-hidden="true">
+                    <path d="m1 1 4 4 4-4"></path>
+                  </svg>
                 {% endif %}
               </a>
 
@@ -162,10 +170,7 @@
                   drawer: false
                 %}
               {% elsif link.links != blank %}
-                {% render 'premium-header-dropdown',
-                  menu_link: link,
-                  panel_id: panel_id
-                %}
+                {% render 'premium-header-dropdown', menu_link: link, panel_id: panel_id %}
               {% endif %}
             </li>
           {% endfor %}
@@ -184,6 +189,11 @@
   "class": "section-premium-header",
   "limit": 1,
   "settings": [
+    {
+      "type": "url",
+      "id": "wishlist",
+      "label": "Wishlist Link"
+    },
     {
       "type": "header",
       "content": "Logo and navigation"
@@ -277,6 +287,19 @@
       "type": "color",
       "id": "accent_color",
       "label": "Accent",
+      "default": "#7a5c3e"
+    },
+    {
+      "type": "color",
+      "id": "statement_text_color",
+      "label": "Statement text",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "statement_accent_color",
+      "label": "Statement accents",
+      "info": "Controls the decorative lines beside the statement.",
       "default": "#7a5c3e"
     },
     {

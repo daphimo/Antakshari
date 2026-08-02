@@ -12,6 +12,21 @@
     id="LehengaSet-{{ block.id }}"
     class="lehenga-set-selector"
     data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+    style="
+      --lss-margin-top: {{ block.settings.margin_top }}px;
+      --lss-margin-bottom: {{ block.settings.margin_bottom }}px;
+      --lss-margin-inline: {{ block.settings.margin_inline }}px;
+      --lss-padding-block: {{ block.settings.padding_vertical }}px;
+      --lss-padding-inline: {{ block.settings.padding_horizontal }}px;
+      --lss-background: {{ block.settings.background_color }};
+      --lss-surface: {{ block.settings.surface_color }};
+      --lss-text: {{ block.settings.text_color }};
+      --lss-muted: {{ block.settings.muted_color }};
+      --lss-accent: {{ block.settings.accent_color }};
+      --lss-accent-text: {{ block.settings.accent_text_color }};
+      --lss-border: {{ block.settings.border_color }};
+      --lss-radius: {{ block.settings.border_radius }}px;
+    "
     {{ block.shopify_attributes }}
   >
     <div class="lehenga-set__tabs" role="tablist" aria-label="Choose purchase option">
@@ -210,61 +225,68 @@
 
   .lehenga-set-selector {
     display: block;
-    padding-block: 0.75rem 1rem;
+    margin: var(--lss-margin-top) var(--lss-margin-inline) var(--lss-margin-bottom);
+    padding: var(--lss-padding-block) var(--lss-padding-inline);
+    color: var(--lss-text);
+    background: var(--lss-background);
+    border: 1px solid var(--lss-border);
+    border-radius: var(--lss-radius);
   }
 
   .lehenga-set__tabs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.4rem;
-    margin-block-end: 0.65rem;
+    gap: 0.2rem;
+    margin-block-end: 0.45rem;
+    padding: 0.2rem;
+    background: var(--lss-surface);
+    border-radius: calc(var(--lss-radius) - 4px);
   }
 
   .lehenga-set__tab {
-    min-height: 2.65rem;
-    padding: 0.6rem 0.75rem;
-    border: 1px solid currentcolor;
-    border-radius: 0.45rem;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid transparent;
+    border-radius: calc(var(--lss-radius) - 7px);
     background: transparent;
-    color: inherit;
+    color: var(--lss-muted);
     cursor: pointer;
     font: inherit;
-    font-size: 0.85rem;
-    font-weight: 700;
-    transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.035em;
   }
 
   .lehenga-set__tab.is-active {
-    border-color: #7b2025;
-    background: #7b2025;
-    color: #fffaf3;
+    border-color: var(--lss-border);
+    background: var(--lss-background);
+    color: var(--lss-text);
   }
 
   .lehenga-set__card {
     overflow: hidden;
-    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
-    border-radius: 0.75rem;
-    background: var(--color-background);
-    box-shadow: 0 5px 18px rgb(var(--color-foreground-rgb) / 0.07);
+    border: 1px solid var(--lss-border);
+    border-radius: calc(var(--lss-radius) - 3px);
+    background: var(--lss-surface);
   }
 
   .lehenga-set__item {
     display: grid;
-    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.65rem;
-    min-height: 4rem;
-    padding: 0.65rem 0.8rem;
-    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.09);
+    gap: 0.55rem;
+    min-height: 3.55rem;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--lss-border);
   }
 
   .lehenga-set__item-media {
     display: block;
     overflow: hidden;
-    width: 2.5rem;
-    height: 3rem;
-    border-radius: 0.45rem;
-    background: #fbf4df;
+    width: 2.25rem;
+    height: 2.65rem;
+    border-radius: calc(var(--lss-radius) - 8px);
+    background: var(--lss-background);
   }
 
   .lehenga-set__item-image {
@@ -280,41 +302,37 @@
     min-width: 0;
     align-items: flex-start;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0.05rem;
   }
 
   .lehenga-set__item-name {
     overflow: hidden;
     color: inherit;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 650;
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .lehenga-set__item-name:hover {
-    color: #7b2025;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
   .lehenga-set__variant {
     width: 100%;
     min-width: 0;
-    max-width: 10rem;
-    padding: 0.2rem 1.4rem 0.2rem 0;
+    max-width: 9rem;
+    padding: 0.1rem 1.3rem 0.1rem 0;
     border: 0;
     background: transparent;
     color: inherit;
     font: inherit;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    color: var(--lss-muted);
     cursor: pointer;
   }
 
   .lehenga-set__item-price {
-    color: #5c2527;
-    font-size: 0.78rem;
+    color: var(--lss-text);
+    font-size: 0.72rem;
+    font-weight: 700;
     white-space: nowrap;
   }
 
@@ -322,23 +340,40 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.7rem 0.8rem;
-    font-size: 0.78rem;
+    padding: 0.55rem 0.65rem;
+    color: var(--lss-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .lehenga-set__total strong {
-    color: #7b2025;
-    font-size: 1rem;
+    color: var(--lss-accent);
+    font-size: 0.9rem;
+    letter-spacing: normal;
   }
 
   .lehenga-set__add {
     position: relative;
     width: 100%;
-    min-height: 2.8rem;
-    margin-block-start: 0.65rem;
-    border-color: #7b2025;
-    background: #7b2025;
-    color: #fffaf3;
+    min-height: 2.5rem;
+    margin-block-start: 0.45rem;
+    border-color: var(--lss-accent);
+    border-radius: calc(var(--lss-radius) - 4px);
+    background: var(--lss-accent);
+    color: var(--lss-accent-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  .lehenga-set__add:hover,
+  .lehenga-set__add:active {
+    border-color: var(--lss-accent);
+    background: var(--lss-accent);
+    color: var(--lss-accent-text);
+    transform: none;
   }
 
   .lehenga-set__add:disabled {
@@ -366,7 +401,6 @@
   @keyframes lehenga-set-spin { to { rotate: 360deg; } }
 
   @media (prefers-reduced-motion: reduce) {
-    .lehenga-set__tab { transition: none; }
     .lehenga-set__spinner { animation-duration: 1.4s; }
   }
 {% endstylesheet %}
@@ -381,7 +415,22 @@
     { "type": "text", "id": "select_option_label", "label": "Variant prompt", "default": "Select size" },
     { "type": "text", "id": "single_total_label", "label": "Single total label", "default": "Total" },
     { "type": "text", "id": "bundle_total_label", "label": "Bundle total label", "default": "Set total" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" }
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_vertical", "label": "Inner vertical spacing", "min": 4, "max": 30, "step": 1, "unit": "px", "default": 7 },
+    { "type": "range", "id": "padding_horizontal", "label": "Inner side spacing", "min": 4, "max": 30, "step": 1, "unit": "px", "default": 7 },
+    { "type": "header", "content": "Style" },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 6, "max": 24, "step": 1, "unit": "px", "default": 12 },
+    { "type": "color", "id": "background_color", "label": "Outer background", "default": "#fffaf3" },
+    { "type": "color", "id": "surface_color", "label": "Inner surface", "default": "#f7efe4" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#3d1f15" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#765f55" },
+    { "type": "color", "id": "accent_color", "label": "Accent and button", "default": "#7b2025" },
+    { "type": "color", "id": "accent_text_color", "label": "Button text", "default": "#fffaf3" },
+    { "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [{ "name": "Lehenga set selector", "category": "Product" }]
 }

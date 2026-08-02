@@ -1,12 +1,19 @@
 {{ 'regional-blog-cards.css' | asset_url | stylesheet_tag }}
 
 {% liquid
+  assign content_source = section.settings.content_source | default: 'blog'
   assign selected_blog = section.settings.blog
+  assign selected_articles = section.settings.article_list
   assign articles_to_show = section.settings.articles_to_show
+  assign articles_source = selected_blog.articles
+
+  if content_source == 'articles'
+    assign articles_source = selected_articles
+  endif
 
   assign explore_url = section.settings.explore_link
 
-  if explore_url == blank and selected_blog != blank
+  if explore_url == blank and content_source == 'blog' and selected_blog != blank
     assign explore_url = selected_blog.url
   endif
 %}
@@ -131,8 +138,8 @@
     </div>
 
     <div class="regional-blog-cards__grid">
-      {% if selected_blog != blank and selected_blog.articles_count > 0 %}
-        {% for article in selected_blog.articles limit: articles_to_show %}
+      {% if articles_source != blank %}
+        {% for article in articles_source limit: articles_to_show %}
           <article class="regional-blog-cards__card">
             <a
               href="{{ article.url }}"
@@ -169,7 +176,7 @@
                     {% if section.settings.use_first_tag and article.tags.size > 0 %}
                       {{ article.tags.first }}
                     {% else %}
-                      {{ selected_blog.title }}
+                      {{ article.blog.title | default: selected_blog.title }}
                     {% endif %}
                   </div>
                 {% endif %}
@@ -231,7 +238,11 @@
                 </h3>
 
                 <div class="regional-blog-cards__excerpt">
-                  Select a blog in the theme editor to display its latest articles.
+                  {% if content_source == 'articles' %}
+                    Select articles in the theme editor to display them here.
+                  {% else %}
+                    Select a blog in the theme editor to display its latest articles.
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -253,18 +264,43 @@
       "content": "Blog source"
     },
     {
+      "type": "select",
+      "id": "content_source",
+      "label": "Article source",
+      "options": [
+        {
+          "value": "blog",
+          "label": "Blog"
+        },
+        {
+          "value": "articles",
+          "label": "Selected articles"
+        }
+      ],
+      "default": "blog"
+    },
+    {
       "type": "blog",
       "id": "blog",
-      "label": "Blog"
+      "label": "Blog source",
+      "info": "Used when Article source is set to Blog."
+    },
+    {
+      "type": "article_list",
+      "id": "article_list",
+      "label": "Selected articles",
+      "info": "Used when Article source is set to Selected articles.",
+      "limit": 12
     },
     {
       "type": "range",
       "id": "articles_to_show",
       "label": "Articles to show",
-      "min": 2,
-      "max": 6,
+      "min": 1,
+      "max": 12,
       "step": 1,
-      "default": 3
+      "default": 3,
+      "info": "Applies to both blog articles and manually selected articles."
     },
     {
       "type": "checkbox",

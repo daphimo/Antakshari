@@ -7,7 +7,7 @@
   {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
 
-  <metaobject-accordion class="metaobject-accordion" {{ block.shopify_attributes }}>
+  <metaobject-accordion class="metaobject-accordion" style="--pdb-margin-top: {{ block.settings.margin_top }}px; --pdb-margin-bottom: {{ block.settings.margin_bottom }}px; --pdb-margin-inline: {{ block.settings.margin_inline }}px; --pdb-padding-block: {{ block.settings.padding_vertical }}px; --pdb-padding-inline: {{ block.settings.padding_horizontal }}px; --pdb-background: {{ block.settings.background_color }}; --pdb-surface: {{ block.settings.surface_color }}; --pdb-text: {{ block.settings.text_color }}; --pdb-muted: {{ block.settings.muted_color }}; --pdb-accent: {{ block.settings.accent_color }}; --pdb-border: {{ block.settings.border_color }};" {{ block.shopify_attributes }}>
     <button
       class="metaobject-accordion__toggle"
       type="button"
@@ -74,7 +74,15 @@
       "id": "open_by_default",
       "label": "Open by default",
       "default": false
-    }
+    },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_vertical", "label": "Inner vertical spacing", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 4 },
+    { "type": "range", "id": "padding_horizontal", "label": "Inner side spacing", "min": 8, "max": 36, "step": 2, "unit": "px", "default": 16 }
+    ,{ "type": "header", "content": "Colors" }
+    ,{ "type": "color", "id": "background_color", "label": "Background", "default": "#fffaf3" },{ "type": "color", "id": "surface_color", "label": "Detail surface", "default": "#f7efe4" },{ "type": "color", "id": "text_color", "label": "Heading and labels", "default": "#3d1f15" },{ "type": "color", "id": "muted_color", "label": "Detail text", "default": "#765f55" },{ "type": "color", "id": "accent_color", "label": "Accent and icon", "default": "#a84e2c" },{ "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [
     {

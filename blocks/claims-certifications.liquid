@@ -4,7 +4,7 @@
 %}
 
 {% if claim %}
-  <claims-certifications-accordion class="claims-certifications" {{ block.shopify_attributes }}>
+  <claims-certifications-accordion class="claims-certifications" style="--cc-margin-top: {{ block.settings.margin_top }}px; --cc-margin-bottom: {{ block.settings.margin_bottom }}px; --cc-margin-inline: {{ block.settings.margin_inline }}px; --cc-padding-y: {{ block.settings.padding_vertical }}px; --cc-padding-x: {{ block.settings.padding_horizontal }}px; --cc-background: {{ block.settings.background_color }}; --cc-surface: {{ block.settings.surface_color }}; --cc-text: {{ block.settings.text_color }}; --cc-muted: {{ block.settings.muted_color }}; --cc-accent: {{ block.settings.accent_color }}; --cc-accent-text: {{ block.settings.accent_text_color }}; --cc-border: {{ block.settings.border_color }};" {{ block.shopify_attributes }}>
     <button
       class="claims-certifications__toggle"
       type="button"
@@ -111,13 +111,19 @@
 {% stylesheet %}
   .claims-certifications {
     display: block;
-    border-block: 1px solid rgb(var(--color-foreground-rgb) / 0.2);
+    margin: var(--cc-margin-top) var(--cc-margin-inline) var(--cc-margin-bottom);
+    padding: var(--cc-padding-y) var(--cc-padding-x);
+    overflow: hidden;
+    color: var(--cc-text);
+    background: var(--cc-background);
+    border: 1px solid var(--cc-border);
+    border-radius: 14px;
   }
 
   .claims-certifications__toggle {
     appearance: none;
     width: 100%;
-    padding: 16px 0;
+    padding: 12px 0;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -128,6 +134,8 @@
     gap: 16px;
     font: inherit;
     font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
     text-align: left;
     cursor: pointer;
   }
@@ -182,7 +190,10 @@
     width: 64px;
     height: 64px;
     object-fit: contain;
-    border-radius: 0;
+    padding: 8px;
+    background: var(--cc-surface);
+    border: 1px solid var(--cc-border);
+    border-radius: 12px;
   }
 
   .claims-certifications__name {
@@ -207,6 +218,7 @@
 
   .claims-certifications__details dd {
     margin: 0;
+    color: var(--cc-muted);
   }
 
   .claims-certifications__description,
@@ -215,10 +227,14 @@
   }
 
   .claims-certifications__download {
-    display: inline-block;
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    display: inline-flex;
+    padding: 9px 14px;
+    color: var(--cc-accent-text);
+    background: var(--cc-accent);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 650;
+    text-decoration: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -251,7 +267,14 @@
       "id": "download_label",
       "label": "Certificate link label",
       "default": "Download certificate"
-    }
+    },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_vertical", "label": "Inner vertical spacing", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 4 },
+    { "type": "range", "id": "padding_horizontal", "label": "Inner side spacing", "min": 8, "max": 36, "step": 2, "unit": "px", "default": 16 }
+    ,{ "type": "header", "content": "Colors" },{ "type": "color", "id": "background_color", "label": "Background", "default": "#fffaf3" },{ "type": "color", "id": "surface_color", "label": "Icon surface", "default": "#f7efe4" },{ "type": "color", "id": "text_color", "label": "Heading and labels", "default": "#3d1f15" },{ "type": "color", "id": "muted_color", "label": "Detail text", "default": "#765f55" },{ "type": "color", "id": "accent_color", "label": "Button background", "default": "#a84e2c" },{ "type": "color", "id": "accent_text_color", "label": "Button text", "default": "#ffffff" },{ "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [
     {

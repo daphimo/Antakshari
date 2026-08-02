@@ -1,7 +1,7 @@
 {% if block.settings.products != blank %}
   {{ 'switch.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'switch.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'add-prod.js' | asset_url }}" defer="defer"></script>
+  <script type="module" src="{{ 'add-prod.js' | asset_url }}"></script>
   <div
     class="switcher_container"
     style="margin-top: {{ block.settings.padding_top }}px; margin-bottom: {{ block.settings.padding_bottom }}px;"

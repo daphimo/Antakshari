@@ -1,0 +1,198 @@
+{% liquid
+  assign button_style = block.settings.button_style
+  assign prefix = button_style | append: '_'
+  assign background_key = prefix | append: 'background'
+  assign text_key = prefix | append: 'text'
+  assign border_key = prefix | append: 'border'
+  assign hover_background_key = prefix | append: 'hover_background'
+  assign hover_text_key = prefix | append: 'hover_text'
+  assign hover_border_key = prefix | append: 'hover_border'
+
+  assign button_background = block.settings[background_key]
+  assign button_text = block.settings[text_key]
+  assign button_border = block.settings[border_key]
+  assign button_hover_background = block.settings[hover_background_key]
+  assign button_hover_text = block.settings[hover_text_key]
+  assign button_hover_border = block.settings[hover_border_key]
+%}
+
+<div
+  class="universal-button-block universal-button-block--{{ block.settings.alignment }}"
+  style="
+    --ub-width: {% if block.settings.full_width %}100%{% else %}fit-content{% endif %};
+    --ub-mobile-width: {% if block.settings.full_width_mobile %}100%{% else %}fit-content{% endif %};
+  "
+  {{ block.shopify_attributes }}
+>
+  <a
+    class="universal-button universal-button--{{ button_style }}{% if block.settings.show_arrow %} universal-button--with-arrow{% endif %}"
+    {% if block.settings.link != blank %}
+      href="{{ block.settings.link }}"
+    {% else %}
+      role="link"
+      aria-disabled="true"
+    {% endif %}
+    {% if block.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    style="
+      --ub-background: {{ button_background }};
+      --ub-text: {{ button_text }};
+      --ub-border: {{ button_border }};
+      --ub-hover-background: {{ button_hover_background }};
+      --ub-hover-text: {{ button_hover_text }};
+      --ub-hover-border: {{ button_hover_border }};
+      --ub-border-width: {{ block.settings.border_width }}px;
+      --ub-radius: {{ block.settings.border_radius }}px;
+      --ub-padding-y: {{ block.settings.padding_vertical }}px;
+      --ub-padding-x: {{ block.settings.padding_horizontal }}px;
+      --ub-font-size: {{ block.settings.font_size }}px;
+      --ub-font-weight: {{ block.settings.font_weight }};
+      --ub-letter-spacing: {{ block.settings.letter_spacing | divided_by: 100.0 }}em;
+      --ub-transform: {{ block.settings.text_transform }};
+      --ub-hover-lift: {{ block.settings.hover_lift }}px;
+    "
+  >
+    <span>{{ block.settings.label | escape }}</span>
+    {% if block.settings.show_arrow %}
+      <svg class="universal-button__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M5 12h13M13 6l6 6-6 6"></path>
+      </svg>
+    {% endif %}
+  </a>
+</div>
+
+{% stylesheet %}
+  .universal-button-block {
+    display: flex;
+    width: 100%;
+  }
+
+  .universal-button-block--left { justify-content: flex-start; }
+  .universal-button-block--center { justify-content: center; }
+  .universal-button-block--right { justify-content: flex-end; }
+
+  .universal-button {
+    display: inline-flex;
+    width: var(--ub-width);
+    min-height: 44px;
+    padding: var(--ub-padding-y) var(--ub-padding-x);
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-sizing: border-box;
+    color: var(--ub-text);
+    background: var(--ub-background);
+    border: var(--ub-border-width) solid var(--ub-border);
+    border-radius: var(--ub-radius);
+    font-size: var(--ub-font-size);
+    font-weight: var(--ub-font-weight);
+    letter-spacing: var(--ub-letter-spacing);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    text-transform: var(--ub-transform);
+    cursor: pointer;
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .universal-button:hover {
+    color: var(--ub-hover-text);
+    background: var(--ub-hover-background);
+    border-color: var(--ub-hover-border);
+    transform: translateY(calc(var(--ub-hover-lift) * -1));
+  }
+
+  .universal-button:focus-visible {
+    outline: 2px solid var(--ub-hover-border);
+    outline-offset: 3px;
+  }
+
+  .universal-button[aria-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .universal-button__arrow {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s ease;
+  }
+
+  .universal-button--with-arrow:hover .universal-button__arrow {
+    transform: translateX(3px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .universal-button { width: var(--ub-mobile-width); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .universal-button,
+    .universal-button__arrow { transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Universal button",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Explore now" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "checkbox", "id": "open_in_new_tab", "label": "Open in new tab", "default": false },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Color preset",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ],
+      "default": "primary"
+    },
+    { "type": "header", "content": "Primary colors", "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_background", "label": "Background", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_text", "label": "Text", "default": "#ffffff", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_border", "label": "Border", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "header", "content": "Primary hover colors", "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_hover_background", "label": "Hover background", "default": "#a84e2c", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_hover_text", "label": "Hover text", "default": "#ffffff", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "color", "id": "primary_hover_border", "label": "Hover border", "default": "#a84e2c", "alpha": true, "visible_if": "{{ block.settings.button_style == 'primary' }}" },
+    { "type": "header", "content": "Secondary colors", "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_background", "label": "Background", "default": "#ffffff00", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_text", "label": "Text", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_border", "label": "Border", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "header", "content": "Secondary hover colors", "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_hover_background", "label": "Hover background", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_hover_text", "label": "Hover text", "default": "#ffffff", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_hover_border", "label": "Hover border", "default": "#3d1f15", "alpha": true, "visible_if": "{{ block.settings.button_style == 'secondary' }}" },
+    { "type": "header", "content": "Layout and size" },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "left" },
+    { "type": "checkbox", "id": "full_width", "label": "Full width on desktop", "default": false },
+    { "type": "checkbox", "id": "full_width_mobile", "label": "Full width on mobile", "default": false },
+    { "type": "range", "id": "padding_vertical", "label": "Vertical padding", "min": 8, "max": 28, "step": 1, "unit": "px", "default": 13 },
+    { "type": "range", "id": "padding_horizontal", "label": "Horizontal padding", "min": 12, "max": 64, "step": 2, "unit": "px", "default": 28 },
+    { "type": "range", "id": "border_width", "label": "Border width", "min": 0, "max": 5, "step": 1, "unit": "px", "default": 1 },
+    { "type": "range", "id": "border_radius", "label": "Border radius", "min": 0, "max": 50, "step": 1, "unit": "px", "default": 6 },
+    { "type": "header", "content": "Typography and effects" },
+    { "type": "range", "id": "font_size", "label": "Font size", "min": 10, "max": 24, "step": 1, "unit": "px", "default": 14 },
+    { "type": "select", "id": "font_weight", "label": "Font weight", "options": [{ "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }], "default": "600" },
+    { "type": "range", "id": "letter_spacing", "label": "Letter spacing", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 4 },
+    { "type": "select", "id": "text_transform", "label": "Text case", "options": [{ "value": "none", "label": "Normal" }, { "value": "uppercase", "label": "Uppercase" }, { "value": "capitalize", "label": "Capitalize" }], "default": "none" },
+    { "type": "checkbox", "id": "show_arrow", "label": "Show arrow", "default": false },
+    { "type": "range", "id": "hover_lift", "label": "Hover lift", "min": 0, "max": 6, "step": 1, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    { "name": "Universal button", "category": "Basic" }
+  ]
+}
+{% endschema %}

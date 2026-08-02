@@ -22,6 +22,7 @@
     id="CompleteTheLook-{{ block.id }}"
     class="complete-the-look"
     data-main-variant-id="{{ main_variant.id }}"
+    style="--ctl-margin-top: {{ block.settings.margin_top }}px; --ctl-margin-bottom: {{ block.settings.margin_bottom }}px; --ctl-margin-inline: {{ block.settings.margin_inline }}px; --ctl-padding: {{ block.settings.inner_spacing }}px; --ctl-background: {{ block.settings.background_color }}; --ctl-surface: {{ block.settings.surface_color }}; --ctl-text: {{ block.settings.text_color }}; --ctl-muted: {{ block.settings.muted_color }}; --ctl-accent: {{ block.settings.accent_color }}; --ctl-accent-text: {{ block.settings.accent_text_color }}; --ctl-border: {{ block.settings.border_color }};"
     {{ block.shopify_attributes }}
   >
     {% if block.settings.heading != blank %}
@@ -107,16 +108,19 @@
 {% stylesheet %}
   .complete-the-look {
     display: block;
-    width: 100%;
-    padding: clamp(1rem, 2.5vw, 1.4rem);
-    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
-    border-radius: var(--style-border-radius-inputs, 12px);
-    background: rgb(var(--color-foreground-rgb) / 0.025);
+    width: auto;
+    margin: var(--ctl-margin-top) var(--ctl-margin-inline) var(--ctl-margin-bottom);
+    padding: var(--ctl-padding);
+    color: var(--ctl-text);
+    border: 1px solid var(--ctl-border);
+    border-radius: 16px;
+    background: var(--ctl-background);
   }
 
   .complete-the-look__heading {
     margin-block: 0 0.85rem;
     font-size: clamp(1rem, 2vw, 1.15rem);
+    font-family: var(--font-heading--family);
     line-height: 1.2;
     letter-spacing: 0.01em;
   }
@@ -137,9 +141,9 @@
     align-items: center;
     min-width: 0;
     padding: 0.45rem;
-    border: 1px solid rgb(var(--color-foreground-rgb) / 0.09);
+    border: 1px solid var(--ctl-border);
     border-radius: var(--style-border-radius-inputs, 12px);
-    background: var(--color-background);
+    background: var(--ctl-surface);
     text-decoration: none;
     transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
   }
@@ -180,7 +184,7 @@
     margin-block-start: 0.2rem;
     font-size: 0.8rem;
     line-height: 1.2;
-    opacity: 0.68;
+    color: var(--ctl-muted);
   }
 
   .complete-the-look__button {
@@ -191,6 +195,10 @@
     min-height: 2.75rem;
     overflow: hidden;
     width: 100%;
+    border-radius: 999px;
+    color: var(--ctl-accent-text);
+    background: var(--ctl-accent);
+    border-color: var(--ctl-accent);
   }
 
   .complete-the-look__button [data-button-label] {
@@ -251,7 +259,13 @@
       "id": "button_label",
       "label": "Button label",
       "default": "Add complete look to cart"
-    }
+    },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "margin_top", "label": "Margin top", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "margin_inline", "label": "Side margins", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "inner_spacing", "label": "Inner spacing", "min": 8, "max": 36, "step": 2, "unit": "px", "default": 16 }
+    ,{ "type": "header", "content": "Colors" },{ "type": "color", "id": "background_color", "label": "Background", "default": "#fffaf3" },{ "type": "color", "id": "surface_color", "label": "Product surface", "default": "#f7efe4" },{ "type": "color", "id": "text_color", "label": "Heading and product title", "default": "#3d1f15" },{ "type": "color", "id": "muted_color", "label": "Price text", "default": "#765f55" },{ "type": "color", "id": "accent_color", "label": "Button background", "default": "#a84e2c" },{ "type": "color", "id": "accent_text_color", "label": "Button text", "default": "#ffffff" },{ "type": "color", "id": "border_color", "label": "Borders", "default": "#dfd0bf" }
   ],
   "presets": [
     {

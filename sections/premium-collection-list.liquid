@@ -1,0 +1,146 @@
+{{ 'premium-collection-list.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_collections = section.settings.collection_list
+  assign slide_count = section_collections.size
+%}
+
+<section
+  class="premium-collections"
+  style="
+    --pcl-background: {{ section.settings.background }};
+    --pcl-text: {{ section.settings.text_color }};
+    --pcl-muted: {{ section.settings.muted_color }};
+    --pcl-accent: {{ section.settings.accent_color }};
+    --pcl-card-radius: {{ section.settings.card_radius }}px;
+    --pcl-image-height: {{ section.settings.image_height }}px;
+    --pcl-padding-top: {{ section.settings.padding_top }}px;
+    --pcl-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="premium-collections__inner">
+    <header class="premium-collections__header">
+      <div class="premium-collections__heading-wrap">
+        {% if section.settings.eyebrow != blank %}
+          <p class="premium-collections__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="premium-collections__heading">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+      </div>
+
+      {% if section.settings.description != blank %}
+        <div class="premium-collections__description rte">{{ section.settings.description }}</div>
+      {% endif %}
+    </header>
+
+    {% if slide_count > 0 %}
+      <div id="splide-{{ section.id }}" class="splide premium-collections__slider">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for collection in section_collections %}
+              {% liquid
+                assign collection_image = collection.featured_image
+                if collection_image == blank and collection.products.first != blank
+                  assign collection_image = collection.products.first.featured_image
+                endif
+              %}
+              <li class="splide__slide premium-collections__slide" data-slide-index="{{ forloop.index0 }}">
+                <a class="premium-collections__card" href="{{ collection.url }}">
+                  <span class="premium-collections__media">
+                    {% if collection_image != blank %}
+                      {{
+                        collection_image
+                        | image_url: width: 1000
+                        | image_tag:
+                          class: 'premium-collections__image',
+                          loading: 'lazy',
+                          widths: '320, 480, 640, 800, 1000',
+                          sizes: '(min-width: 1200px) 24vw, (min-width: 750px) 38vw, 78vw',
+                          alt: collection_image.alt
+                      }}
+                    {% else %}
+                      {{ 'collection-1' | placeholder_svg_tag: 'premium-collections__image premium-collections__placeholder' }}
+                    {% endif %}
+                    <span class="premium-collections__shade" aria-hidden="true"></span>
+                    <span class="premium-collections__number" aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>
+                  </span>
+
+                  <span class="premium-collections__content">
+                    <span class="premium-collections__title">{{ collection.title }}</span>
+                    {% if section.settings.show_product_count %}
+                      <span class="premium-collections__count">
+                        {{ collection.products_count }} {% if collection.products_count == 1 %}piece{% else %}pieces{% endif %}
+                      </span>
+                    {% endif %}
+                    <span class="premium-collections__arrow" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if section.settings.show_arrows and slide_count > 1 %}
+          <div class="splide__arrows premium-collections__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous collections">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next collections">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+            </button>
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_pagination and slide_count > 1 %}
+          <ul class="splide__pagination"></ul>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="premium-collections__empty">Select collections in the theme editor.</div>
+    {% endif %}
+  </div>
+</section>
+
+{% render 'splide-slider', slider_id: section.id, section_id: section.id %}
+
+{% schema %}
+{
+  "name": "Premium collection list",
+  "tag": "section",
+  "class": "section-premium-collection-list",
+  "settings": [
+    { "type": "collection_list", "id": "collection_list", "label": "Collections", "limit": 12 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Curated for you" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore our signature collections" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Thoughtfully designed pieces rooted in craft, comfort and celebration.</p>" },
+    { "type": "checkbox", "id": "show_product_count", "label": "Show product count", "default": true },
+    { "type": "header", "content": "Slider" },
+    { "type": "select", "id": "slider_type", "label": "Slider type", "options": [{ "value": "slide", "label": "Slide" }, { "value": "loop", "label": "Loop" }], "default": "slide" },
+    { "type": "range", "id": "perPageDesktop", "label": "Cards per view", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "range", "id": "perPageMobile", "label": "Mobile cards per view", "min": 1, "max": 2, "step": 0.5, "default": 1.5 },
+    { "type": "range", "id": "perMove", "label": "Cards per move", "min": 1, "max": 3, "step": 1, "default": 1 },
+    { "type": "range", "id": "gap", "label": "Desktop gap", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "gap_mobile", "label": "Mobile gap", "min": 8, "max": 24, "step": 2, "unit": "px", "default": 14 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+    { "type": "checkbox", "id": "show_pagination", "label": "Show pagination", "default": true },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": false },
+    { "type": "range", "id": "autoplay_speed", "label": "Autoplay interval", "min": 2, "max": 10, "step": 1, "unit": "s", "default": 5 },
+    { "type": "range", "id": "transition_speed", "label": "Transition speed", "min": 300, "max": 1200, "step": 100, "unit": "ms", "default": 600 },
+    { "type": "checkbox", "id": "pause_on_hover", "label": "Pause on hover", "default": true },
+    { "type": "checkbox", "id": "pause_on_focus", "label": "Pause on focus", "default": true },
+    { "type": "header", "content": "Style" },
+    { "type": "range", "id": "image_height", "label": "Image height", "min": 280, "max": 560, "step": 20, "unit": "px", "default": 420 },
+    { "type": "range", "id": "card_radius", "label": "Card radius", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 18 },
+    { "type": "color", "id": "background", "label": "Background", "default": "#f8f3ea" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#3d1f15" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#76594e" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#b55f37" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 24, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 24, "max": 120, "step": 4, "unit": "px", "default": 76 }
+  ],
+  "presets": [{ "name": "Premium collection list" }]
+}
+{% endschema %}

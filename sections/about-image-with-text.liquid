@@ -1,0 +1,144 @@
+{{ 'about-image-with-text.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="about-image-text about-image-text--image-{{ section.settings.image_position }}"
+  style="
+    --ait-background: {{ section.settings.background }};
+    --ait-text: {{ section.settings.text_color }};
+    --ait-muted: {{ section.settings.muted_color }};
+    --ait-accent: {{ section.settings.accent_color }};
+    --ait-image-width: {{ section.settings.image_width }}%;
+    --ait-image-height: {{ section.settings.image_height }}px;
+    --ait-image-radius: {{ section.settings.image_radius }}px;
+    --ait-content-width: {{ section.settings.content_width }}px;
+    --ait-gap: {{ section.settings.column_gap }}px;
+    --ait-padding-top: {{ section.settings.padding_top }}px;
+    --ait-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="about-image-text__inner">
+    <div class="about-image-text__media-wrap">
+      <div class="about-image-text__media">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'about-image-text__image',
+              loading: 'lazy',
+              widths: '480, 640, 800, 1000, 1200, 1400, 1600',
+              sizes: '(min-width: 990px) 55vw, 100vw',
+              alt: section.settings.image.alt
+          }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'about-image-text__image about-image-text__placeholder' }}
+        {% endif %}
+
+        {% if section.settings.caption != blank %}
+          <p class="about-image-text__caption">{{ section.settings.caption | escape }}</p>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_accent_shape %}
+        <span class="about-image-text__shape" aria-hidden="true"></span>
+      {% endif %}
+    </div>
+
+    <div class="about-image-text__content about-image-text__content--{{ section.settings.content_alignment }}">
+      {% if section.settings.eyebrow != blank %}
+        <p class="about-image-text__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <{{ section.settings.heading_tag }} class="about-image-text__heading">
+          {{ section.settings.heading | escape }}
+        </{{ section.settings.heading_tag }}>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="about-image-text__copy rte">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="about-image-text__highlights">
+          {% for block in section.blocks %}
+            <div class="about-image-text__highlight" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <strong>{{ block.settings.title | escape }}</strong>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <span>{{ block.settings.text | escape }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          class="about-image-text__button"
+          {% if section.settings.button_link != blank %}
+            href="{{ section.settings.button_link }}"
+          {% else %}
+            role="link"
+            aria-disabled="true"
+          {% endif %}
+        >
+          <span>{{ section.settings.button_label | escape }}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About image with text",
+  "tag": "section",
+  "class": "section-about-image-text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "caption", "label": "Image caption" },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [{ "value": "left", "label": "Left" }, { "value": "right", "label": "Right" }], "default": "left" },
+    { "type": "range", "id": "image_width", "label": "Desktop image width", "min": 40, "max": 65, "step": 1, "unit": "%", "default": 54 },
+    { "type": "range", "id": "image_height", "label": "Image height", "min": 400, "max": 760, "step": 20, "unit": "px", "default": 600 },
+    { "type": "range", "id": "image_radius", "label": "Image radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 20 },
+    { "type": "checkbox", "id": "show_accent_shape", "label": "Show decorative accent", "default": true },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Crafted with meaning, designed for today" },
+    { "type": "select", "id": "heading_tag", "label": "Heading tag", "options": [{ "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }], "default": "h2" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Share the story behind your brand, the people who shape it and the values that guide every piece you create.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Discover our craft" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "content_alignment", "label": "Content alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }], "default": "left" },
+    { "type": "range", "id": "content_width", "label": "Content maximum width", "min": 360, "max": 650, "step": 10, "unit": "px", "default": 520 },
+    { "type": "range", "id": "column_gap", "label": "Column gap", "min": 24, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "header", "content": "Colors and spacing" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#faf5eb" },
+    { "type": "color", "id": "text_color", "label": "Heading and text", "default": "#3d1f15" },
+    { "type": "color", "id": "muted_color", "label": "Body text", "default": "#74594f" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#b55f37" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 24, "max": 140, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 24, "max": 140, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Thoughtful design" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Made to feel as good as it looks" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "About image with text",
+      "blocks": [{ "type": "highlight" }, { "type": "highlight" }]
+    }
+  ]
+}
+{% endschema %}

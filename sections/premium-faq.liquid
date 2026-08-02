@@ -1,0 +1,181 @@
+{{ 'premium-faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'premium-faq.js' | asset_url }}" defer="defer"></script>
+
+<section
+  id="PremiumFaq-{{ section.id }}"
+  class="premium-faq premium-faq--{{ section.settings.layout }} premium-faq--icon-{{ section.settings.icon_style }}"
+  style="
+    --pf-background: {{ section.settings.background }};
+    --pf-card-background: {{ section.settings.card_background }};
+    --pf-text: {{ section.settings.text_color }};
+    --pf-muted: {{ section.settings.muted_color }};
+    --pf-accent: {{ section.settings.accent_color }};
+    --pf-border: {{ section.settings.border_color }};
+    --pf-width: {{ section.settings.container_width }}px;
+    --pf-content-width: {{ section.settings.faq_width }}px;
+    --pf-gap: {{ section.settings.column_gap }}px;
+    --pf-item-gap: {{ section.settings.item_gap }}px;
+    --pf-radius: {{ section.settings.item_radius }}px;
+    --pf-border-width: {{ section.settings.border_width }}px;
+    --pf-item-padding-y: {{ section.settings.item_padding_vertical }}px;
+    --pf-item-padding-x: {{ section.settings.item_padding_horizontal }}px;
+    --pf-heading-size: {{ section.settings.heading_size }}px;
+    --pf-question-size: {{ section.settings.question_size }}px;
+    --pf-answer-size: {{ section.settings.answer_size }}px;
+    --pf-padding-top: {{ section.settings.padding_top }}px;
+    --pf-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="premium-faq__inner">
+    <header class="premium-faq__intro premium-faq__intro--{{ section.settings.intro_alignment }}">
+      {% if section.settings.eyebrow != blank %}
+        <p class="premium-faq__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <{{ section.settings.heading_tag }} class="premium-faq__heading">{{ section.settings.heading | escape }}</{{ section.settings.heading_tag }}>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        <div class="premium-faq__description rte">{{ section.settings.description }}</div>
+      {% endif %}
+      {% if section.settings.contact_label != blank %}
+        <a
+          class="premium-faq__contact"
+          {% if section.settings.contact_link != blank %}href="{{ section.settings.contact_link }}"{% else %}role="link" aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.contact_label | escape }}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+        </a>
+      {% endif %}
+    </header>
+
+    <premium-faq class="premium-faq__content" data-single-open="{{ section.settings.single_open }}">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'text' %}
+              <div
+                class="premium-faq__category premium-faq__category--{{ block.settings.alignment }}"
+                style="--pf-category-space-top: {{ block.settings.spacing_top }}px; --pf-category-space-bottom: {{ block.settings.spacing_bottom }}px;"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.eyebrow != blank %}
+                  <span class="premium-faq__category-eyebrow">{{ block.settings.eyebrow | escape }}</span>
+                {% endif %}
+                {% if block.settings.heading != blank %}
+                  <h3 class="premium-faq__category-heading">{{ block.settings.heading | escape }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="premium-faq__category-text rte">{{ block.settings.text }}</div>
+                {% endif %}
+              </div>
+
+            {% when 'tab' %}
+              <details
+                class="premium-faq__item"
+                {% if block.settings.open_by_default %}open{% endif %}
+                data-faq-item
+                {{ block.shopify_attributes }}
+              >
+                <summary class="premium-faq__question">
+                  <span>{{ block.settings.question | default: 'Frequently asked question' | escape }}</span>
+                  <span class="premium-faq__icon" aria-hidden="true">
+                    {% if section.settings.icon_style == 'plus' %}
+                      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"></path></svg>
+                    {% else %}
+                      <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+                    {% endif %}
+                  </span>
+                </summary>
+                <div class="premium-faq__answer-wrap">
+                  <div class="premium-faq__answer rte">{{ block.settings.answer }}</div>
+                </div>
+              </details>
+          {% endcase %}
+        {% endfor %}
+      {% else %}
+        <div class="premium-faq__empty">Add Text and Tab blocks to build your FAQ.</div>
+      {% endif %}
+    </premium-faq>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium FAQ",
+  "tag": "section",
+  "class": "section-premium-faq",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Need to know" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" },
+    { "type": "select", "id": "heading_tag", "label": "Heading tag", "options": [{ "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }], "default": "h2" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Everything you need to know about our pieces, ordering and care.</p>" },
+    { "type": "text", "id": "contact_label", "label": "Contact link label", "default": "Still need help?" },
+    { "type": "url", "id": "contact_link", "label": "Contact link" },
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "layout", "label": "Desktop layout", "options": [{ "value": "split", "label": "Split introduction and FAQ" }, { "value": "stacked", "label": "Stacked and centered" }], "default": "split" },
+    { "type": "select", "id": "intro_alignment", "label": "Introduction alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }], "default": "left" },
+    { "type": "range", "id": "container_width", "label": "Container width", "min": 900, "max": 1800, "step": 20, "unit": "px", "default": 1380 },
+    { "type": "range", "id": "faq_width", "label": "FAQ maximum width", "min": 500, "max": 1000, "step": 20, "unit": "px", "default": 760 },
+    { "type": "range", "id": "column_gap", "label": "Column gap", "min": 30, "max": 150, "step": 5, "unit": "px", "default": 90 },
+    { "type": "range", "id": "item_gap", "label": "Space between tabs", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 12 },
+    { "type": "checkbox", "id": "single_open", "label": "Only keep one tab open", "default": true },
+    { "type": "select", "id": "icon_style", "label": "Tab icon", "options": [{ "value": "plus", "label": "Plus" }, { "value": "chevron", "label": "Chevron" }], "default": "plus" },
+    { "type": "header", "content": "Tab style" },
+    { "type": "range", "id": "item_radius", "label": "Corner radius", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 14 },
+    { "type": "range", "id": "border_width", "label": "Border width", "min": 0, "max": 3, "step": 1, "unit": "px", "default": 1 },
+    { "type": "range", "id": "item_padding_vertical", "label": "Vertical padding", "min": 12, "max": 36, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "item_padding_horizontal", "label": "Horizontal padding", "min": 14, "max": 48, "step": 2, "unit": "px", "default": 24 },
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "heading_size", "label": "Main heading size", "min": 28, "max": 72, "step": 2, "unit": "px", "default": 48 },
+    { "type": "range", "id": "question_size", "label": "Question size", "min": 13, "max": 26, "step": 1, "unit": "px", "default": 17 },
+    { "type": "range", "id": "answer_size", "label": "Answer size", "min": 12, "max": 22, "step": 1, "unit": "px", "default": 15 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background", "label": "Section background", "default": "#faf6ee" },
+    { "type": "color", "id": "card_background", "label": "Tab background", "default": "#fffaf3" },
+    { "type": "color", "id": "text_color", "label": "Heading and question", "default": "#3d1f15" },
+    { "type": "color", "id": "muted_color", "label": "Description and answer", "default": "#72594f" },
+    { "type": "color", "id": "accent_color", "label": "Accent and active icon", "default": "#b55f37" },
+    { "type": "color", "id": "border_color", "label": "Tab border", "default": "#dfcfbd" },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 20, "max": 160, "step": 4, "unit": "px", "default": 84 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 20, "max": 160, "step": 4, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Category text",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Category eyebrow" },
+        { "type": "text", "id": "heading", "label": "Category heading", "default": "Orders and shipping" },
+        { "type": "richtext", "id": "text", "label": "Category description" },
+        { "type": "select", "id": "alignment", "label": "Alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }], "default": "left" },
+        { "type": "range", "id": "spacing_top", "label": "Space above", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 36 },
+        { "type": "range", "id": "spacing_bottom", "label": "Space below", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "FAQ tab",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How long will my order take to arrive?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Use this space to provide a clear, helpful answer for your customers.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 40,
+  "presets": [
+    {
+      "name": "Premium FAQ",
+      "blocks": [
+        { "type": "text" },
+        { "type": "tab" },
+        { "type": "tab" },
+        { "type": "text", "settings": { "heading": "Products and care" } },
+        { "type": "tab", "settings": { "question": "How should I care for my pieces?" } },
+        { "type": "tab", "settings": { "question": "Where are your products made?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

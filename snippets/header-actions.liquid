@@ -7,6 +7,7 @@
   @param {block} [block] - The block object, used for Shopify editor attributes.
   @param {string} [display_style] - Controls display mode for header actions: 'icon' or 'text'.
   @param {string} [customer_account_menu] - The menu handle passed to the shopify-account component.
+  @param {string} [icon_style] - Optional matched icon set, such as 'premium'.
 
   @example
   {% render 'header-actions', section: section %}
@@ -31,7 +32,14 @@
       class="svg-wrapper {% if display_style != 'icon' %}desktop:hidden{% endif %}"
       aria-hidden="true"
     >
-      {{ 'icon-cart.svg' | inline_asset_content }}
+      {% if icon_style == 'premium' %}
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5.5 8.5h13l-.7 11h-11.6l-.7-11Z"></path>
+          <path d="M9 9V6.5a3 3 0 0 1 6 0V9"></path>
+        </svg>
+      {% else %}
+        {{ 'icon-cart.svg' | inline_asset_content }}
+      {% endif %}
     </span>
 
     {% render 'cart-bubble', limit: 100 %}
@@ -39,22 +47,29 @@
 {% endcapture %}
 
 {% capture account_icon %}
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="15"
-    height="17"
-    viewBox="0 0 15 17"
-    fill="none"
-    slot="signed-out-avatar"
-    class="account-button__icon"
-  >
-    <path
-      stroke="currentColor"
-      stroke-linejoin="round"
-      stroke-width="var(--icon-stroke-width)"
-      d="M10.375 3.813a3.063 3.063 0 1 1-6.125 0 3.063 3.063 0 0 1 6.125 0ZM7.313 9.5c-3.667 0-6.24 2.691-6.563 6.125h13.125C13.552 12.191 10.979 9.5 7.312 9.5Z"
-    />
-  </svg>
+  {% if icon_style == 'premium' %}
+    <svg viewBox="0 0 24 24" fill="none" slot="signed-out-avatar" class="account-button__icon" aria-hidden="true">
+      <circle cx="12" cy="7.25" r="3.25"></circle>
+      <path d="M5.5 20a6.5 6.5 0 0 1 13 0Z"></path>
+    </svg>
+  {% else %}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="15"
+      height="17"
+      viewBox="0 0 15 17"
+      fill="none"
+      slot="signed-out-avatar"
+      class="account-button__icon"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linejoin="round"
+        stroke-width="var(--icon-stroke-width)"
+        d="M10.375 3.813a3.063 3.063 0 1 1-6.125 0 3.063 3.063 0 0 1 6.125 0ZM7.313 9.5c-3.667 0-6.24 2.691-6.563 6.125h13.125C13.552 12.191 10.979 9.5 7.312 9.5Z"
+      />
+    </svg>
+  {% endif %}
 {% endcapture %}
 
 <header-actions

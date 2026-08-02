@@ -1,12 +1,18 @@
 .metaobject-accordion {
   display: block;
-  border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.2);
+  margin: var(--pdb-margin-top, 12px) var(--pdb-margin-inline, 0px) var(--pdb-margin-bottom, 12px);
+  padding: var(--pdb-padding-block, 4px) var(--pdb-padding-inline, 16px);
+  overflow: hidden;
+  color: var(--pdb-text, var(--color-foreground));
+  background: var(--pdb-background, var(--color-background));
+  border: 1px solid var(--pdb-border, currentcolor);
+  border-radius: 14px;
 }
 
 .metaobject-accordion__toggle {
   appearance: none;
   width: 100%;
-  padding: 16px 0;
+  padding: 14px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -17,6 +23,8 @@
   gap: 16px;
   font: inherit;
   font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
   text-align: left;
   cursor: pointer;
 }
@@ -26,6 +34,7 @@
   flex: 0 0 16px;
   width: 16px;
   height: 16px;
+  color: var(--pdb-accent, currentcolor);
 }
 
 .metaobject-accordion__symbol::before,
@@ -55,7 +64,7 @@
 }
 
 .metaobject-accordion__content-inner {
-  padding-block: 0 20px;
+  padding-block: 2px 16px;
 }
 
 .metaobject-accordion__image {
@@ -68,6 +77,8 @@
 
 .metaobject-accordion__name {
   margin: 0 0 12px;
+  font-family: var(--font-heading--family);
+  font-size: 1.05rem;
 }
 
 .metaobject-accordion__icons {
@@ -83,7 +94,10 @@
   width: 48px;
   height: 48px;
   object-fit: contain;
-  border-radius: 0;
+  padding: 7px;
+  background: var(--pdb-surface, var(--color-background));
+  border: 1px solid var(--pdb-border, currentcolor);
+  border-radius: 10px;
 }
 
 .metaobject-accordion__details {
@@ -94,16 +108,22 @@
   display: grid;
   grid-template-columns: minmax(140px, 0.4fr) 1fr;
   gap: 12px;
-  padding-block: 8px;
-  border-block-end: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  padding-block: 10px;
+  border-block-end: 1px solid var(--pdb-border, currentcolor);
 }
 
 .metaobject-accordion__details dt {
   font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .metaobject-accordion__details dd {
   margin: 0;
+  color: var(--pdb-muted, currentcolor);
+  font-size: 0.825rem;
+  line-height: 1.55;
 }
 
 .metaobject-accordion__description {
