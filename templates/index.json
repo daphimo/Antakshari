@@ -1248,6 +1248,79 @@
         "show_pagination": false
       }
     },
+    "festival_calendar_tEEzee": {
+      "type": "festival-calendar",
+      "blocks": {
+        "festival_xwWXK6": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/onam-festival-bg.jpg",
+            "release_date": "2026-08-26",
+            "festival_name": "Onam",
+            "link": ""
+          }
+        },
+        "festival_X9zVaN": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
+            "release_date": "2026-08-28",
+            "festival_name": "Varamahalakshmi",
+            "link": ""
+          }
+        },
+        "festival_ACaiAF": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/rakshabandhan-bg.jpg",
+            "release_date": "2026-08-28",
+            "festival_name": "Rakshabandhan",
+            "link": ""
+          }
+        },
+        "festival_3WE3zN": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/janmashtami-bg.jpg",
+            "release_date": "2026-09-04",
+            "festival_name": "Janamashtami",
+            "link": ""
+          }
+        },
+        "festival_epBYLM": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
+            "release_date": "2026-09-06",
+            "festival_name": "Ganesh Chaturthi",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "festival_xwWXK6",
+        "festival_X9zVaN",
+        "festival_ACaiAF",
+        "festival_3WE3zN",
+        "festival_epBYLM"
+      ],
+      "name": "Festival calendar",
+      "settings": {
+        "eyebrow": "This season",
+        "heading": "Everything you need for this festival",
+        "perPageDesktop": 4,
+        "perPageMobile": 1.5,
+        "perMove": 1,
+        "gap": 14,
+        "gap_mobile": 10,
+        "show_arrows": true,
+        "show_pagination": false,
+        "transition_speed": 500,
+        "card_radius": 16,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "carousel_RLmCcM": {
       "type": "carousel",
       "blocks": {
@@ -3225,6 +3298,7 @@
   },
   "order": [
     "hero_slider_horizon_tgC4cE",
+    "festival_calendar_tEEzee",
     "carousel_RLmCcM",
     "section_AkXQkb",
     "collection_list_MUrf4Q",
