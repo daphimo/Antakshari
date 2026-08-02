@@ -42,7 +42,7 @@
 
 .wishlist-icon-container {
   position: relative;
-  width: 44px;
+  width: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,10 +51,6 @@
 
 .wishlist-count-bubble {
   position: absolute;
-  background-color: rgb(var(--color-button-text));
-  color: rgb(var(--color-button));
-  height: 1.7rem;
-  width: 1.7rem;
   border-radius: 100%;
   display: flex;
   justify-content: center;
