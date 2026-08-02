@@ -182,20 +182,16 @@
               "settings": {
                 "heading": "",
                 "columns_mobile": 2,
-                "columns_desktop": 6
-              },
-              "blocks": {}
-            },
-            "lehenga_set_selector": {
-              "type": "lehenga-set-selector",
-              "name": "Lehenga set selector",
-              "settings": {
-                "single_tab_label": "Skirt only",
-                "bundle_tab_label": "3-piece set",
-                "select_option_label": "Select size",
-                "single_total_label": "Total",
-                "bundle_total_label": "Set total",
-                "button_label": "Add to cart"
+                "columns_desktop": 6,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "inner_spacing": 12,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -285,7 +281,16 @@
               "type": "size-chart",
               "name": "Size Chart",
               "settings": {
-                "trigger_text": "Size guide"
+                "trigger_text": "Size guide",
+                "margin_top": 10,
+                "margin_bottom": 10,
+                "margin_inline": 0,
+                "padding_vertical": 12,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "text_color": "#3d1f15",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -320,7 +325,18 @@
               "name": "Product Specifications",
               "settings": {
                 "heading": "Product Specifications",
-                "open_by_default": false
+                "open_by_default": false,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -329,7 +345,18 @@
               "name": "Craft Profile",
               "settings": {
                 "heading": "Craft Profile",
-                "open_by_default": false
+                "open_by_default": false,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -339,7 +366,18 @@
               "settings": {
                 "heading": "Occasion & Festival",
                 "open_by_default": false,
-                "metafield_key": "occasions"
+                "metafield_key": "occasions",
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -348,7 +386,18 @@
               "name": "Style & Inspiration",
               "settings": {
                 "heading": "Style & Inspiration",
-                "open_by_default": false
+                "open_by_default": false,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -357,7 +406,18 @@
               "name": "Design & Craftsmanship",
               "settings": {
                 "heading": "Design & Craftsmanship",
-                "open_by_default": false
+                "open_by_default": false,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -366,7 +426,18 @@
               "name": "Care Profile",
               "settings": {
                 "heading": "Care Profile",
-                "open_by_default": false
+                "open_by_default": false,
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -376,7 +447,19 @@
               "settings": {
                 "heading": "Claims & Certifications",
                 "open_by_default": false,
-                "download_label": "Download certificate"
+                "download_label": "Download certificate",
+                "margin_top": 12,
+                "margin_bottom": 12,
+                "margin_inline": 0,
+                "padding_vertical": 4,
+                "padding_horizontal": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "accent_text_color": "#ffffff",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -398,7 +481,18 @@
               "name": "Complete the look",
               "settings": {
                 "heading": "Complete the look",
-                "button_label": "Add complete look to cart"
+                "button_label": "Add complete look to cart",
+                "margin_top": 12,
+                "margin_bottom": 16,
+                "margin_inline": 0,
+                "inner_spacing": 16,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#a84e2c",
+                "accent_text_color": "#ffffff",
+                "border_color": "#dfd0bf"
               },
               "blocks": {}
             },
@@ -424,7 +518,6 @@
             "group_icgrde",
             "divider_VJhene",
             "family_products_4HYeqL",
-            "lehenga_set_selector",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "size_chart_zCpF6H",
