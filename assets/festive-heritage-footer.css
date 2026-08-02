@@ -128,7 +128,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: clamp(50px, 6vw, 85px);
+  margin-bottom: 24px;
   color: var(--fhf-accent);
 }
 
