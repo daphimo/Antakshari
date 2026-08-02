@@ -55,6 +55,11 @@
     opacity: 1;
   }
 
+  /* Product cards use quick add in place of the variant swatch row. */
+  product-card swatches-variant-picker-component {
+    display: none;
+  }
+
   button.quick-add__button {
     --quick-add-collapsed-width: var(--button-size-md);
     --quick-add-icon-width: calc(var(--button-size-md) - 4px);
@@ -151,6 +156,7 @@
   }
 
   @media screen and (min-width: 750px) {
+    product-card:is(:hover, :focus-within) .quick-add__button,
     .quick-add__button:is(:hover, :focus-visible) {
       width: var(--quick-add-expanded-width);
       padding-inline-end: var(--padding-sm);

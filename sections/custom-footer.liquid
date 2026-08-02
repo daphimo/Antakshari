@@ -266,6 +266,12 @@
             </div>
           {% endif %}
 
+           {% if section.settings.social_head != blank %}
+            <h4 class="fhf-social_head">
+              {{ section.settings.social_head }}
+            </h4>
+          {% endif %}
+
           {% if section.settings.show_socials %}
             <div class="fhf-socials">
               {% if section.settings.instagram_url != blank %}
@@ -713,6 +719,12 @@
       "id": "brand_description",
       "label": "Brand description",
       "default": "<p>Contemporary occasion wear shaped by Indian artistry, rich textiles and generations of craftsmanship.</p>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "social_head",
+      "label": "Social Head",
+      "default": "Show us some Love on"
     },
     {
       "type": "header",

@@ -27,6 +27,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -41,9 +42,23 @@
           "type": "_blog-post-card",
           "static": true,
           "settings": {
-            "alignment": "left"
+            "alignment": "left",
+            "background_color": ""
           },
           "blocks": {
+            "image": {
+              "type": "_blog-post-image",
+              "static": true,
+              "settings": {
+                "height": "large",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 4
+              },
+              "blocks": {}
+            },
             "heading": {
               "type": "_heading",
               "name": "t:names.title",
@@ -60,6 +75,7 @@
                 "read_only": true,
                 "alignment": "left",
                 "show_alignment": false,
+                "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 10,
                 "padding-inline-start": 0,
@@ -76,21 +92,31 @@
                 "show_author": false,
                 "type_preset": "",
                 "alignment": "left",
+                "text_color": "",
                 "show_alignment": false,
                 "padding-block-start": 0,
-                "padding-block-end": 0
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
-            "image": {
-              "type": "_blog-post-image",
+            "content": {
+              "type": "_blog-post-description",
               "static": true,
               "settings": {
-                "height": "large",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 4
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             }

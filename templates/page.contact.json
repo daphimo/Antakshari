@@ -1,82 +1,306 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- * This file may be updated by the Shopify theme editor.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
   "sections": {
-    "contact-hero": {
-      "type": "contact-hero",
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "text",
+          "name": "t:names.content",
+          "settings": {
+            "text": "{{ closest.page.content }}",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "content"
+      ],
+      "disabled": true,
       "settings": {
-        "eyebrow": "We are here to help",
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "contact_hero_X8wpFQ": {
+      "type": "contact-hero",
+      "name": "Contact hero",
+      "settings": {
+        "eyebrow": "",
         "heading": "Let’s start a conversation",
         "description": "<p>Questions about an order, a product or simply want to say hello? Our team would love to hear from you.</p>",
-        "button_label": "Send us a message",
-        "button_link": "#contact-form",
-        "height": 520,
+        "image": "shopify://shop_images/contact-register-feedback-support-help-concept.jpg",
+        "button_label": "",
+        "button_link": "",
+        "height": 360,
         "heading_size": 64,
         "background": "#f7efe5",
-        "text_color": "#3d1f15",
-        "description_color": "#70564b",
+        "text_color": "#FFFFFF",
+        "description_color": "#FFFFFF",
         "accent_color": "#a65332",
         "button_text_color": "#ffffff",
         "overlay_color": "#1d0e08",
-        "overlay_opacity": 25
+        "overlay_opacity": 40
       }
     },
-    "contact-methods": {
+    "contact_methods_kNpMbK": {
       "type": "contact-methods",
       "blocks": {
-        "email": { "type": "method", "settings": { "icon": "email", "title": "Email us", "description": "Send us a note and we’ll reply shortly.", "link_text": "hello@antakshari.com" } },
-        "phone": { "type": "method", "settings": { "icon": "phone", "title": "Call us", "description": "Speak directly with our support team.", "link_text": "Mon–Sat, 10am–6pm" } },
-        "whatsapp": { "type": "method", "settings": { "icon": "whatsapp", "title": "WhatsApp", "description": "Get quick help through a message.", "link_text": "Start a conversation" } },
-        "address": { "type": "method", "settings": { "icon": "address", "title": "Visit us", "description": "Experience our collections in person.", "link_text": "Jaipur, Rajasthan" } }
+        "method_bLFDTi": {
+          "type": "method",
+          "settings": {
+            "icon": "email",
+            "title": "Email us",
+            "description": "Send us a note and we’ll reply shortly.",
+            "link_text": "hello@example.com",
+            "link": ""
+          }
+        },
+        "method_dbAEUJ": {
+          "type": "method",
+          "settings": {
+            "icon": "phone",
+            "title": "Call us",
+            "description": "Send us a note and we’ll reply shortly.",
+            "link_text": "Mon–Sat, 10am–6pm",
+            "link": ""
+          }
+        },
+        "method_HHVhXt": {
+          "type": "method",
+          "settings": {
+            "icon": "whatsapp",
+            "title": "WhatsApp",
+            "description": "Send us a note and we’ll reply shortly.",
+            "link_text": "Chat with our team",
+            "link": ""
+          }
+        },
+        "method_mQRtAb": {
+          "type": "method",
+          "settings": {
+            "icon": "address",
+            "title": "Visit us",
+            "description": "Send us a note and we’ll reply shortly.",
+            "link_text": "View our location",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["email", "phone", "whatsapp", "address"],
-      "settings": { "eyebrow": "Choose what suits you", "heading": "Ways to reach us", "description": "<p>Connect with our support team through your preferred channel.</p>", "alignment": "center", "columns": 4, "gap": 18, "radius": 18, "container_width": 1400, "background": "#fffdf9", "card_background": "#fffaf3", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "border_color": "#e2d6ca", "padding_top": 76, "padding_bottom": 76 }
+      "block_order": [
+        "method_bLFDTi",
+        "method_dbAEUJ",
+        "method_HHVhXt",
+        "method_mQRtAb"
+      ],
+      "name": "Contact methods",
+      "settings": {
+        "eyebrow": "Choose what suits you",
+        "heading": "Ways to reach us",
+        "description": "<p>Connect with our support team through your preferred channel.</p>",
+        "alignment": "center",
+        "columns": 4,
+        "gap": 18,
+        "radius": 18,
+        "container_width": 1400,
+        "background": "#fffdf9",
+        "card_background": "#fffaf3",
+        "text_color": "#3d1f15",
+        "muted_color": "#705b52",
+        "accent_color": "#a65332",
+        "border_color": "#e2d6ca",
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
     },
-    "contact-form": {
+    "premium_contact_form_T7LnCP": {
       "type": "premium-contact-form",
-      "settings": { "eyebrow": "Send a message", "heading": "How can we help?", "description": "<p>Share a few details and our support team will get back to you as soon as possible.</p>", "button_label": "Send message", "success_message": "Thank you. Your message has been sent successfully.", "container_width": 1100, "radius": 20, "background": "#f7efe5", "card_background": "#fffaf3", "input_background": "#ffffff", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "button_text_color": "#ffffff", "border_color": "#dfd0c3", "padding_top": 84, "padding_bottom": 84 }
+      "name": "Premium contact form",
+      "settings": {
+        "eyebrow": "Send a message",
+        "heading": "How can we help?",
+        "description": "<p>Share a few details and our support team will get back to you as soon as possible.</p>",
+        "button_label": "Send message",
+        "success_message": "Thank you. Your message has been sent successfully.",
+        "container_width": 1100,
+        "radius": 20,
+        "background": "#f7efe5",
+        "card_background": "#fffaf3",
+        "input_background": "#ffffff",
+        "text_color": "#3d1f15",
+        "muted_color": "#705b52",
+        "accent_color": "#a65332",
+        "button_text_color": "#ffffff",
+        "border_color": "#dfd0c3",
+        "padding_top": 84,
+        "padding_bottom": 84
+      }
     },
-    "business-hours": {
+    "business_hours_DpmwVb": {
       "type": "business-hours",
-      "settings": { "eyebrow": "Availability", "heading": "Business hours", "description": "<p>Times are shown in our local timezone. Messages received after hours are answered the next working day.</p>", "monday": "10:00 AM – 6:00 PM", "tuesday": "10:00 AM – 6:00 PM", "wednesday": "10:00 AM – 6:00 PM", "thursday": "10:00 AM – 6:00 PM", "friday": "10:00 AM – 6:00 PM", "saturday": "10:00 AM – 4:00 PM", "sunday": "Closed", "container_width": 1000, "radius": 18, "background": "#fffdf9", "card_background": "#fffaf3", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "border_color": "#e2d6ca", "padding_top": 72, "padding_bottom": 72 }
+      "name": "Business hours",
+      "settings": {
+        "eyebrow": "Availability",
+        "heading": "Business hours",
+        "description": "<p>Times are shown in our local timezone. Messages received after hours are answered the next working day.</p>",
+        "monday": "10:00 AM – 6:00 PM",
+        "tuesday": "10:00 AM – 6:00 PM",
+        "wednesday": "10:00 AM – 6:00 PM",
+        "thursday": "10:00 AM – 6:00 PM",
+        "friday": "10:00 AM – 6:00 PM",
+        "saturday": "10:00 AM – 4:00 PM",
+        "sunday": "Closed",
+        "container_width": 1000,
+        "radius": 18,
+        "background": "#fffdf9",
+        "card_background": "#fffaf3",
+        "text_color": "#3d1f15",
+        "muted_color": "#705b52",
+        "accent_color": "#a65332",
+        "border_color": "#e2d6ca",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
     },
-    "faq-preview": {
+    "faq_preview_wV3wya": {
       "type": "faq-preview",
       "blocks": {
-        "response": { "type": "faq", "settings": { "question": "How quickly will I receive a response?", "answer": "<p>We usually respond within one business day during our published support hours.</p>", "open": true } },
-        "order": { "type": "faq", "settings": { "question": "Can you help with an existing order?", "answer": "<p>Yes. Include your order number in the form so our team can help quickly.</p>", "open": false } },
-        "returns": { "type": "faq", "settings": { "question": "Do you support returns and exchanges?", "answer": "<p>Select Returns & Refunds in the form and tell us what you need help with.</p>", "open": false } }
+        "faq_tfkjpj": {
+          "type": "faq",
+          "settings": {
+            "question": "How quickly will I receive a response?",
+            "answer": "<p>We usually respond within one business day during our published support hours.</p>",
+            "open": false
+          }
+        },
+        "faq_QTBpTr": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you help with an existing order?",
+            "answer": "<p>Yes. Include your order number in the contact form so our team can help quickly.</p>",
+            "open": false
+          }
+        },
+        "faq_UNeMQP": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you support returns and exchanges?",
+            "answer": "<p>Select Returns & Refunds in the form and tell us what you need help with.</p>",
+            "open": false
+          }
+        }
       },
-      "block_order": ["response", "order", "returns"],
-      "settings": { "eyebrow": "Quick answers", "heading": "Frequently asked questions", "button_label": "View all FAQs", "container_width": 1000, "radius": 14, "background": "#f7efe5", "card_background": "#fffaf3", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "button_text_color": "#ffffff", "border_color": "#dfd0c3", "padding_top": 76, "padding_bottom": 76 }
+      "block_order": [
+        "faq_tfkjpj",
+        "faq_QTBpTr",
+        "faq_UNeMQP"
+      ],
+      "name": "FAQ preview",
+      "settings": {
+        "eyebrow": "Quick answers",
+        "heading": "Frequently asked questions",
+        "button_label": "View all FAQs",
+        "button_link": "shopify://pages/faqs",
+        "container_width": 1000,
+        "radius": 14,
+        "background": "#f7efe5",
+        "card_background": "#fffaf3",
+        "text_color": "#3d1f15",
+        "muted_color": "#705b52",
+        "accent_color": "#a65332",
+        "button_text_color": "#ffffff",
+        "border_color": "#dfd0c3",
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
     },
-    "contact-map": {
+    "contact_map_KMpMaA": {
       "type": "contact-map",
-      "settings": { "eyebrow": "Visit us", "heading": "Our store", "address": "<p>123 Heritage Lane<br>Jaipur, Rajasthan 302001<br>India</p>", "map_title": "Store location map", "map_height": 440, "container_width": 1400, "gap": 24, "radius": 18, "background": "#fffdf9", "card_background": "#fffaf3", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "border_color": "#e2d6ca", "padding_top": 76, "padding_bottom": 76 }
-    },
-    "customer-promise": {
-      "type": "customer-promise",
-      "blocks": {
-        "fast": { "type": "promise", "settings": { "icon": "check", "title": "Fast response", "description": "Helpful answers without the long wait." } },
-        "friendly": { "type": "promise", "settings": { "icon": "heart", "title": "Friendly support", "description": "Real people who care about your experience." } },
-        "secure": { "type": "promise", "settings": { "icon": "lock", "title": "Secure communication", "description": "Your personal information stays protected." } },
-        "trusted": { "type": "promise", "settings": { "icon": "sparkle", "title": "Trusted service", "description": "Thoughtful help from start to finish." } }
-      },
-      "block_order": ["fast", "friendly", "secure", "trusted"],
-      "settings": { "eyebrow": "Our promise", "heading": "Support you can count on", "columns": 4, "gap": 18, "radius": 18, "container_width": 1400, "background": "#f7efe5", "card_background": "#fffaf3", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "border_color": "#dfd0c3", "padding_top": 76, "padding_bottom": 76 }
-    },
-    "social-links": {
-      "type": "contact-social-links",
-      "settings": { "eyebrow": "Stay connected", "heading": "Follow our journey", "description": "<p>New collections, craft stories and moments worth celebrating.</p>", "show_instagram": true, "instagram_url": "https://www.instagram.com/antakshari.fashion/", "show_facebook": true, "facebook_url": "https://www.facebook.com/", "show_tiktok": false, "show_youtube": false, "show_pinterest": false, "show_linkedin": false, "container_width": 1000, "background": "#fffdf9", "icon_background": "#fffaf3", "icon_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "border_color": "#e2d6ca", "padding_top": 68, "padding_bottom": 68 }
-    },
-    "newsletter": {
-      "type": "contact-newsletter",
-      "settings": { "eyebrow": "From our world to yours", "heading": "Stay inspired", "description": "<p>Receive new arrivals, styling ideas and stories from the craftspeople who inspire us.</p>", "placeholder": "Your email address", "button_label": "Subscribe", "success_message": "Thank you for joining us.", "container_width": 1100, "radius": 24, "background": "#f7efe5", "card_background": "#fffaf3", "input_background": "#ffffff", "text_color": "#3d1f15", "muted_color": "#705b52", "accent_color": "#a65332", "button_text_color": "#ffffff", "border_color": "#dfd0c3", "padding_top": 76, "padding_bottom": 88 }
+      "name": "Contact map",
+      "settings": {
+        "eyebrow": "Visit us",
+        "heading": "Our store",
+        "address": "<p>123 Heritage Lane<br/>Jaipur, Rajasthan 302001<br/>India</p>",
+        "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3786.380641398414!2d77.65242041051079!3d12.996090587268666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d90d1555555%3A0xb4310b3e5950a830!2sJal%20Vayu%20Towers!5e1!3m2!1sen!2sin!4v1785681454669!5m2!1sen!2sin",
+        "map_title": "Store location map",
+        "map_height": 440,
+        "container_width": 1400,
+        "gap": 24,
+        "radius": 18,
+        "background": "#fffdf9",
+        "card_background": "#fffaf3",
+        "text_color": "#3d1f15",
+        "muted_color": "#705b52",
+        "accent_color": "#a65332",
+        "border_color": "#e2d6ca",
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
     }
   },
-  "order": ["contact-hero", "contact-methods", "contact-form", "business-hours", "faq-preview", "contact-map", "customer-promise", "social-links", "newsletter"]
+  "order": [
+    "main",
+    "contact_hero_X8wpFQ",
+    "contact_methods_kNpMbK",
+    "premium_contact_form_T7LnCP",
+    "business_hours_DpmwVb",
+    "faq_preview_wV3wya",
+    "contact_map_KMpMaA"
+  ]
 }

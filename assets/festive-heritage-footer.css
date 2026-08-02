@@ -128,7 +128,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: clamp(50px, 6vw, 85px);
+  margin-bottom: 24px;
   color: var(--fhf-accent);
 }
 
@@ -378,7 +378,7 @@
 .fhf-logo__text {
   color: var(--fhf-text);
   font-family: var(--fhf-heading-font);
-  font-size: clamp(27px,3vw,38px);
+  font-size: 26px;
   font-style: var(--fhf-heading-style);
   font-weight: var(--fhf-heading-weight);
   letter-spacing: 4px;
@@ -395,7 +395,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: -20px;
 }
 
 .fhf-socials a {

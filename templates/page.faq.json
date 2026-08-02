@@ -27,6 +27,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -39,7 +40,9 @@
         },
         "page-content": {
           "type": "page-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -47,6 +50,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -54,9 +58,109 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
+    },
+    "premium_faq_6qEtaR": {
+      "type": "premium-faq",
+      "blocks": {
+        "text_kPUXqh": {
+          "type": "text",
+          "settings": {
+            "eyebrow": "",
+            "heading": "Orders and shipping",
+            "text": "",
+            "alignment": "left",
+            "spacing_top": 36,
+            "spacing_bottom": 20
+          }
+        },
+        "tab_wdBVWX": {
+          "type": "tab",
+          "settings": {
+            "question": "How long will my order take to arrive?",
+            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "open_by_default": false
+          }
+        },
+        "tab_a4dYKC": {
+          "type": "tab",
+          "settings": {
+            "question": "How long will my order take to arrive?",
+            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "open_by_default": false
+          }
+        },
+        "text_3T9PFV": {
+          "type": "text",
+          "settings": {
+            "eyebrow": "",
+            "heading": "Products and care",
+            "text": "",
+            "alignment": "left",
+            "spacing_top": 36,
+            "spacing_bottom": 20
+          }
+        },
+        "tab_rkRPdP": {
+          "type": "tab",
+          "settings": {
+            "question": "How should I care for my pieces?",
+            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "open_by_default": false
+          }
+        },
+        "tab_DrWw9e": {
+          "type": "tab",
+          "settings": {
+            "question": "Where are your products made?",
+            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "text_kPUXqh",
+        "tab_wdBVWX",
+        "tab_a4dYKC",
+        "text_3T9PFV",
+        "tab_rkRPdP",
+        "tab_DrWw9e"
+      ],
+      "name": "Premium FAQ",
+      "settings": {
+        "eyebrow": "Need to know",
+        "heading": "Frequently asked questions",
+        "heading_tag": "h2",
+        "description": "<p>Everything you need to know about our pieces, ordering and care.</p>",
+        "contact_label": "Still need help?",
+        "contact_link": "",
+        "layout": "split",
+        "intro_alignment": "left",
+        "container_width": 1380,
+        "faq_width": 760,
+        "column_gap": 90,
+        "item_gap": 12,
+        "single_open": true,
+        "icon_style": "plus",
+        "item_radius": 14,
+        "border_width": 1,
+        "item_padding_vertical": 20,
+        "item_padding_horizontal": 24,
+        "heading_size": 48,
+        "question_size": 17,
+        "answer_size": 15,
+        "background": "#faf6ee",
+        "card_background": "#fffaf3",
+        "text_color": "#3d1f15",
+        "muted_color": "#72594f",
+        "accent_color": "#b55f37",
+        "border_color": "#dfcfbd",
+        "padding_top": 84,
+        "padding_bottom": 88
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "premium_faq_6qEtaR"
   ]
 }
