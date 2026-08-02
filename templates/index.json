@@ -271,7 +271,7 @@
                         "primary_background": "{{ settings.color_palette.color11 }}",
                         "primary_text": "#ffffff",
                         "primary_border": "{{ settings.color_palette.color11 }}",
-                        "primary_hover_background": "rgba(0,0,0,0)",
+                        "primary_hover_background": "{{ settings.color_palette.color11 }}",
                         "primary_hover_text": "#ffffff",
                         "primary_hover_border": "{{ settings.color_palette.color11 }}",
                         "secondary_background": "rgba(0,0,0,0)",
