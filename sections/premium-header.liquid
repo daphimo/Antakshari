@@ -53,9 +53,7 @@
           aria-expanded="false"
           data-drawer-open
         >
-          <span class="premium-header__hamburger" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
+          <span class="premium-header__hamburger" aria-hidden="true"> <span></span><span></span><span></span> </span>
         </button>
       </div>
 
@@ -79,6 +77,9 @@
       </div>
 
       <div class="premium-header__actions">
+        <a href="{{ section.settings.wishlist }}" aria-label="Wishlist">
+          {% render 'wishlist-header' %}
+        </a>
         {% render 'search', style: 'modal', display_style: 'icon' %}
         {% render 'header-actions',
           customer_account_menu: section.settings.customer_account_menu,
@@ -131,7 +132,9 @@
               <a
                 href="{{ link.url }}"
                 class="premium-header__menu-link"
-                {% if link.current %}aria-current="page"{% endif %}
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
                 {% if has_panel %}
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -141,7 +144,9 @@
               >
                 <span>{{ link.title }}</span>
                 {% if has_panel %}
-                  <svg class="premium-header__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="m1 1 4 4 4-4"></path></svg>
+                  <svg class="premium-header__chevron" viewBox="0 0 10 6" aria-hidden="true">
+                    <path d="m1 1 4 4 4-4"></path>
+                  </svg>
                 {% endif %}
               </a>
 
@@ -162,10 +167,7 @@
                   drawer: false
                 %}
               {% elsif link.links != blank %}
-                {% render 'premium-header-dropdown',
-                  menu_link: link,
-                  panel_id: panel_id
-                %}
+                {% render 'premium-header-dropdown', menu_link: link, panel_id: panel_id %}
               {% endif %}
             </li>
           {% endfor %}
@@ -184,6 +186,11 @@
   "class": "section-premium-header",
   "limit": 1,
   "settings": [
+    {
+      "type": "url",
+      "id": "wishlist",
+      "label": "Wishlist Link"
+    },
     {
       "type": "header",
       "content": "Logo and navigation"
