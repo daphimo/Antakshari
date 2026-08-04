@@ -71,6 +71,7 @@
       ],
       "name": "Collection heading",
       "settings": {
+        "custom_class": "",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -107,10 +108,10 @@
           "static": true,
           "settings": {
             "enable_filtering": true,
-            "filter_style": "horizontal",
+            "filter_style": "vertical",
             "filter_width": "centered",
             "text_label_case": "default",
-            "show_swatch_label": false,
+            "show_swatch_label": true,
             "show_filter_label": false,
             "enable_sorting": true,
             "enable_grid_density": true,
@@ -130,7 +131,7 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
-            "background_color": "#FFFFFF",
+            "background_color": "#ffffff",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
