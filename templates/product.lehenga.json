@@ -467,12 +467,7 @@
               "name": "Switch Upsell",
               "settings": {
                 "label": "Goes well With",
-                "products": [
-                  "6416-blue",
-                  "black-floral-shirt",
-                  "mm",
-                  "6719"
-                ],
+                "products": "{{ closest.product.metafields.custom.goes_well_with.value }}",
                 "image": "shopify://shop_images/Untitled_design_1.png",
                 "padding_top": 20,
                 "padding_bottom": 0
