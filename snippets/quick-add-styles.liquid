@@ -53,6 +53,7 @@
 
   product-card:is(:hover, :focus-within) .quick-add__button {
     opacity: 1;
+    translate: 0 0;
   }
 
   /* Product cards use quick add in place of the variant swatch row. */
@@ -61,36 +62,33 @@
   }
 
   button.quick-add__button {
-    --quick-add-collapsed-width: var(--button-size-md);
-    --quick-add-icon-width: calc(var(--button-size-md) - 4px);
-    --quick-add-expanded-width: max-content;
-
     display: var(--quick-add-mobile-display, none);
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0;
     background: linear-gradient(var(--quick-add-background, var(--color-background)) 0 100%) padding-box;
-    padding: 0;
+    padding: 0 var(--padding-md);
     border-radius: 50px;
-    border: 2px solid hsl(0 0% 0% / 0.15);
+    border: 1px solid hsl(0 0% 0% / 0.15);
     height: var(--button-size-md);
-    width: var(--quick-add-collapsed-width);
+    width: auto;
     cursor: pointer;
     opacity: var(--quick-add-mobile-opacity, 0);
     overflow: hidden;
     color: var(--quick-add-foreground, var(--color-foreground));
     pointer-events: all;
     position: absolute;
+    inset-inline-start: var(--quick-add-inset-inline-end);
     inset-inline-end: var(--quick-add-inset-inline-end);
     inset-block-end: var(--quick-add-inset-block-end);
-    max-inline-size: calc(100% - var(--quick-add-inset-inline-end));
+    max-inline-size: none;
     min-inline-size: 0;
     white-space: nowrap;
     backdrop-filter: blur(20px) saturate(180%);
-    interpolate-size: allow-keywords;
+    translate: 0 12px;
 
     &:hover {
-      scale: 1.03;
+      scale: 1.015;
 
       /* Hover stabilizer: extends hit area to maintain hover state */
       &::before {
@@ -125,9 +123,7 @@
   }
 
   .quick-add__button > .add-to-cart-icon {
-    flex-shrink: 0;
-    width: var(--quick-add-icon-width);
-    height: 100%;
+    display: none;
   }
 
   .quick-add__product-form-component {
@@ -156,15 +152,13 @@
   }
 
   @media screen and (min-width: 750px) {
-    product-card:is(:hover, :focus-within) .quick-add__button,
     .quick-add__button:is(:hover, :focus-visible) {
-      width: var(--quick-add-expanded-width);
-      padding-inline-end: var(--padding-sm);
+      opacity: 1;
+      translate: 0 0;
     }
   }
 
   .quick-add__button[data-added='true'] {
-    width: var(--quick-add-collapsed-width);
     color: transparent;
   }
 
@@ -176,11 +170,23 @@
     color: var(--quick-add-foreground, var(--color-foreground));
   }
 
+  @media screen and (max-width: 749px) {
+    button.quick-add__button {
+      translate: 0;
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     button.quick-add__button {
-      transition-property: scale, translate, opacity, width;
-      transition-duration: var(--animation-speed);
-      transition-timing-function: var(--ease-out-cubic);
+      transition-property: opacity, translate, scale, box-shadow;
+      transition-duration: 280ms, 360ms, 220ms, 220ms;
+      transition-timing-function: ease, var(--ease-out-cubic), var(--ease-out-cubic), ease;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button.quick-add__button {
+      translate: 0;
     }
   }
 {% endstylesheet %}

@@ -40,7 +40,7 @@
     {% if section.settings.brand_statement != blank %}
       <p class="premium-header__statement">
         <span aria-hidden="true" class="premium-header__statement-ornament"></span>
-        <em>{{ section.settings.brand_statement | escape }}</em>
+        <em>{{ section.settings.brand_statement  }}</em>
         <span aria-hidden="true" class="premium-header__statement-ornament"></span>
       </p>
     {% endif %}
@@ -229,7 +229,7 @@
       "content": "Customer account"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "brand_statement",
       "label": "Highlighted sentence",
       "default": "India's First Festival Led, Regional Craft Inspired, Comfortable Ethnic Wear"

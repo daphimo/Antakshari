@@ -4,11 +4,9 @@ class FestivalCalendar extends HTMLElement {
     this.updateStates();
     this.addEventListener('click', this.handleClick);
     this.addEventListener('keydown', this.handleKeydown);
-    this.scheduleNextUpdate();
   }
 
   disconnectedCallback() {
-    window.clearTimeout(this.updateTimer);
     this.removeEventListener('click', this.handleClick);
     this.removeEventListener('keydown', this.handleKeydown);
   }
@@ -26,10 +24,8 @@ class FestivalCalendar extends HTMLElement {
   };
 
   updateStates() {
-    const now = Date.now();
     this.cards.forEach((card) => {
-      const releaseAt = Date.parse(card.dataset.releaseDate || '');
-      const locked = Number.isFinite(releaseAt) && now < releaseAt;
+      const locked = card.dataset.saleEnabled !== 'true';
       card.dataset.locked = String(locked);
       card.classList.toggle('is-upcoming', locked);
       card.classList.toggle('is-live', !locked);
@@ -41,20 +37,6 @@ class FestivalCalendar extends HTMLElement {
       const action = card.querySelector('[data-festival-action]');
       if (action) action.textContent = locked ? 'Available soon' : 'Explore collection';
     });
-  }
-
-  scheduleNextUpdate() {
-    const now = Date.now();
-    const nextRelease = this.cards
-      .map((card) => Date.parse(card.dataset.releaseDate || ''))
-      .filter((releaseAt) => Number.isFinite(releaseAt) && releaseAt > now)
-      .sort((a, b) => a - b)[0];
-
-    if (!nextRelease) return;
-    this.updateTimer = window.setTimeout(() => {
-      this.updateStates();
-      this.scheduleNextUpdate();
-    }, Math.min(nextRelease - now + 100, 2147483647));
   }
 }
 

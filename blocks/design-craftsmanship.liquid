@@ -42,17 +42,61 @@
     >
       <div class="metaobject-accordion__content-inner">
         <dl class="metaobject-accordion__details">
-          {% if print_placement.value != blank %}<div><dt>Print Placement</dt><dd>{{ print_placement.value | escape }}</dd></div>{% endif %}
+          {% if print_placement.value != blank %}
+            <div>
+              <dt>Print Placement</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for placement in print_placement.value %}
+                    {% if placement != blank %}<li>{{ placement | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
           {% if print_technique.value != blank %}<div><dt>Print Technique</dt><dd>{{ print_technique.value | escape }}</dd></div>{% endif %}
           {% if pattern_placement.value != blank %}<div><dt>Pattern Placement</dt><dd>{{ pattern_placement.value | escape }}</dd></div>{% endif %}
-          {% if embellishments.value != blank %}<div><dt>Embellishments</dt><dd>{{ embellishments.value | escape }}</dd></div>{% endif %}
+          {% if embellishments.value != blank %}
+            <div>
+              <dt>Embellishments</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for embellishment in embellishments.value %}
+                    {% if embellishment != blank %}<li>{{ embellishment | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
           {% if embellishment_placement.value != blank %}<div><dt>Embellishment Placement</dt><dd>{{ embellishment_placement.value | escape }}</dd></div>{% endif %}
           {% if flare_details.value != blank %}<div><dt>Flare Details</dt><dd>{{ flare_details.value | escape }}</dd></div>{% endif %}
-          {% if drape_styles.value != blank %}<div><dt>Drape Styles</dt><dd>{{ drape_styles.value | escape }}</dd></div>{% endif %}
+          {% if drape_styles.value != blank %}
+            <div>
+              <dt>Drape Styles</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for drape_style in drape_styles.value %}
+                    {% if drape_style != blank %}<li>{{ drape_style | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
           {% if pallu_design.value != blank %}<div><dt>Pallu Design</dt><dd>{{ pallu_design.value | escape }}</dd></div>{% endif %}
           {% if border_type.value != blank %}<div><dt>Border Type</dt><dd>{{ border_type.value | escape }}</dd></div>{% endif %}
           {% if zari_type.value != blank %}<div><dt>Zari Type</dt><dd>{{ zari_type.value | escape }}</dd></div>{% endif %}
-          {% if weave_technique.value != blank %}<div><dt>Weave / Technique</dt><dd>{{ weave_technique.value | escape }}</dd></div>{% endif %}
+          {% if weave_technique.value != blank %}
+            <div>
+              <dt>Weave / Technique</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for technique in weave_technique.value %}
+                    {% if technique != blank %}<li>{{ technique | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
           {% if waist_closure.value != blank %}<div><dt>Waist Closure</dt><dd>{{ waist_closure.value | escape }}</dd></div>{% endif %}
         </dl>
       </div>

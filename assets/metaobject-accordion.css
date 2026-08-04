@@ -126,6 +126,25 @@
   line-height: 1.55;
 }
 
+.metaobject-accordion__details dd > :first-child,
+.metaobject-accordion__details dd .metafield-rich_text_field > :first-child {
+  margin-block-start: 0;
+}
+
+.metaobject-accordion__details dd > :last-child,
+.metaobject-accordion__details dd .metafield-rich_text_field > :last-child {
+  margin-block-end: 0;
+}
+
+.metaobject-accordion__value-list {
+  margin: 0;
+  padding-inline-start: 1.15rem;
+}
+
+.metaobject-accordion__value-list li + li {
+  margin-block-start: 0.25rem;
+}
+
 .metaobject-accordion__description {
   margin-block-start: 16px;
 }

@@ -84,7 +84,7 @@
   display: grid;
   grid-template-columns: minmax(160px, 0.8fr) minmax(0, 2fr) minmax(150px, 0.8fr);
   align-items: center;
-  column-gap: clamp(18px, 3vw, 48px);
+  column-gap: 8px;
 }
 
 .premium-header__top-row {

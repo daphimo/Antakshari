@@ -208,6 +208,13 @@
     "tabbed_collection_DiT67M": {
       "type": "tabbed-collection",
       "blocks": {
+        "collection_tab_zpX9wa": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "add-on-for-men",
+            "title_override": "For Men"
+          }
+        },
         "collection_tab_jFMAjR": {
           "type": "collection_tab",
           "settings": {
@@ -231,6 +238,7 @@
         }
       },
       "block_order": [
+        "collection_tab_zpX9wa",
         "collection_tab_jFMAjR",
         "collection_tab_CAGkDq",
         "collection_tab_WxAbcR"

@@ -33,7 +33,10 @@
       <div class="metaobject-accordion__content-inner">
         <dl class="metaobject-accordion__details">
           {% if styling_notes.value != blank %}
-            <div><dt>Styling Notes</dt><dd>{{ styling_notes.value | escape | newline_to_br }}</dd></div>
+            <div>
+              <dt>Styling Notes</dt>
+              <dd class="rte">{{ styling_notes | metafield_tag }}</dd>
+            </div>
           {% endif %}
           {% if design_artisan_story.value != blank %}
             <div><dt>Design / Artisan Story</dt><dd>{{ design_artisan_story.value | escape | newline_to_br }}</dd></div>

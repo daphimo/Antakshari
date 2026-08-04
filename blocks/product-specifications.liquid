@@ -53,9 +53,42 @@
           {% if fabric_gsm.value != blank %}<div><dt>Fabric GSM</dt><dd>{{ fabric_gsm.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fit_note.value != blank %}<div><dt>Fit Note</dt><dd>{{ fit_note.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if dimensions_summary.value != blank %}<div><dt>Dimensions Summary</dt><dd>{{ dimensions_summary.value | escape | newline_to_br }}</dd></div>{% endif %}
-          {% if included_items.value != blank %}<div><dt>Included Items</dt><dd>{{ included_items.value | escape | newline_to_br }}</dd></div>{% endif %}
-          {% if component_fabrics.value != blank %}<div><dt>Component Fabrics</dt><dd>{{ component_fabrics.value | escape | newline_to_br }}</dd></div>{% endif %}
-          {% if key_details.value != blank %}<div><dt>Key Details</dt><dd>{{ key_details.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if included_items.value != blank %}
+            <div>
+              <dt>Included Items</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for included_item in included_items.value %}
+                    {% if included_item != blank %}<li>{{ included_item | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
+          {% if component_fabrics.value != blank %}
+            <div>
+              <dt>Component Fabrics</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for component_fabric in component_fabrics.value %}
+                    {% if component_fabric != blank %}<li>{{ component_fabric | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
+          {% if key_details.value != blank %}
+            <div>
+              <dt>Key Details</dt>
+              <dd>
+                <ul class="metaobject-accordion__value-list">
+                  {% for key_detail in key_details.value %}
+                    {% if key_detail != blank %}<li>{{ key_detail | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              </dd>
+            </div>
+          {% endif %}
         </dl>
       </div>
     </div>

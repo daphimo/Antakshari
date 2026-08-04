@@ -1,9 +1,5 @@
 <script type="module" src="{{ 'festival-calendar.js' | asset_url }}"></script>
 
-{% liquid
-  assign current_timestamp = 'now' | date: '%s' | plus: 0
-%}
-
 <section
   class="festival-calendar color-{{ section.settings.color_scheme }}"
   style="
@@ -30,10 +26,9 @@
           <ul class="splide__list">
             {% for block in section.blocks %}
               {% liquid
-                assign release_timestamp = block.settings.release_date | date: '%s' | plus: 0
-                assign is_upcoming = false
-                if block.settings.release_date != blank and release_timestamp > current_timestamp
-                  assign is_upcoming = true
+                assign is_upcoming = true
+                if block.settings.enable_sale
+                  assign is_upcoming = false
                 endif
               %}
               <li
@@ -47,6 +42,7 @@
                   {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
                   data-festival-card
                   data-release-date="{{ block.settings.release_date | escape }}"
+                  data-sale-enabled="{{ block.settings.enable_sale }}"
                   data-locked="{{ is_upcoming }}"
                   aria-disabled="{{ is_upcoming }}"
                   {% if is_upcoming or block.settings.link == blank %}tabindex="-1"{% endif %}
@@ -302,6 +298,7 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "release_date", "label": "Date", "info": "Use ISO format with timezone, for example: 2026-08-26T00:00:00+05:30" },
+        { "type": "checkbox", "id": "enable_sale", "label": "Enable sale", "info": "Turn this on to make the sale live. The date is for display only.", "default": false },
         { "type": "text", "id": "festival_name", "label": "Festival name", "default": "Festival name" },
         { "type": "url", "id": "link", "label": "Link" }
       ]

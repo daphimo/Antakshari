@@ -91,8 +91,8 @@
         "height": 360,
         "heading_size": 64,
         "background": "#f7efe5",
-        "text_color": "#FFFFFF",
-        "description_color": "#FFFFFF",
+        "text_color": "#ffffff",
+        "description_color": "#ffffff",
         "accent_color": "#a65332",
         "button_text_color": "#ffffff",
         "overlay_color": "#1d0e08",
@@ -272,6 +272,7 @@
     },
     "contact_map_KMpMaA": {
       "type": "contact-map",
+      "disabled": true,
       "name": "Contact map",
       "settings": {
         "eyebrow": "Visit us",
