@@ -461,18 +461,6 @@
                 "border_color": "#dfd0bf"
               },
               "blocks": {}
-            },
-            "switch_upsell_xWpLEx": {
-              "type": "switch-upsell",
-              "name": "Switch Upsell",
-              "settings": {
-                "label": "Goes well With",
-                "products": "{{ closest.product.metafields.custom.goes_well_with.value }}",
-                "image": "shopify://shop_images/Untitled_design_1.png",
-                "padding_top": 20,
-                "padding_bottom": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -491,8 +479,7 @@
             "care_profile_xTATRR",
             "claims_certifications_m8NwrU",
             "divider_eFLEKk",
-            "complete_the_look_C8wgRt",
-            "switch_upsell_xWpLEx"
+            "complete_the_look_C8wgRt"
           ]
         }
       },
