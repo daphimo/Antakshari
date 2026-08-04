@@ -156,11 +156,26 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "product_inventory_7pt7b7": {
+                  "type": "product-inventory",
+                  "name": "t:names.product_inventory",
+                  "settings": {
+                    "inventory_threshold": 10,
+                    "show_inventory_quantity": false,
+                    "text_color": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_xrnftG",
-                "price_tVjtKg"
+                "price_tVjtKg",
+                "product_inventory_7pt7b7"
               ]
             },
             "divider_VJhene": {
