@@ -1290,6 +1290,7 @@
           "settings": {
             "image": "shopify://shop_images/onam-festival-bg.jpg",
             "release_date": "2026-08-26",
+            "enable_sale": false,
             "festival_name": "Onam",
             "link": "shopify://collections/all"
           }
@@ -1299,6 +1300,7 @@
           "settings": {
             "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
             "release_date": "2026-08-28",
+            "enable_sale": false,
             "festival_name": "Varamahalakshmi",
             "link": ""
           }
@@ -1308,6 +1310,7 @@
           "settings": {
             "image": "shopify://shop_images/rakshabandhan-bg.jpg",
             "release_date": "2026-08-28",
+            "enable_sale": false,
             "festival_name": "Rakshabandhan",
             "link": ""
           }
@@ -1317,6 +1320,7 @@
           "settings": {
             "image": "shopify://shop_images/janmashtami-bg.jpg",
             "release_date": "2026-09-04",
+            "enable_sale": false,
             "festival_name": "Janamashtami",
             "link": ""
           }
@@ -1326,6 +1330,7 @@
           "settings": {
             "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
             "release_date": "2026-09-06",
+            "enable_sale": false,
             "festival_name": "Ganesh Chaturthi",
             "link": ""
           }
@@ -2020,7 +2025,7 @@
         "explore_text": "",
         "explore_link": "",
         "show_explore_arrow": true,
-        "container_width": 1360,
+        "container_width": 1600,
         "horizontal_padding": 24,
         "desktop_columns": 4,
         "header_gap": 60,
@@ -2091,7 +2096,7 @@
         "explore_text": "",
         "explore_link": "",
         "show_explore_arrow": true,
-        "container_width": 1360,
+        "container_width": 1600,
         "horizontal_padding": 24,
         "desktop_columns": 4,
         "header_gap": 60,
