@@ -151,7 +151,7 @@
 }
 
 .premium-header__statement-ornament {
-  width: clamp(22px, 3vw, 46px);
+  width: 22px;
   height: 1px;
   flex: 0 1 auto;
   background: linear-gradient(90deg, transparent, var(--ph-statement-accent, var(--ph-accent)));
