@@ -60,7 +60,7 @@
     "type_size_h6": "16",
     "page_background_color": "{{ settings.color_palette.background }}",
     "page_width": "wide",
-    "badge_position": "top-left",
+    "badge_position": "bottom-left",
     "badge_corner_radius": 2,
     "badge_sale_background_color": "{{ settings.color_palette.background }}",
     "badge_sale_text_color": "{{ shop.brand.colors.primary[0].background }}",
