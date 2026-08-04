@@ -118,7 +118,7 @@
             "icon": "phone",
             "title": "Call us",
             "description": "Send us a note and we’ll reply shortly.",
-            "link_text": "Mon–Sat, 10am–6pm",
+            "link_text": "96320 29986",
             "link": ""
           }
         },
@@ -183,6 +183,7 @@
     },
     "business_hours_DpmwVb": {
       "type": "business-hours",
+      "disabled": true,
       "name": "Business hours",
       "settings": {
         "eyebrow": "Availability",
