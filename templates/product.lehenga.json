@@ -232,242 +232,6 @@
               },
               "blocks": {}
             },
-            "buy_buttons_6JTyzN": {
-              "type": "buy-buttons",
-              "name": "t:names.product_buy_buttons",
-              "settings": {
-                "stacking": false,
-                "text_color": "",
-                "show_pickup_availability": true,
-                "gift_card_form": true,
-                "recipient_button_style": "default",
-                "recipient_button_background": "{{ settings.color_palette.background }}",
-                "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_style": "default",
-                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "input_style": "default",
-                "input_background_color": "{{ settings.color_palette.background }}",
-                "input_text_color": "{{ settings.color_palette.foreground }}",
-                "input_border_color": "{{ settings.color_palette.foreground }}",
-                "border_width": 1,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true,
-                  "settings": {
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {
-                    "style_class": "button-secondary",
-                    "custom_button_background": "{{ settings.color_palette.foreground }}",
-                    "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            },
-            "group_8ffxzY": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "responsive": "both",
-                "content_direction": "row",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "buy_buttons_xUnp3V": {
-                  "type": "buy-buttons",
-                  "name": "t:names.product_buy_buttons",
-                  "settings": {
-                    "stacking": false,
-                    "text_color": "",
-                    "show_pickup_availability": true,
-                    "gift_card_form": true,
-                    "recipient_button_style": "default",
-                    "recipient_button_background": "{{ settings.color_palette.background }}",
-                    "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                    "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                    "selected_recipient_button_style": "default",
-                    "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                    "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                    "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "quantity": {
-                      "type": "quantity",
-                      "disabled": true,
-                      "static": true,
-                      "settings": {
-                        "input_style": "default",
-                        "input_background_color": "{{ settings.color_palette.background }}",
-                        "input_text_color": "{{ settings.color_palette.foreground }}",
-                        "input_border_color": "{{ settings.color_palette.foreground }}",
-                        "border_width": 1,
-                        "border_radius": 0
-                      },
-                      "blocks": {}
-                    },
-                    "add-to-cart": {
-                      "type": "add-to-cart",
-                      "static": true,
-                      "settings": {
-                        "style_class": "button-secondary",
-                        "custom_button_background": "{{ settings.color_palette.foreground }}",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "{{ settings.color_palette.background }}"
-                      },
-                      "blocks": {}
-                    },
-                    "accelerated-checkout": {
-                      "type": "accelerated-checkout",
-                      "disabled": true,
-                      "static": true,
-                      "settings": {},
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": []
-                },
-                "buy_buttons_pfnMAn": {
-                  "type": "buy-buttons",
-                  "name": "t:names.product_buy_buttons",
-                  "settings": {
-                    "stacking": false,
-                    "text_color": "",
-                    "show_pickup_availability": true,
-                    "gift_card_form": true,
-                    "recipient_button_style": "default",
-                    "recipient_button_background": "{{ settings.color_palette.background }}",
-                    "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                    "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                    "selected_recipient_button_style": "default",
-                    "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                    "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                    "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "quantity": {
-                      "type": "quantity",
-                      "disabled": true,
-                      "static": true,
-                      "settings": {
-                        "input_style": "default",
-                        "input_background_color": "{{ settings.color_palette.background }}",
-                        "input_text_color": "{{ settings.color_palette.foreground }}",
-                        "input_border_color": "{{ settings.color_palette.foreground }}",
-                        "border_width": 1,
-                        "border_radius": 0
-                      },
-                      "blocks": {}
-                    },
-                    "add-to-cart": {
-                      "type": "add-to-cart",
-                      "disabled": true,
-                      "static": true,
-                      "settings": {
-                        "style_class": "button-secondary",
-                        "custom_button_background": "{{ settings.color_palette.foreground }}",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "{{ settings.color_palette.background }}"
-                      },
-                      "blocks": {}
-                    },
-                    "accelerated-checkout": {
-                      "type": "accelerated-checkout",
-                      "static": true,
-                      "settings": {},
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": []
-                }
-              },
-              "block_order": [
-                "buy_buttons_xUnp3V",
-                "buy_buttons_pfnMAn"
-              ]
-            },
             "size_chart_zCpF6H": {
               "type": "size-chart",
               "name": "Size Chart",
@@ -481,6 +245,32 @@
                 "background_color": "#fffaf3",
                 "text_color": "#3d1f15",
                 "accent_color": "#a84e2c",
+                "border_color": "#dfd0bf"
+              },
+              "blocks": {}
+            },
+            "lehenga_set_selector_9bhhPQ": {
+              "type": "lehenga-set-selector",
+              "name": "Lehenga set selector",
+              "settings": {
+                "single_tab_label": "Skirt only",
+                "bundle_tab_label": "3-piece set",
+                "select_option_label": "Select size",
+                "single_total_label": "Total",
+                "bundle_total_label": "Set total",
+                "button_label": "Add to cart",
+                "margin_top": 12,
+                "margin_bottom": 16,
+                "margin_inline": 0,
+                "padding_vertical": 7,
+                "padding_horizontal": 7,
+                "border_radius": 12,
+                "background_color": "#fffaf3",
+                "surface_color": "#f7efe4",
+                "text_color": "#3d1f15",
+                "muted_color": "#765f55",
+                "accent_color": "#7b2025",
+                "accent_text_color": "#fffaf3",
                 "border_color": "#dfd0bf"
               },
               "blocks": {}
@@ -690,9 +480,8 @@
             "divider_VJhene",
             "family_products_4HYeqL",
             "variant_picker_R3rGDr",
-            "buy_buttons_6JTyzN",
-            "group_8ffxzY",
             "size_chart_zCpF6H",
+            "lehenga_set_selector_9bhhPQ",
             "text_aEtTtq",
             "product_specifications_n79NDc",
             "craft_profile_9eKKL3",
