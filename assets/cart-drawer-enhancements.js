@@ -2,74 +2,83 @@ import { CartLinesUpdateEvent, CartErrorEvent } from '@shopify/events';
 
 class CartDrawerUpsells extends HTMLElement {
   connectedCallback() {
-    this.mount();
-    this.observer = new MutationObserver(this.handleMutation);
-    this.observer.observe(this, { childList: true, subtree: true });
+    this.viewport = this.querySelector('[data-cart-slider-viewport]');
+    this.list = this.querySelector('[data-cart-slider-list]');
+    this.previousButton = this.querySelector('[data-cart-slider-previous]');
+    this.nextButton = this.querySelector('[data-cart-slider-next]');
+
+    if (!this.viewport || !this.list) return;
+
+    this.previousButton?.addEventListener('click', this.showPrevious);
+    this.nextButton?.addEventListener('click', this.showNext);
+    this.viewport.addEventListener('scroll', this.handleScroll, { passive: true });
+
+    this.resizeObserver = new ResizeObserver(this.measure);
+    this.resizeObserver.observe(this.viewport);
+    this.mutationObserver = new MutationObserver(this.measure);
+    this.mutationObserver.observe(this.list, { childList: true });
+    this.measure();
   }
 
   disconnectedCallback() {
-    window.clearTimeout(this.retryTimer);
-    window.cancelAnimationFrame(this.refreshFrame);
-    this.observer?.disconnect();
-    this.splide?.destroy(true);
-    this.splide = null;
-    this.root = null;
+    window.cancelAnimationFrame(this.measureFrame);
+    window.cancelAnimationFrame(this.scrollFrame);
+    this.previousButton?.removeEventListener('click', this.showPrevious);
+    this.nextButton?.removeEventListener('click', this.showNext);
+    this.viewport?.removeEventListener('scroll', this.handleScroll);
+    this.resizeObserver?.disconnect();
+    this.mutationObserver?.disconnect();
   }
 
-  mount = () => {
-    const root = this.querySelector('.cart-drawer-upsells__slider');
-    if (!root || this.splide) return;
-    if (typeof window.Splide === 'undefined') {
-      this.retryTimer = window.setTimeout(this.mount, 100);
-      return;
-    }
+  get slides() {
+    return [...this.querySelectorAll('.cart-drawer-upsells__slide')];
+  }
 
-    const slideCount = Number(root.dataset.slideCount) || root.querySelectorAll('.splide__slide:not(.is-clone)').length;
+  measure = () => {
+    window.cancelAnimationFrame(this.measureFrame);
+    this.measureFrame = window.requestAnimationFrame(() => {
+      if (!this.viewport) return;
 
-    this.splide = new window.Splide(root, {
-      type: slideCount > 1 ? 'loop' : 'slide',
-      perPage: 1,
-      perMove: 1,
-      gap: '10px',
-      arrows: slideCount > 1,
-      pagination: false,
-      drag: slideCount > 1,
-      speed: 350,
-      mediaQuery: 'min',
-      breakpoints: {
-        420: { perPage: 1.12 },
-      },
+      const viewportWidth = Math.max(0, Math.floor(this.viewport.getBoundingClientRect().width));
+      const slideWidth = Math.floor(viewportWidth * 0.75);
+      this.style.setProperty('--cart-drawer-slider-width', `${slideWidth}px`);
+
+      const hasMultipleSlides = this.slides.length > 1;
+      if (this.previousButton) this.previousButton.hidden = !hasMultipleSlides;
+      if (this.nextButton) this.nextButton.hidden = !hasMultipleSlides;
+      this.updateControls();
     });
-    this.splide.mount();
-    this.root = root;
   };
 
-  handleMutation = (mutations) => {
-    const hasRealDrawerChange = mutations.some((mutation) =>
-      [...mutation.addedNodes, ...mutation.removedNodes].some((node) => {
-        if (!(node instanceof Element)) return false;
-        if (node.matches('.splide__slide.is-clone') || node.closest('.splide__slide.is-clone')) return false;
-        return node.matches('.cart-drawer-upsells__slider, .splide__list, .splide__slide')
-          || Boolean(node.querySelector('.cart-drawer-upsells__slider, .splide__list, .splide__slide'));
-      })
-    );
-    if (!hasRealDrawerChange) return;
+  getStep() {
+    const firstSlide = this.slides[0];
+    if (!firstSlide || !this.list) return this.viewport?.clientWidth || 0;
+    const gap = Number.parseFloat(getComputedStyle(this.list).columnGap) || 0;
+    return firstSlide.getBoundingClientRect().width + gap;
+  }
 
-    window.cancelAnimationFrame(this.refreshFrame);
-    this.refreshFrame = window.requestAnimationFrame(() => {
-      const currentRoot = this.querySelector('.cart-drawer-upsells__slider');
-      if (!currentRoot) return;
+  move = (direction) => {
+    if (!this.viewport || this.slides.length < 2) return;
+    const step = this.getStep();
+    const currentIndex = Math.round(this.viewport.scrollLeft / step);
+    const nextIndex = Math.min(this.slides.length - 1, Math.max(0, currentIndex + direction));
+    this.viewport.scrollTo({ left: nextIndex * step, behavior: 'smooth' });
+  };
 
-      if (this.root !== currentRoot) {
-        this.splide?.destroy(true);
-        this.splide = null;
-        this.root = null;
-        this.mount();
-        return;
-      }
+  showPrevious = () => this.move(-1);
+  showNext = () => this.move(1);
 
-      this.splide?.refresh();
-    });
+  handleScroll = () => {
+    window.cancelAnimationFrame(this.scrollFrame);
+    this.scrollFrame = window.requestAnimationFrame(this.updateControls);
+  };
+
+  updateControls = () => {
+    if (!this.viewport || this.slides.length < 2) return;
+    const atStart = this.viewport.scrollLeft <= 1;
+    const atEnd = this.viewport.scrollLeft >= this.viewport.scrollWidth - this.viewport.clientWidth - 1;
+    if (this.previousButton) this.previousButton.disabled = atStart;
+    if (this.nextButton) this.nextButton.disabled = atEnd;
   };
 }
 

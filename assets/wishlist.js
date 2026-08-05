@@ -1,3 +1,5 @@
+import { CartLinesUpdateEvent } from "@shopify/events";
+
 const LOCAL_STORAGE_WISHLIST_KEY = "shopify-wishlist";
 const LOCAL_STORAGE_DELIMITER = ",";
 const BUTTON_ACTIVE_CLASS = "active";
@@ -226,6 +228,20 @@ const addAllWishlistItemsToCart = async (button) => {
 
   setAddAllLoading(button, true);
 
+  const cartItemsComponents = document.querySelectorAll("cart-items-component[data-section-id]");
+  const sectionIds = [...new Set([...cartItemsComponents].map((component) => component.dataset.sectionId).filter(Boolean))];
+  const deferredEventPromise = CartLinesUpdateEvent.createPromise();
+
+  button.dispatchEvent(new CartLinesUpdateEvent({
+    action: "add",
+    context: "wishlist",
+    lines: items.map((item) => ({
+      merchandiseId: String(item.id),
+      quantity: item.quantity,
+    })),
+    promise: deferredEventPromise.promise,
+  }));
+
   try {
     const response = await fetch(`${window.Shopify?.routes?.root || "/"}cart/add.js`, {
       method: "POST",
@@ -233,7 +249,11 @@ const addAllWishlistItemsToCart = async (button) => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({
+        items,
+        sections: sectionIds.join(","),
+        sections_url: window.location.pathname,
+      }),
     });
 
     if (!response.ok) {
@@ -241,8 +261,27 @@ const addAllWishlistItemsToCart = async (button) => {
       throw new Error(error.description || "Unable to add wishlist items to cart.");
     }
 
-    window.location.href = `${window.Shopify?.routes?.root || "/"}cart`;
+    const result = await response.json();
+    const cartResponse = await fetch(`${window.Shopify?.routes?.root || "/"}cart.js`, {
+      headers: { Accept: "application/json" },
+      credentials: "same-origin",
+    });
+
+    if (!cartResponse.ok) throw new Error("Unable to refresh the cart.");
+
+    const cart = await cartResponse.json();
+    deferredEventPromise.resolve({
+      cart: CartLinesUpdateEvent.createCartFromAjaxResponse(cart),
+      detail: {
+        items: cart.items,
+        itemCount: items.reduce((total, item) => total + item.quantity, 0),
+        sections: result.sections,
+        source: "wishlist-add-all",
+        didError: false,
+      },
+    });
   } catch (error) {
+    deferredEventPromise.reject(error);
     console.error("Unable to add all wishlist items to cart.", error);
     showTooltip(error.message || "Unable to add wishlist items to cart.");
   } finally {

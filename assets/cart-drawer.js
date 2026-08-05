@@ -77,18 +77,20 @@ class CartDrawerComponent extends Component {
       event.target instanceof Element ? event.target.closest('dialog:modal') : null
     );
 
-    if (shouldAutoOpen && !sourceModal && !this.#isCartEmpty()) {
-      this.#themeDrawer?.open();
-    }
-
     event.promise
-      ?.then(({ detail }) => {
+      ?.then(async ({ detail }) => {
         const settle = () => requestAnimationFrame(() => this.#updateStickyState());
 
         if (!shouldAutoOpen || detail?.didError) {
           settle();
           return;
         }
+
+        // Let the cart-items component morph the returned section before revealing the drawer.
+        // This prevents the previous cart state flashing briefly after a successful add.
+        await new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
 
         const openAndSettle = () => {
           if (!this.#themeDrawer?.isOpen) this.#themeDrawer?.open();
@@ -105,10 +107,6 @@ class CartDrawerComponent extends Component {
         if (error?.name !== 'AbortError') console.warn('[cart-drawer] Event promise rejected:', error);
       });
   };
-
-  #isCartEmpty() {
-    return Boolean(this.querySelector('.cart-drawer--empty'));
-  }
 
   #updateStickyState() {
     const dialog = this.#dialog;

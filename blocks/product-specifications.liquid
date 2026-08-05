@@ -5,17 +5,25 @@
   assign movement_rating = product_resource.metafields.custom.movement_rating
   assign sheer_opaque = product_resource.metafields.custom.sheer_opaque
   assign stitching_type = product_resource.metafields.custom.stitching_type
+  assign neckline = product_resource.metafields.custom.neckline
+  assign sleeve_type = product_resource.metafields.custom.sleeve_type
+  assign separate_sleeve_attached = product_resource.metafields.custom.separate_sleeve_attached | default: product_resource.metafields.custom.seperate_sleeve_attached
+  assign closure_type = product_resource.metafields.custom.closure_type
   assign back_design = product_resource.metafields.custom.back_design
   assign lining_details = product_resource.metafields.custom.lining_details
   assign fabric_gsm = product_resource.metafields.custom.fabric_gsm
+  assign fabric_type = product_resource.metafields.custom.fabric_type
+  assign fall_pico = product_resource.metafields.custom.fall_pico
   assign fit_note = product_resource.metafields.custom.fit_note
   assign dimensions_summary = product_resource.metafields.custom.dimensions_summary
+  assign lehenga_length = product_resource.metafields.custom.lehenga_length
+  assign waist_dimension = product_resource.metafields.custom.waist_dimension
   assign included_items = product_resource.metafields.custom.included_items
   assign component_fabrics = product_resource.metafields.custom.component_fabrics
   assign key_details = product_resource.metafields.custom.key_details
 
   assign has_specifications = false
-  if structure_details.value != blank or silhouette.value != blank or movement_rating.value != blank or sheer_opaque.value != blank or stitching_type.value != blank or back_design.value != blank or lining_details.value != blank or fabric_gsm.value != blank or fit_note.value != blank or dimensions_summary.value != blank or included_items.value != blank or component_fabrics.value != blank or key_details.value != blank
+  if structure_details.value != blank or silhouette.value != blank or movement_rating.value != blank or sheer_opaque.value != blank or stitching_type.value != blank or neckline.value != blank or sleeve_type.value != blank or separate_sleeve_attached.value != blank or closure_type.value != blank or back_design.value != blank or lining_details.value != blank or fabric_gsm.value != blank or fabric_type.value != blank or fall_pico.value != blank or fit_note.value != blank or dimensions_summary.value != blank or lehenga_length.value != blank or waist_dimension.value != blank or included_items.value != blank or component_fabrics.value != blank or key_details.value != blank
     assign has_specifications = true
   endif
 %}
@@ -48,11 +56,19 @@
           {% if movement_rating.value != blank %}<div><dt>Movement Rating</dt><dd>{{ movement_rating.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if sheer_opaque.value != blank %}<div><dt>Sheer / Opaque</dt><dd>{{ sheer_opaque.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if stitching_type.value != blank %}<div><dt>Stitching Type</dt><dd>{{ stitching_type.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if neckline.value != blank %}<div><dt>Neckline</dt><dd>{{ neckline.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if sleeve_type.value != blank %}<div><dt>Sleeve Type</dt><dd>{{ sleeve_type.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if separate_sleeve_attached.value != blank %}<div><dt>Separate Sleeve Attached</dt><dd>{{ separate_sleeve_attached.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if closure_type.value != blank %}<div><dt>Closure Type</dt><dd>{{ closure_type.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if back_design.value != blank %}<div><dt>Back Design</dt><dd>{{ back_design.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if lining_details.value != blank %}<div><dt>Lining Details</dt><dd>{{ lining_details.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fabric_gsm.value != blank %}<div><dt>Fabric GSM</dt><dd>{{ fabric_gsm.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if fabric_type.value != blank %}<div><dt>Fabric Type</dt><dd>{{ fabric_type.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if fall_pico.value != blank %}<div><dt>Fall/Pico</dt><dd>{{ fall_pico.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fit_note.value != blank %}<div><dt>Fit Note</dt><dd>{{ fit_note.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if dimensions_summary.value != blank %}<div><dt>Dimensions Summary</dt><dd>{{ dimensions_summary.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if lehenga_length.value != blank %}<div><dt>Lehenga Length</dt><dd>{{ lehenga_length.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if waist_dimension.value != blank %}<div><dt>Waist Dimension</dt><dd>{{ waist_dimension.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if included_items.value != blank %}
             <div>
               <dt>Included Items</dt>

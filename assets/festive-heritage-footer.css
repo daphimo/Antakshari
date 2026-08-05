@@ -391,6 +391,10 @@
   line-height: 1.8;
 }
 
+.fhf-social_head {
+  color: var(--fhf-accent);
+}
+
 .fhf-socials {
   display: flex;
   flex-wrap: wrap;
@@ -404,12 +408,8 @@
   height: 40px;
   align-items: center;
   justify-content: center;
-  color: color-mix(
-    in srgb,
-    var(--fhf-text) 76%,
-    transparent
-  );
-  border: 1px solid color-mix(in srgb, var(--fhf-text) 24%, transparent);
+  color: var(--fhf-accent);
+  border: 1px solid var(--fhf-accent);
   border-radius: 50%;
   transition: color 0.25s ease, border-color 0.25s ease;
 }

@@ -84,6 +84,14 @@ img {
   height: auto;
 }
 
+/* Keep the top of all cover-cropped media visible, overriding Shopify focal-point styles. */
+img,
+video,
+iframe,
+svg {
+  object-position: 50% 0% !important;
+}
+
 input,
 textarea,
 select {

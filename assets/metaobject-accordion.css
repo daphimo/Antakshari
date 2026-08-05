@@ -5,8 +5,9 @@
   overflow: hidden;
   color: var(--pdb-text, var(--color-foreground));
   background: var(--pdb-background, var(--color-background));
-  border: 1px solid var(--pdb-border, currentcolor);
-  border-radius: 14px;
+  border: 0;
+  border-block-start: 1px solid var(--pdb-border, currentcolor);
+  border-radius: 0;
 }
 
 .metaobject-accordion__toggle {

@@ -1,6 +1,5 @@
 {% liquid
   assign add_on_products = settings.cart_add_on_products
-  assign add_on_count = 0
 %}
 
 {% capture add_on_cards %}
@@ -16,8 +15,7 @@
       endfor
     %}
     {% if add_on_product.available and add_on_variant != blank and add_on_in_cart == false %}
-      {% assign add_on_count = add_on_count | plus: 1 %}
-      <li class="splide__slide">
+      <li class="cart-drawer-upsells__slide">
         <cart-drawer-upsell class="cart-drawer-upsell" data-product-id="{{ add_on_product.id }}">
           <div class="cart-drawer-upsell__card">
             <span class="cart-drawer-upsell__media" href="{{ add_on_product.url }}" aria-label="{{ add_on_product.title | escape }}">
@@ -82,16 +80,15 @@
       {% endif %}
     </div>
     <div
-      class="splide cart-drawer-upsells__slider"
-      data-slide-count="{{ add_on_count }}"
+      class="cart-drawer-upsells__slider"
       aria-label="Cart add ons"
     >
-      <div class="splide__arrows cart-drawer-upsells__arrows">
-        <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous add on">‹</button>
-        <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next add on">›</button>
+      <div class="cart-drawer-upsells__arrows">
+        <button class="cart-drawer-upsells__arrow" type="button" aria-label="Previous add on" data-cart-slider-previous>‹</button>
+        <button class="cart-drawer-upsells__arrow" type="button" aria-label="Next add on" data-cart-slider-next>›</button>
       </div>
-      <div class="splide__track">
-        <ul class="splide__list">{{ add_on_cards }}</ul>
+      <div class="cart-drawer-upsells__viewport" data-cart-slider-viewport>
+        <ul class="cart-drawer-upsells__track" data-cart-slider-list>{{ add_on_cards }}</ul>
       </div>
     </div>
   </cart-drawer-upsells>

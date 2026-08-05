@@ -9,12 +9,15 @@
   assign drape_styles = product_resource.metafields.custom.drape_styles
   assign pallu_design = product_resource.metafields.custom.pallu_design
   assign border_type = product_resource.metafields.custom.border_type
+  assign border_width = product_resource.metafields.custom.border_width
+  assign color_primary = product_resource.metafields.custom.color_primary
+  assign color_secondary = product_resource.metafields.custom.color_secondary
   assign zari_type = product_resource.metafields.custom.zari_type
   assign weave_technique = product_resource.metafields.custom.weave_technique
   assign waist_closure = product_resource.metafields.custom.waist_closure
 
   assign has_design_details = false
-  if print_placement.value != blank or print_technique.value != blank or pattern_placement.value != blank or embellishments.value != blank or embellishment_placement.value != blank or flare_details.value != blank or drape_styles.value != blank or pallu_design.value != blank or border_type.value != blank or zari_type.value != blank or weave_technique.value != blank or waist_closure.value != blank
+  if print_placement.value != blank or print_technique.value != blank or pattern_placement.value != blank or embellishments.value != blank or embellishment_placement.value != blank or flare_details.value != blank or drape_styles.value != blank or pallu_design.value != blank or border_type.value != blank or border_width.value != blank or color_primary.value != blank or color_secondary.value != blank or zari_type.value != blank or weave_technique.value != blank or waist_closure.value != blank
     assign has_design_details = true
   endif
 %}
@@ -44,7 +47,7 @@
         <dl class="metaobject-accordion__details">
           {% if print_placement.value != blank %}
             <div>
-              <dt>Print Placement</dt>
+              <dt>Body-Motif/Pattern</dt>
               <dd>
                 <ul class="metaobject-accordion__value-list">
                   {% for placement in print_placement.value %}
@@ -55,7 +58,7 @@
             </div>
           {% endif %}
           {% if print_technique.value != blank %}<div><dt>Print Technique</dt><dd>{{ print_technique.value | escape }}</dd></div>{% endif %}
-          {% if pattern_placement.value != blank %}<div><dt>Pattern Placement</dt><dd>{{ pattern_placement.value | escape }}</dd></div>{% endif %}
+          {% if pattern_placement.value != blank %}<div><dt>Pallu-Motif/Pattern</dt><dd>{{ pattern_placement.value | escape }}</dd></div>{% endif %}
           {% if embellishments.value != blank %}
             <div>
               <dt>Embellishments</dt>
@@ -82,8 +85,10 @@
               </dd>
             </div>
           {% endif %}
-          {% if pallu_design.value != blank %}<div><dt>Pallu Design</dt><dd>{{ pallu_design.value | escape }}</dd></div>{% endif %}
           {% if border_type.value != blank %}<div><dt>Border Type</dt><dd>{{ border_type.value | escape }}</dd></div>{% endif %}
+          {% if border_width.value != blank %}<div><dt>Border Width</dt><dd>{{ border_width.value | escape }}</dd></div>{% endif %}
+          {% if color_primary.value != blank %}<div><dt>Color Primary</dt><dd>{{ color_primary.value | escape }}</dd></div>{% endif %}
+          {% if color_secondary.value != blank %}<div><dt>Color Secondary</dt><dd>{{ color_secondary.value | escape }}</dd></div>{% endif %}
           {% if zari_type.value != blank %}<div><dt>Zari Type</dt><dd>{{ zari_type.value | escape }}</dd></div>{% endif %}
           {% if weave_technique.value != blank %}
             <div>

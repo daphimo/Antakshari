@@ -1,4 +1,9 @@
-{% if block.settings.products != blank %}
+{% liquid
+  assign product_resource = closest.product | default: product
+  assign goes_well_with_products = product_resource.metafields.custom.goes_well_with.value
+%}
+
+{% if goes_well_with_products != blank %}
   {{ 'switch.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'switch.js' | asset_url }}" defer="defer"></script>
   <script type="module" src="{{ 'add-prod.js' | asset_url }}"></script>
@@ -27,7 +32,7 @@
       data-id="addonproducts-{{ block.id }}"
     >
       <div class="upsell_container">
-        {% for item in block.settings.products %}
+        {% for item in goes_well_with_products %}
           {% assign first_variant = item.selected_or_first_available_variant %}
 
           <div
@@ -106,11 +111,6 @@
       "id": "label",
       "label": "Label",
       "default": "Goes well With"
-    },
-    {
-      "type": "product_list",
-      "label": "Product List",
-      "id": "products"
     },
     {
       "type": "image_picker",

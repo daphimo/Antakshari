@@ -427,13 +427,17 @@ class ProductFormComponent extends Component {
     }
 
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
-    let cartItemComponentsSectionIds = [];
+    const cartItemComponentsSectionIds = [];
     cartItemsComponents.forEach((item) => {
       if (item instanceof HTMLElement && item.dataset.sectionId) {
         cartItemComponentsSectionIds.push(item.dataset.sectionId);
       }
-      formData.append('sections', cartItemComponentsSectionIds.join(','));
     });
+    const sectionIds = [...new Set(cartItemComponentsSectionIds)];
+    if (sectionIds.length > 0) {
+      formData.set('sections', sectionIds.join(','));
+      formData.set('sections_url', window.location.pathname);
+    }
 
     const itemCount = Number(formData.get('quantity')) || Number(this.dataset.quantityDefault);
     const deferredEventPromise = CartLinesUpdateEvent.createPromise();
@@ -619,7 +623,8 @@ class ProductFormComponent extends Component {
         id: Number(item.variantId),
         quantity: item.quantity,
       })),
-      sections: cartItemComponentsSectionIds.join(','),
+      sections: [...new Set(cartItemComponentsSectionIds)].join(','),
+      sections_url: window.location.pathname,
     };
 
     fetch(Theme.routes.cart_add_url, {

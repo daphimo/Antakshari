@@ -79,6 +79,7 @@
     "secondary_button_border_width": 1,
     "button_border_radius_secondary": 100,
     "cart_type": "drawer",
+    "auto_open_cart_drawer": true,
     "drawer_background_color": "{{ settings.color_palette.background }}",
     "drawer_text_color": "{{ shop.brand.colors.primary[0].background }}",
     "icon_stroke": "thin",

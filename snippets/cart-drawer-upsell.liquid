@@ -1,6 +1,5 @@
 {% liquid
   assign upsell_products = settings.cart_drawer_upsell_product
-  assign upsell_count = 0
 %}
 
 {% capture upsell_cards %}
@@ -22,8 +21,7 @@
         and upsell_variant != blank
         and upsell_in_cart == false
       %}
-        {% assign upsell_count = upsell_count | plus: 1 %}
-        <li class="splide__slide">
+        <li class="cart-drawer-upsells__slide">
         <cart-drawer-upsell
           class="cart-drawer-upsell"
           data-product-id="{{ upsell_product.id }}"
@@ -138,16 +136,15 @@
       {% endif %}
     </div>
     <div
-      class="splide cart-drawer-upsells__slider"
-      data-slide-count="{{ upsell_count }}"
+      class="cart-drawer-upsells__slider"
       aria-label="Recommended products"
     >
-      <div class="splide__arrows cart-drawer-upsells__arrows">
-        <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous recommendation">‹</button>
-        <button class="splide__arrow splide__arrow--next" type="button" aria-label="Next recommendation">›</button>
+      <div class="cart-drawer-upsells__arrows">
+        <button class="cart-drawer-upsells__arrow" type="button" aria-label="Previous recommendation" data-cart-slider-previous>‹</button>
+        <button class="cart-drawer-upsells__arrow" type="button" aria-label="Next recommendation" data-cart-slider-next>›</button>
       </div>
-      <div class="splide__track">
-        <ul class="splide__list">{{ upsell_cards }}</ul>
+      <div class="cart-drawer-upsells__viewport" data-cart-slider-viewport>
+        <ul class="cart-drawer-upsells__track" data-cart-slider-list>{{ upsell_cards }}</ul>
       </div>
     </div>
   </cart-drawer-upsells>

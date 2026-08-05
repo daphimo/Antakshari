@@ -229,6 +229,7 @@
                     {%- endif -%}
                   </div>
 
+                  <div class="cart-items__meta-row">
                   <div class="cart-items__variants-wrapper">
                     {%- if item.product.has_only_default_variant == false
                       or item.properties.size != 0
@@ -323,6 +324,7 @@
                         {% endif %}
                       {% endif %}
                     </div>
+                  </div>
                   </div>
                 </td>
                 <td
@@ -492,6 +494,10 @@
 
   .cart-items__product-info {
     min-width: 0;
+  }
+
+  .cart-items__meta-row {
+    display: contents;
   }
 
   /* Cart drawer: separate grid areas for variants and unit price */

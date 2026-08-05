@@ -83,7 +83,7 @@
                     assign form_id = 'TabbedCollectionForm-' | append: section.id | append: '-' | append: block.id | append: '-' | append: product.id
                   %}
                   <li class="tabbed-product-card">
-                    <div class="tabbed-product-card__media">
+                    <a class="tabbed-product-card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
                       {% if card_image != blank %}
                         {{
                           card_image
@@ -92,7 +92,7 @@
                             class: 'tabbed-product-card__image',
                             loading: 'lazy',
                             widths: '240, 360, 480, 640, 800, 900',
-                            sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 32vw, 48vw',
+                            sizes: '68px',
                             alt: card_image.alt
                         }}
                       {% else %}
@@ -101,10 +101,10 @@
                       {% if variant.compare_at_price > variant.price %}
                         <span class="tabbed-product-card__sale">Sale</span>
                       {% endif %}
-                    </div>
+                    </a>
 
-                    <div class="tabbed-product-card__content">
-                      <h3 class="tabbed-product-card__title">{{ product.title | escape }}</h3>
+                    <div class="tabbed-product-card__details">
+                      <h3 class="tabbed-product-card__title"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
                       <div class="tabbed-product-card__price">
                         <span>{{ variant.price | money }}</span>
                         {% if variant.compare_at_price > variant.price %}
@@ -112,31 +112,32 @@
                         {% endif %}
                       </div>
 
-                      <product-form-component
-                        data-section-id="{{ section.id }}"
-                        data-product-id="{{ product.id }}"
-                        on:submit="/handleSubmit"
-                        class="tabbed-product-card__form"
-                      >
-                        <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
-                        {% form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
-                          <input
-                            type="hidden"
-                            name="id"
-                            ref="variantId"
-                            value="{{ variant.id }}"
-                            {% unless can_add %}disabled{% endunless %}
-                          >
-                          <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}">
-                          {% render 'add-to-cart-button',
-                            add_to_cart_text: card_button_label,
-                            class: 'tabbed-product-card__button add-to-cart-button',
-                            can_add_to_cart: can_add,
-                            product: product
-                          %}
-                        {% endform %}
-                      </product-form-component>
                     </div>
+
+                    <product-form-component
+                      data-section-id="{{ section.id }}"
+                      data-product-id="{{ product.id }}"
+                      on:submit="/handleSubmit"
+                      class="tabbed-product-card__form"
+                    >
+                      <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+                      {% form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+                        <input
+                          type="hidden"
+                          name="id"
+                          ref="variantId"
+                          value="{{ variant.id }}"
+                          {% unless can_add %}disabled{% endunless %}
+                        >
+                        <input type="hidden" name="quantity" value="{{ variant.quantity_rule.min | default: 1 }}">
+                        {% render 'add-to-cart-button',
+                          add_to_cart_text: card_button_label,
+                          class: 'tabbed-product-card__button add-to-cart-button',
+                          can_add_to_cart: can_add,
+                          product: product
+                        %}
+                      {% endform %}
+                    </product-form-component>
                   </li>
                 {% endfor %}
               </ul>
