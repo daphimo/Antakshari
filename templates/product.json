@@ -516,9 +516,9 @@
               "name": "Product Specifications",
               "settings": {
                 "heading": "Product Specifications",
-                "open_by_default": false,
+                "open_by_default": true,
                 "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -537,8 +537,8 @@
               "settings": {
                 "heading": "Craft Profile",
                 "open_by_default": false,
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -558,8 +558,8 @@
                 "heading": "Occasion & Festival",
                 "open_by_default": false,
                 "metafield_key": "occasions",
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -578,8 +578,8 @@
               "settings": {
                 "heading": "Style & Inspiration",
                 "open_by_default": false,
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -598,8 +598,8 @@
               "settings": {
                 "heading": "Design & Craftsmanship",
                 "open_by_default": false,
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -618,8 +618,8 @@
               "settings": {
                 "heading": "Care Profile",
                 "open_by_default": false,
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -639,8 +639,8 @@
                 "heading": "Claims & Certifications",
                 "open_by_default": false,
                 "download_label": "Download certificate",
-                "margin_top": 12,
-                "margin_bottom": 12,
+                "margin_top": 0,
+                "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
                 "padding_horizontal": 16,
@@ -654,26 +654,13 @@
               },
               "blocks": {}
             },
-            "divider_eFLEKk": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 0.5,
-                "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color8 }}",
-                "width_percent": 100,
-                "padding-block-start": 20,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
             "complete_the_look_C8wgRt": {
               "type": "complete-the-look",
               "name": "Complete the look",
               "settings": {
                 "heading": "Complete the look",
                 "button_label": "Add complete look to cart",
-                "margin_top": 12,
+                "margin_top": 20,
                 "margin_bottom": 16,
                 "margin_inline": 0,
                 "inner_spacing": 16,
@@ -684,6 +671,16 @@
                 "accent_color": "#a84e2c",
                 "accent_text_color": "#ffffff",
                 "border_color": "#dfd0bf"
+              },
+              "blocks": {}
+            },
+            "switch_upsell_UPcycm": {
+              "type": "switch-upsell",
+              "name": "Switch Upsell",
+              "settings": {
+                "label": "Goes well With",
+                "padding_top": 0,
+                "padding_bottom": 0
               },
               "blocks": {}
             }
@@ -704,8 +701,8 @@
             "design_craftsmanship_C93b9e",
             "care_profile_xTATRR",
             "claims_certifications_m8NwrU",
-            "divider_eFLEKk",
-            "complete_the_look_C8wgRt"
+            "complete_the_look_C8wgRt",
+            "switch_upsell_UPcycm"
           ]
         }
       },
