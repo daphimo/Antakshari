@@ -9,16 +9,72 @@
  */
 {
   "sections": {
-    "main": {
+    "blog_page_section_YiLyie": {
       "type": "blog-page-section",
+      "name": "Blog page Section",
       "settings": {
         "articles_per_page": 12,
         "desktop_columns": 3,
-        "card_layout": "vertical"
+        "card_layout": "vertical",
+        "show_article_label": false,
+        "use_first_tag": true,
+        "show_excerpt": true,
+        "excerpt_words": 14,
+        "show_date": false,
+        "show_author": false,
+        "date_format": "%b %d, %Y",
+        "caption": "JOURNAL",
+        "heading": "",
+        "heading_tag": "h1",
+        "content": "",
+        "container_width": 1600,
+        "horizontal_padding": 24,
+        "header_gap": 60,
+        "header_bottom_spacing": 38,
+        "grid_gap": 24,
+        "image_height": 310,
+        "mobile_image_height": 280,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "card_radius": 24,
+        "image_radius": 22,
+        "card_border_width": 1,
+        "card_content_padding": 24,
+        "image_overlay_opacity": 0,
+        "section_background": "#f8f4ef",
+        "card_background": "#ffffff",
+        "border_color": "#e4d8cc",
+        "caption_size": 11,
+        "caption_mobile_size": 10,
+        "caption_letter_spacing": 6,
+        "caption_color": "#9a5834",
+        "heading_size": 34,
+        "heading_mobile_size": 28,
+        "heading_line_height": 115,
+        "heading_color": "#2c211b",
+        "content_size": 15,
+        "content_mobile_size": 14,
+        "content_line_height": 165,
+        "content_color": "#66554b",
+        "article_title_size": 22,
+        "article_title_mobile_size": 20,
+        "article_title_line_height": 125,
+        "article_title_color": "#2c211b",
+        "excerpt_size": 14,
+        "excerpt_mobile_size": 14,
+        "excerpt_line_height": 160,
+        "excerpt_color": "#6f5e54",
+        "meta_size": 11,
+        "meta_letter_spacing": 2,
+        "meta_color": "#9a5834",
+        "hover_lift": 6,
+        "hover_shadow_opacity": 12
       }
     }
   },
   "order": [
-    "main"
+    "blog_page_section_YiLyie"
   ]
 }
