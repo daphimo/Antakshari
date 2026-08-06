@@ -21,7 +21,7 @@
 
 {% capture cart_icon %}
   <cart-icon
-    class="header-actions__cart-icon small-hide {% if display_style == 'text' %} header-actions__cart-icon--text{% endif %}{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
+    class="header-actions__cart-icon{% if display_style == 'text' %} header-actions__cart-icon--text{% endif %}{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
     data-testid="cart-icon"
   >
     <span class="{% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}">
@@ -75,6 +75,8 @@
 <header-actions
   {% if display_style == 'text' %}
     class="header-actions--text"
+  {% else %}
+    class="small-hide"
   {% endif %}
   {{- block.shopify_attributes -}}
 >
