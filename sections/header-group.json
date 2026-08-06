@@ -228,21 +228,32 @@
             "link": "",
             "open_in_new_tab": false
           }
+        },
+        "item_hGfNTm": {
+          "type": "item",
+          "settings": {
+            "action": "link",
+            "icon": "heart",
+            "label": "Wishlist",
+            "link": "shopify://pages/wishlist",
+            "open_in_new_tab": false
+          }
         }
       },
       "block_order": [
         "item_t898Qr",
         "item_tmahVR",
-        "item_camPxD"
+        "item_camPxD",
+        "item_hGfNTm"
       ],
       "name": "Mobile bottom bar",
       "settings": {
         "accessibility_label": "Mobile navigation",
         "customer_account_menu": "customer-account-main-menu",
-        "background_color": "#FCFAF5",
-        "text_color": "#2A1F1A",
-        "accent_color": "#6B1F2A",
-        "border_color": "#C9A24C"
+        "background_color": "#fcfaf5",
+        "text_color": "#2a1f1a",
+        "accent_color": "#6b1f2a",
+        "border_color": "#c9a24c"
       }
     }
   },
