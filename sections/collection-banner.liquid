@@ -1,0 +1,61 @@
+{% liquid
+  assign desktop_image = collection.metafields.custom.collection_banner_desktop.value
+  assign mobile_image = collection.metafields.custom.collection_banner_mobile.value | default: desktop_image
+  assign has_banner = false
+  if desktop_image != blank or mobile_image != blank
+    assign has_banner = true
+  endif
+%}
+
+<section class="collection-banner collection-banner--{% if has_banner %}image{% else %}minimal{% endif %} collection-banner--align-{{ section.settings.content_alignment }}" style="--banner-overlay: {{ section.settings.overlay_color }}; --banner-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --banner-title: {{ section.settings.title_color }}; --banner-crumb: {{ section.settings.breadcrumb_color }}; --banner-max-width: {{ section.settings.max_width }}px; --banner-padding: {{ section.settings.horizontal_padding }}px; --banner-space: {{ section.settings.vertical_spacing }}px;">
+  {% if has_banner %}
+    <picture class="collection-banner__media">
+      {% if mobile_image != blank %}
+        <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w" sizes="100vw">
+      {% endif %}
+      {{ desktop_image | default: mobile_image | image_url: width: 3200 | image_tag: widths: '750, 1100, 1500, 2000, 2400, 3200', sizes: '100vw', class: 'collection-banner__image', loading: 'eager', fetchpriority: 'high' }}
+    </picture>
+    {% if section.settings.enable_overlay %}<span class="collection-banner__overlay" aria-hidden="true"></span>{% endif %}
+  {% endif %}
+  <div class="collection-banner__inner">
+    <nav class="collection-banner__breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span aria-hidden="true">/</span><span aria-current="page">{{ collection.title }}</span>
+    </nav>
+    <h1 class="collection-banner__title">{{ collection.title }}</h1>
+  </div>
+</section>
+
+{% stylesheet %}
+  .collection-banner { position: relative; background: #f7f1e3; overflow: hidden; isolation: isolate; }
+  .collection-banner--minimal { min-height: auto; padding-block: clamp(36px, 5vw, var(--banner-space)); background: #f7f1e3; }
+  .collection-banner__media { display: block; width: 100%; }
+  .collection-banner__overlay { position: absolute; inset: 0; }
+  .collection-banner__image { display: block; width: 100%; height: auto; max-height: min(760px, 72vh); object-fit: cover; object-position: center; }
+  .collection-banner__overlay { z-index: 1; background: linear-gradient(180deg, color-mix(in srgb, var(--banner-overlay), transparent 65%) 0%, var(--banner-overlay) 100%); opacity: var(--banner-overlay-opacity); }
+  .collection-banner__inner { position: relative; z-index: 2; width: 100%; max-width: var(--banner-max-width); margin: auto; padding-inline: var(--banner-padding); display: flex; flex-direction: column; justify-content: flex-end; }
+  .collection-banner--image .collection-banner__inner { position: absolute; inset: 0; padding-block: clamp(32px, 6vw, 88px); }
+  .collection-banner--align-left .collection-banner__inner { align-items: flex-start; text-align: left; }
+  .collection-banner--align-center .collection-banner__inner { align-items: center; text-align: center; }
+  .collection-banner--align-right .collection-banner__inner { align-items: flex-end; text-align: right; }
+  .collection-banner__breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; color: var(--banner-crumb); font-size: clamp(.72rem, .8vw, .84rem); font-weight: 500; letter-spacing: .09em; text-transform: uppercase; }
+  .collection-banner__breadcrumbs a { color: inherit; text-decoration: none; }
+  .collection-banner__breadcrumbs a:hover { text-decoration: underline; text-underline-offset: .25em; }
+  .collection-banner__title { max-width: 16ch; margin: .8rem 0 0; color: var(--banner-title); font-family: var(--font-heading--family); font-size: clamp(2.15rem, 4.2vw, 4.75rem); font-weight: 500; letter-spacing: -.025em; line-height: .98; text-wrap: balance; text-shadow: 0 2px 20px rgb(42 31 26 / 22%); }
+  .collection-banner--minimal .collection-banner__title { color: #2a1f1a; }
+  .collection-banner--minimal .collection-banner__breadcrumbs { color: #6b1f2a; }
+  @media (max-width: 749px) { .collection-banner--minimal { padding-block: 34px; } .collection-banner__image { max-height: none; object-fit: contain; } .collection-banner__inner { padding-inline: min(var(--banner-padding), 24px); } .collection-banner--image .collection-banner__inner { padding-block: 24px 30px; } .collection-banner__title { font-size: clamp(2rem, 10vw, 3.25rem); line-height: 1.02; } }
+{% endstylesheet %}
+
+{% schema %}
+{"name":"Collection banner","enabled_on":{"templates":["collection"]},"settings":[
+  {"type":"checkbox","id":"enable_overlay","label":"Enable overlay","default":true},
+  {"type":"color","id":"overlay_color","label":"Overlay color","default":"#2A1F1A"},
+  {"type":"range","id":"overlay_opacity","label":"Overlay opacity","min":0,"max":80,"step":5,"unit":"%","default":35},
+  {"type":"select","id":"content_alignment","label":"Content alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}],"default":"center"},
+  {"type":"color","id":"title_color","label":"Title color","default":"#FCFAF5"},{"type":"color","id":"breadcrumb_color","label":"Breadcrumb color","default":"#FCFAF5"},
+  {"type":"range","id":"max_width","label":"Maximum content width","min":800,"max":1600,"step":20,"unit":"px","default":1600},
+  {"type":"range","id":"horizontal_padding","label":"Horizontal padding","min":16,"max":80,"step":4,"unit":"px","default":32},
+  {"type":"range","id":"vertical_spacing","label":"Minimal header spacing","min":24,"max":120,"step":4,"unit":"px","default":56}
+],"presets":[{"name":"Collection banner"}]}
+{% endschema %}

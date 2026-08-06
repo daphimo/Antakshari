@@ -325,6 +325,8 @@ if (!customElements.get('facet-inputs-component')) {
  * @typedef {Object} PriceFacetRefs
  * @property {HTMLInputElement} minInput - The minimum price input
  * @property {HTMLInputElement} maxInput - The maximum price input
+ * @property {HTMLInputElement | undefined} minRange - The minimum price range handle
+ * @property {HTMLInputElement | undefined} maxRange - The maximum price range handle
  */
 
 /**
@@ -340,13 +342,16 @@ class PriceFacetComponent extends Component {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('keydown', this.#onKeyDown);
+    this.addEventListener('input', this.#onRangeInput);
     this.currency = this.dataset.currency ?? 'USD';
     this.moneyFormat = this.#extractMoneyPlaceholder(this.dataset.moneyFormat ?? '{{amount}}');
+    this.#syncRangePresentation();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('keydown', this.#onKeyDown);
+    this.removeEventListener('input', this.#onRangeInput);
   }
 
   /**
@@ -369,6 +374,46 @@ class PriceFacetComponent extends Component {
     const pattern = /[0-9]|\.|,|'| |Tab|Backspace|Enter|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Delete|Escape/;
     if (!event.key.match(pattern)) event.preventDefault();
   };
+
+  /**
+   * Keeps the native price fields as the source of truth while a range handle moves.
+   * The existing change handler still performs validation, URL updates and AJAX rendering.
+   * @param {Event} event
+   */
+  #onRangeInput = (event) => {
+    const { minInput, maxInput, minRange, maxRange } = this.refs;
+    if (!(event.target instanceof HTMLInputElement)) return;
+    if (!minRange || !maxRange) return;
+
+    if (event.target === minInput || event.target === maxInput) {
+      const numericValue = Number(event.target.value.replace(/,/g, '').replace(/[^0-9.]/g, ''));
+      if (Number.isFinite(numericValue)) {
+        if (event.target === minInput) minRange.value = String(Math.min(numericValue, Number(maxRange.value)));
+        else maxRange.value = String(Math.max(numericValue, Number(minRange.value)));
+        this.#syncRangePresentation();
+      }
+      return;
+    }
+
+    if (!event.target.classList.contains('price-facet__range-input')) return;
+
+    if (Number(minRange.value) > Number(maxRange.value)) {
+      if (event.target === minRange) minRange.value = maxRange.value;
+      else maxRange.value = minRange.value;
+    }
+
+    minInput.value = Number(minRange.value) > 0 ? minRange.value : '';
+    maxInput.value = Number(maxRange.value) < Number(maxRange.max) ? maxRange.value : '';
+    this.#syncRangePresentation();
+  };
+
+  #syncRangePresentation() {
+    const { minRange, maxRange } = this.refs;
+    if (!minRange || !maxRange) return;
+    const maximum = Number(maxRange.max) || 1;
+    this.style.setProperty('--price-range-start', `${(Number(minRange.value) / maximum) * 100}%`);
+    this.style.setProperty('--price-range-end', `${(Number(maxRange.value) / maximum) * 100}%`);
+  }
 
   /**
    * Updates price filter and results

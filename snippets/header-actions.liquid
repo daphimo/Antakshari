@@ -75,6 +75,8 @@
 <header-actions
   {% if display_style == 'text' %}
     class="header-actions--text"
+  {% else %}
+    class="small-hide"
   {% endif %}
   {{- block.shopify_attributes -}}
 >

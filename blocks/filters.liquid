@@ -217,7 +217,7 @@
                           assign should_render_clear = false
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, id_prefix: 'horizontal'
+                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, id_prefix: 'horizontal', open_by_default: forloop.first, enable_range_slider: block_settings.enable_range_slider, slider_color: block_settings.slider_color, slider_track_color: block_settings.slider_track_color, slider_handle_color: block_settings.slider_handle_color
                       -%}
                     {% else %}
                       {% liquid
@@ -232,7 +232,7 @@
                         else
                           assign should_render_clear = false
                         endif
-                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id
+                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id, open_by_default: forloop.first
                       %}
                   {% endcase %}
                 {%- endfor -%}
@@ -481,7 +481,7 @@
                           assign is_active = true
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, id_prefix: 'dialog'
+                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, id_prefix: 'dialog', open_by_default: forloop.first, enable_range_slider: block_settings.enable_range_slider, slider_color: block_settings.slider_color, slider_track_color: block_settings.slider_track_color, slider_handle_color: block_settings.slider_handle_color
                       -%}
                     {% else %}
                       {% liquid
@@ -491,7 +491,7 @@
 
                         assign active_value_count = filter.active_values | size
                         assign total_active_values = total_active_values | plus: active_value_count
-                        render 'list-filter', filter: filter, filter_style: 'vertical', active_value_count: active_value_count, should_render_clear: false, in_drawer: true, sectionId: section.id
+                        render 'list-filter', filter: filter, filter_style: 'vertical', active_value_count: active_value_count, should_render_clear: false, in_drawer: true, sectionId: section.id, open_by_default: forloop.first
                       %}
                   {% endcase %}
                 {%- endfor -%}
@@ -1372,6 +1372,38 @@
       "label": "t:settings.show_filter_label",
       "default": false,
       "visible_if": "{{ block.settings.enable_filtering == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Price range slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_range_slider",
+      "label": "Enable range slider",
+      "default": true,
+      "visible_if": "{{ block.settings.enable_filtering == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Selected range color",
+      "default": "#6B1F2A",
+      "visible_if": "{{ block.settings.enable_range_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slider_track_color",
+      "label": "Slider track color",
+      "default": "#E4D9C3",
+      "visible_if": "{{ block.settings.enable_range_slider == true }}"
+    },
+    {
+      "type": "color",
+      "id": "slider_handle_color",
+      "label": "Slider handle color",
+      "default": "#C9A24C",
+      "visible_if": "{{ block.settings.enable_range_slider == true }}"
     },
     {
       "type": "checkbox",

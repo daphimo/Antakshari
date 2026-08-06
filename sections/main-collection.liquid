@@ -20,6 +20,26 @@
       { once: true }
     );
   }
+
+  document.addEventListener('click', (event) => {
+    const bullet = event.target.closest('.collection-filter-bullet');
+    if (!bullet) return;
+
+    const inputs = document.querySelectorAll('facets-form-component input[type="checkbox"]');
+    const input =
+      [...inputs].find(
+        (candidate) =>
+          candidate.name === bullet.dataset.filterName &&
+          candidate.value === bullet.dataset.filterValue &&
+          !candidate.closest('dialog')
+      ) ||
+      [...inputs].find(
+        (candidate) =>
+          candidate.name === bullet.dataset.filterName && candidate.value === bullet.dataset.filterValue
+      );
+
+    if (input) input.click();
+  });
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
@@ -37,8 +57,8 @@
 {% # theme-check-disable-next-line UnknownFilter %}
 <collection-component view-event-payload="{{ collection | standard_event_data: 'view' | escape }}">
   <results-list
-    class="section product-grid-container{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
-    style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+    class="section product-grid-container collection-filters-refined{% if section.settings.enable_sticky_filter_sidebar %} collection-filters-refined--sticky{% endif %}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px; --collection-filter-sticky-top: {{ section.settings.sticky_top_offset }}px; --collection-filter-heading-size: {{ section.settings.filter_heading_size }}px; --collection-filter-option-size: {{ section.settings.filter_option_size }}px; --collection-filter-item-gap: {{ section.settings.filter_item_spacing }}px;"
     section-id="{{ section.id }}"
     infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
   >
@@ -47,6 +67,22 @@
     <div
       class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
     >
+      {% if section.settings.enable_filter_bullets and collection.filters != blank %}
+        <nav class="collection-filter-bullets" aria-label="Quick filters">
+          <div class="collection-filter-bullets__inner">
+            {% for filter in collection.filters %}
+              {% unless filter.type == 'price_range' %}
+                {% assign bullet_value = filter.values.first %}
+                {% if bullet_value != blank %}
+                  <button type="button" class="collection-filter-bullet{% if bullet_value.active %} is-active{% endif %}" data-filter-name="{{ filter.param_name | escape }}" data-filter-value="{{ bullet_value.value | escape }}" aria-pressed="{% if bullet_value.active %}true{% else %}false{% endif %}" {% if bullet_value.count == 0 and bullet_value.active == false %}disabled{% endif %}>
+                    {{ bullet_value.label }}
+                  </button>
+                {% endif %}
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </nav>
+      {% endif %}
       {% content_for 'block',
         type: 'filters',
         id: 'filters',
@@ -92,6 +128,27 @@
   </results-list>
 </collection-component>
 
+{% stylesheet %}
+  .collection-filter-bullets { grid-column: 1 / -1; max-width: 1600px; width: 100%; margin-inline: auto; padding: 6px 32px 16px; }
+  .collection-filter-bullets__inner { display: flex; flex-wrap: wrap; gap: 7px; }
+  .collection-filter-bullet { min-height: 32px; padding: 5px 13px; border: 1px solid rgb(201 162 76 / 72%); border-radius: 999px; background: #fcfaf5; color: #6b1f2a; font: 500 .78rem/1.2 var(--font-body--family); letter-spacing: .025em; cursor: pointer; transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+  .collection-filter-bullet:hover { border-color: #c56b3e; transform: translateY(-1px); }
+  .collection-filter-bullet.is-active { border-color: #6b1f2a; background: #6b1f2a; color: #fcfaf5; }
+  .collection-filter-bullet:disabled { opacity: .45; cursor: not-allowed; }
+  @media (min-width: 750px) {
+    .collection-filters-refined .collection-wrapper { --facets-vertical-col-width: 5; }
+    .collection-filters-refined .facets--vertical .facets__label { font-size: var(--collection-filter-heading-size); letter-spacing: .015em; }
+    .collection-filters-refined .facets--vertical :is(.facets__inputs-list, .price-facet, .show-more) { font-size: var(--collection-filter-option-size); }
+    .collection-filters-refined .facets--vertical .facets__inputs-list { gap: var(--collection-filter-item-gap); }
+    .collection-filters-refined .facets--vertical .facets__summary { min-height: 40px; padding-block: 8px; }
+    .collection-filters-refined .facets--vertical .facets__inputs { gap: 10px; }
+    .collection-filters-refined .facets--vertical .facets__item { padding-block: 2px; }
+    .collection-filters-refined--sticky .facets-block-wrapper--vertical:not(#filters-drawer) { position: sticky; top: var(--collection-filter-sticky-top); align-self: start; max-height: calc(100vh - var(--collection-filter-sticky-top) - 20px); overflow: hidden auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  }
+  @media (min-width: 990px) { .collection-filters-refined .collection-wrapper { --facets-vertical-col-width: 4; } }
+  @media (max-width: 749px) { .collection-filter-bullets { padding-inline: 20px; } .collection-filter-bullets__inner { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; } .collection-filter-bullet { flex: 0 0 auto; } }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.collection_container",
@@ -99,6 +156,62 @@
     "templates": ["collection"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_filter_bullets",
+      "label": "Enable filter bullets",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Filter sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_filter_sidebar",
+      "label": "Enable sticky filter sidebar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "sticky_top_offset",
+      "label": "Sticky top offset",
+      "min": 60,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "filter_heading_size",
+      "label": "Filter heading size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "filter_option_size",
+      "label": "Filter option size",
+      "min": 11,
+      "max": 17,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "filter_item_spacing",
+      "label": "Filter option spacing",
+      "min": 2,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
     {
       "type": "select",
       "id": "layout_type",

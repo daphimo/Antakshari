@@ -2,6 +2,8 @@
   assign product_resource = closest.product | default: product
   assign print_placement = product_resource.metafields.custom.print_placement
   assign print_technique = product_resource.metafields.custom.print_technique
+  assign blouse_collar = product_resource.metafields.custom.blouse_collar
+  assign strap_type = product_resource.metafields.custom.strap_type
   assign pattern_placement = product_resource.metafields.custom.pattern_placement
   assign embellishments = product_resource.metafields.custom.embellishments
   assign embellishment_placement = product_resource.metafields.custom.embellishment_placement
@@ -87,6 +89,8 @@
           {% endif %}
           {% if border_type.value != blank %}<div><dt>Border Type</dt><dd>{{ border_type.value | escape }}</dd></div>{% endif %}
           {% if border_width.value != blank %}<div><dt>Border Width</dt><dd>{{ border_width.value | escape }}</dd></div>{% endif %}
+          {% if strap_type.value != blank %}<div><dt>Strap Type</dt><dd>{{ strap_type.value | escape }}</dd></div>{% endif %}
+          {% if blouse_collar.value != blank %}<div><dt>Collar</dt><dd>{{ blouse_collar.value | escape }}</dd></div>{% endif %}
           {% if color_primary.value != blank %}<div><dt>Color Primary</dt><dd>{{ color_primary.value | escape }}</dd></div>{% endif %}
           {% if color_secondary.value != blank %}<div><dt>Color Secondary</dt><dd>{{ color_secondary.value | escape }}</dd></div>{% endif %}
           {% if zari_type.value != blank %}<div><dt>Zari Type</dt><dd>{{ zari_type.value | escape }}</dd></div>{% endif %}

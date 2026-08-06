@@ -1,0 +1,39 @@
+{% if collection.description != blank %}
+  <section class="collection-description" style="--description-size: {{ section.settings.font_size }}px; --description-width: {{ section.settings.content_width }}px; --description-align: {{ section.settings.text_alignment }}; --description-height: {{ section.settings.max_visible_height }}px; --description-link: {{ section.settings.read_more_color }}; --description-bg: {{ section.settings.background }}; --description-pad-y: {{ section.settings.padding_vertical }}px; --description-pad-x: {{ section.settings.padding_horizontal }}px; --description-space: {{ section.settings.spacing }}px;">
+    <div class="collection-description__inner">
+      <div class="collection-description__content rte" id="CollectionDescription-{{ section.id }}">{{ collection.description }}</div>
+      <button class="collection-description__toggle" type="button" aria-expanded="false" aria-controls="CollectionDescription-{{ section.id }}" hidden><span data-more>{{ section.settings.read_more_label }}</span><span data-less hidden>{{ section.settings.read_less_label }}</span></button>
+    </div>
+  </section>
+  <script>
+    (() => {
+      const section = document.currentScript.previousElementSibling;
+      const content = section.querySelector('.collection-description__content');
+      const button = section.querySelector('.collection-description__toggle');
+      const limit = parseFloat(getComputedStyle(content).getPropertyValue('--description-height'));
+      if (content.scrollHeight <= limit + 2) return;
+      section.classList.add('is-collapsible'); button.hidden = false;
+      button.addEventListener('click', () => { const open = section.classList.toggle('is-expanded'); button.setAttribute('aria-expanded', open); button.querySelector('[data-more]').hidden = open; button.querySelector('[data-less]').hidden = !open; content.style.maxHeight = open ? `${content.scrollHeight}px` : ''; });
+    })();
+  </script>
+{% endif %}
+
+{% stylesheet %}
+  .collection-description { background: var(--description-bg); padding-block: var(--description-space); color: #2a1f1a; }
+  .collection-description__inner { max-width: min(var(--description-width), 1600px); margin: auto; padding: var(--description-pad-y) var(--description-pad-x); text-align: var(--description-align); }
+  .collection-description__content { overflow: hidden; font-size: var(--description-size); line-height: 1.75; transition: max-height .45s ease; }
+  .collection-description.is-collapsible .collection-description__content { max-height: var(--description-height); mask-image: linear-gradient(to bottom, #000 72%, transparent); }
+  .collection-description.is-expanded .collection-description__content { mask-image: none; }
+  .collection-description__toggle { margin-top: 1rem; padding: .25rem 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--description-link); cursor: pointer; font: inherit; font-weight: 600; }
+{% endstylesheet %}
+
+{% schema %}
+{"name":"Collection description","enabled_on":{"templates":["collection"]},"settings":[
+  {"type":"range","id":"font_size","label":"Font size","min":12,"max":24,"step":1,"unit":"px","default":16},{"type":"range","id":"content_width","label":"Content width","min":600,"max":1600,"step":20,"unit":"px","default":1000},
+  {"type":"select","id":"text_alignment","label":"Text alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}],"default":"center"},
+  {"type":"range","id":"max_visible_height","label":"Collapsed height","min":60,"max":300,"step":10,"unit":"px","default":120},{"type":"color","id":"read_more_color","label":"Read more color","default":"#6B1F2A"},
+  {"type":"text","id":"read_more_label","label":"Read more label","default":"Read more"},{"type":"text","id":"read_less_label","label":"Read less label","default":"Read less"},
+  {"type":"color","id":"background","label":"Background","default":"#F7F1E3"},{"type":"range","id":"spacing","label":"Section spacing","min":0,"max":100,"step":4,"unit":"px","default":24},
+  {"type":"range","id":"padding_vertical","label":"Vertical padding","min":0,"max":80,"step":4,"unit":"px","default":16},{"type":"range","id":"padding_horizontal","label":"Horizontal padding","min":16,"max":80,"step":4,"unit":"px","default":32}
+],"presets":[{"name":"Collection description"}]}
+{% endschema %}
