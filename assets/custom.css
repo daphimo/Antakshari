@@ -29,3 +29,9 @@
   background: var(--color-foreground);
   color: var(--color-background);
 }
+
+a:active,
+button:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
