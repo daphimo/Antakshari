@@ -179,7 +179,7 @@
         "filter_option_size": 13,
         "filter_item_spacing": 6,
         "layout_type": "grid",
-        "product_card_size": "medium",
+        "product_card_size": "small",
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": false,
         "products_per_page": 24,
