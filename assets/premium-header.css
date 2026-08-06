@@ -1150,7 +1150,7 @@ body.premium-header-lock {
   }
 
   .premium-header__logo {
-    max-width: min(var(--ph-logo-width), 145px);
+    max-width: 100%;
   }
 
   .premium-header__brand {
