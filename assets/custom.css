@@ -24,3 +24,8 @@
 .overflow_hidden{
   overflow: hidden;
 }
+
+::selection{
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
