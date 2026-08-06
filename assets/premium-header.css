@@ -1117,10 +1117,12 @@ body.premium-header-lock {
   }
 
   .premium-header__top-row {
-    display: grid;
-    padding: 7px 12px;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 8px;
+    display: flex;
+        padding: 7px 12px;
+        gap: 8px;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
   }
 
   .premium-header__mobile-toggle-wrap {
