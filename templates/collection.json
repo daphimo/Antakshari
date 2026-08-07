@@ -33,7 +33,7 @@
         "read_more_color": "#6b1f2a",
         "read_more_label": "Read more",
         "read_less_label": "Read less",
-        "background": "#f7f1e3",
+        "background": "{{ settings.color_palette.color8 }}",
         "spacing": 24,
         "padding_vertical": 16,
         "padding_horizontal": 32
@@ -50,7 +50,7 @@
         "max_width": 1600,
         "padding": 36,
         "font_size": 15,
-        "background": "#fcfaf5"
+        "background": "{{ settings.color_palette.color8 }}"
       }
     },
     "main": {
