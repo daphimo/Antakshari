@@ -48,3 +48,7 @@ button:active {
 .content_forblock_collection .collection_title_cust{
   margin: 0;
 }
+
+.promotional_collection_title {
+    text-align: center;
+}
