@@ -39,21 +39,24 @@
   <div class="collection-banner__inner">
     <h2
       class="collection_title_head"
-      style="margin-bottom: auto; color: {% if has_banner %}{{ section.settings.color_oi }}{% else %}{{ section.settings.color_ni }}{% endif %};"
+      style="margin-bottom: auto; color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
     >
       {{ collection.title }}
     </h2>
     <div class="content_forblock_collection">
       {% for block in section.blocks %}
-        {% if block.settings.title != blank %}
-          <{{ block.settings.preset }}
-            class="{{ block.settings.preset }} collection_title_cust"
-            {{ block.shopify_attributes }}
-            style="color: {% if has_banner %}{{ section.settings.color_oi }}{% else %}{{ section.settings.color_ni }}{% endif %};"
-          >
-            {{ block.settings.title }}
-          </{{ block.settings.preset }}>
-        {% endif %}
+        {% case block.type %}
+          {% when 'text' %}
+            {% if block.settings.title != blank %}
+              <{{ block.settings.preset }}
+                class="{{ block.settings.preset }} collection_title_cust"
+                {{ block.shopify_attributes }}
+                style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+              >
+                {{ block.settings.title }}
+              </{{ block.settings.preset }}>
+            {% endif %}
+        {% endcase %}
       {%- endfor %}
     </div>
   </div>
@@ -67,7 +70,7 @@
   .collection-banner__image { display: block; width: 100%; height: auto; max-height: min(760px, 72vh); object-fit: cover; object-position: center; }
   .collection-banner__overlay { z-index: 1; background: linear-gradient(180deg, color-mix(in srgb, var(--banner-overlay), transparent 65%) 0%, var(--banner-overlay) 100%); opacity: var(--banner-overlay-opacity); }
   .collection-banner__inner { position: relative; z-index: 2; width: 100%; max-width: var(--banner-max-width); margin: auto; padding-inline: var(--banner-padding); display: flex; flex-direction: column; justify-content: flex-end; }
-  .collection-banner--image .collection-banner__inner { position: absolute; inset: 0; padding-block: clamp(32px, 6vw, 88px); }
+  .collection-banner--image .collection-banner__inner { position: absolute; inset: 0; padding-block: 2vw }
   .collection-banner--align-left .collection-banner__inner { align-items: flex-start; text-align: left; }
   .collection-banner--align-center .collection-banner__inner { align-items: center; text-align: center; }
   .collection-banner--align-right .collection-banner__inner { align-items: flex-end; text-align: right; }
@@ -163,7 +166,18 @@
           "id": "title",
           "label": "Title"
         },
-
+        {
+          "type": "color",
+          "id": "color_ni",
+          "label": "Text Color No Image",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "color_oi",
+          "label": "Text Color On Image",
+          "default": "#fff"
+        },
         {
           "type": "select",
           "id": "preset",
