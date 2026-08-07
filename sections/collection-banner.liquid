@@ -7,22 +7,39 @@
   endif
 %}
 
-<section class="collection-banner collection-banner--{% if has_banner %}image{% else %}minimal{% endif %} collection-banner--align-{{ section.settings.content_alignment }}" style="--banner-overlay: {{ section.settings.overlay_color }}; --banner-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --banner-title: {{ section.settings.title_color }}; --banner-crumb: {{ section.settings.breadcrumb_color }}; --banner-max-width: {{ section.settings.max_width }}px; --banner-padding: {{ section.settings.horizontal_padding }}px; --banner-space: {{ section.settings.vertical_spacing }}px;">
+<section
+  class="collection-banner collection-banner--{% if has_banner %}image{% else %}minimal{% endif %} collection-banner--align-{{ section.settings.content_alignment }}"
+  style="--banner-overlay: {{ section.settings.overlay_color }}; --banner-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --banner-title: {{ section.settings.title_color }}; --banner-crumb: {{ section.settings.breadcrumb_color }}; --banner-max-width: {{ section.settings.max_width }}px; --banner-padding: {{ section.settings.horizontal_padding }}px; --banner-space: {{ section.settings.vertical_spacing }}px;"
+>
   {% if has_banner %}
     <picture class="collection-banner__media">
       {% if mobile_image != blank %}
-        <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w" sizes="100vw">
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w"
+          sizes="100vw"
+        >
       {% endif %}
-      {{ desktop_image | default: mobile_image | image_url: width: 3200 | image_tag: widths: '750, 1100, 1500, 2000, 2400, 3200', sizes: '100vw', class: 'collection-banner__image', loading: 'eager', fetchpriority: 'high' }}
+      {{
+        desktop_image
+        | default: mobile_image
+        | image_url: width: 3200
+        | image_tag:
+          widths: '750, 1100, 1500, 2000, 2400, 3200',
+          sizes: '100vw',
+          class: 'collection-banner__image',
+          loading: 'eager',
+          fetchpriority: 'high'
+      }}
     </picture>
-    {% if section.settings.enable_overlay %}<span class="collection-banner__overlay" aria-hidden="true"></span>{% endif %}
+    {% if section.settings.enable_overlay -%}
+      <span class="collection-banner__overlay" aria-hidden="true"></span>
+    {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <nav class="collection-banner__breadcrumbs" aria-label="Breadcrumb">
-      <a href="{{ routes.root_url }}">Home</a>
-      <span aria-hidden="true">/</span><span aria-current="page">{{ collection.title }}</span>
-    </nav>
-    <h1 class="collection-banner__title">{{ collection.title }}</h1>
+    <div class="content_forblock">
+      {% content_for 'blocks' %}
+    </div>
   </div>
 </section>
 
@@ -48,14 +65,71 @@
 {% endstylesheet %}
 
 {% schema %}
-{"name":"Collection banner","enabled_on":{"templates":["collection"]},"settings":[
-  {"type":"checkbox","id":"enable_overlay","label":"Enable overlay","default":true},
-  {"type":"color","id":"overlay_color","label":"Overlay color","default":"#2A1F1A"},
-  {"type":"range","id":"overlay_opacity","label":"Overlay opacity","min":0,"max":80,"step":5,"unit":"%","default":35},
-  {"type":"select","id":"content_alignment","label":"Content alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}],"default":"center"},
-  {"type":"color","id":"title_color","label":"Title color","default":"#FCFAF5"},{"type":"color","id":"breadcrumb_color","label":"Breadcrumb color","default":"#FCFAF5"},
-  {"type":"range","id":"max_width","label":"Maximum content width","min":800,"max":1600,"step":20,"unit":"px","default":1600},
-  {"type":"range","id":"horizontal_padding","label":"Horizontal padding","min":16,"max":80,"step":4,"unit":"px","default":32},
-  {"type":"range","id":"vertical_spacing","label":"Minimal header spacing","min":24,"max":120,"step":4,"unit":"px","default":56}
-],"presets":[{"name":"Collection banner"}]}
+{
+  "name": "Collection banner",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "checkbox", "id": "enable_overlay", "label": "Enable overlay", "default": true },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#2A1F1A" },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#FCFAF5" },
+    { "type": "color", "id": "breadcrumb_color", "label": "Breadcrumb color", "default": "#FCFAF5" },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum content width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "label": "Minimal header spacing",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [{ "name": "Collection banner" }]
+}
 {% endschema %}
