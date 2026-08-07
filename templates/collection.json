@@ -20,10 +20,30 @@
             "color_oi": "",
             "preset": "h2"
           }
+        },
+        "text_dyDewM": {
+          "type": "text",
+          "settings": {
+            "title": "Create Memories.",
+            "color_ni": "#000000",
+            "color_oi": "#ffffff",
+            "preset": "h2"
+          }
+        },
+        "text_9zHbJC": {
+          "type": "text",
+          "settings": {
+            "title": "<em>Carry Culture Forward</em>",
+            "color_ni": "#000000",
+            "color_oi": "#ffffff",
+            "preset": "h2"
+          }
         }
       },
       "block_order": [
-        "text_gdJKVd"
+        "text_gdJKVd",
+        "text_dyDewM",
+        "text_9zHbJC"
       ],
       "settings": {
         "enable_overlay": true,
