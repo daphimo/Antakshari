@@ -37,7 +37,7 @@
     {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <h2 class="collection_title_head" style="margin-bottom: auto;">
+    <h2 class="collection_title_head" style="margin-bottom: auto; color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};">
       {{ collection.title }}
     </h2>
     <div class="content_forblock_collection">
