@@ -12,12 +12,12 @@
     "collection_banner": {
       "type": "collection-banner",
       "blocks": {
-        "text_gdJKVd": {
+        "text_tXJxiy": {
           "type": "text",
           "settings": {
             "title": "Celebrate Festivals.",
-            "color_ni": "",
-            "color_oi": "",
+            "color_ni": "#000000",
+            "color_oi": "#ffffff",
             "preset": "h2"
           }
         },
@@ -41,7 +41,7 @@
         }
       },
       "block_order": [
-        "text_gdJKVd",
+        "text_tXJxiy",
         "text_dyDewM",
         "text_9zHbJC"
       ],
