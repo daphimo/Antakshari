@@ -136,7 +136,7 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "text_color": "{{ settings.color_palette.background }}",
+                    "text_color": "#F99A03",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
