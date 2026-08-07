@@ -12,6 +12,15 @@
     "collection_banner": {
       "type": "collection-banner",
       "blocks": {
+        "collection_GnX3W3": {
+          "type": "collection",
+          "settings": {
+            "title": "",
+            "color_ni": "#000000",
+            "color_oi": "#ffffff",
+            "preset": "h2"
+          }
+        },
         "text_tXJxiy": {
           "type": "text",
           "settings": {
@@ -34,13 +43,14 @@
           "type": "text",
           "settings": {
             "title": "<em>Carry Culture Forward</em>",
-            "color_ni": "#000000",
-            "color_oi": "#ffffff",
+            "color_ni": "#F99A03",
+            "color_oi": "#F99A03",
             "preset": "h2"
           }
         }
       },
       "block_order": [
+        "collection_GnX3W3",
         "text_tXJxiy",
         "text_dyDewM",
         "text_9zHbJC"
@@ -48,6 +58,8 @@
       "settings": {
         "enable_overlay": true,
         "overlay_color": "#2a1f1a",
+        "color_ni": "#000000",
+        "color_oi": "#ffffff",
         "overlay_opacity": 35,
         "content_alignment": "left",
         "title_color": "#fcfaf5",
@@ -76,6 +88,7 @@
     "promotional_collections": {
       "type": "promotional-collections",
       "settings": {
+        "title": "Handpicked Collections",
         "circle_size": 140,
         "border_radius": 50,
         "border_color": "#c9a24c",
