@@ -280,32 +280,6 @@
               },
               "block_order": []
             },
-            "text_i6LDdz": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "group_8ffxzY": {
               "type": "group",
               "name": "t:names.group",
@@ -478,6 +452,32 @@
                 "buy_buttons_xUnp3V",
                 "buy_buttons_pfnMAn"
               ]
+            },
+            "text_i6LDdz": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "{{ closest.product.metafields.custom.chaiya_choli_policy | metafield_tag }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 18,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "size_chart_zCpF6H": {
               "type": "size-chart",
@@ -999,8 +999,8 @@
             "family_products_4HYeqL",
             "variant_picker_R3rGDr",
             "buy_buttons_6JTyzN",
-            "text_i6LDdz",
             "group_8ffxzY",
+            "text_i6LDdz",
             "size_chart_zCpF6H",
             "text_aEtTtq",
             "group_fzqLkr",
