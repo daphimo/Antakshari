@@ -35,3 +35,16 @@ button:active {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+
+.content_forblock_collection {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.content_forblock_collection .collection_title_cust{
+  margin: 0;
+}
