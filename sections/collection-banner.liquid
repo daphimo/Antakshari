@@ -37,12 +37,20 @@
     {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <h2
-      class="collection_title_head"
-      style="margin-bottom: auto; color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
-    >
-      {{ collection.title }}
-    </h2>
+    <div class="col_head">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'collection' %}
+            <{{ block.settings.preset }}
+              class="{{ block.settings.preset }} collection_title_cust"
+              {{ block.shopify_attributes }}
+              style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+            >
+              {{ collection.title }}
+            </{{ block.settings.preset }}>
+        {% endcase %}
+      {%- endfor %}
+    </div>
     <div class="content_forblock_collection">
       {% for block in section.blocks %}
         {% case block.type %}
@@ -160,6 +168,61 @@
     {
       "type": "text",
       "name": "Text Field",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "color_ni",
+          "label": "Text Color No Image",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "color_oi",
+          "label": "Text Color On Image",
+          "default": "#fff"
+        },
+        {
+          "type": "select",
+          "id": "preset",
+          "label": "Preset",
+          "default": "h2",
+          "options": [
+            {
+              "label": "H1",
+              "value": "h1"
+            },
+            {
+              "label": "H2",
+              "value": "h2"
+            },
+            {
+              "label": "H3",
+              "value": "h3"
+            },
+            {
+              "label": "H4",
+              "value": "h4"
+            },
+            {
+              "label": "H5",
+              "value": "h5"
+            },
+            {
+              "label": "H6",
+              "value": "h6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection Title",
       "settings": [
         {
           "type": "inline_richtext",
