@@ -53,4 +53,7 @@ button:active {
     text-align: center;
 }
 
-        },
+.col_head {
+    margin-bottom: auto;
+    padding-bottom: 2rem;
+}
