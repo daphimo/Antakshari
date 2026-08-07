@@ -37,16 +37,18 @@
     {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <div class="content_forblock">
+    <div class="content_forblock_collection">
       {% for block in section.blocks %}
-        <{{ block.settings.preset }}
-          class="{{ block.settings.preset }} collection_title"
-          {{ block.shopify_attributes }}
-          style="color: {% if has_banner %}{{block.settings.color_oi}}{% else %}{{block.settings.color_ni}}{% endif %};"
-        >
-          {{ block.settings.title }}
-        </{{ block.settings.preset }}>
-      {% endfor %}
+        {% if block.settings.title != blank %}
+          <{{ block.settings.preset }}
+            class="{{ block.settings.preset }} collection_title"
+            {{ block.shopify_attributes }}
+            style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+          >
+            {{ block.settings.title }}
+          </{{ block.settings.preset }}>
+        {% endif %}
+      {%- endfor %}
     </div>
   </div>
 </section>
