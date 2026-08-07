@@ -41,7 +41,7 @@
       {% for block in section.blocks %}
         {% if block.settings.title != blank %}
           <{{ block.settings.preset }}
-            class="{{ block.settings.preset }} collection_title"
+            class="{{ block.settings.preset }} collection_title_cust"
             {{ block.shopify_attributes }}
             style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
           >
