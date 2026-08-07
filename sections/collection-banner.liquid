@@ -37,6 +37,9 @@
     {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
+    <h2 class="collection_title_head" style="margin-bottom: auto;">
+      {{ collection.title }}
+    </h2>
     <div class="content_forblock_collection">
       {% for block in section.blocks %}
         {% if block.settings.title != blank %}
