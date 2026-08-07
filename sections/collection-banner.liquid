@@ -38,7 +38,15 @@
   {% endif %}
   <div class="collection-banner__inner">
     <div class="content_forblock">
-      {% content_for 'blocks' %}
+      {% for block in section.blocks %}
+        <{{ block.settings.preset }}
+          class="{{ block.settings.preset }} collection_title"
+          {{ block.shopify_attributes }}
+          style="color: {% if has_banner %}{{block.settings.color_oi}}{% else %}{{block.settings.color_ni}}{% endif %};"
+        >
+          {{ block.settings.title }}
+        </{{ block.settings.preset }}>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -127,7 +135,57 @@
   ],
   "blocks": [
     {
-      "type": "@theme"
+      "type": "text",
+      "name": "Text Field",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "color_ni",
+          "label": "Text Color No Image"
+        },
+        {
+          "type": "color",
+          "id": "color_oi",
+          "label": "Text Color On Image"
+        },
+        {
+          "type": "select",
+          "id": "preset",
+          "label": "Preset",
+          "default": "h2",
+          "options": [
+            {
+              "label": "H1",
+              "value": "h1"
+            },
+            {
+              "label": "H2",
+              "value": "h2"
+            },
+            {
+              "label": "H3",
+              "value": "h3"
+            },
+            {
+              "label": "H4",
+              "value": "h4"
+            },
+            {
+              "label": "H5",
+              "value": "h5"
+            },
+            {
+              "label": "H6",
+              "value": "h6"
+            }
+          ]
+        }
+      ]
     }
   ],
   "presets": [{ "name": "Collection banner" }]
