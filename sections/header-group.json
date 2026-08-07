@@ -219,6 +219,16 @@
             "open_in_new_tab": false
           }
         },
+        "item_VgPQTR": {
+          "type": "item",
+          "settings": {
+            "action": "link",
+            "icon": "home",
+            "label": "Home",
+            "link": "/",
+            "open_in_new_tab": false
+          }
+        },
         "item_camPxD": {
           "type": "item",
           "settings": {
@@ -243,6 +253,7 @@
       "block_order": [
         "item_t898Qr",
         "item_tmahVR",
+        "item_VgPQTR",
         "item_camPxD",
         "item_hGfNTm"
       ],
