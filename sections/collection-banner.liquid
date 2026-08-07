@@ -37,7 +37,10 @@
     {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <h2 class="collection_title_head" style="margin-bottom: auto; color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};">
+    <h2
+      class="collection_title_head"
+      style="margin-bottom: auto; color: {% if has_banner %}{{ section.settings.color_oi }}{% else %}{{ section.settings.color_ni }}{% endif %};"
+    >
       {{ collection.title }}
     </h2>
     <div class="content_forblock_collection">
@@ -46,7 +49,7 @@
           <{{ block.settings.preset }}
             class="{{ block.settings.preset }} collection_title_cust"
             {{ block.shopify_attributes }}
-            style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+            style="color: {% if has_banner %}{{ section.settings.color_oi }}{% else %}{{ section.settings.color_ni }}{% endif %};"
           >
             {{ block.settings.title }}
           </{{ block.settings.preset }}>
@@ -84,6 +87,18 @@
   "settings": [
     { "type": "checkbox", "id": "enable_overlay", "label": "Enable overlay", "default": true },
     { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#2A1F1A" },
+    {
+      "type": "color",
+      "id": "color_ni",
+      "label": "Text Color No Image",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_oi",
+      "label": "Text Color On Image",
+      "default": "#fff"
+    },
     {
       "type": "range",
       "id": "overlay_opacity",
@@ -148,18 +163,7 @@
           "id": "title",
           "label": "Title"
         },
-        {
-          "type": "color",
-          "id": "color_ni",
-          "label": "Text Color No Image",
-          "default": "#000"
-        },
-        {
-          "type": "color",
-          "id": "color_oi",
-          "label": "Text Color On Image",
-          "default": "#fff"
-        },
+
         {
           "type": "select",
           "id": "preset",
