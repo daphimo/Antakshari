@@ -156,7 +156,8 @@
                       widths: '320, 480, 640, 800, 1000',
                       sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
                       class: 'regional-blog-cards__image',
-                      alt: article.image.alt | default: article.title
+                      alt: article.image.alt
+                    | default: article.title
                   }}
                 {% else %}
                   {{ 'image' | placeholder_svg_tag: 'regional-blog-cards__placeholder' }}
@@ -188,17 +189,9 @@
                 {% if section.settings.show_excerpt %}
                   <div class="regional-blog-cards__excerpt">
                     {% if article.excerpt != blank %}
-                      {{
-                        article.excerpt
-                        | strip_html
-                        | truncatewords: section.settings.excerpt_words
-                      }}
+                      {{ article.excerpt | strip_html | truncatewords: section.settings.excerpt_words }}
                     {% else %}
-                      {{
-                        article.content
-                        | strip_html
-                        | truncatewords: section.settings.excerpt_words
-                      }}
+                      {{ article.content | strip_html | truncatewords: section.settings.excerpt_words }}
                     {% endif %}
                   </div>
                 {% endif %}
@@ -233,9 +226,7 @@
               </div>
 
               <div class="regional-blog-cards__card-content">
-                <h3 class="regional-blog-cards__article-title">
-                  Example article title {{ i }}
-                </h3>
+                <h3 class="regional-blog-cards__article-title">Example article title {{ i }}</h3>
 
                 <div class="regional-blog-cards__excerpt">
                   {% if content_source == 'articles' %}
@@ -907,7 +898,9 @@
       "step": 2,
       "default": 10,
       "unit": "%"
-    }
+    },
+    { "type": "text", "id": "cards__readmore", "label": "Read More", "default": "Read More" },
+    { "type": "color", "id": "read", "label": "Read color", "default": "#E8A53A" }
   ],
   "presets": [
     {
