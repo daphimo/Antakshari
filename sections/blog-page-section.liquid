@@ -105,6 +105,11 @@
                     {% if section.settings.show_author %}<span>{{ article.author }}</span>{% endif %}
                   </div>
                 {% endif %}
+                 {% if section.settings.cards__readmore !=blank %}
+                  <div class="regional-blog-cards__readmore">
+                    {{ section.settings.cards__readmore }}
+                  </div>
+                {% endif %}
               </div>
             </a>
           </article>
@@ -132,6 +137,7 @@
   .blog-page-section--overlay .regional-blog-cards__article-title,
   .blog-page-section--overlay .regional-blog-cards__excerpt,
   .blog-page-section--overlay .regional-blog-cards__meta,
+  .blog-page-section--overlay .regional-blog-cards__readmore,
   .blog-page-section--overlay .regional-blog-cards__details { color: #fff; }
   .blog-page-section__pagination { display: flex; justify-content: center; margin-top: clamp(32px, 5vw, 64px); }
   .blog-page-section__pagination .page,
@@ -221,6 +227,8 @@
     { "type": "range", "id": "meta_size", "label": "Meta size", "min": 8, "max": 20, "step": 1, "default": 11, "unit": "px" },
     { "type": "range", "id": "meta_letter_spacing", "label": "Meta letter spacing", "min": 0, "max": 10, "step": 1, "default": 2, "unit": "px" },
     { "type": "color", "id": "meta_color", "label": "Meta color", "default": "#9A5834" },
+    { "type": "text", "id": "cards__readmore", "label": "Read More", "default": "Read More" },
+    { "type": "color", "id": "read", "label": "Read color", "default": "#E8A53A" },
     { "type": "header", "content": "Hover" },
     { "type": "range", "id": "hover_lift", "label": "Card lift", "min": 0, "max": 20, "step": 1, "default": 6, "unit": "px" },
     { "type": "range", "id": "hover_shadow_opacity", "label": "Shadow opacity", "min": 0, "max": 40, "step": 1, "default": 12, "unit": "%" }
