@@ -201,6 +201,13 @@
   line-height: var(--rbc-excerpt-line-height);
 }
 
+.regional-blog-cards__readmore{
+  margin-top: 10px;
+  color: var(--rbc-read-color);
+  font-size: var(--rbc-excerpt-size);
+  line-height: var(--rbc-excerpt-line-height); 
+}
+
 .regional-blog-cards__details {
   display: flex;
   flex-wrap: wrap;
