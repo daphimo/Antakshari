@@ -22,6 +22,7 @@
     assign has_custom_variant_buttons = true
   endif
   assign fieldset_index = 0
+  assign bundle_option_labels = product_resource.metafields.custom.name_for_bundle.value
 %}
 
 {% unless product_resource.has_only_default_variant %}
@@ -55,6 +56,8 @@
     <form class="variant-picker__form">
       {%- for product_option in product_resource.options_with_values -%}
         {%- liquid
+          assign bundle_option_index = forloop.index0
+          assign bundle_option_label = bundle_option_labels[bundle_option_index]
           assign swatch_count = product_option.values | map: 'swatch' | compact | size
           assign variant_style = block_settings.variant_style
 
@@ -78,7 +81,7 @@
             class="variant-option"
             data-testid="variant-option-single"
           >
-            {{- product_option.name | escape -}}
+            {{- bundle_option_label | default: product_option.name | escape -}}
             <span
               class="variant-option__swatch-value"
               data-testid="variant-option-single-value"
@@ -94,7 +97,7 @@
             {{ option_id_attribute }}
           >
             <legend>
-              {{ product_option.name | escape -}}
+              {{ bundle_option_label | default: product_option.name | escape -}}
               {%- if variant_style == 'swatch' -%}
                 <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
               {%- endif %}
@@ -190,7 +193,9 @@
           %}
 
           <div class="variant-option variant-option--dropdowns">
-            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
+            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">
+              {{- bundle_option_label | default: product_option.name | escape -}}
+            </label>
             <div
               class="variant-option__select-wrapper"
               style="

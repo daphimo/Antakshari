@@ -216,10 +216,20 @@
                     {% endif %}
 
                     {%- if item.item_components.size != 0 -%}
+                      {%- assign bundle_component_labels = item.product.metafields.custom.name_for_bundle.value -%}
                       <ul class="cart-items__bundle list-unstyled">
                         {%- for component in item.item_components -%}
+                          {%- assign bundle_component_index = forloop.index0 -%}
+                          {%- assign bundle_component_label = bundle_component_labels[bundle_component_index] -%}
                           <li>
-                            {{- component.title -}}
+                            {%- if bundle_component_label != blank -%}
+                              {{- bundle_component_label | escape -}}
+                              {%- unless component.product.has_only_default_variant -%}
+                                : {{ component.variant.title | escape }}
+                              {%- endunless -%}
+                            {%- else -%}
+                              {{- component.title -}}
+                            {%- endif -%}
                             {%- if component.quantity > 1 -%}
                               <span> × {{ component.quantity }}</span>
                             {%- endif -%}

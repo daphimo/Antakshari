@@ -223,8 +223,8 @@
               "settings": {
                 "stacking": false,
                 "text_color": "",
-                "show_pickup_availability": true,
-                "gift_card_form": true,
+                "show_pickup_availability": false,
+                "gift_card_form": false,
                 "recipient_button_style": "default",
                 "recipient_button_background": "{{ settings.color_palette.background }}",
                 "recipient_button_text": "{{ settings.color_palette.foreground }}",
@@ -327,8 +327,8 @@
                   "settings": {
                     "stacking": false,
                     "text_color": "",
-                    "show_pickup_availability": true,
-                    "gift_card_form": true,
+                    "show_pickup_availability": false,
+                    "gift_card_form": false,
                     "recipient_button_style": "default",
                     "recipient_button_background": "{{ settings.color_palette.background }}",
                     "recipient_button_text": "{{ settings.color_palette.foreground }}",
@@ -390,8 +390,8 @@
                   "settings": {
                     "stacking": false,
                     "text_color": "",
-                    "show_pickup_availability": true,
-                    "gift_card_form": true,
+                    "show_pickup_availability": false,
+                    "gift_card_form": false,
                     "recipient_button_style": "default",
                     "recipient_button_background": "{{ settings.color_palette.background }}",
                     "recipient_button_text": "{{ settings.color_palette.foreground }}",
@@ -756,7 +756,7 @@
                 "open_in_new_tab": false,
                 "placeholder": "",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
+                "padding-block-end": 14,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -825,7 +825,7 @@
               "settings": {
                 "heading": "Product Specifications",
                 "open_by_default": true,
-                "margin_top": 12,
+                "margin_top": 0,
                 "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
