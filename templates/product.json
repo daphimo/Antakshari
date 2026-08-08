@@ -756,7 +756,7 @@
                 "open_in_new_tab": false,
                 "placeholder": "",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
+                "padding-block-end": 14,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -825,7 +825,7 @@
               "settings": {
                 "heading": "Product Specifications",
                 "open_by_default": true,
-                "margin_top": 12,
+                "margin_top": 0,
                 "margin_bottom": 0,
                 "margin_inline": 0,
                 "padding_vertical": 4,
