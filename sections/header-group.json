@@ -219,6 +219,16 @@
             "open_in_new_tab": false
           }
         },
+        "item_VgPQTR": {
+          "type": "item",
+          "settings": {
+            "action": "link",
+            "icon": "home",
+            "label": "Home",
+            "link": "/",
+            "open_in_new_tab": false
+          }
+        },
         "item_camPxD": {
           "type": "item",
           "settings": {
@@ -243,6 +253,7 @@
       "block_order": [
         "item_t898Qr",
         "item_tmahVR",
+        "item_VgPQTR",
         "item_camPxD",
         "item_hGfNTm"
       ],
@@ -250,8 +261,8 @@
       "settings": {
         "accessibility_label": "Mobile navigation",
         "customer_account_menu": "customer-account-main-menu",
-        "background_color": "#F7F1E3",
-        "text_color": "#691E29",
+        "background_color": "#f7f1e3",
+        "text_color": "#691e29",
         "accent_color": "#6b1f2a",
         "border_color": "#c9a24c"
       }

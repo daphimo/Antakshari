@@ -359,6 +359,97 @@
     }
   }
 
+  /* Compact branded pills for the main product variant picker. */
+  .variant-picker .variant-option--buttons:not(.variant-option--swatches) {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+
+    .variant-option__button-label {
+      flex: 0 1 auto;
+      width: auto;
+      min-width: min(90px, 100%);
+      max-width: min(160px, 100%);
+      min-height: 44px;
+      padding: 10px 18px;
+      white-space: normal;
+      background-color: #fcfaf5;
+      border-color: rgb(107 31 42 / 35%);
+      color: #2a1f1a;
+    }
+
+    .variant-option__button-label__text {
+      width: 100%;
+      overflow-wrap: anywhere;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .variant-option__button-label:hover:not(:has([data-option-available='false'])) {
+      background-color: #f7f1e3;
+      border-color: #e8a53a;
+      color: #6b1f2a;
+    }
+
+    .variant-option__button-label:has(:checked) {
+      border-color: #6b1f2a;
+      color: #fcfaf5;
+    }
+
+    .variant-option__button-label:has(:checked):hover {
+      border-color: #6b1f2a;
+      color: #fcfaf5;
+    }
+
+    .variant-option__button-label:has(:checked)::before {
+      border-color: #6b1f2a;
+    }
+
+    .variant-option__button-label__pill,
+    .variant-option__button-label:has(:checked):hover .variant-option__button-label__pill {
+      background-color: #6b1f2a;
+    }
+
+    .variant-option__button-label:has([data-option-available='false']) {
+      --variant-strikethrough-color: rgb(42 31 26 / 42%);
+
+      background-color: #f7f1e3;
+      border: 1px solid rgb(42 31 26 / 20%);
+      color: rgb(42 31 26 / 58%);
+    }
+
+    .variant-option__button-label:has([data-option-available='false'])::before,
+    .variant-option__button-label:has([data-option-available='false'])::after {
+      content: none;
+    }
+
+    .variant-option__button-label:has([data-option-available='false']):hover,
+    .variant-option__button-label:has([data-option-available='false']):has(:checked),
+    .variant-option__button-label:has([data-option-available='false']):has(:checked):hover {
+      background-color: #f7f1e3;
+      border-color: rgb(42 31 26 / 28%);
+      color: rgb(42 31 26 / 58%);
+    }
+
+    .variant-option__button-label:has([data-option-available='false']):has(:checked),
+    .variant-option__button-label:has([data-option-available='false']):has(:checked):hover {
+      border: 2px solid #6b1f2a;
+      box-shadow: 0 0 0 2px #e8a53a;
+      color: #2a1f1a;
+    }
+
+    .variant-option__button-label:has([data-option-available='false']) svg line {
+      stroke-width: 1px;
+    }
+
+    .variant-option__button-label:has(:focus-visible) {
+      border-color: #6b1f2a;
+      outline-color: #e8a53a;
+    }
+  }
+
   .variant-option__button-label:has(:focus-visible) {
     --variant-picker-stroke-color: var(--color-foreground);
 

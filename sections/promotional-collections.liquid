@@ -1,6 +1,12 @@
 {% assign promotional_collections = collection.metafields.custom.promotional_collection.value %}
 {% if promotional_collections != blank %}
-  <section class="promotional-collections promotional-collections--hover-{{ section.settings.hover_effect }}" style="--promo-size: {{ section.settings.circle_size }}px; --promo-radius: {{ section.settings.border_radius }}%; --promo-border: {{ section.settings.border_color }}; --promo-gap: {{ section.settings.gap }}px; --promo-width: {{ section.settings.max_width }}px; --promo-pad: {{ section.settings.padding }}px; --promo-font: {{ section.settings.font_size }}px; --promo-bg: {{ section.settings.background }};">
+  <section
+    class="promotional-collections promotional-collections--hover-{{ section.settings.hover_effect }}"
+    style="--promo-size: {{ section.settings.circle_size }}px; --promo-radius: {{ section.settings.border_radius }}%; --promo-border: {{ section.settings.border_color }}; --promo-gap: {{ section.settings.gap }}px; --promo-width: {{ section.settings.max_width }}px; --promo-pad: {{ section.settings.padding }}px; --promo-font: {{ section.settings.font_size }}px; --promo-bg: {{ section.settings.background }};"
+  >
+    <h3 class="promotional_collection_title center">
+      {{ section.settings.title }}
+    </h3>
     <div class="promotional-collections__inner">
       <ul class="promotional-collections__list" role="list">
         {% for promo_collection in promotional_collections %}
@@ -8,7 +14,19 @@
           <li class="promotional-collections__item">
             <a href="{{ promo_collection.url }}" class="promotional-collections__link">
               <span class="promotional-collections__media">
-                {% if promo_image != blank %}{{ promo_image | image_url: width: 500 | image_tag: widths: '160, 240, 360, 500', sizes: '(max-width: 749px) 120px, 160px', loading: 'lazy', class: 'promotional-collections__image' }}{% else %}{{ 'collection-1' | placeholder_svg_tag: 'promotional-collections__placeholder' }}{% endif %}
+                {% if promo_image != blank -%}
+                  {{-
+                    promo_image
+                    | image_url: width: 500
+                    | image_tag:
+                      widths: '160, 240, 360, 500',
+                      sizes: '(max-width: 749px) 120px, 160px',
+                      loading: 'lazy',
+                      class: 'promotional-collections__image'
+                  -}}
+                {%- else -%}
+                  {{- 'collection-1' | placeholder_svg_tag: 'promotional-collections__placeholder' -}}
+                {%- endif %}
               </span>
               <span class="promotional-collections__title">{{ promo_collection.title }}</span>
             </a>
@@ -33,10 +51,80 @@
 {% endstylesheet %}
 
 {% schema %}
-{"name":"Promotional collections","enabled_on":{"templates":["collection"]},"settings":[
-  {"type":"range","id":"circle_size","label":"Circle size","min":80,"max":220,"step":10,"unit":"px","default":140},{"type":"range","id":"border_radius","label":"Border radius","min":0,"max":50,"step":5,"unit":"%","default":50},{"type":"color","id":"border_color","label":"Border color","default":"#C9A24C"},
-  {"type":"select","id":"hover_effect","label":"Hover effect","options":[{"value":"lift","label":"Lift"},{"value":"none","label":"None"}],"default":"lift"},{"type":"range","id":"gap","label":"Gap","min":8,"max":64,"step":4,"unit":"px","default":28},
-  {"type":"range","id":"max_width","label":"Maximum width","min":800,"max":1600,"step":20,"unit":"px","default":1600},{"type":"range","id":"padding","label":"Vertical padding","min":0,"max":100,"step":4,"unit":"px","default":36},
-  {"type":"range","id":"font_size","label":"Title font size","min":12,"max":22,"step":1,"unit":"px","default":15},{"type":"color","id":"background","label":"Background","default":"#FCFAF5"}
-],"presets":[{"name":"Promotional collections"}]}
+{
+  "name": "Promotional collections",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Handpicked Collections"
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "label": "Circle size",
+      "min": 80,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    { "type": "color", "id": "border_color", "label": "Border color", "default": "#C9A24C" },
+    {
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Hover effect",
+      "options": [
+        { "value": "lift", "label": "Lift" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "lift"
+    },
+    { "type": "range", "id": "gap", "label": "Gap", "min": 8, "max": 64, "step": 4, "unit": "px", "default": 28 },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Title font size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    { "type": "color", "id": "background", "label": "Background", "default": "#FCFAF5" }
+  ],
+  "presets": [{ "name": "Promotional collections" }]
+}
 {% endschema %}

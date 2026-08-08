@@ -7,22 +7,66 @@
   endif
 %}
 
-<section class="collection-banner collection-banner--{% if has_banner %}image{% else %}minimal{% endif %} collection-banner--align-{{ section.settings.content_alignment }}" style="--banner-overlay: {{ section.settings.overlay_color }}; --banner-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --banner-title: {{ section.settings.title_color }}; --banner-crumb: {{ section.settings.breadcrumb_color }}; --banner-max-width: {{ section.settings.max_width }}px; --banner-padding: {{ section.settings.horizontal_padding }}px; --banner-space: {{ section.settings.vertical_spacing }}px;">
+<section
+  class="collection-banner collection-banner--{% if has_banner %}image{% else %}minimal{% endif %} collection-banner--align-{{ section.settings.content_alignment }}"
+  style="--banner-overlay: {{ section.settings.overlay_color }}; --banner-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --banner-title: {{ section.settings.title_color }}; --banner-crumb: {{ section.settings.breadcrumb_color }}; --banner-max-width: {{ section.settings.max_width }}px; --banner-padding: {{ section.settings.horizontal_padding }}px; --banner-space: {{ section.settings.vertical_spacing }}px;"
+>
   {% if has_banner %}
     <picture class="collection-banner__media">
       {% if mobile_image != blank %}
-        <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w" sizes="100vw">
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ mobile_image | image_url: width: 480 }} 480w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w"
+          sizes="100vw"
+        >
       {% endif %}
-      {{ desktop_image | default: mobile_image | image_url: width: 3200 | image_tag: widths: '750, 1100, 1500, 2000, 2400, 3200', sizes: '100vw', class: 'collection-banner__image', loading: 'eager', fetchpriority: 'high' }}
+      {{
+        desktop_image
+        | default: mobile_image
+        | image_url: width: 3200
+        | image_tag:
+          widths: '750, 1100, 1500, 2000, 2400, 3200',
+          sizes: '100vw',
+          class: 'collection-banner__image',
+          loading: 'eager',
+          fetchpriority: 'high'
+      }}
     </picture>
-    {% if section.settings.enable_overlay %}<span class="collection-banner__overlay" aria-hidden="true"></span>{% endif %}
+    {% if section.settings.enable_overlay -%}
+      <span class="collection-banner__overlay" aria-hidden="true"></span>
+    {%- endif %}
   {% endif %}
   <div class="collection-banner__inner">
-    <nav class="collection-banner__breadcrumbs" aria-label="Breadcrumb">
-      <a href="{{ routes.root_url }}">Home</a>
-      <span aria-hidden="true">/</span><span aria-current="page">{{ collection.title }}</span>
-    </nav>
-    <h1 class="collection-banner__title">{{ collection.title }}</h1>
+    <div class="col_head">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'collection' %}
+            <{{ block.settings.preset }}
+              class="{{ block.settings.preset }} collection_title_cust"
+              {{ block.shopify_attributes }}
+              style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+            >
+              {{ collection.title }}
+            </{{ block.settings.preset }}>
+        {% endcase %}
+      {%- endfor %}
+    </div>
+    <div class="content_forblock_collection">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' %}
+            {% if block.settings.title != blank %}
+              <{{ block.settings.preset }}
+                class="{{ block.settings.preset }} collection_title_cust"
+                {{ block.shopify_attributes }}
+                style="color: {% if has_banner %}{{ block.settings.color_oi }}{% else %}{{ block.settings.color_ni }}{% endif %};"
+              >
+                {{ block.settings.title }}
+              </{{ block.settings.preset }}>
+            {% endif %}
+        {% endcase %}
+      {%- endfor %}
+    </div>
   </div>
 </section>
 
@@ -34,7 +78,7 @@
   .collection-banner__image { display: block; width: 100%; height: auto; max-height: min(760px, 72vh); object-fit: cover; object-position: center; }
   .collection-banner__overlay { z-index: 1; background: linear-gradient(180deg, color-mix(in srgb, var(--banner-overlay), transparent 65%) 0%, var(--banner-overlay) 100%); opacity: var(--banner-overlay-opacity); }
   .collection-banner__inner { position: relative; z-index: 2; width: 100%; max-width: var(--banner-max-width); margin: auto; padding-inline: var(--banner-padding); display: flex; flex-direction: column; justify-content: flex-end; }
-  .collection-banner--image .collection-banner__inner { position: absolute; inset: 0; padding-block: clamp(32px, 6vw, 88px); }
+  .collection-banner--image .collection-banner__inner { position: absolute; inset: 0; padding-block: 2vw }
   .collection-banner--align-left .collection-banner__inner { align-items: flex-start; text-align: left; }
   .collection-banner--align-center .collection-banner__inner { align-items: center; text-align: center; }
   .collection-banner--align-right .collection-banner__inner { align-items: flex-end; text-align: right; }
@@ -48,14 +92,185 @@
 {% endstylesheet %}
 
 {% schema %}
-{"name":"Collection banner","enabled_on":{"templates":["collection"]},"settings":[
-  {"type":"checkbox","id":"enable_overlay","label":"Enable overlay","default":true},
-  {"type":"color","id":"overlay_color","label":"Overlay color","default":"#2A1F1A"},
-  {"type":"range","id":"overlay_opacity","label":"Overlay opacity","min":0,"max":80,"step":5,"unit":"%","default":35},
-  {"type":"select","id":"content_alignment","label":"Content alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}],"default":"center"},
-  {"type":"color","id":"title_color","label":"Title color","default":"#FCFAF5"},{"type":"color","id":"breadcrumb_color","label":"Breadcrumb color","default":"#FCFAF5"},
-  {"type":"range","id":"max_width","label":"Maximum content width","min":800,"max":1600,"step":20,"unit":"px","default":1600},
-  {"type":"range","id":"horizontal_padding","label":"Horizontal padding","min":16,"max":80,"step":4,"unit":"px","default":32},
-  {"type":"range","id":"vertical_spacing","label":"Minimal header spacing","min":24,"max":120,"step":4,"unit":"px","default":56}
-],"presets":[{"name":"Collection banner"}]}
+{
+  "name": "Collection banner",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "checkbox", "id": "enable_overlay", "label": "Enable overlay", "default": true },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#2A1F1A" },
+    {
+      "type": "color",
+      "id": "color_ni",
+      "label": "Text Color No Image",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_oi",
+      "label": "Text Color On Image",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#FCFAF5" },
+    { "type": "color", "id": "breadcrumb_color", "label": "Breadcrumb color", "default": "#FCFAF5" },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum content width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "label": "Minimal header spacing",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Field",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "color_ni",
+          "label": "Text Color No Image",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "color_oi",
+          "label": "Text Color On Image",
+          "default": "#fff"
+        },
+        {
+          "type": "select",
+          "id": "preset",
+          "label": "Preset",
+          "default": "h2",
+          "options": [
+            {
+              "label": "H1",
+              "value": "h1"
+            },
+            {
+              "label": "H2",
+              "value": "h2"
+            },
+            {
+              "label": "H3",
+              "value": "h3"
+            },
+            {
+              "label": "H4",
+              "value": "h4"
+            },
+            {
+              "label": "H5",
+              "value": "h5"
+            },
+            {
+              "label": "H6",
+              "value": "h6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection Title",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color_ni",
+          "label": "Text Color No Image",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "color_oi",
+          "label": "Text Color On Image",
+          "default": "#fff"
+        },
+        {
+          "type": "select",
+          "id": "preset",
+          "label": "Preset",
+          "default": "h2",
+          "options": [
+            {
+              "label": "H1",
+              "value": "h1"
+            },
+            {
+              "label": "H2",
+              "value": "h2"
+            },
+            {
+              "label": "H3",
+              "value": "h3"
+            },
+            {
+              "label": "H4",
+              "value": "h4"
+            },
+            {
+              "label": "H5",
+              "value": "h5"
+            },
+            {
+              "label": "H6",
+              "value": "h6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Collection banner" }]
+}
 {% endschema %}
