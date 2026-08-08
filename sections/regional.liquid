@@ -213,6 +213,11 @@
                     {% endif %}
                   </div>
                 {% endif %}
+                {% if section.settings.cards__readmore != blank %}
+                  <div class="regional-blog-cards__readmore">
+                    {{ section.settings.cards__readmore }}
+                  </div>
+                {% endif %}
               </div>
             </a>
           </article>
