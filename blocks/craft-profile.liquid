@@ -1,9 +1,11 @@
 {% liquid
   assign product_resource = closest.product | default: product
   assign craft = product_resource.metafields.custom.crafts.value
+  assign region = product_resource.metafields.custom.region
+  assign artisan_cluster_attribution = product_resource.metafields.custom.artisan_cluster_attribution
 %}
 
-{% if craft %}
+{% if craft or region.value != blank or artisan_cluster_attribution.value != blank %}
   {{ 'metaobject-accordion.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'metaobject-accordion.js' | asset_url }}" defer="defer"></script>
 
@@ -40,7 +42,12 @@
         {% if craft.name != blank %}<h3 class="metaobject-accordion__name">{{ craft.name }}</h3>{% endif %}
 
         <dl class="metaobject-accordion__details">
-          {% if craft.region != blank %}<div><dt>Region</dt><dd>{{ craft.region }}</dd></div>{% endif %}
+          {% if region.value != blank %}
+            <div><dt>Region</dt><dd>{{ region.value | escape | newline_to_br }}</dd></div>
+          {% elsif craft.region != blank %}
+            <div><dt>Region</dt><dd>{{ craft.region }}</dd></div>
+          {% endif %}
+          {% if artisan_cluster_attribution.value != blank %}<div><dt>Artisan / Cluster Attribution</dt><dd>{{ artisan_cluster_attribution.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if craft.craft_family != blank %}<div><dt>Craft family</dt><dd>{{ craft.craft_family }}</dd></div>{% endif %}
           {% if craft.production_method != blank %}<div><dt>Production method</dt><dd>{{ craft.production_method }}</dd></div>{% endif %}
           {% if craft.default_artisan_cluster != blank %}<div><dt>Artisan cluster</dt><dd>{{ craft.default_artisan_cluster }}</dd></div>{% endif %}

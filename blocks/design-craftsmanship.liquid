@@ -1,22 +1,22 @@
 {% liquid
   assign product_resource = closest.product | default: product
-  assign print_placement = product_resource.metafields.custom.print_placement
-  assign print_technique = product_resource.metafields.custom.print_technique
-  assign blouse_collar = product_resource.metafields.custom.blouse_collar
-  assign strap_type = product_resource.metafields.custom.strap_type
-  assign pattern_placement = product_resource.metafields.custom.pattern_placement
-  assign embellishments = product_resource.metafields.custom.embellishments
-  assign embellishment_placement = product_resource.metafields.custom.embellishment_placement
+  assign print_placement = product_resource.metafields.custom.print_placement_new
+  assign print_technique = product_resource.metafields.custom.print_technique_new
+  assign blouse_collar = product_resource.metafields.custom.blouse_collar_new
+  assign strap_type = product_resource.metafields.custom.strap_type_new
+  assign pattern_placement = product_resource.metafields.custom.pattern_placement_new
+  assign embellishments = product_resource.metafields.custom.embellishments_new
+  assign embellishment_placement = product_resource.metafields.custom.embellishment_placement_new
   assign flare_details = product_resource.metafields.custom.flare_details
-  assign drape_styles = product_resource.metafields.custom.drape_styles
+  assign drape_styles = product_resource.metafields.custom.drape_styles_new
   assign pallu_design = product_resource.metafields.custom.pallu_design
-  assign border_type = product_resource.metafields.custom.border_type
+  assign border_type = product_resource.metafields.custom.border_type_new
   assign border_width = product_resource.metafields.custom.border_width
-  assign color_primary = product_resource.metafields.custom.color_primary
-  assign color_secondary = product_resource.metafields.custom.color_secondary
-  assign zari_type = product_resource.metafields.custom.zari_type
-  assign weave_technique = product_resource.metafields.custom.weave_technique
-  assign waist_closure = product_resource.metafields.custom.waist_closure
+  assign color_primary = product_resource.metafields.custom.color_primary_new
+  assign color_secondary = product_resource.metafields.custom.color_secondary_new
+  assign zari_type = product_resource.metafields.custom.zari_type_new
+  assign weave_technique = product_resource.metafields.custom.weave_technique_new
+  assign waist_closure = product_resource.metafields.custom.waist_closure_new
 
   assign has_design_details = false
   if print_placement.value != blank or print_technique.value != blank or pattern_placement.value != blank or embellishments.value != blank or embellishment_placement.value != blank or flare_details.value != blank or drape_styles.value != blank or pallu_design.value != blank or border_type.value != blank or border_width.value != blank or color_primary.value != blank or color_secondary.value != blank or zari_type.value != blank or weave_technique.value != blank or waist_closure.value != blank

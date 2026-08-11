@@ -1,9 +1,10 @@
 {% liquid
   assign product_resource = closest.product | default: product
   assign claim = product_resource.metafields.custom.claims_and_certifications.value
+  assign gi_tag_status = product_resource.metafields.custom.gi_tag_status
 %}
 
-{% if claim %}
+{% if claim or gi_tag_status.value != blank %}
   <claims-certifications-accordion class="claims-certifications" style="--cc-margin-top: {{ block.settings.margin_top }}px; --cc-margin-bottom: {{ block.settings.margin_bottom }}px; --cc-margin-inline: {{ block.settings.margin_inline }}px; --cc-padding-y: {{ block.settings.padding_vertical }}px; --cc-padding-x: {{ block.settings.padding_horizontal }}px; --cc-background: {{ block.settings.background_color }}; --cc-surface: {{ block.settings.surface_color }}; --cc-text: {{ block.settings.text_color }}; --cc-muted: {{ block.settings.muted_color }}; --cc-accent: {{ block.settings.accent_color }}; --cc-accent-text: {{ block.settings.accent_text_color }}; --cc-border: {{ block.settings.border_color }};" {{ block.shopify_attributes }}>
     <button
       class="claims-certifications__toggle"
@@ -43,6 +44,9 @@
         {% endif %}
 
         <dl class="claims-certifications__details">
+          {% if gi_tag_status.value != blank %}
+            <div><dt>GI Tag Status</dt><dd>{{ gi_tag_status.value | escape | newline_to_br }}</dd></div>
+          {% endif %}
           {% if claim.type != blank %}
             <div><dt>Type</dt><dd>{{ claim.type }}</dd></div>
           {% endif %}

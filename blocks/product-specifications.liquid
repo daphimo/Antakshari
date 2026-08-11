@@ -2,18 +2,19 @@
   assign product_resource = closest.product | default: product
   assign structure_details = product_resource.metafields.custom.structure_details
   assign silhouette = product_resource.metafields.custom.silhouette
-  assign movement_rating = product_resource.metafields.custom.movement_rating
-  assign sheer_opaque = product_resource.metafields.custom.sheer_opaque
-  assign stitching_type = product_resource.metafields.custom.stitching_type
-  assign neckline = product_resource.metafields.custom.neckline
-  assign sleeve_type = product_resource.metafields.custom.sleeve_type
+  assign movement_rating = product_resource.metafields.custom.movement_rating_new
+  assign sheer_opaque = product_resource.metafields.custom.sheer_opaque_new
+  assign stitching_type = product_resource.metafields.custom.stitching_type_new
+  assign neckline = product_resource.metafields.custom.neckline_new
+  assign sleeve_type = product_resource.metafields.custom.sleeve_type_new
   assign separate_sleeve_attached = product_resource.metafields.custom.separate_sleeve_attached | default: product_resource.metafields.custom.seperate_sleeve_attached
-  assign closure_type = product_resource.metafields.custom.closure_type
-  assign back_design = product_resource.metafields.custom.back_design
+  assign closure_type = product_resource.metafields.custom.closure_type_new
+  assign back_design = product_resource.metafields.custom.back_design_new
   assign lining_details = product_resource.metafields.custom.lining_details
   assign fabric_gsm = product_resource.metafields.custom.fabric_gsm
-  assign fabric_type = product_resource.metafields.custom.fabric_type
-  assign fall_pico = product_resource.metafields.custom.fall_pico
+  assign fabric_type = product_resource.metafields.custom.fabric_type_new
+  assign fall_pico = product_resource.metafields.custom.fall_pico_new
+  assign structured_relevant_for_jackets = product_resource.metafields.custom.structured_relevant_for_jackets
   assign fit_note = product_resource.metafields.custom.fit_note
   assign dimensions_summary = product_resource.metafields.custom.dimensions_summary
   assign lehenga_length = product_resource.metafields.custom.lehenga_length
@@ -23,7 +24,7 @@
   assign key_details = product_resource.metafields.custom.key_details
 
   assign has_specifications = false
-  if structure_details.value != blank or silhouette.value != blank or movement_rating.value != blank or sheer_opaque.value != blank or stitching_type.value != blank or neckline.value != blank or sleeve_type.value != blank or separate_sleeve_attached.value != blank or closure_type.value != blank or back_design.value != blank or lining_details.value != blank or fabric_gsm.value != blank or fabric_type.value != blank or fall_pico.value != blank or fit_note.value != blank or dimensions_summary.value != blank or lehenga_length.value != blank or waist_dimension.value != blank or included_items.value != blank or component_fabrics.value != blank or key_details.value != blank
+  if structure_details.value != blank or silhouette.value != blank or movement_rating.value != blank or sheer_opaque.value != blank or stitching_type.value != blank or neckline.value != blank or sleeve_type.value != blank or separate_sleeve_attached.value != blank or closure_type.value != blank or back_design.value != blank or lining_details.value != blank or fabric_gsm.value != blank or fabric_type.value != blank or fall_pico.value != blank or structured_relevant_for_jackets.value != blank or fit_note.value != blank or dimensions_summary.value != blank or lehenga_length.value != blank or waist_dimension.value != blank or included_items.value != blank or component_fabrics.value != blank or key_details.value != blank
     assign has_specifications = true
   endif
 %}
@@ -65,6 +66,7 @@
           {% if fabric_gsm.value != blank %}<div><dt>Fabric GSM</dt><dd>{{ fabric_gsm.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fabric_type.value != blank %}<div><dt>Fabric Type</dt><dd>{{ fabric_type.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fall_pico.value != blank %}<div><dt>Fall/Pico</dt><dd>{{ fall_pico.value | escape | newline_to_br }}</dd></div>{% endif %}
+          {% if structured_relevant_for_jackets.value != blank %}<div><dt>Structured (relevant for Jackets)</dt><dd>{{ structured_relevant_for_jackets.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if fit_note.value != blank %}<div><dt>Fit Note</dt><dd>{{ fit_note.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if dimensions_summary.value != blank %}<div><dt>Dimensions Summary</dt><dd>{{ dimensions_summary.value | escape | newline_to_br }}</dd></div>{% endif %}
           {% if lehenga_length.value != blank %}<div><dt>Lehenga Length</dt><dd>{{ lehenga_length.value | escape | newline_to_br }}</dd></div>{% endif %}
