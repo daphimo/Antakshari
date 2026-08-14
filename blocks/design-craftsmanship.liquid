@@ -1,6 +1,6 @@
 {% liquid
   assign product_resource = closest.product | default: product
-  assign print_placement = product_resource.metafields.custom.print_placement_new
+  assign print_placement = product_resource.metafields.custom.print_placement
   assign print_technique = product_resource.metafields.custom.print_technique_new
   assign blouse_collar = product_resource.metafields.custom.blouse_collar_new
   assign strap_type = product_resource.metafields.custom.strap_type_new
@@ -51,11 +51,15 @@
             <div>
               <dt>Body-Motif/Pattern</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for placement in print_placement.value %}
-                    {% if placement != blank %}<li>{{ placement | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if print_placement.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for placement in print_placement.value %}
+                      {% if placement != blank %}<li>{{ placement | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ print_placement.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}
@@ -65,11 +69,15 @@
             <div>
               <dt>Embellishments</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for embellishment in embellishments.value %}
-                    {% if embellishment != blank %}<li>{{ embellishment | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if embellishments.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for embellishment in embellishments.value %}
+                      {% if embellishment != blank %}<li>{{ embellishment | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ embellishments.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}
@@ -79,11 +87,15 @@
             <div>
               <dt>Drape Styles</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for drape_style in drape_styles.value %}
-                    {% if drape_style != blank %}<li>{{ drape_style | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if drape_styles.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for drape_style in drape_styles.value %}
+                      {% if drape_style != blank %}<li>{{ drape_style | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ drape_styles.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}
@@ -98,11 +110,15 @@
             <div>
               <dt>Weave / Technique</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for technique in weave_technique.value %}
-                    {% if technique != blank %}<li>{{ technique | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if weave_technique.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for technique in weave_technique.value %}
+                      {% if technique != blank %}<li>{{ technique | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ weave_technique.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}

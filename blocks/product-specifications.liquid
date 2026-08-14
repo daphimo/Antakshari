@@ -75,11 +75,15 @@
             <div>
               <dt>Included Items</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for included_item in included_items.value %}
-                    {% if included_item != blank %}<li>{{ included_item | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if included_items.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for included_item in included_items.value %}
+                      {% if included_item != blank %}<li>{{ included_item | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ included_items.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}
@@ -87,11 +91,15 @@
             <div>
               <dt>Component Fabrics</dt>
               <dd>
-                <ul class="metaobject-accordion__value-list">
-                  {% for component_fabric in component_fabrics.value %}
-                    {% if component_fabric != blank %}<li>{{ component_fabric | escape }}</li>{% endif %}
-                  {% endfor %}
-                </ul>
+                {% if component_fabrics.value.size > 1 %}
+                  <ul class="metaobject-accordion__value-list">
+                    {% for component_fabric in component_fabrics.value %}
+                      {% if component_fabric != blank %}<li>{{ component_fabric | escape }}</li>{% endif %}
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  {{ component_fabrics.value.first | escape }}
+                {% endif %}
               </dd>
             </div>
           {% endif %}
