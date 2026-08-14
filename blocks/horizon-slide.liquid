@@ -1,33 +1,73 @@
+{% liquid
+  assign is_first_slide = false
+  if section.blocks.first.id == block.id
+    assign is_first_slide = true
+  endif
+
+  assign image_loading = 'lazy'
+  assign image_fetchpriority = 'low'
+  if is_first_slide
+    assign image_loading = 'eager'
+    assign image_fetchpriority = 'high'
+  endif
+
+  assign slide_alt = block.settings.alt
+  if slide_alt == blank and block.settings.desktop_image != blank
+    assign slide_alt = block.settings.desktop_image.alt
+  endif
+  if slide_alt == blank and block.settings.mobile_image != blank
+    assign slide_alt = block.settings.mobile_image.alt
+  endif
+%}
+
 <div class="splide__slide slider__banner-wrap-custom" {{ block.shopify_attributes }}>
   <div class="slider__imagcontent-box">
     <!-- MEDIA -->
     <div class="customsliderimage__container-all">
       <div class="banners_images-custom">
         {% if block.settings.content_type == 'image' %}
-          {% if block.settings.desktop_image %}
-            <img
-              class="customslider customslider--desktop {% if block.settings.mobile_image != blank %}small-hide{% endif %}"
-              src="{{ block.settings.desktop_image | image_url }}"
-              alt="{{ block.settings.alt | escape }}"
-              loading="eager"
-              width="{{ block.settings.desktop_image.width }}"
-              height="{{ block.settings.desktop_image.height }}"
-            >
+          {% if block.settings.desktop_image != blank %}
+            <picture>
+              {% if block.settings.mobile_image != blank %}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="
+                    {{ block.settings.mobile_image | image_url: width: 375 }} 375w,
+                    {{ block.settings.mobile_image | image_url: width: 550 }} 550w,
+                    {{ block.settings.mobile_image | image_url: width: 750 }} 750w,
+                    {{ block.settings.mobile_image | image_url: width: 1000 }} 1000w
+                  "
+                  sizes="100vw"
+                  width="{{ block.settings.mobile_image.width }}"
+                  height="{{ block.settings.mobile_image.height }}"
+                >
+              {% endif %}
+              {{
+                block.settings.desktop_image
+                | image_url: width: 2400
+                | image_tag:
+                  class: 'customslider',
+                  widths: '750, 1100, 1500, 1920, 2400',
+                  sizes: '100vw',
+                  loading: image_loading,
+                  fetchpriority: image_fetchpriority,
+                  alt: slide_alt
+              }}
+            </picture>
+          {% elsif block.settings.mobile_image != blank %}
+            {{
+              block.settings.mobile_image
+              | image_url: width: 1000
+              | image_tag:
+                class: 'customslider',
+                widths: '375, 550, 750, 1000',
+                sizes: '100vw',
+                loading: image_loading,
+                fetchpriority: image_fetchpriority,
+                alt: slide_alt
+            }}
           {% else %}
-            {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media small-hide' }}
-          {% endif %}
-
-          {% if block.settings.mobile_image %}
-            <img
-              class="customslider customslider--mobile medium-hide large-up-hide"
-              src="{{ block.settings.mobile_image | image_url }}"
-              alt="{{ block.settings.alt | escape }}"
-              loading="eager"
-              width="{{ block.settings.mobile_image.width }}"
-              height="{{ block.settings.mobile_image.height }}"
-            >
-          {% else %}
-            {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media medium-hide large-up-hide' }}
+            {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
           {% endif %}
 
         {% elsif block.settings.content_type == 'video' %}
@@ -72,9 +112,10 @@
       <a
         class="customskiderurl__container-all"
         href="{{ block.settings.url }}"
-        aria-label="{{ block.settings.alt }}"
+        aria-label="{{ slide_alt | default: 'View slide' | escape }}"
         {% if block.settings.new_tab %}
           target="_blank"
+          rel="noopener noreferrer"
         {% endif %}
       ></a>
     {% endif %}
