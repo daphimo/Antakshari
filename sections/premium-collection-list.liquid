@@ -55,11 +55,11 @@
                     {% if collection_image != blank %}
                       {{
                         collection_image
-                        | image_url: width: 1000
+                        | image_url: width: 640
                         | image_tag:
                           class: 'premium-collections__image',
                           loading: 'lazy',
-                          widths: '320, 400, 480, 640, 800, 1000',
+                          widths: '320, 400, 480, 640',
                           sizes: collection_image_sizes,
                           alt: collection_image.alt | default: collection.title
                       }}
