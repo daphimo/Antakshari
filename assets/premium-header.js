@@ -11,20 +11,23 @@ class PremiumHeader {
     this.hoverTimers = new WeakMap();
     this.lastFocusedElement = null;
     this.scrollFrame = null;
+    this.pageWrapper = document.querySelector('.page-wrapper');
+    this.isScrolled = null;
     this.abortController = new AbortController();
     this.signal = this.abortController.signal;
-    this.resizeObserver = new ResizeObserver(() => this.updateHeaderHeight());
+    this.resizeObserver = new ResizeObserver((entries) => this.updateHeaderHeight(entries[0]));
 
     this.setInitialState();
     this.bindEvents();
     this.resizeObserver.observe(this.root);
-    this.updateHeaderHeight();
     this.handleScroll();
   }
 
-  updateHeaderHeight() {
+  updateHeaderHeight(entry) {
+    const borderBoxSize = entry?.borderBoxSize;
+    const measuredHeight = Array.isArray(borderBoxSize) ? borderBoxSize[0]?.blockSize : borderBoxSize?.blockSize;
     const headerHeight = this.root.classList.contains('premium-header--sticky')
-      ? Math.ceil(this.root.getBoundingClientRect().height)
+      ? Math.ceil(measuredHeight || entry?.contentRect?.height || 0)
       : 0;
 
     document.body.style.setProperty('--premium-header-height', `${headerHeight}px`);
@@ -97,7 +100,7 @@ class PremiumHeader {
       { passive: true, signal: this.signal }
     );
 
-    document.querySelector('.page-wrapper')?.addEventListener(
+    this.pageWrapper?.addEventListener(
       'scroll',
       () => {
         if (this.scrollFrame) return;
@@ -335,8 +338,11 @@ class PremiumHeader {
   }
 
   handleScroll() {
-    const pageScroll = document.querySelector('.page-wrapper')?.scrollTop || 0;
-    this.root.classList.toggle('is-scrolled', Math.max(window.scrollY, pageScroll) > 10);
+    const pageScroll = this.pageWrapper?.scrollTop || 0;
+    const isScrolled = Math.max(window.scrollY, pageScroll) > 10;
+    if (isScrolled === this.isScrolled) return;
+    this.isScrolled = isScrolled;
+    this.root.classList.toggle('is-scrolled', isScrolled);
   }
 
   destroy() {

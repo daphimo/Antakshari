@@ -137,9 +137,10 @@
                         | image_url: width: 1200
                         | image_tag:
                           loading: 'lazy',
-                          widths: '300, 450, 600, 800, 1000, 1200',
+                          widths: '300, 375, 450, 600, 800, 1000, 1200',
                           sizes: '(min-width: 990px) 25vw, (min-width: 750px) 40vw, 75vw',
-                          class: 'collection-category-slider__image'
+                          class: 'collection-category-slider__image',
+                          alt: card_image.alt | default: card_title
                       }}
                     {% else %}
                       {{

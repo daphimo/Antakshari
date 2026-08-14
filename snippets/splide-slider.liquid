@@ -36,19 +36,28 @@
 
     var sliderId = "splide-{{ custom_slider_id }}";
     var stateKey = "{{ custom_section_id }}-{{ custom_slider_id }}";
+    var viewportObserver;
+    var libraryRetries = 0;
 
     function initSplide_{{ custom_safe_id }}() {
       if (typeof Splide === 'undefined') {
-        setTimeout(initSplide_{{ custom_safe_id }}, 100);
+        if (libraryRetries < 20) {
+          libraryRetries += 1;
+          setTimeout(initSplide_{{ custom_safe_id }}, 100);
+        }
         return;
       }
 
       var el = document.getElementById(sliderId);
       if (!el) return;
 
-      // Destroy existing instance safely
-      if (el.splideInstance) {
-        el.splideInstance.destroy(true);
+      // Never mount or recreate a slider that is already functional.
+      if (el.splideInstance) return;
+
+      // A single slide needs no carousel measurements, clones, or listeners.
+      if (el.querySelectorAll('.splide__slide').length <= 1) {
+        el.style.visibility = 'visible';
+        return;
       }
 
       var defaultConfig = {
@@ -105,19 +114,58 @@
 
       splide.mount();
       el.splideInstance = splide;
+
+      // Stop autoplay work while an initialized slider is off screen.
+      if (!Shopify.designMode && config.autoplay && 'IntersectionObserver' in window) {
+        viewportObserver = new IntersectionObserver(function (entries) {
+          var autoplay = splide.Components && splide.Components.Autoplay;
+          if (!autoplay) return;
+          if (entries[0].isIntersecting) autoplay.play();
+          else autoplay.pause();
+        });
+        viewportObserver.observe(el);
+      }
+    }
+
+    function scheduleSplide_{{ custom_safe_id }}() {
+      var el = document.getElementById(sliderId);
+      if (!el || el.splideInstance) return;
+
+      if (Shopify.designMode || !('IntersectionObserver' in window)) {
+        initSplide_{{ custom_safe_id }}();
+        return;
+      }
+
+      // Above-the-fold sliders initialize immediately; lower sliders wait until
+      // they approach the viewport, avoiding early layout and clone work.
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 300 && rect.bottom > -300) {
+        initSplide_{{ custom_safe_id }}();
+        return;
+      }
+
+      var initObserver = new IntersectionObserver(
+        function (entries) {
+          if (!entries[0].isIntersecting) return;
+          initObserver.disconnect();
+          initSplide_{{ custom_safe_id }}();
+        },
+        { rootMargin: '300px 0px' }
+      );
+      initObserver.observe(el);
     }
 
     // Init on load
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSplide_{{ custom_safe_id }});
+      document.addEventListener('DOMContentLoaded', scheduleSplide_{{ custom_safe_id }}, { once: true });
     } else {
-      initSplide_{{ custom_safe_id }}();
+      scheduleSplide_{{ custom_safe_id }}();
     }
 
     // Section reload (Theme Editor)
     document.addEventListener('shopify:section:load', function (e) {
       if (e.detail.sectionId === "{{ custom_section_id }}") {
-        setTimeout(initSplide_{{ custom_safe_id }}, 100);
+        setTimeout(scheduleSplide_{{ custom_safe_id }}, 100);
       }
     });
 
@@ -127,7 +175,9 @@
         var el = document.getElementById(sliderId);
         if (el && el.splideInstance) {
           el.splideInstance.destroy(true);
+          delete el.splideInstance;
         }
+        viewportObserver?.disconnect();
       }
     });
 

@@ -93,6 +93,16 @@ class SlideshowViewportObserver {
  * @extends {Component<Refs>}
  */
 export class Slideshow extends Component {
+  /**
+   * Keeps hidden slides and their interactive descendants out of keyboard focus.
+   * @param {HTMLElement} slide
+   * @param {boolean} isVisible
+   */
+  #setSlideAccessibility(slide, isVisible) {
+    slide.setAttribute('aria-hidden', `${!isVisible}`);
+    slide.toggleAttribute('inert', !isVisible);
+  }
+
   static get observedAttributes() {
     return ['initial-slide'];
   }
@@ -196,7 +206,7 @@ export class Slideshow extends Component {
     for (const slide of this.refs.slides) {
       if (slide.hasAttribute('reveal')) {
         slide.removeAttribute('reveal');
-        slide.setAttribute('aria-hidden', 'true');
+        this.#setSlideAccessibility(slide, false);
       }
     }
 
@@ -212,7 +222,7 @@ export class Slideshow extends Component {
         // Force the slide to be revealed if it is hidden
         if (requestedSlide.hasAttribute('hidden')) {
           requestedSlide.setAttribute('reveal', '');
-          requestedSlide.setAttribute('aria-hidden', 'false');
+          this.#setSlideAccessibility(requestedSlide, true);
         }
 
         return this.slides.indexOf(requestedSlide);
@@ -292,7 +302,7 @@ export class Slideshow extends Component {
 
     const previousIndex = this.current;
 
-    slide.setAttribute('aria-hidden', 'false');
+    this.#setSlideAccessibility(slide, true);
 
     if (this.#scroll) {
       this.#scroll.to(slide, { instant });
@@ -532,7 +542,7 @@ export class Slideshow extends Component {
     }
 
     if (this.refs.slides?.[0]) {
-      this.refs.slides[0].setAttribute('aria-hidden', 'false');
+      this.#setSlideAccessibility(this.refs.slides[0], true);
     }
   }
 
@@ -935,7 +945,7 @@ export class Slideshow extends Component {
       // Update aria-hidden based on visibility
       slides.forEach((slide) => {
         const isVisible = visibleSlides.includes(slide);
-        slide.setAttribute('aria-hidden', `${!isVisible}`);
+        this.#setSlideAccessibility(slide, isVisible);
       });
     });
 

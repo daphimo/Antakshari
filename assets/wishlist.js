@@ -85,8 +85,6 @@ const updateWishlist = (handle) => {
   return setWishlist(wishlist);
 };
 
-const wishlistContains = (handle) => getWishlist().includes(handle);
-
 const updateWishlistCountBubble = () => {
   const countBubble = document.querySelector(selectors.wishlistCountBubble);
   if (!countBubble) return;
@@ -120,38 +118,41 @@ const fetchProductCardHTML = async (handle) => {
 };
 
 const setupButtons = (buttons) => {
+  const wishlist = getWishlist();
   buttons.forEach((button) => {
     const productHandle = button.dataset.productHandle;
-    if (!productHandle || button.dataset.wishlistBound === "true") return;
+    if (!productHandle) return;
 
-    button.dataset.wishlistBound = "true";
-    button.classList.toggle(BUTTON_ACTIVE_CLASS, wishlistContains(productHandle));
+    button.classList.toggle(BUTTON_ACTIVE_CLASS, wishlist.includes(productHandle));
     button.setAttribute(
       "aria-pressed",
       button.classList.contains(BUTTON_ACTIVE_CLASS).toString()
     );
-
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      updateWishlist(productHandle);
-      button.classList.toggle(BUTTON_ACTIVE_CLASS);
-      button.setAttribute(
-        "aria-pressed",
-        button.classList.contains(BUTTON_ACTIVE_CLASS).toString()
-      );
-
-      const productTitle = button.dataset.productTitle || "Product";
-      const isAdded = button.classList.contains(BUTTON_ACTIVE_CLASS);
-      showTooltip(
-        isAdded
-          ? `${productTitle} added to wishlist`
-          : `${productTitle} removed from wishlist`
-      );
-    });
   });
 };
+
+// One delegated listener handles current and section-rendered wishlist buttons.
+document.addEventListener("click", (event) => {
+  const button = event.target instanceof Element ? event.target.closest(selectors.button) : null;
+  if (!button) return;
+
+  const productHandle = button.dataset.productHandle;
+  if (!productHandle) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const wishlist = updateWishlist(productHandle);
+  setupButtons(document.querySelectorAll(selectors.button));
+
+  const productTitle = button.dataset.productTitle || "Product";
+  const isAdded = wishlist.includes(productHandle);
+  showTooltip(
+    isAdded
+      ? `${productTitle} added to wishlist`
+      : `${productTitle} removed from wishlist`
+  );
+});
 
 const initButtons = () => {
   const buttons = document.querySelectorAll(selectors.button);

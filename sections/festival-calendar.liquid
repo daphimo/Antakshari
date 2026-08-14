@@ -1,5 +1,12 @@
 <script type="module" src="{{ 'festival-calendar.js' | asset_url }}"></script>
 
+{% liquid
+  assign desktop_card_width = 100.0 | divided_by: section.settings.perPageDesktop
+  assign mobile_card_width = 100.0 | divided_by: section.settings.perPageMobile
+  assign festival_image_sizes = '(min-width: 990px) [desktop]vw, (min-width: 769px) 32vw, [mobile]vw'
+  assign festival_image_sizes = festival_image_sizes | replace: '[desktop]', desktop_card_width | replace: '[mobile]', mobile_card_width
+%}
+
 <section
   class="festival-calendar color-{{ section.settings.color_scheme }}"
   style="
@@ -15,7 +22,7 @@
           <p class="festival-calendar__eyebrow">{{ section.settings.eyebrow }}</p>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h3 class="festival-calendar__heading">{{ section.settings.heading }}</h3>
+          <h2 class="festival-calendar__heading">{{ section.settings.heading }}</h2>
         {% endif %}
       </header>
     {% endif %}
@@ -50,13 +57,13 @@
                   {% if block.settings.image != blank %}
                     {{
                       block.settings.image
-                      | image_url: width: 1200
+                      | image_url: width: 800
                       | image_tag:
                         class: 'festival-card__image',
                         loading: 'lazy',
-                        widths: '320, 480, 640, 800, 1000, 1200',
-                        sizes: '(min-width: 990px) 28vw, (min-width: 750px) 42vw, 82vw',
-                        alt: block.settings.image.alt
+                        widths: '240, 320, 400, 480, 640, 800',
+                        sizes: festival_image_sizes,
+                        alt: block.settings.festival_name
                     }}
                   {% else %}
                     {{ 'lifestyle-1' | placeholder_svg_tag: 'festival-card__image festival-card__placeholder' }}
