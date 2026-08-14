@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'mobile-bottom-bar.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'mobile-bottom-bar.css' | asset_url }}" media="(max-width: 749px)">
 <script src="{{ 'mobile-bottom-bar.js' | asset_url }}" defer="defer"></script>
 <script type="module" src="{{ 'cart-icon.js' | asset_url }}" fetchpriority="low"></script>
 
@@ -16,7 +16,7 @@
 {%- endcapture -%}
 
 <nav
-  class="mobile-bottom-bar"
+  class="mobile-bottom-bar large-up-hide"
   aria-label="{{ section.settings.accessibility_label | escape }}"
   style="
     --mobile-bar-items: {{ section.blocks.size }};
