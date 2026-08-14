@@ -55,6 +55,7 @@
                   {% if is_upcoming or block.settings.link == blank %}tabindex="-1"{% endif %}
                 >
                   {% if block.settings.image != blank %}
+                    {% assign alt = block.settings.festival_name | escape %}
                     {{
                       block.settings.image
                       | image_url: width: 800
@@ -63,7 +64,7 @@
                         loading: 'lazy',
                         widths: '240, 320, 400, 480, 640, 800',
                         sizes: festival_image_sizes,
-                        alt: block.settings.festival_name
+                        alt: alt
                     }}
                   {% else %}
                     {{ 'lifestyle-1' | placeholder_svg_tag: 'festival-card__image festival-card__placeholder' }}
