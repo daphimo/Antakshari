@@ -136,7 +136,7 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "text_color": "#F99A03",
+                    "text_color": "#f99a03",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -1290,9 +1290,9 @@
           "settings": {
             "image": "shopify://shop_images/onam-festival-bg.jpg",
             "release_date": "2026-08-26",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Onam",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/onam"
           }
         },
         "festival_X9zVaN": {
@@ -2144,7 +2144,9 @@
         "card_background": "#fff9f1",
         "border_color": "#debb8b",
         "hover_lift": 5,
-        "hover_shadow_opacity": 10
+        "hover_shadow_opacity": 10,
+        "cards__readmore": "Read More",
+        "read": "#e8a53a"
       }
     },
     "regional_3f9YWh": {
@@ -2215,7 +2217,9 @@
         "card_background": "#fff9f1",
         "border_color": "#debb8b",
         "hover_lift": 5,
-        "hover_shadow_opacity": 10
+        "hover_shadow_opacity": 10,
+        "cards__readmore": "Read More",
+        "read": "#e8a53a"
       }
     }
   },
