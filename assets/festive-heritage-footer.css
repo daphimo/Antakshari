@@ -474,8 +474,7 @@
     transform 0.3s ease;
 }
 
-.fhf-menu__link:hover,
-.fhf-menu__link[aria-current="page"] {
+.fhf-menu__link:hover{
   color: var(--fhf-text);
   transform: translateX(5px);
 }

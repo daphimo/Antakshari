@@ -136,7 +136,7 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "text_color": "#F99A03",
+                    "text_color": "#f99a03",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -1290,9 +1290,9 @@
           "settings": {
             "image": "shopify://shop_images/onam-festival-bg.jpg",
             "release_date": "2026-08-26",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Onam",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/onam"
           }
         },
         "festival_X9zVaN": {
@@ -1533,7 +1533,7 @@
               "type": "button",
               "settings": {
                 "label": "Read Why Antakshari Exists →",
-                "link": "shopify://collections/all",
+                "link": "shopify://pages/our-story",
                 "open_in_new_tab": false,
                 "style_class": "button-unstyled",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -2144,7 +2144,9 @@
         "card_background": "#fff9f1",
         "border_color": "#debb8b",
         "hover_lift": 5,
-        "hover_shadow_opacity": 10
+        "hover_shadow_opacity": 10,
+        "cards__readmore": "Read More",
+        "read": "#e8a53a"
       }
     },
     "regional_3f9YWh": {
@@ -2215,7 +2217,76 @@
         "card_background": "#fff9f1",
         "border_color": "#debb8b",
         "hover_lift": 5,
-        "hover_shadow_opacity": 10
+        "hover_shadow_opacity": 10,
+        "cards__readmore": "Read More",
+        "read": "#e8a53a"
+      }
+    },
+    "testimonials_slider_home": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Aanya Sharma",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>It feels special from the moment you open the package. The fit, finish, and colour are even lovelier in person.</p>",
+            "name": "Meera Patel",
+            "detail": "Ahmedabad, India",
+            "verified": true
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>A timeless piece I know I will reach for again and again. I received so many compliments the first time I wore it.</p>",
+            "name": "Riya Kapoor",
+            "detail": "New Delhi, India",
+            "verified": true
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
+      "name": "Testimonials slider",
+      "settings": {
+        "eyebrow": "Loved by you",
+        "heading": "Stories from our community",
+        "description": "<p>Thoughtful pieces, made memorable by the people who wear them. Discover what our community has to say.</p>",
+        "media_height": 520,
+        "media_height_mobile": 340,
+        "section_max_width": 1600,
+        "padding_inline": 24,
+        "column_gap": 60,
+        "card_radius": 24,
+        "background_color": "#faf5eb",
+        "card_color": "#fff9f1",
+        "text_color": "#4a1d0e",
+        "accent_color": "#e8a53a",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "transition_speed": 600,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "perPageDesktop": 1,
+        "perPageMobile": 1,
+        "perMove": 1,
+        "gap": 16,
+        "gap_mobile": 8,
+        "show_arrows": true,
+        "show_pagination": false
       }
     }
   },
@@ -2228,6 +2299,7 @@
     "slider_collection_Yhd6Uf",
     "trust_badges_home",
     "regional_MJ3Kwa",
-    "regional_3f9YWh"
+    "regional_3f9YWh",
+    "testimonials_slider_home"
   ]
 }

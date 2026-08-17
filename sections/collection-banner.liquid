@@ -1,6 +1,16 @@
 {% liquid
-  assign desktop_image = collection.metafields.custom.collection_banner_desktop.value
-  assign mobile_image = collection.metafields.custom.collection_banner_mobile.value | default: desktop_image
+  assign collection_desktop_image = collection.metafields.custom.collection_banner_desktop.value
+  assign collection_mobile_image = collection.metafields.custom.collection_banner_mobile.value
+  assign desktop_image = collection_desktop_image
+  assign mobile_image = desktop_image
+
+  if collection_desktop_image != blank
+    assign mobile_image = collection_mobile_image | default: collection_desktop_image
+  elsif section.settings.desktop_banner_image != blank
+    assign desktop_image = section.settings.desktop_banner_image
+    assign mobile_image = section.settings.mobile_banner_image | default: desktop_image
+  endif
+
   assign has_banner = false
   if desktop_image != blank or mobile_image != blank
     assign has_banner = true
@@ -96,6 +106,18 @@
   "name": "Collection banner",
   "enabled_on": { "templates": ["collection"] },
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_banner_image",
+      "label": "Desktop banner image",
+      "info": "Used when the collection does not have a desktop banner image assigned."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Mobile banner image",
+      "info": "Optional mobile fallback. Collection banner metafields take priority."
+    },
     { "type": "checkbox", "id": "enable_overlay", "label": "Enable overlay", "default": true },
     { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#2A1F1A" },
     {

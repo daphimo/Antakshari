@@ -272,16 +272,43 @@
 }
 
 .banner-slider-container .splide__arrow--prev{
-  left: 4em;
+  left: clamp(1rem, 3vw, 3rem);
 }
 
 .banner-slider-container .splide__arrow--next{
-  right: 4em;
+  right: clamp(1rem, 3vw, 3rem);
 }
 
 .banner-slider-container .splide__arrow{
-  width: 2em;
-  height: 2em;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.16);
+  border-radius: 50%;
+  opacity: 1;
+  color: var(--color-foreground);
+  background: rgb(var(--color-background-rgb) / 0.88);
+  box-shadow: 0 0.35rem 1.25rem rgb(var(--color-foreground-rgb) / 0.14);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.banner-slider-container .splide__arrow:hover:not(:disabled) {
+  color: var(--color-primary-button-text);
+  background: var(--color-primary-button-background);
+  border-color: var(--color-primary-button-border);
+  box-shadow: 0 0.5rem 1.5rem rgb(var(--color-foreground-rgb) / 0.2);
+}
+
+.banner-slider-container .splide__arrow:focus-visible {
+  outline: 2px solid var(--color-primary-button-focus-outline);
+  outline-offset: 3px;
+}
+
+.banner-slider-container .splide__arrow:disabled {
+  opacity: 0.38;
+  cursor: default;
 }
 
 .splide.visible {
@@ -290,8 +317,9 @@
 }
 
 .banner-slider-container .splide__arrow svg{
-  width: 2em;
-  height: 2em;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentcolor;
 }
 
 .slide--bttonwrap {
@@ -315,13 +343,13 @@
   }
 
   .banner-slider-container .splide__arrow{
-    width: 2.2em;
-    height: 2.2em;
+    width: 2.625rem;
+    height: 2.625rem;
   }
 
   .banner-slider-container .splide__arrow svg{
-    width: 2.2em;
-    height: 2.2em;
+    width: 1.125rem;
+    height: 1.125rem;
   }
 
 
