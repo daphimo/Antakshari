@@ -34,8 +34,7 @@
                   srcset="
                     {{ block.settings.mobile_image | image_url: width: 375 }} 375w,
                     {{ block.settings.mobile_image | image_url: width: 550 }} 550w,
-                    {{ block.settings.mobile_image | image_url: width: 750 }} 750w,
-                    {{ block.settings.mobile_image | image_url: width: 1000 }} 1000w
+                    {{ block.settings.mobile_image | image_url: width: 750 }} 750w
                   "
                   sizes="100vw"
                   width="{{ block.settings.mobile_image.width }}"
@@ -44,10 +43,10 @@
               {% endif %}
               {{
                 block.settings.desktop_image
-                | image_url: width: 2400
+                | image_url: width: 1500
                 | image_tag:
                   class: 'customslider',
-                  widths: '750, 1100, 1500, 1920, 2400',
+                  widths: '750, 1100, 1500',
                   sizes: '100vw',
                   loading: image_loading,
                   fetchpriority: image_fetchpriority,
@@ -57,10 +56,10 @@
           {% elsif block.settings.mobile_image != blank %}
             {{
               block.settings.mobile_image
-              | image_url: width: 1000
+              | image_url: width: 550
               | image_tag:
                 class: 'customslider',
-                widths: '375, 550, 750, 1000',
+                widths: '375, 550',
                 sizes: '100vw',
                 loading: image_loading,
                 fetchpriority: image_fetchpriority,
