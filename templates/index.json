@@ -1278,7 +1278,7 @@
         "autoplay": false,
         "autoplay_speed": 3,
         "transition_speed": 1000,
-        "show_arrows": false,
+        "show_arrows": true,
         "show_pagination": false
       }
     },
@@ -2001,7 +2001,7 @@
         "autoplay": false,
         "autoplay_speed": 3,
         "transition_speed": 700,
-        "show_arrows": false,
+        "show_arrows": true,
         "show_pagination": false,
         "pause_on_hover": true,
         "pause_on_focus": true,
@@ -2221,6 +2221,77 @@
         "cards__readmore": "Read More",
         "read": "#e8a53a"
       }
+    },
+    "testimonials_slider_kbLMTk": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_bLNFJr": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_LHLqwz": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_UDQmPQ": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "image",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_bLNFJr",
+        "testimonial_LHLqwz",
+        "testimonial_UDQmPQ"
+      ],
+      "name": "Testimonials slider",
+      "settings": {
+        "eyebrow": "Loved by you",
+        "heading": "Stories from our community",
+        "description": "<p>Thoughtful pieces, made memorable by the people who wear them. Discover what our community has to say.</p>",
+        "media_height": 520,
+        "media_height_mobile": 340,
+        "section_max_width": 1600,
+        "padding_inline": 24,
+        "column_gap": 60,
+        "card_radius": 24,
+        "background_color": "#faf5eb",
+        "card_color": "#fff9f1",
+        "text_color": "#4a1d0e",
+        "accent_color": "#e8a53a",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "transition_speed": 600,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "perPageDesktop": 1,
+        "perPageMobile": 1,
+        "perMove": 1,
+        "gap": 16,
+        "gap_mobile": 8,
+        "show_arrows": true,
+        "show_pagination": false
+      }
     }
   },
   "order": [
@@ -2232,6 +2303,7 @@
     "slider_collection_Yhd6Uf",
     "trust_badges_home",
     "regional_MJ3Kwa",
-    "regional_3f9YWh"
+    "regional_3f9YWh",
+    "testimonials_slider_kbLMTk"
   ]
 }
