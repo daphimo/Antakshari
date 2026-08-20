@@ -78,7 +78,7 @@
             {% if block.settings.text != blank %}
               <div
                 class="collection-banner__text-with-image"
-                style="--item-icon-color: {{ block.settings.icon_color }}; --item-text-color: {{ block.settings.text_color }}; --item-icon-size: {{ block.settings.icon_size }}px; --item-text-size: {{ block.settings.text_size }}px; --item-gap: {{ block.settings.gap }}px;"
+                style="padding-top: {{ block.settings.padding }}px;--item-icon-color: {{ block.settings.icon_color }}; --item-text-color: {{ block.settings.text_color }}; --item-icon-size: {{ block.settings.icon_size }}px; --item-text-size: {{ block.settings.text_size }}px; --item-gap: {{ block.settings.gap }}px;"
                 {{ block.shopify_attributes }}
               >
                 {% render 'icon-or-image', icon: block.settings.icon, image_upload: block.settings.image, width: block.settings.icon_size, class_name: 'collection-banner__item-icon' %}
@@ -287,6 +287,7 @@
         { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
         { "type": "range", "id": "icon_size", "label": "Icon size", "min": 8, "max": 80, "step": 1, "unit": "px", "default": 18 },
         { "type": "range", "id": "text_size", "label": "Text size", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 14 },
+        { "type": "range", "id": "padding", "label": "Space top", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 0 },
         { "type": "range", "id": "gap", "label": "Space between icon and text", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 6 }
       ]
     },
