@@ -57,6 +57,7 @@
             "text_color": "#ffffff",
             "icon_size": 18,
             "text_size": 14,
+            "padding": 16,
             "gap": 6
           }
         },
@@ -69,6 +70,7 @@
             "text_color": "#ffffff",
             "icon_size": 18,
             "text_size": 14,
+            "padding": 0,
             "gap": 6
           }
         },
@@ -81,6 +83,7 @@
             "text_color": "#ffffff",
             "icon_size": 18,
             "text_size": 14,
+            "padding": 0,
             "gap": 6
           }
         }
