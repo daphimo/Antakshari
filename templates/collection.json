@@ -104,7 +104,7 @@
         "overlay_color": "#2a1f1a",
         "color_ni": "#000000",
         "color_oi": "#ffffff",
-        "overlay_opacity": 35,
+        "overlay_opacity": 40,
         "content_alignment": "left",
         "title_color": "#fcfaf5",
         "breadcrumb_color": "#fcfaf5",
