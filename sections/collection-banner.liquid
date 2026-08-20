@@ -74,6 +74,17 @@
                 {{ block.settings.title }}
               </{{ block.settings.preset }}>
             {% endif %}
+          {% when 'text_with_image' %}
+            {% if block.settings.text != blank %}
+              <div
+                class="collection-banner__text-with-image"
+                style="--item-icon-color: {{ block.settings.icon_color }}; --item-text-color: {{ block.settings.text_color }}; --item-icon-size: {{ block.settings.icon_size }}px; --item-text-size: {{ block.settings.text_size }}px; --item-gap: {{ block.settings.gap }}px;"
+                {{ block.shopify_attributes }}
+              >
+                {% render 'icon-or-image', icon: block.settings.icon, image_upload: block.settings.image, width: block.settings.icon_size, class_name: 'collection-banner__item-icon' %}
+                <span class="collection-banner__item-text">{{ block.settings.text }}</span>
+              </div>
+            {% endif %}
         {% endcase %}
       {%- endfor %}
     </div>
@@ -98,6 +109,9 @@
   .collection-banner__title { max-width: 16ch; margin: .8rem 0 0; color: var(--banner-title); font-family: var(--font-heading--family); font-size: clamp(2.15rem, 4.2vw, 4.75rem); font-weight: 500; letter-spacing: -.025em; line-height: .98; text-wrap: balance; text-shadow: 0 2px 20px rgb(42 31 26 / 22%); }
   .collection-banner--minimal .collection-banner__title { color: #2a1f1a; }
   .collection-banner--minimal .collection-banner__breadcrumbs { color: #6b1f2a; }
+  .collection-banner__text-with-image { display: flex; align-items: center; gap: var(--item-gap); color: var(--item-text-color); }
+  .collection-banner__item-icon { width: var(--item-icon-size); height: var(--item-icon-size); flex: 0 0 var(--item-icon-size); color: var(--item-icon-color); object-fit: contain; }
+  .collection-banner__item-text { color: var(--item-text-color); font-size: var(--item-text-size); line-height: 1.35; }
   @media (max-width: 749px) { .collection-banner--minimal { padding-block: 34px; } .collection-banner__image { max-height: none; object-fit: contain; } .collection-banner__inner { padding-inline: min(var(--banner-padding), 24px); } .collection-banner--image .collection-banner__inner { padding-block: 24px 30px; } .collection-banner__title { font-size: clamp(2rem, 10vw, 3.25rem); line-height: 1.02; } }
 {% endstylesheet %}
 
@@ -240,6 +254,40 @@
             }
           ]
         }
+      ]
+    },
+    {
+      "type": "text_with_image",
+      "name": "Text with image",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Comfortable all-day festive wear" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Check" },
+            { "value": "check_box", "label": "Check box" },
+            { "value": "star", "label": "Star" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "fire", "label": "Fire" },
+            { "value": "lightning_bolt", "label": "Lightning bolt" },
+            { "value": "snowflake", "label": "Snowflake" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "return", "label": "Return" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "price_tag", "label": "Price tag" }
+          ],
+          "default": "check"
+        },
+        { "type": "image_picker", "id": "image", "label": "Custom image", "info": "Overrides the selected icon." },
+        { "type": "color", "id": "icon_color", "label": "Icon color", "default": "#D88A00" },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
+        { "type": "range", "id": "icon_size", "label": "Icon size", "min": 8, "max": 80, "step": 1, "unit": "px", "default": 18 },
+        { "type": "range", "id": "text_size", "label": "Text size", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 14 },
+        { "type": "range", "id": "gap", "label": "Space between icon and text", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 6 }
       ]
     },
     {
