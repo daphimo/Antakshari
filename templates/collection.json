@@ -47,13 +47,52 @@
             "color_oi": "#f99a03",
             "preset": "h2"
           }
+        },
+        "text_with_image_8jgX4q": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Curated For the Entire Family",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "gap": 6
+          }
+        },
+        "text_with_image_JknX4d": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Comfortable All-day Festive Wear",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "gap": 6
+          }
+        },
+        "text_with_image_yD4YPr": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Inspired By India's Regional Crafts",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "gap": 6
+          }
         }
       },
       "block_order": [
         "collection_GnX3W3",
         "text_tXJxiy",
         "text_dyDewM",
-        "text_9zHbJC"
+        "text_9zHbJC",
+        "text_with_image_8jgX4q",
+        "text_with_image_JknX4d",
+        "text_with_image_yD4YPr"
       ],
       "settings": {
         "desktop_banner_image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_01_11_03_AM.png",
