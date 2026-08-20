@@ -96,6 +96,7 @@
       ],
       "settings": {
         "desktop_banner_image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_01_11_03_AM.png",
+        "mobile_banner_image": "shopify://shop_images/hero-family-updated_1.png",
         "enable_overlay": true,
         "overlay_color": "#2a1f1a",
         "color_ni": "#000000",
