@@ -463,16 +463,6 @@
                 "border_color": "#dfd0bf"
               },
               "blocks": {}
-            },
-            "switch_upsell_UPcycm": {
-              "type": "switch-upsell",
-              "name": "Switch Upsell",
-              "settings": {
-                "label": "Goes well With",
-                "padding_top": 0,
-                "padding_bottom": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -490,8 +480,7 @@
             "design_craftsmanship_C93b9e",
             "care_profile_xTATRR",
             "claims_certifications_m8NwrU",
-            "complete_the_look_C8wgRt",
-            "switch_upsell_UPcycm"
+            "complete_the_look_C8wgRt"
           ]
         }
       },
