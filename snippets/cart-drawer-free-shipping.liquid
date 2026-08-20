@@ -4,6 +4,16 @@
   assign reward_one_threshold = settings.cart_reward_one_threshold | times: 100
   assign reward_two_threshold = settings.cart_reward_two_threshold | times: 100
   assign reward_three_threshold = settings.cart_reward_three_threshold | times: 100
+  assign latest_reward_success_message = blank
+  if settings.cart_rewards_enabled
+    if reward_three_threshold > 0 and cart.total_price >= reward_three_threshold
+      assign latest_reward_success_message = settings.cart_reward_three_success_message | default: settings.cart_reward_three_text
+    elsif reward_two_threshold > 0 and cart.total_price >= reward_two_threshold
+      assign latest_reward_success_message = settings.cart_reward_two_success_message | default: settings.cart_reward_two_text
+    elsif reward_one_threshold > 0 and cart.total_price >= reward_one_threshold
+      assign latest_reward_success_message = settings.cart_reward_one_success_message | default: settings.cart_free_shipping_unlocked_message
+    endif
+  endif
   assign rewards_progress = 0
   if cart.total_price >= reward_three_threshold
     assign rewards_progress = 100
@@ -37,7 +47,9 @@
       </span>
     </div>
     <p class="cart-free-shipping__message" aria-live="polite">
-      {% if remaining <= 0 %}
+      {% if latest_reward_success_message != blank %}
+        {{ latest_reward_success_message }}
+      {% elsif remaining <= 0 %}
         {{ settings.cart_free_shipping_unlocked_message }}
       {% else %}
         {% assign remaining_money = remaining | money_with_currency %}

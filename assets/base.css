@@ -1498,7 +1498,7 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
     }
 
     > .text-block {
-      flex: 1 1 var(--max-width--display-tight);
+      flex: 1 1 auto;
     }
 
     > .image-block {

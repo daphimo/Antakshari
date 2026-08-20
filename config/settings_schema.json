@@ -78,6 +78,11 @@
       },
       {
         "type": "text",
+        "id": "cart_reward_one_success_message",
+        "label": "Reward 1 success message"
+      },
+      {
+        "type": "text",
         "id": "cart_reward_two_threshold",
         "default": "999",
         "label": "Reward 2 threshold"
@@ -96,6 +101,11 @@
       },
       {
         "type": "text",
+        "id": "cart_reward_two_success_message",
+        "label": "Reward 2 success message"
+      },
+      {
+        "type": "text",
         "id": "cart_reward_three_threshold",
         "default": "1699",
         "label": "Reward 3 threshold"
@@ -111,6 +121,11 @@
         "id": "cart_reward_three_text",
         "default": "Get 10% off",
         "label": "Reward 3 offer"
+      },
+      {
+        "type": "text",
+        "id": "cart_reward_three_success_message",
+        "label": "Reward 3 success message"
       },
       {
         "type": "text",

@@ -1,5 +1,5 @@
 {% liquid
-  assign rendered_collections = collection.metafields.custom.suggested_collections.value
+  assign rendered_collections = article.metafields.custom.suggested_collections.value
   assign use_fallback = false
 
   if rendered_collections == blank
