@@ -77,7 +77,7 @@
           "type": "tab",
           "settings": {
             "question": "How long will my order take to arrive?",
-            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "answer": "<p>For destinations within Bangalore, we will deliver within 3 days </p>",
             "open_by_default": false
           }
         },
