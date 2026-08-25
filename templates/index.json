@@ -1299,8 +1299,8 @@
           "type": "festival",
           "settings": {
             "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
-            "release_date": "2026-08-28",
-            "enable_sale": false,
+            "release_date": "2026-08-21",
+            "enable_sale": true,
             "festival_name": "Varamahalakshmi",
             "link": ""
           }
