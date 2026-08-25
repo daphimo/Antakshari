@@ -1285,16 +1285,6 @@
     "festival_calendar_tEEzee": {
       "type": "festival-calendar",
       "blocks": {
-        "festival_xwWXK6": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/onam-festival-bg.jpg",
-            "release_date": "2026-08-26",
-            "enable_sale": true,
-            "festival_name": "Onam",
-            "link": "shopify://collections/onam"
-          }
-        },
         "festival_X9zVaN": {
           "type": "festival",
           "settings": {
@@ -1303,6 +1293,16 @@
             "enable_sale": true,
             "festival_name": "Varamahalakshmi",
             "link": ""
+          }
+        },
+        "festival_xwWXK6": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/onam-festival-bg.jpg",
+            "release_date": "2026-08-26",
+            "enable_sale": true,
+            "festival_name": "Onam",
+            "link": "shopify://collections/onam"
           }
         },
         "festival_ACaiAF": {
@@ -1337,8 +1337,8 @@
         }
       },
       "block_order": [
-        "festival_xwWXK6",
         "festival_X9zVaN",
+        "festival_xwWXK6",
         "festival_ACaiAF",
         "festival_3WE3zN",
         "festival_epBYLM"
