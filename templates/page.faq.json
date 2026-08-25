@@ -112,7 +112,7 @@
           "type": "tab",
           "settings": {
             "question": "Where are your products made?",
-            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "answer": "<p>Since we cater regional-craft inspired products, we source from the respective artisan clusters and reliable manufacturers from the respective states.</p>",
             "open_by_default": false
           }
         }
