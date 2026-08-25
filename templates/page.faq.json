@@ -104,7 +104,7 @@
           "type": "tab",
           "settings": {
             "question": "How should I care for my pieces?",
-            "answer": "<p>Use this space to provide a clear, helpful answer for your customers.</p>",
+            "answer": "<p>Wash care is provided for the respective products. However, for hand-made products, we recommend doing handwash</p>",
             "open_by_default": false
           }
         },
