@@ -1310,7 +1310,7 @@
           "settings": {
             "image": "shopify://shop_images/rakshabandhan-bg.jpg",
             "release_date": "2026-08-28",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Rakshabandhan",
             "link": ""
           }
