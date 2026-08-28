@@ -2368,6 +2368,30 @@
             "detail": "Mumbai, India",
             "verified": true
           }
+        },
+        "testimonial_Q8C9FT": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (5).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_mKmjDB": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (12).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
         }
       },
       "block_order": [
@@ -2382,7 +2406,9 @@
         "testimonial_znPKGN",
         "testimonial_ycbctb",
         "testimonial_gTE77X",
-        "testimonial_F6wRxb"
+        "testimonial_F6wRxb",
+        "testimonial_Q8C9FT",
+        "testimonial_mKmjDB"
       ],
       "name": "Testimonials slider",
       "settings": {
