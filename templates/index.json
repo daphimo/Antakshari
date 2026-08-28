@@ -2228,7 +2228,8 @@
         "testimonial_bLNFJr": {
           "type": "testimonial",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (11).mp4",
             "rating": 5,
             "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
             "name": "Customer name",
@@ -2239,7 +2240,8 @@
         "testimonial_LHLqwz": {
           "type": "testimonial",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (6).mp4",
             "rating": 5,
             "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
             "name": "Customer name",
@@ -2250,7 +2252,116 @@
         "testimonial_UDQmPQ": {
           "type": "testimonial",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (14).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_TXzPkN": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (10).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_Tk9DLa": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (2).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_fcwn8K": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (7).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_6wKyeR": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (13).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_JBjFJ9": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (4).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_znPKGN": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (8).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_ycbctb": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (1).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_gTE77X": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (3).mp4",
+            "rating": 5,
+            "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
+            "name": "Customer name",
+            "detail": "Mumbai, India",
+            "verified": true
+          }
+        },
+        "testimonial_F6wRxb": {
+          "type": "testimonial",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/1 (9).mp4",
             "rating": 5,
             "testimonial": "<p>The craftsmanship is beautiful, and every detail feels thoughtfully made. It became an instant favourite.</p>",
             "name": "Customer name",
@@ -2262,7 +2373,16 @@
       "block_order": [
         "testimonial_bLNFJr",
         "testimonial_LHLqwz",
-        "testimonial_UDQmPQ"
+        "testimonial_UDQmPQ",
+        "testimonial_TXzPkN",
+        "testimonial_Tk9DLa",
+        "testimonial_fcwn8K",
+        "testimonial_6wKyeR",
+        "testimonial_JBjFJ9",
+        "testimonial_znPKGN",
+        "testimonial_ycbctb",
+        "testimonial_gTE77X",
+        "testimonial_F6wRxb"
       ],
       "name": "Testimonials slider",
       "settings": {
