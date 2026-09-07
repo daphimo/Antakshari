@@ -331,6 +331,7 @@
         "promotion_1": {
           "type": "promotion",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_59_35_AM.png",
             "link": "",
             "alt_text": ""
           }
@@ -338,6 +339,7 @@
         "promotion_2": {
           "type": "promotion",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_01_03_58_AM.png",
             "link": "",
             "alt_text": ""
           }
