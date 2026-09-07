@@ -47,21 +47,64 @@
             "color_oi": "#f99a03",
             "preset": "h2"
           }
+        },
+        "text_with_image_8jgX4q": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Curated For the Entire Family",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "padding": 16,
+            "gap": 6
+          }
+        },
+        "text_with_image_JknX4d": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Comfortable All-day Festive Wear",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "padding": 0,
+            "gap": 6
+          }
+        },
+        "text_with_image_yD4YPr": {
+          "type": "text_with_image",
+          "settings": {
+            "text": "Inspired By India's Regional Crafts",
+            "icon": "check",
+            "icon_color": "#d88a00",
+            "text_color": "#ffffff",
+            "icon_size": 18,
+            "text_size": 14,
+            "padding": 0,
+            "gap": 6
+          }
         }
       },
       "block_order": [
         "collection_GnX3W3",
         "text_tXJxiy",
         "text_dyDewM",
-        "text_9zHbJC"
+        "text_9zHbJC",
+        "text_with_image_8jgX4q",
+        "text_with_image_JknX4d",
+        "text_with_image_yD4YPr"
       ],
       "settings": {
         "desktop_banner_image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_01_11_03_AM.png",
+        "mobile_banner_image": "shopify://shop_images/hero-family-updated_1.png",
         "enable_overlay": true,
         "overlay_color": "#2a1f1a",
         "color_ni": "#000000",
         "color_oi": "#ffffff",
-        "overlay_opacity": 35,
+        "overlay_opacity": 60,
         "content_alignment": "left",
         "title_color": "#fcfaf5",
         "breadcrumb_color": "#fcfaf5",
