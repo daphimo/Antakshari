@@ -9,6 +9,103 @@
  */
 {
   "sections": {
+    "festival_hero": {
+      "type": "festival-hero-banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_52_57_AM.png",
+        "mobile_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_54_41_AM.png",
+        "link": "",
+        "alt_text": ""
+      }
+    },
+    "circular_collections": {
+      "type": "circular-collections",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_5": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "collection_6": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3",
+        "collection_4",
+        "collection_5",
+        "collection_6"
+      ],
+      "settings": {
+        "title": "Explore the collection",
+        "desktop_items": "6",
+        "show_names": true,
+        "max_width": 1400
+      }
+    },
+    "promotional_images": {
+      "type": "content-over-image",
+      "blocks": {
+        "promotion_1": {
+          "type": "promotion",
+          "settings": {
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "promotion_2": {
+          "type": "promotion",
+          "settings": {
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "promotion_1",
+        "promotion_2"
+      ],
+      "settings": {
+        "desktop_items": "2",
+        "max_width": 1400
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -27,6 +124,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -39,7 +137,9 @@
         },
         "page-content": {
           "type": "page-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -47,82 +147,14 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 40,
         "padding-block-end": 80
-      },
-      "disabled": true
-    },
-    "festival_hero": {
-      "type": "festival-hero-banner",
-      "settings": {}
-    },
-    "circular_collections": {
-      "type": "circular-collections",
-      "settings": {
-        "title": "Explore the collection",
-        "desktop_items": "6",
-        "show_names": true,
-        "max_width": 1400
-      },
-      "blocks": {
-        "collection_1": {
-          "type": "collection",
-          "settings": {}
-        },
-        "collection_2": {
-          "type": "collection",
-          "settings": {}
-        },
-        "collection_3": {
-          "type": "collection",
-          "settings": {}
-        },
-        "collection_4": {
-          "type": "collection",
-          "settings": {}
-        },
-        "collection_5": {
-          "type": "collection",
-          "settings": {}
-        },
-        "collection_6": {
-          "type": "collection",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "collection_1",
-        "collection_2",
-        "collection_3",
-        "collection_4",
-        "collection_5",
-        "collection_6"
-      ]
-    },
-    "promotional_images": {
-      "type": "content-over-image",
-      "settings": {
-        "desktop_items": "2",
-        "max_width": 1400
-      },
-      "blocks": {
-        "promotion_1": {
-          "type": "promotion",
-          "settings": {}
-        },
-        "promotion_2": {
-          "type": "promotion",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "promotion_1",
-        "promotion_2"
-      ]
+      }
     }
   },
   "order": [
