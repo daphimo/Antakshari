@@ -17,6 +17,11 @@
   }
 }
 
+.mobile-bottom-bar {
+  display: none;
+}
+
+
 .shopify-section{
     position: relative;
 }
