@@ -25,6 +25,7 @@
           "type": "collection",
           "settings": {
             "collection": "navratri-men",
+            "image": "shopify://shop_images/VrindavanPhoolwariDupatta.png",
             "title": ""
           }
         },
@@ -39,14 +40,33 @@
           "type": "collection",
           "settings": {
             "collection": "navratri-children",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_10_2026_07_39_00_PM.png",
             "title": ""
+          }
+        },
+        "collection_47RT86": {
+          "type": "collection",
+          "settings": {
+            "collection": "navratri-collection",
+            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_27_51PM.png",
+            "title": "Accessories"
+          }
+        },
+        "collection_pjYhBB": {
+          "type": "collection",
+          "settings": {
+            "collection": "navratri-collection",
+            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_07_05PM.png",
+            "title": "Chaniya Choli"
           }
         }
       },
       "block_order": [
         "collection_1",
         "collection_2",
-        "collection_3"
+        "collection_3",
+        "collection_47RT86",
+        "collection_pjYhBB"
       ],
       "settings": {
         "title": "Navratri Curated Collections",
