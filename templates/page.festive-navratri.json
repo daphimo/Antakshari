@@ -21,27 +21,12 @@
     "circular_collections": {
       "type": "circular-collections",
       "blocks": {
-        "collection_1": {
+        "collection_pjYhBB": {
           "type": "collection",
           "settings": {
-            "collection": "navratri-men",
-            "image": "shopify://shop_images/VrindavanPhoolwariDupatta.png",
-            "title": ""
-          }
-        },
-        "collection_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "navratri-women",
-            "title": ""
-          }
-        },
-        "collection_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "navratri-children",
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_10_2026_07_39_00_PM.png",
-            "title": ""
+            "collection": "navratri-collection",
+            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_07_05PM.png",
+            "title": "Chaniya Choli"
           }
         },
         "collection_47RT86": {
@@ -52,21 +37,37 @@
             "title": "Accessories"
           }
         },
-        "collection_pjYhBB": {
+        "collection_3": {
           "type": "collection",
           "settings": {
-            "collection": "navratri-collection",
-            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_07_05PM.png",
-            "title": "Chaniya Choli"
+            "collection": "navratri-children",
+            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_25_35PM.png",
+            "title": ""
+          }
+        },
+        "collection_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "navratri-men",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_06_31_04_PM.png",
+            "title": ""
+          }
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "navratri-women",
+            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_08_06PM.png",
+            "title": ""
           }
         }
       },
       "block_order": [
-        "collection_1",
-        "collection_2",
-        "collection_3",
+        "collection_pjYhBB",
         "collection_47RT86",
-        "collection_pjYhBB"
+        "collection_3",
+        "collection_1",
+        "collection_2"
       ],
       "settings": {
         "title": "Navratri Curated Collections",
