@@ -108,7 +108,7 @@
             "padding_vertical": 13,
             "padding_horizontal": 28,
             "border_width": 1,
-            "border_radius": 6,
+            "border_radius": 50,
             "font_size": 14,
             "font_weight": "600",
             "letter_spacing": 4,
