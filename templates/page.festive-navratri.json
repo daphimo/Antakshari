@@ -12,8 +12,10 @@
     "festival_hero": {
       "type": "festival-hero-banner",
       "settings": {
-        "link": "",
-        "alt_text": ""
+        "desktop_image": "shopify://shop_images/nav-banner.png",
+        "mobile_image": "shopify://shop_images/navratri-mobile-banner.png",
+        "link": "shopify://collections/navratri-collection",
+        "alt_text": "Navratri collection banner"
       }
     },
     "circular_collections": {
@@ -23,7 +25,6 @@
           "type": "collection",
           "settings": {
             "collection": "navratri-men",
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_01_33_35_AM.png",
             "title": ""
           }
         },
@@ -65,13 +66,13 @@
             "link": "{{ closest.collection.url }}",
             "open_in_new_tab": false,
             "button_style": "primary",
-            "primary_background": "#6B1F2A",
+            "primary_background": "#6b1f2a",
             "primary_text": "#ffffff",
-            "primary_border": "#6B1F2A",
-            "primary_hover_background": "#6B1F2A",
+            "primary_border": "#6b1f2a",
+            "primary_hover_background": "#6b1f2a",
             "primary_hover_text": "#ffffff",
-            "primary_hover_border": "#6B1F2A",
-            "secondary_background": "#ffffff00",
+            "primary_hover_border": "#6b1f2a",
+            "secondary_background": "rgba(0,0,0,0)",
             "secondary_text": "#3d1f15",
             "secondary_border": "#3d1f15",
             "secondary_hover_background": "#3d1f15",
@@ -142,7 +143,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "#6B1F2A",
+                "text_color": "#6b1f2a",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -191,7 +192,7 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
-            "background_color": "#FFFFFF",
+            "background_color": "#ffffff",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -306,17 +307,17 @@
         "promotion_1": {
           "type": "promotion",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_59_35_AM.png",
-            "link": "",
-            "alt_text": ""
+            "image": "shopify://shop_images/side-small_banner.png",
+            "link": "shopify://collections/navratri-collection",
+            "alt_text": "Navratri Collection"
           }
         },
         "promotion_2": {
           "type": "promotion",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_01_03_58_AM.png",
-            "link": "",
-            "alt_text": ""
+            "image": "shopify://shop_images/side-small_banner_second.png",
+            "link": "shopify://collections/navratri-collection",
+            "alt_text": "Navratri Collection"
           }
         }
       },
