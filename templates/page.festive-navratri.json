@@ -79,6 +79,40 @@
         "max_width": 1400
       }
     },
+    "premium_collection_list_dGk7VG": {
+      "type": "premium-collection-list",
+      "name": "Premium collection list",
+      "settings": {
+        "collection_list": [
+          "navratri-collection"
+        ],
+        "eyebrow": "Curated for you",
+        "heading": "Explore our signature collections",
+        "description": "<p>Thoughtfully designed pieces rooted in craft, comfort and celebration.</p>",
+        "show_product_count": true,
+        "slider_type": "slide",
+        "perPageDesktop": 4,
+        "perPageMobile": 1.5,
+        "perMove": 1,
+        "gap": 20,
+        "gap_mobile": 14,
+        "show_arrows": true,
+        "show_pagination": true,
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "transition_speed": 600,
+        "pause_on_hover": true,
+        "pause_on_focus": true,
+        "image_height": 420,
+        "card_radius": 18,
+        "background": "#f8f3ea",
+        "text_color": "#3d1f15",
+        "muted_color": "#76594e",
+        "accent_color": "#b55f37",
+        "padding_top": 72,
+        "padding_bottom": 76
+      }
+    },
     "promotional_images": {
       "type": "content-over-image",
       "blocks": {
@@ -160,6 +194,7 @@
   "order": [
     "festival_hero",
     "circular_collections",
+    "premium_collection_list_dGk7VG",
     "promotional_images",
     "main"
   ]
