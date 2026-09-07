@@ -24,42 +24,21 @@
         "collection_1": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "navratri-men",
             "title": ""
           }
         },
         "collection_2": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "navratri-women",
             "title": ""
           }
         },
         "collection_3": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "title": ""
-          }
-        },
-        "collection_4": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title": ""
-          }
-        },
-        "collection_5": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "title": ""
-          }
-        },
-        "collection_6": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
+            "collection": "navratri-children",
             "title": ""
           }
         }
@@ -67,10 +46,7 @@
       "block_order": [
         "collection_1",
         "collection_2",
-        "collection_3",
-        "collection_4",
-        "collection_5",
-        "collection_6"
+        "collection_3"
       ],
       "settings": {
         "title": "Explore the collection",
