@@ -1,0 +1,150 @@
+<div class="circular-collections" style="--circular-max-width: {{ section.settings.max_width }}px; --circular-items: {{ section.settings.desktop_items }};">
+  <div class="circular-collections__inner">
+    {% if section.settings.title != blank %}<h2 class="circular-collections__heading">{{ section.settings.title | escape }}</h2>{% endif %}
+    <ul class="circular-collections__list" role="list" tabindex="0" aria-label="{{ section.settings.title | default: 'Collections' | escape }}">
+      {% for block in section.blocks %}
+        {% liquid
+          assign selected_collection = block.settings.collection
+          assign item_image = block.settings.image | default: selected_collection.featured_image
+          assign item_title = block.settings.title | default: selected_collection.title | default: 'Collection'
+        %}
+        <li class="circular-collections__item" {{ block.shopify_attributes }}>
+          {% if selected_collection != blank %}<a class="circular-collections__link" href="{{ selected_collection.url }}" aria-label="{{ item_title | escape }}">{% else %}<div class="circular-collections__link">{% endif %}
+            <span class="circular-collections__media">
+              {% if item_image != blank %}
+                {{ item_image | image_url: width: 800 | image_tag: widths: '140, 280, 400, 600, 800', sizes: '(max-width: 749px) 132px, (max-width: 1199px) 25vw, 400px', alt: item_title, loading: 'lazy' }}
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag }}
+              {% endif %}
+            </span>
+            {% if section.settings.show_names %}<span class="circular-collections__title">{{ item_title | escape }}</span>{% endif %}
+          {% if selected_collection != blank %}</a>{% else %}</div>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% stylesheet %}
+  .circular-collections { background: #F7F1E3; color: #2A1F1A; padding-block: 32px; }
+  .circular-collections__inner { box-sizing: border-box; width: 100%; max-width: var(--circular-max-width); margin-inline: auto; padding-inline: 32px; }
+  .circular-collections__heading { margin: 0 0 28px; text-align: center; color: #6B1F2A; font-family: var(--font-heading--family); }
+  .circular-collections__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; padding: 4px; margin: 0; list-style: none; }
+  .circular-collections__item { flex: 0 0 calc((100% - (var(--circular-items) - 1) * 24px) / var(--circular-items)); min-width: 0; text-align: center; }
+  .circular-collections__link { display: block; text-decoration: none; color: inherit; }
+  .circular-collections__media { display: block; aspect-ratio: 1; border: 1px solid #C9A24C; border-radius: 50%; overflow: hidden; background: #FCFAF5; }
+  .circular-collections__media img, .circular-collections__media svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .circular-collections__title { display: block; margin-top: 12px; line-height: 1.4; overflow-wrap: anywhere; }
+  .circular-collections__link:hover .circular-collections__media { border-color: #6B1F2A; }
+  .circular-collections__link:focus-visible, .circular-collections__list:focus-visible { outline: 2px solid #6B1F2A; outline-offset: 2px; }
+  @media (max-width: 749px) {
+    .circular-collections { padding-block: 24px; }
+    .circular-collections__inner { padding-inline: 20px; }
+    .circular-collections__list { flex-wrap: nowrap; justify-content: flex-start; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .circular-collections__list::-webkit-scrollbar { display: none; }
+    .circular-collections__item { flex: 0 0 132px; scroll-snap-align: start; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Circular collections",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Explore the collection"
+    },
+    {
+      "type": "select",
+      "id": "desktop_items",
+      "label": "Desktop items per view",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "6",
+          "label": "6"
+        }
+      ],
+      "default": "6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_names",
+      "label": "Show collection names",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1800,
+      "step": 50,
+      "unit": "px",
+      "default": 1400
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image override"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title override"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Circular collections",
+      "category": "Collections",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
