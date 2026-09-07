@@ -82,17 +82,53 @@
     "product_list_DiJmqi": {
       "type": "product-list",
       "blocks": {
+        "universal_button_cLXkVj": {
+          "type": "universal-button",
+          "name": "Universal button",
+          "settings": {
+            "label": "VIEW ALL PRODUCTS",
+            "link": "{{ closest.collection.url }}",
+            "open_in_new_tab": false,
+            "button_style": "primary",
+            "primary_background": "#A84E2C",
+            "primary_text": "#ffffff",
+            "primary_border": "#A84E2C",
+            "primary_hover_background": "#a84e2c",
+            "primary_hover_text": "#ffffff",
+            "primary_hover_border": "#a84e2c",
+            "secondary_background": "#ffffff00",
+            "secondary_text": "#3d1f15",
+            "secondary_border": "#3d1f15",
+            "secondary_hover_background": "#3d1f15",
+            "secondary_hover_text": "#ffffff",
+            "secondary_hover_border": "#3d1f15",
+            "alignment": "center",
+            "full_width": false,
+            "full_width_mobile": false,
+            "padding_vertical": 13,
+            "padding_horizontal": 28,
+            "border_width": 1,
+            "border_radius": 6,
+            "font_size": 14,
+            "font_weight": "600",
+            "letter_spacing": 4,
+            "text_transform": "none",
+            "show_arrow": false,
+            "hover_lift": 0
+          },
+          "blocks": {}
+        },
         "static-header": {
           "type": "_product-list-content",
           "name": "t:names.header",
           "static": true,
           "settings": {
-            "content_direction": "row",
+            "content_direction": "column",
             "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
+            "horizontal_alignment": "center",
             "vertical_alignment": "flex-end",
             "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "width": "fill",
@@ -120,13 +156,39 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<p>Shop Navratri Celebration</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
+                "type_preset": "h2",
                 "font": "var(--font-body--family)",
                 "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#6B1F2A",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_a4Pi4L": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Traditional looks, modern styles - curated for your Navratri moments.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -141,29 +203,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "product_list_button_gnWnaP": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "product_list_text_bHe9NE",
-            "product_list_button_gnWnaP"
+            "text_a4Pi4L"
           ]
         },
         "static-product-card": {
@@ -257,12 +301,15 @@
           ]
         }
       },
+      "block_order": [
+        "universal_button_cLXkVj"
+      ],
       "name": "t:names.products_grid",
       "settings": {
         "collection": "navratri-collection",
-        "layout_type": "grid",
+        "layout_type": "carousel",
         "carousel_on_mobile": false,
-        "max_products": 8,
+        "max_products": 10,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
