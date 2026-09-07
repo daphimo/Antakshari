@@ -12,8 +12,6 @@
     "festival_hero": {
       "type": "festival-hero-banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_52_57_AM.png",
-        "mobile_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_12_54_41_AM.png",
         "link": "",
         "alt_text": ""
       }
