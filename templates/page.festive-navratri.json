@@ -400,13 +400,636 @@
         "padding-block-start": 40,
         "padding-block-end": 80
       }
-    }
+    },
+    "testimonials_slider_kbLMTk": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_bLNFJr": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (11).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_UDQmPQ": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (14).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_TXzPkN": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (10).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_Tk9DLa": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (2).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_fcwn8K": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (7).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_6wKyeR": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (13).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_JBjFJ9": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (4).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_znPKGN": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (8).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_ycbctb": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (1).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_gTE77X": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (3).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_F6wRxb": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (9).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_Q8C9FT": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (5).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_mKmjDB": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (12).mp4",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_bLNFJr",
+        "testimonial_UDQmPQ",
+        "testimonial_TXzPkN",
+        "testimonial_Tk9DLa",
+        "testimonial_fcwn8K",
+        "testimonial_6wKyeR",
+        "testimonial_JBjFJ9",
+        "testimonial_znPKGN",
+        "testimonial_ycbctb",
+        "testimonial_gTE77X",
+        "testimonial_F6wRxb",
+        "testimonial_Q8C9FT",
+        "testimonial_mKmjDB"
+      ],
+      "name": "Testimonials slider",
+      "settings": {
+        "eyebrow": "Loved by you",
+        "heading": "Stories from our community",
+        "description": "<p>Thoughtful pieces, made memorable by the people who wear them. Discover what our community has to say.</p>",
+        "media_height": 480,
+        "media_height_mobile": 280,
+        "section_max_width": 1600,
+        "padding_inline": 24,
+        "column_gap": 60,
+        "card_radius": 24,
+        "background_color": "#faf5eb",
+        "text_color": "#4a1d0e",
+        "accent_color": "#e8a53a",
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "transition_speed": 600,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "perPageDesktop": 4.5,
+        "perPageMobile": 1.5,
+        "perMove": 1,
+        "gap": 16,
+        "gap_mobile": 8,
+        "show_arrows": true,
+        "show_pagination": false
+      }
+    },
+    "regional_3f9YWh": {
+      "type": "regional",
+      "name": "Regional blog cards",
+      "settings": {
+        "content_source": "blog",
+        "blog": "regional-crafts",
+        "article_list": [],
+        "articles_to_show": 4,
+        "show_article_label": false,
+        "use_first_tag": true,
+        "show_excerpt": true,
+        "excerpt_words": 14,
+        "show_date": false,
+        "show_author": false,
+        "date_format": "%b %d, %Y",
+        "caption": "Regional Crafts",
+        "heading": "Inspired by India's Living Traditions",
+        "heading_tag": "h3",
+        "content": "",
+        "explore_text": "Explore More",
+        "explore_link": "shopify://blogs/regional-crafts",
+        "show_explore_arrow": true,
+        "container_width": 1600,
+        "horizontal_padding": 24,
+        "desktop_columns": 4,
+        "header_gap": 60,
+        "header_bottom_spacing": 38,
+        "grid_gap": 24,
+        "image_height": 200,
+        "mobile_image_height": 180,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "card_radius": 24,
+        "image_radius": 22,
+        "card_border_width": 1,
+        "card_content_padding": 18,
+        "image_overlay_opacity": 0,
+        "caption_size": 11,
+        "caption_mobile_size": 10,
+        "caption_letter_spacing": 6,
+        "caption_color": "#9a5834",
+        "heading_size": 34,
+        "heading_mobile_size": 28,
+        "heading_line_height": 120,
+        "heading_color": "#4a1d0e",
+        "content_size": 14,
+        "content_mobile_size": 14,
+        "content_line_height": 155,
+        "content_color": "#704636",
+        "article_title_size": 20,
+        "article_title_mobile_size": 18,
+        "article_title_line_height": 130,
+        "article_title_color": "#4a1d0e",
+        "excerpt_size": 14,
+        "excerpt_mobile_size": 14,
+        "excerpt_line_height": 155,
+        "excerpt_color": "#704636",
+        "meta_size": 10,
+        "meta_letter_spacing": 6,
+        "meta_color": "#9a5834",
+        "explore_size": 14,
+        "explore_color": "#713923",
+        "section_background": "#faf5eb",
+        "card_background": "#fff9f1",
+        "border_color": "#debb8b",
+        "hover_lift": 5,
+        "hover_shadow_opacity": 10,
+        "cards__readmore": "Read More",
+        "read": "#e8a53a"
+      }
+    },
+    "trust_badges_home": {
+      "type": "trust-badges",
+      "blocks": {
+        "premium_fabrics": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Premium Fabrics",
+            "text": ""
+          }
+        },
+        "crafted_for_comfort": {
+          "type": "badge",
+          "settings": {
+            "icon": "heart",
+            "title": "Crafted for Comfort",
+            "text": ""
+          }
+        },
+        "easy_returns": {
+          "type": "badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Easy Returns",
+            "text": ""
+          }
+        },
+        "secure_payments": {
+          "type": "badge",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Payments",
+            "text": ""
+          }
+        },
+        "made_for_celebrations": {
+          "type": "badge",
+          "settings": {
+            "icon": "bolt",
+            "title": "Made for Celebrations",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "premium_fabrics",
+        "crafted_for_comfort",
+        "easy_returns",
+        "secure_payments",
+        "made_for_celebrations"
+      ],
+      "settings": {
+        "accessibility_label": "",
+        "eyebrow": "",
+        "heading": "Trusted by 200+ families",
+        "background": "{{ settings.color_palette.background }}",
+        "card_background": "#fcfaf5",
+        "heading_color": "#6b1f2a",
+        "text_color": "#2a1f1a",
+        "accent_color": "#c56b3e",
+        "icon_background": "#e8a53a",
+        "border_color": "{{ settings.color_palette.color8 }}"
+      }
+    },
+    "slider_collection_Yhd6Uf": {
+      "type": "slider-collection",
+      "blocks": {
+        "collection_card_xCyA44": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "blouses",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_card_3MbWTw": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "lehengas",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_card_3XQHc3": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "jaipur-shirts",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_card_FLd4A9": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "skirts-lehengas",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_xCyA44",
+        "collection_card_3MbWTw",
+        "collection_card_3XQHc3",
+        "collection_card_FLd4A9"
+      ],
+      "name": "Collection Slider",
+      "settings": {
+        "background_color": "#f7f1e5",
+        "section_max_width": 1600,
+        "content_width": 30,
+        "column_gap": 50,
+        "content_vertical_alignment": "center",
+        "text_alignment": "left",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_inline": 28,
+        "caption": "Shop by Category",
+        "caption_color": "#c76536",
+        "caption_size": 16,
+        "caption_mobile_size": 15,
+        "caption_spacing": 10,
+        "heading": "A wardrobe for every generation and every gathering.",
+        "heading_tag": "h2",
+        "title_color": "#111111",
+        "title_size": 32,
+        "title_mobile_size": 28,
+        "title_line_height": 100,
+        "title_max_width": 360,
+        "title_spacing": 14,
+        "description": "<p>We design across the household so the celebration feels harmonious, elegant, and personal.</p>",
+        "text_color": "#222222",
+        "text_size": 17,
+        "text_mobile_size": 16,
+        "text_line_height": 140,
+        "card_height": 340,
+        "card_mobile_height": 300,
+        "card_radius": 0,
+        "card_lift": 8,
+        "label_background": "#c56b3e",
+        "label_color": "#ffffff",
+        "label_size": 14,
+        "label_mobile_size": 13,
+        "label_radius": 5,
+        "label_padding_y": 7,
+        "label_padding_x": 12,
+        "label_top": 14,
+        "label_left": 14,
+        "slider_type": "loop",
+        "perPageDesktop": 4,
+        "perPageMobile": 1.5,
+        "perMove": 1,
+        "gap": 12,
+        "gap_mobile": 10,
+        "autoplay": false,
+        "autoplay_speed": 3,
+        "transition_speed": 700,
+        "show_arrows": true,
+        "show_pagination": false,
+        "pause_on_hover": true,
+        "pause_on_focus": true,
+        "arrow_background": "#ffffff",
+        "arrow_color": "#111111",
+        "arrow_size": 42,
+        "pagination_color": "#b8b8b8",
+        "pagination_active_color": "#111111"
+      }
+    },
+    "section_AkXQkb": {
+      "type": "section",
+      "blocks": {
+        "float_xy66wz": {
+          "type": "float",
+          "name": "Float Image",
+          "settings": {
+            "image": "shopify://shop_images/graphic.webp",
+            "desktop_left": 61,
+            "desktop_top": 1,
+            "desktop_size": 400,
+            "desktop_rotation": 0,
+            "show_on_mobile": true,
+            "mobile_left": 34,
+            "mobile_top": 1,
+            "mobile_size": 260,
+            "opacity": 30,
+            "z_index": 0
+          },
+          "blocks": {}
+        },
+        "image_dBRQ4F": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/rangoli-mother-daughter.jpg",
+            "link": "",
+            "image_ratio": "landscape",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "custom_liquid_JJck9G": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"antakshari-quote-badge\">\n  <p>\"She'll remember this rangoli longer than any toy.\"</p>\n</div>"
+          },
+          "blocks": {}
+        },
+        "group_8B8J99": {
+          "type": "group",
+          "settings": {
+            "responsive": "both",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_39UgYp": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>WHY WE EXIST</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "none",
+                "wrap": "nowrap",
+                "text_color": "{{ settings.color_palette.background }}",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_bhKhcT": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2><strong>Raising modern children doesn't mean losing our roots.</strong></h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "2.5rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "{{ settings.color_palette.background }}",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_kmAhVL": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Festivals help children understand where they come from, what they stand for, and the traditions that connect generations. Every celebration is a chance to keep that story alive.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "balance",
+                "text_color": "{{ settings.color_palette.background }}",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_qd97z7": {
+              "type": "button",
+              "settings": {
+                "label": "Read Why Antakshari Exists →",
+                "link": "shopify://pages/our-story",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "{{ settings.color_palette.background }}",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_39UgYp",
+            "text_bhKhcT",
+            "text_kmAhVL",
+            "button_qd97z7"
+          ]
+        }
+      },
+      "block_order": [
+        "float_xy66wz",
+        "image_dBRQ4F",
+        "custom_liquid_JJck9G",
+        "group_8B8J99"
+      ],
+      "custom_css": [
+        ".section-content-wrapper {position: relative;}",
+        ".antakshari-quote-badge {position: absolute; right: 50%; bottom: 5%; max-width: 260px; background: #e8a33d; border-radius: 10px; padding: 18px 22px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); z-index: 3;}",
+        ".antakshari-quote-badge p {font-family: \"Fraunces\", serif; font-style: italic; font-size: 15px; line-height: 1.4; color: #5c1a1a; margin: 0;}",
+        "@media (max-width: 749px) {.antakshari-quote-badge {position: static; max-width: 100%; margin: -20px 16px 0; }}"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "custom_class": "overflow_hidden",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color11 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 50,
+        "padding-block-end": 50
+      }
+    },
   },
   "order": [
     "festival_hero",
     "circular_collections",
     "product_list_DiJmqi",
     "promotional_images",
+    "testimonials_slider_kbLMTk",
+    "regional_3f9YWh",
+    "trust_badges_home",
+    "slider_collection_Yhd6Uf",
+    "section_AkXQkb",
     "main"
   ]
 }
