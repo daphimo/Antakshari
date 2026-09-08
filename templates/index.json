@@ -2232,13 +2232,6 @@
             "alt_text": ""
           }
         },
-        "testimonial_LHLqwz": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (6).mp4",
-            "alt_text": ""
-          }
-        },
         "testimonial_UDQmPQ": {
           "type": "testimonial",
           "settings": {
@@ -2326,7 +2319,6 @@
       },
       "block_order": [
         "testimonial_bLNFJr",
-        "testimonial_LHLqwz",
         "testimonial_UDQmPQ",
         "testimonial_TXzPkN",
         "testimonial_Tk9DLa",
