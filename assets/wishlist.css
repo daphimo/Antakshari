@@ -69,8 +69,8 @@
 .card___wishlist-wrap {
   position: absolute;
   z-index: 2;
-  right: 12px;
-  top: 12px;
+  right: 16px;
+  top: 16px;
   line-height: 0;
   transition: var(--transition);
 }
@@ -86,7 +86,7 @@
 .wishlist-button {
   all: unset;
   aspect-ratio: 1;
-  padding: 4px;
+  padding: 2px;
   overflow: hidden;
   background-color: #ffffff00;
   color: #c56b3e;

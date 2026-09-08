@@ -9,6 +9,7 @@
 
 .testimonials-slider__inner {
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: var(--testimonials-max-width);
   margin-inline: auto;
@@ -20,8 +21,8 @@
 .testimonials-slider__intro {
   position: relative;
   z-index: 2;
-  flex: 0 0 35%;
-  width: 35%;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
 }
 
@@ -53,7 +54,7 @@
 
 .testimonials-slider__splide {
   flex: 1 1 auto;
-  width: calc(65% - var(--testimonials-column-gap));
+  width: 100%;
   min-width: 0;
 }
 
@@ -72,7 +73,7 @@
   border-radius: var(--testimonials-radius);
 }
 
-.testimonials-slider__media .testimonials-slider__video {
+.testimonials-slider__media .testimonials-slider__thumbnail {
   position: absolute;
   inset: 0;
   display: block;

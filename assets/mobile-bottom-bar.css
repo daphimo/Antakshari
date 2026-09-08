@@ -1,6 +1,3 @@
-.mobile-bottom-bar {
-  display: none;
-}
 
 @media (max-width: 749px) {
   body:has(.mobile-bottom-bar) .page-wrapper {
