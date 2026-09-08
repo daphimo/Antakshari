@@ -322,85 +322,6 @@
         "padding-block-end": 48
       }
     },
-    "promotional_images": {
-      "type": "content-over-image",
-      "blocks": {
-        "promotion_1": {
-          "type": "promotion",
-          "settings": {
-            "image": "shopify://shop_images/side-small_banner.png",
-            "link": "shopify://collections/navratri-collection",
-            "alt_text": "Navratri Collection"
-          }
-        },
-        "promotion_2": {
-          "type": "promotion",
-          "settings": {
-            "image": "shopify://shop_images/side-small_banner_second.png",
-            "link": "shopify://collections/navratri-collection",
-            "alt_text": "Navratri Collection"
-          }
-        }
-      },
-      "block_order": [
-        "promotion_1",
-        "promotion_2"
-      ],
-      "settings": {
-        "desktop_items": "2",
-        "max_width": 1400
-      }
-    },
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "page-content": {
-          "type": "page-content",
-          "settings": {
-            "text_color": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "heading",
-        "page-content"
-      ],
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 80
-      }
-    },
     "testimonials_slider_kbLMTk": {
       "type": "testimonials-slider",
       "blocks": {
@@ -1019,17 +940,66 @@
         "padding-block-end": 50
       }
     },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
   },
   "order": [
     "festival_hero",
     "circular_collections",
+    "section_AkXQkb",
     "product_list_DiJmqi",
-    "promotional_images",
     "testimonials_slider_kbLMTk",
-    "regional_3f9YWh",
     "trust_badges_home",
     "slider_collection_Yhd6Uf",
-    "section_AkXQkb",
+    "regional_3f9YWh",
     "main"
   ]
 }
