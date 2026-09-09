@@ -685,6 +685,7 @@
         },
         "testimonial_6wKyeR": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (13).mp4",
             "alt_text": ""
@@ -692,6 +693,7 @@
         },
         "testimonial_JBjFJ9": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (4).mp4",
             "alt_text": ""
@@ -699,6 +701,7 @@
         },
         "testimonial_znPKGN": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (8).mp4",
             "alt_text": ""
@@ -706,6 +709,7 @@
         },
         "testimonial_ycbctb": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (1).mp4",
             "alt_text": ""
@@ -713,6 +717,7 @@
         },
         "testimonial_gTE77X": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (3).mp4",
             "alt_text": ""
@@ -720,6 +725,7 @@
         },
         "testimonial_F6wRxb": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (9).mp4",
             "alt_text": ""
@@ -727,6 +733,7 @@
         },
         "testimonial_Q8C9FT": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (5).mp4",
             "alt_text": ""
@@ -734,6 +741,7 @@
         },
         "testimonial_mKmjDB": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/1 (12).mp4",
             "alt_text": ""
