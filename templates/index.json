@@ -1330,9 +1330,29 @@
           "settings": {
             "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
             "release_date": "2026-09-06",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Ganesh Chaturthi",
             "link": ""
+          }
+        },
+        "festival_dQzKwc": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_13_42_PM.png",
+            "release_date": "Oct 11",
+            "enable_sale": true,
+            "festival_name": "Navratri",
+            "link": "shopify://pages/navratri"
+          }
+        },
+        "festival_zg9rFk": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_15_07_PM.png",
+            "release_date": "oct 11",
+            "enable_sale": true,
+            "festival_name": "Durga Puja",
+            "link": "shopify://pages/navratri"
           }
         }
       },
@@ -1341,7 +1361,9 @@
         "festival_xwWXK6",
         "festival_ACaiAF",
         "festival_3WE3zN",
-        "festival_epBYLM"
+        "festival_epBYLM",
+        "festival_dQzKwc",
+        "festival_zg9rFk"
       ],
       "name": "Festival calendar",
       "settings": {
