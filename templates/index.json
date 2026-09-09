@@ -1292,7 +1292,7 @@
             "release_date": "2026-08-21",
             "enable_sale": true,
             "festival_name": "Varamahalakshmi",
-            "link": ""
+            "link": "shopify://collections/varmahalakshmi"
           }
         },
         "festival_xwWXK6": {
@@ -1312,7 +1312,7 @@
             "release_date": "2026-08-28",
             "enable_sale": true,
             "festival_name": "Rakshabandhan",
-            "link": ""
+            "link": "shopify://collections/rakshabandan"
           }
         },
         "festival_3WE3zN": {
@@ -1320,9 +1320,9 @@
           "settings": {
             "image": "shopify://shop_images/janmashtami-bg.jpg",
             "release_date": "2026-09-04",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Janamashtami",
-            "link": ""
+            "link": "shopify://collections/janmashtmi"
           }
         },
         "festival_epBYLM": {
@@ -1330,9 +1330,29 @@
           "settings": {
             "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
             "release_date": "2026-09-06",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Ganesh Chaturthi",
             "link": ""
+          }
+        },
+        "festival_dQzKwc": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_13_42_PM.png",
+            "release_date": "Oct 11",
+            "enable_sale": true,
+            "festival_name": "Navratri",
+            "link": "shopify://pages/navratri"
+          }
+        },
+        "festival_zg9rFk": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_15_07_PM.png",
+            "release_date": "oct 11",
+            "enable_sale": true,
+            "festival_name": "Durga Puja",
+            "link": "shopify://pages/navratri"
           }
         }
       },
@@ -1341,7 +1361,9 @@
         "festival_xwWXK6",
         "festival_ACaiAF",
         "festival_3WE3zN",
-        "festival_epBYLM"
+        "festival_epBYLM",
+        "festival_dQzKwc",
+        "festival_zg9rFk"
       ],
       "name": "Festival calendar",
       "settings": {
@@ -2337,7 +2359,7 @@
         "eyebrow": "Loved by you",
         "heading": "Stories from our community",
         "description": "<p>Thoughtful pieces, made memorable by the people who wear them. Discover what our community has to say.</p>",
-        "media_height": 340,
+        "media_height": 480,
         "media_height_mobile": 280,
         "section_max_width": 1600,
         "padding_inline": 24,
@@ -2346,12 +2368,12 @@
         "background_color": "#faf5eb",
         "text_color": "#4a1d0e",
         "accent_color": "#e8a53a",
-        "autoplay": false,
+        "autoplay": true,
         "autoplay_speed": 6,
         "transition_speed": 600,
         "padding_top": 72,
         "padding_bottom": 72,
-        "perPageDesktop": 4,
+        "perPageDesktop": 4.5,
         "perPageMobile": 1.5,
         "perMove": 1,
         "gap": 16,

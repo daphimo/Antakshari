@@ -37,6 +37,7 @@
     "cart_add_on_view_all_link": "shopify://collections/add-on",
     "logo_height": 12,
     "logo_height_mobile": 12,
+    "favicon": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_29_57_PM.png",
     "page_text_color": "{{ settings.color_palette.foreground }}",
     "type_body_font": "fraunces_n4",
     "type_subheading_font": "fraunces_n3",

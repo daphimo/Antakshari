@@ -18,7 +18,7 @@
           "type": "announcement",
           "settings": {
             "custom_icon": "",
-            "text": "🪔 Onam Collection Live",
+            "text": "🪔 Festive Collections Live",
             "link_label": "",
             "link": "shopify://collections/onam",
             "open_new_tab": false
@@ -28,17 +28,7 @@
           "type": "announcement",
           "settings": {
             "custom_icon": "",
-            "text": "Free Shipping on purchase above INR 2499!",
-            "link_label": "",
-            "link": "",
-            "open_new_tab": false
-          }
-        },
-        "announcement_UFrmWL": {
-          "type": "announcement",
-          "settings": {
-            "custom_icon": "",
-            "text": "Family Sets starting at INR 2499!",
+            "text": "Free shipping Pan-India",
             "link_label": "",
             "link": "",
             "open_new_tab": false
@@ -47,8 +37,7 @@
       },
       "block_order": [
         "announcement_NnNfT8",
-        "announcement_JC3jYE",
-        "announcement_UFrmWL"
+        "announcement_JC3jYE"
       ],
       "name": "Splide announcement bar",
       "settings": {

@@ -20,7 +20,7 @@
 
 <section
   id="regional-blog-cards-{{ section.id }}"
-  class="regional-blog-cards"
+  class="regional-blog-cards regional-blog-cards--{{ section.settings.card_design | default: 'portrait' }}"
   style="
     --rbc-section-background: {{ section.settings.section_background }};
     --rbc-card-background: {{ section.settings.card_background }};
@@ -558,6 +558,22 @@
     {
       "type": "header",
       "content": "Card style"
+    },
+    {
+      "type": "select",
+      "id": "card_design",
+      "label": "Card design",
+      "options": [
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "portrait"
     },
     {
       "type": "range",

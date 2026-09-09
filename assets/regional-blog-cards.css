@@ -220,6 +220,31 @@
   line-height: 1.4;
 }
 
+/* Landscape cards */
+
+.regional-blog-cards--landscape .regional-blog-cards__card-link {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  min-height: var(--rbc-image-height);
+}
+
+.regional-blog-cards--landscape .regional-blog-cards__media {
+  height: auto;
+  border-radius: var(--rbc-image-radius) 0 0 var(--rbc-image-radius);
+}
+
+.regional-blog-cards--landscape .regional-blog-cards__image,
+.regional-blog-cards--landscape .regional-blog-cards__placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.regional-blog-cards--landscape .regional-blog-cards__card-content {
+  min-width: 0;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+
 /* Hover */
 
 @media (hover: hover) {
@@ -285,6 +310,10 @@
 
   .regional-blog-cards__media {
     height: var(--rbc-mobile-image-height);
+  }
+
+  .regional-blog-cards--landscape .regional-blog-cards__card-link {
+    min-height: var(--rbc-mobile-image-height);
   }
 
   .regional-blog-cards__article-title {
