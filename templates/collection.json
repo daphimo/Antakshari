@@ -113,22 +113,6 @@
         "vertical_spacing": 56
       }
     },
-    "collection_description": {
-      "type": "collection-description",
-      "settings": {
-        "font_size": 16,
-        "content_width": 1000,
-        "text_alignment": "center",
-        "max_visible_height": 120,
-        "read_more_color": "#6b1f2a",
-        "read_more_label": "Read more",
-        "read_less_label": "Read less",
-        "background": "{{ settings.color_palette.color8 }}",
-        "spacing": 24,
-        "padding_vertical": 16,
-        "padding_horizontal": 32
-      }
-    },
     "promotional_collections": {
       "type": "promotional-collections",
       "settings": {
@@ -288,7 +272,6 @@
   },
   "order": [
     "collection_banner",
-    "collection_description",
     "promotional_collections",
     "main"
   ]
