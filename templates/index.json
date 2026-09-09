@@ -1320,7 +1320,7 @@
           "settings": {
             "image": "shopify://shop_images/janmashtami-bg.jpg",
             "release_date": "2026-09-04",
-            "enable_sale": false,
+            "enable_sale": true,
             "festival_name": "Janamashtami",
             "link": ""
           }
