@@ -869,6 +869,7 @@
     },
     "regional_3f9YWh": {
       "type": "regional",
+      "disabled": true,
       "name": "Regional blog cards",
       "settings": {
         "content_source": "blog",
