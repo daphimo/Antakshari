@@ -45,8 +45,23 @@
         },
         "collection_2": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "navratri-children",
+            "title": ""
+          }
+        },
+        "collection_zytiyz": {
+          "type": "collection",
+          "settings": {
+            "collection": "croptop",
+            "title": ""
+          }
+        },
+        "collection_Hhq6M7": {
+          "type": "collection",
+          "settings": {
+            "collection": "palazzo",
             "title": ""
           }
         }
@@ -55,7 +70,9 @@
         "collection_pjYhBB",
         "collection_3",
         "collection_1",
-        "collection_2"
+        "collection_2",
+        "collection_zytiyz",
+        "collection_Hhq6M7"
       ],
       "settings": {
         "title": "Navratri Curated Collections",
