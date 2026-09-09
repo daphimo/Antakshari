@@ -898,13 +898,14 @@
     },
     "regional_3f9YWh": {
       "type": "regional",
-      "disabled": true,
       "name": "Regional blog cards",
       "settings": {
-        "content_source": "blog",
+        "content_source": "articles",
         "blog": "festival-guides",
-        "article_list": [],
-        "articles_to_show": 4,
+        "article_list": [
+          "festival-guides/dussehra-a-complete-guide"
+        ],
+        "articles_to_show": 1,
         "show_article_label": false,
         "use_first_tag": true,
         "show_excerpt": true,
@@ -921,7 +922,7 @@
         "show_explore_arrow": true,
         "container_width": 1600,
         "horizontal_padding": 24,
-        "desktop_columns": 4,
+        "desktop_columns": 1,
         "header_gap": 60,
         "header_bottom_spacing": 38,
         "grid_gap": 24,
