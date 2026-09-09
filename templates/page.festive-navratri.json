@@ -32,21 +32,20 @@
         "collection_3": {
           "type": "collection",
           "settings": {
-            "collection": "navratri-children",
-            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_25_35PM.png",
+            "collection": "blouses",
             "title": ""
           }
         },
         "collection_1": {
           "type": "collection",
           "settings": {
-            "collection": "navratri-men",
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_06_31_04_PM.png",
+            "collection": "dupattas",
             "title": ""
           }
         },
         "collection_2": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "navratri-women",
             "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_08_06PM.png",
