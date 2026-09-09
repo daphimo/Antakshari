@@ -932,6 +932,7 @@
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
+        "card_design": "landscape",
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
