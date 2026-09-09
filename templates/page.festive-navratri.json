@@ -316,7 +316,8 @@
         "collection_card_xCyA44": {
           "type": "collection_card",
           "settings": {
-            "collection": "blouses",
+            "collection": "navratri-men",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_05_09_21_PM.png",
             "title": "",
             "link": ""
           }
@@ -324,7 +325,7 @@
         "collection_card_3MbWTw": {
           "type": "collection_card",
           "settings": {
-            "collection": "lehengas",
+            "collection": "navratri-women",
             "title": "",
             "link": ""
           }
@@ -332,15 +333,7 @@
         "collection_card_3XQHc3": {
           "type": "collection_card",
           "settings": {
-            "collection": "jaipur-shirts",
-            "title": "",
-            "link": ""
-          }
-        },
-        "collection_card_FLd4A9": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "skirts-lehengas",
+            "collection": "navratri-children",
             "title": "",
             "link": ""
           }
@@ -349,8 +342,7 @@
       "block_order": [
         "collection_card_xCyA44",
         "collection_card_3MbWTw",
-        "collection_card_3XQHc3",
-        "collection_card_FLd4A9"
+        "collection_card_3XQHc3"
       ],
       "name": "Collection Slider",
       "settings": {
@@ -395,7 +387,7 @@
         "label_top": 14,
         "label_left": 14,
         "slider_type": "loop",
-        "perPageDesktop": 4,
+        "perPageDesktop": 3,
         "perPageMobile": 1.5,
         "perMove": 1,
         "gap": 12,
