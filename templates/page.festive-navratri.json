@@ -29,14 +29,6 @@
             "title": "Chaniya Choli"
           }
         },
-        "collection_47RT86": {
-          "type": "collection",
-          "settings": {
-            "collection": "navratri-collection",
-            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_27_51PM.png",
-            "title": "Accessories"
-          }
-        },
         "collection_3": {
           "type": "collection",
           "settings": {
@@ -64,7 +56,6 @@
       },
       "block_order": [
         "collection_pjYhBB",
-        "collection_47RT86",
         "collection_3",
         "collection_1",
         "collection_2"
