@@ -309,10 +309,10 @@
       "name": "t:names.products_grid",
       "settings": {
         "collection": "navratri-collection",
-        "layout_type": "carousel",
+        "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 10,
-        "columns": 4,
+        "columns": 5,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
