@@ -13,7 +13,7 @@
       "type": "festival-hero-banner",
       "settings": {
         "desktop_image": "shopify://shop_images/nav-banner-fixed.png",
-        "mobile_image": "shopify://shop_images/navratri-mobile-banner.png",
+        "mobile_image": "shopify://shop_images/nav-banner-fixed.png",
         "link": "shopify://collections/navratri-collection",
         "alt_text": "Navratri collection banner"
       }
