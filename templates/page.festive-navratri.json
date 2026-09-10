@@ -909,7 +909,7 @@
         "show_article_label": false,
         "use_first_tag": true,
         "show_excerpt": true,
-        "excerpt_words": 14,
+        "excerpt_words": 50,
         "show_date": false,
         "show_author": false,
         "date_format": "%b %d, %Y",
