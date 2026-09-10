@@ -1285,6 +1285,26 @@
     "festival_calendar_tEEzee": {
       "type": "festival-calendar",
       "blocks": {
+        "festival_dQzKwc": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_13_42_PM.png",
+            "release_date": "Oct 11",
+            "enable_sale": true,
+            "festival_name": "Navratri",
+            "link": "shopify://pages/navratri"
+          }
+        },
+        "festival_zg9rFk": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_15_07_PM.png",
+            "release_date": "oct 11",
+            "enable_sale": true,
+            "festival_name": "Durga Puja",
+            "link": "shopify://pages/navratri"
+          }
+        },
         "festival_X9zVaN": {
           "type": "festival",
           "settings": {
@@ -1334,36 +1354,16 @@
             "festival_name": "Ganesh Chaturthi",
             "link": ""
           }
-        },
-        "festival_dQzKwc": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_13_42_PM.png",
-            "release_date": "Oct 11",
-            "enable_sale": true,
-            "festival_name": "Navratri",
-            "link": "shopify://pages/navratri"
-          }
-        },
-        "festival_zg9rFk": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_15_07_PM.png",
-            "release_date": "oct 11",
-            "enable_sale": true,
-            "festival_name": "Durga Puja",
-            "link": "shopify://pages/navratri"
-          }
         }
       },
       "block_order": [
+        "festival_dQzKwc",
+        "festival_zg9rFk",
         "festival_X9zVaN",
         "festival_xwWXK6",
         "festival_ACaiAF",
         "festival_3WE3zN",
-        "festival_epBYLM",
-        "festival_dQzKwc",
-        "festival_zg9rFk"
+        "festival_epBYLM"
       ],
       "name": "Festival calendar",
       "settings": {
@@ -2132,6 +2132,7 @@
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
+        "card_design": "portrait",
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
@@ -2205,6 +2206,7 @@
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
+        "card_design": "portrait",
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
