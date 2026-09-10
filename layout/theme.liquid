@@ -13,6 +13,17 @@
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
     {%- endif -%}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G26TV4VQDG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-G26TV4VQDG');
+    </script>
 
     {% comment %}
       Opt into cross-document (MPA) view transitions and hold first paint until #MainContent
