@@ -11,9 +11,10 @@
   "current": {
     "cart_free_shipping_threshold": "2499",
     "cart_free_shipping_unlocked_message": "Congratulations You got 5% off",
+    "cart_free_shipping_message": "Add [amount] more to unlock 5% off",
     "cart_reward_one_threshold": "2499",
     "cart_reward_one_text": "Get 5% off",
-    "cart_reward_one_success_message": "Congratulations You got Free Shipping",
+    "cart_reward_one_success_message": "Congratulations You got 5% off",
     "cart_reward_two_threshold": "3499",
     "cart_reward_two_text": "Get 10% off",
     "cart_reward_two_success_message": "Congratulations You Unlocked 10% Off Discount",
