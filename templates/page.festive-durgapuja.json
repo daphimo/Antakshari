@@ -124,7 +124,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<p>Shop Navratri Celebration</p>",
+                "text": "<p>Shop Durga Puja Celebration</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -274,7 +274,7 @@
       ],
       "name": "t:names.products_grid",
       "settings": {
-        "collection": "navratri-collection",
+        "collection": "durga-puja",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 10,
@@ -327,6 +327,7 @@
         "collection_card_3MbWTw",
         "collection_card_3XQHc3"
       ],
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "background_color": "#f7f1e5",
