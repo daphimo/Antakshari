@@ -247,7 +247,7 @@
         }
       },
       "settings": {
-        "enable_filter_bullets": true,
+        "enable_filter_bullets": false,
         "enable_sticky_filter_sidebar": true,
         "sticky_top_offset": 120,
         "filter_heading_size": 14,
