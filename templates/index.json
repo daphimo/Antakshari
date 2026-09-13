@@ -697,34 +697,14 @@
             "link": "shopify://collections/durga-puja"
           }
         },
-        "festival_X9zVaN": {
+        "festival_epBYLM": {
           "type": "festival",
           "settings": {
-            "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
-            "release_date": "2026-08-21",
+            "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
+            "release_date": "2026-09-06",
             "enable_sale": true,
-            "festival_name": "Varamahalakshmi",
-            "link": "shopify://collections/varmahalakshmi"
-          }
-        },
-        "festival_xwWXK6": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/onam-festival-bg.jpg",
-            "release_date": "2026-08-26",
-            "enable_sale": true,
-            "festival_name": "Onam",
-            "link": "shopify://collections/onam"
-          }
-        },
-        "festival_ACaiAF": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/rakshabandhan-bg.jpg",
-            "release_date": "2026-08-28",
-            "enable_sale": true,
-            "festival_name": "Rakshabandhan",
-            "link": "shopify://collections/rakshabandan"
+            "festival_name": "Ganesh Chaturthi",
+            "link": "shopify://collections/ganesh-chaturthi"
           }
         },
         "festival_3WE3zN": {
@@ -737,25 +717,45 @@
             "link": "shopify://collections/janmashtmi"
           }
         },
-        "festival_epBYLM": {
+        "festival_ACaiAF": {
           "type": "festival",
           "settings": {
-            "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
-            "release_date": "2026-09-06",
+            "image": "shopify://shop_images/rakshabandhan-bg.jpg",
+            "release_date": "2026-08-28",
             "enable_sale": true,
-            "festival_name": "Ganesh Chaturthi",
-            "link": "shopify://collections/ganesh-chaturthi"
+            "festival_name": "Rakshabandhan",
+            "link": "shopify://collections/rakshabandan"
+          }
+        },
+        "festival_xwWXK6": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/onam-festival-bg.jpg",
+            "release_date": "2026-08-26",
+            "enable_sale": true,
+            "festival_name": "Onam",
+            "link": "shopify://collections/onam"
+          }
+        },
+        "festival_X9zVaN": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
+            "release_date": "2026-08-21",
+            "enable_sale": true,
+            "festival_name": "Varamahalakshmi",
+            "link": "shopify://collections/varmahalakshmi"
           }
         }
       },
       "block_order": [
         "festival_dQzKwc",
         "festival_zg9rFk",
-        "festival_X9zVaN",
-        "festival_xwWXK6",
-        "festival_ACaiAF",
+        "festival_epBYLM",
         "festival_3WE3zN",
-        "festival_epBYLM"
+        "festival_ACaiAF",
+        "festival_xwWXK6",
+        "festival_X9zVaN"
       ],
       "name": "Festival calendar",
       "settings": {
