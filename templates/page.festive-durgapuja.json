@@ -24,9 +24,8 @@
         "collection_pjYhBB": {
           "type": "collection",
           "settings": {
-            "collection": "chaniya-choli",
-            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_07_05PM.png",
-            "title": "Chaniya Choli"
+            "collection": "durga-puja",
+            "title": "Sarees"
           }
         },
         "collection_3": {
@@ -35,44 +34,11 @@
             "collection": "blouses",
             "title": ""
           }
-        },
-        "collection_1": {
-          "type": "collection",
-          "settings": {
-            "collection": "dupattas",
-            "title": ""
-          }
-        },
-        "collection_2": {
-          "type": "collection",
-          "disabled": true,
-          "settings": {
-            "collection": "navratri-children",
-            "title": ""
-          }
-        },
-        "collection_zytiyz": {
-          "type": "collection",
-          "settings": {
-            "collection": "croptop",
-            "title": ""
-          }
-        },
-        "collection_Hhq6M7": {
-          "type": "collection",
-          "settings": {
-            "collection": "palazzo",
-            "title": ""
-          }
         }
       },
       "block_order": [
         "collection_pjYhBB",
-        "collection_3",
-        "collection_1",
-        "collection_2",
-        "collection_zytiyz",
-        "collection_Hhq6M7"
+        "collection_3"
       ],
       "settings": {
         "title": "Durga Puja Curated Collections",
