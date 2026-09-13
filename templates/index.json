@@ -1018,10 +1018,10 @@
       "name": "Premium collection list",
       "settings": {
         "collection_list": [
-          "for-her",
-          "for-him",
+          "women",
+          "men",
           "for-kids",
-          "for-family"
+          "festivals"
         ],
         "eyebrow": "",
         "heading": "Curated for Entire Family...",
