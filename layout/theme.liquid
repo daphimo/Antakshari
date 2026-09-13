@@ -4,7 +4,7 @@
     class="shopify-design-mode"
   {% endif %}
   lang="{{ request.locale.iso_code }}"
-><meta name="google-site-verification" content="AKKKt6tqch7iQrQFUhqWifotuk1foReNiKgBJvQPSWA" />
+>
   <head>
     {%- if settings.favicon != blank -%}
       <link
@@ -58,6 +58,7 @@
     {% endif %}
 
     {{ content_for_header }}
+    <meta name="google-site-verification" content="AKKKt6tqch7iQrQFUhqWifotuk1foReNiKgBJvQPSWA" />
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
