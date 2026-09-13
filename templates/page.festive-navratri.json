@@ -32,7 +32,7 @@
         "collection_3": {
           "type": "collection",
           "settings": {
-            "collection": "blouses",
+            "collection": "navratri-blouses",
             "title": ""
           }
         },
@@ -334,7 +334,6 @@
           "type": "collection_card",
           "settings": {
             "collection": "navratri-men",
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_05_09_21_PM.png",
             "title": "",
             "link": ""
           }
