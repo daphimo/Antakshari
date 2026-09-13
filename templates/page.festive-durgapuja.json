@@ -12,8 +12,8 @@
     "festival_hero": {
       "type": "festival-hero-banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/nav-banner-fixed.png",
-        "mobile_image": "shopify://shop_images/nav-banner-fixed.png",
+        "desktop_image": "shopify://shop_images/Durga_Puja.png",
+        "mobile_image": "shopify://shop_images/Durga_Puja_Mobile.png",
         "link": "shopify://collections/navratri-collection",
         "alt_text": "Navratri collection banner"
       }
