@@ -1669,13 +1669,6 @@
             "alt_text": ""
           }
         },
-        "testimonial_iEFXeE": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (6).mp4",
-            "alt_text": ""
-          }
-        },
         "testimonial_mhNJiE": {
           "type": "testimonial",
           "settings": {
@@ -1710,7 +1703,6 @@
         "testimonial_gCkXqw",
         "testimonial_HATJTK",
         "testimonial_9Xdn3E",
-        "testimonial_iEFXeE",
         "testimonial_mhNJiE",
         "testimonial_tcwnL6",
         "testimonial_QTpMAR",
