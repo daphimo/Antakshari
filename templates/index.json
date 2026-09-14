@@ -1675,13 +1675,6 @@
             "video": "shopify://files/videos/1 (7).mp4",
             "alt_text": ""
           }
-        },
-        "testimonial_6wKyeR": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (13).mp4",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
@@ -1689,8 +1682,7 @@
         "testimonial_UDQmPQ",
         "testimonial_TXzPkN",
         "testimonial_Tk9DLa",
-        "testimonial_fcwn8K",
-        "testimonial_6wKyeR"
+        "testimonial_fcwn8K"
       ],
       "name": "Testimonials slider",
       "settings": {
