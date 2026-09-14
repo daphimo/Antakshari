@@ -1683,13 +1683,6 @@
             "alt_text": ""
           }
         },
-        "testimonial_QTpMAR": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (2).mp4",
-            "alt_text": ""
-          }
-        },
         "testimonial_PRDebM": {
           "type": "testimonial",
           "settings": {
@@ -1705,7 +1698,6 @@
         "testimonial_9Xdn3E",
         "testimonial_mhNJiE",
         "testimonial_tcwnL6",
-        "testimonial_QTpMAR",
         "testimonial_PRDebM"
       ],
       "name": "Testimonials slider",
