@@ -1641,35 +1641,63 @@
     "testimonials_slider_kbLMTk": {
       "type": "testimonials-slider",
       "blocks": {
-        "testimonial_bLNFJr": {
+        "testimonial_fC7gXP": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (1).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_gCkXqw": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (2).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_HATJTK": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (3).MP4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_9Xdn3E": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (11).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_UDQmPQ": {
+        "testimonial_iEFXeE": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/1 (6).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_mhNJiE": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (14).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_TXzPkN": {
+        "testimonial_tcwnL6": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (10).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_Tk9DLa": {
+        "testimonial_QTpMAR": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (2).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_fcwn8K": {
+        "testimonial_PRDebM": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (7).mp4",
@@ -1678,11 +1706,15 @@
         }
       },
       "block_order": [
-        "testimonial_bLNFJr",
-        "testimonial_UDQmPQ",
-        "testimonial_TXzPkN",
-        "testimonial_Tk9DLa",
-        "testimonial_fcwn8K"
+        "testimonial_fC7gXP",
+        "testimonial_gCkXqw",
+        "testimonial_HATJTK",
+        "testimonial_9Xdn3E",
+        "testimonial_iEFXeE",
+        "testimonial_mhNJiE",
+        "testimonial_tcwnL6",
+        "testimonial_QTpMAR",
+        "testimonial_PRDebM"
       ],
       "name": "Testimonials slider",
       "settings": {
