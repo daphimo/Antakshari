@@ -139,7 +139,7 @@
             "filter_style": "vertical",
             "filter_width": "centered",
             "text_label_case": "default",
-            "show_swatch_label": true,
+            "show_swatch_label": false,
             "show_filter_label": false,
             "enable_range_slider": true,
             "slider_color": "#6b1f2a",
@@ -247,7 +247,7 @@
         }
       },
       "settings": {
-        "enable_filter_bullets": true,
+        "enable_filter_bullets": false,
         "enable_sticky_filter_sidebar": true,
         "sticky_top_offset": 120,
         "filter_heading_size": 14,
@@ -259,11 +259,11 @@
         "enable_infinite_scroll": false,
         "products_per_page": 24,
         "product_grid_width": "centered",
-        "full_width_on_mobile": true,
+        "full_width_on_mobile": false,
         "columns_gap_horizontal": 16,
         "columns_gap_vertical": 24,
-        "padding-inline-start": 0,
-        "padding-inline-end": 0,
+        "padding-inline-start": 5,
+        "padding-inline-end": 5,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 0,
         "padding-block-end": 32

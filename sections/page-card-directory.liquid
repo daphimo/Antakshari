@@ -1,0 +1,180 @@
+{{ 'regional-blog-cards.css' | asset_url | stylesheet_tag }}
+{{ 'page-card-directory.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'page-card-directory.js' | asset_url }}" defer></script>
+
+<section
+  id="page-card-directory-{{ section.id }}"
+  class="regional-blog-cards page-card-directory regional-blog-cards--{{ section.settings.card_design }}"
+  data-page-card-directory
+  data-mode="{{ section.settings.display_mode }}"
+  data-per-page="{{ section.settings.per_page }}"
+  style="
+    --rbc-section-background: {{ section.settings.section_background }};
+    --rbc-card-background: {{ section.settings.card_background }};
+    --rbc-border-color: {{ section.settings.border_color }};
+    --rbc-read-color: {{ section.settings.link_color }};
+    --rbc-container-width: {{ section.settings.container_width }}px;
+    --rbc-horizontal-padding: 24px;
+    --rbc-padding-top: {{ section.settings.padding_top }}px;
+    --rbc-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --rbc-mobile-padding-top: {{ section.settings.mobile_padding_top }}px;
+    --rbc-mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    --rbc-header-gap: 60px;
+    --rbc-header-bottom-spacing: 38px;
+    --rbc-grid-gap: {{ section.settings.grid_gap }}px;
+    --rbc-columns: {{ section.settings.desktop_columns }};
+    --rbc-image-height: {{ section.settings.image_height }}px;
+    --rbc-mobile-image-height: {{ section.settings.mobile_image_height }}px;
+    --rbc-card-radius: 24px;
+    --rbc-image-radius: 22px;
+    --rbc-card-border-width: 1px;
+    --rbc-card-content-padding: 24px;
+    --rbc-caption-size: 11px;
+    --rbc-caption-mobile-size: 10px;
+    --rbc-caption-color: {{ section.settings.accent_color }};
+    --rbc-caption-letter-spacing: 4px;
+    --rbc-heading-size: 34px;
+    --rbc-heading-mobile-size: 28px;
+    --rbc-heading-color: {{ section.settings.title_color }};
+    --rbc-heading-line-height: 1.2;
+    --rbc-content-size: 14px;
+    --rbc-content-mobile-size: 14px;
+    --rbc-content-color: {{ section.settings.body_color }};
+    --rbc-content-line-height: 1.55;
+    --rbc-title-size: 20px;
+    --rbc-title-mobile-size: 18px;
+    --rbc-title-color: {{ section.settings.title_color }};
+    --rbc-title-line-height: 1.3;
+    --rbc-excerpt-size: 14px;
+    --rbc-excerpt-mobile-size: 14px;
+    --rbc-excerpt-color: {{ section.settings.body_color }};
+    --rbc-excerpt-line-height: 1.55;
+    --rbc-hover-lift: 5px;
+    --rbc-hover-shadow-opacity: .1;
+  "
+>
+  <div class="regional-blog-cards__container">
+    {% if section.settings.caption != blank or section.settings.heading != blank or section.settings.description != blank %}
+      <header class="regional-blog-cards__header">
+        <div class="regional-blog-cards__heading-area">
+          {% if section.settings.caption != blank %}
+            <p class="regional-blog-cards__caption">{{ section.settings.caption | escape }}</p>
+          {% endif %}
+          {% if section.settings.heading != blank %}
+            <{{ section.settings.heading_tag }} class="regional-blog-cards__heading">{{ section.settings.heading | escape }}</{{ section.settings.heading_tag }}>
+          {% endif %}
+        </div>
+        {% if section.settings.description != blank %}
+          <div class="regional-blog-cards__right-area">
+            <div class="regional-blog-cards__content rte">{{ section.settings.description }}</div>
+          </div>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    <div class="regional-blog-cards__grid" data-card-grid>
+      {% for block in section.blocks %}
+        {% liquid
+          assign card_title = block.settings.title
+          if card_title == blank and block.settings.page != blank
+            assign card_title = block.settings.page.title
+          endif
+          assign card_url = block.settings.link
+          if card_url == blank and block.settings.page != blank
+            assign card_url = block.settings.page.url
+          endif
+          assign card_description = block.settings.description
+          if card_description == blank and block.settings.page != blank
+            assign card_description = block.settings.page.content | strip_html | truncatewords: 24
+          endif
+        %}
+        <article class="regional-blog-cards__card" data-card {{ block.shopify_attributes }}>
+          {% if card_url != blank %}
+            <a href="{{ card_url }}" class="regional-blog-cards__card-link">
+          {% else %}
+            <div class="regional-blog-cards__card-link">
+          {% endif %}
+              <div class="regional-blog-cards__media">
+                {% if block.settings.image != blank %}
+                  {% assign image_alt = block.settings.image.alt | default: card_title %}
+                  {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '320, 480, 640, 800, 1000', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw', class: 'regional-blog-cards__image', alt: image_alt }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'regional-blog-cards__placeholder' }}
+                {% endif %}
+              </div>
+              <div class="regional-blog-cards__card-content">
+                {% if card_title != blank %}<h3 class="regional-blog-cards__article-title">{{ card_title | escape }}</h3>{% endif %}
+                {% if card_description != blank %}<p class="regional-blog-cards__excerpt">{{ card_description | strip_html | escape }}</p>{% endif %}
+                {% if card_url != blank and section.settings.read_more != blank %}
+                  <span class="regional-blog-cards__readmore">{{ section.settings.read_more | escape }} <span aria-hidden="true">&rarr;</span></span>
+                {% endif %}
+              </div>
+          {% if card_url != blank %}</a>{% else %}</div>{% endif %}
+        </article>
+      {% else %}
+        {% if request.design_mode %}<p>Add a page card block to display a card here.</p>{% endif %}
+      {% endfor %}
+    </div>
+
+    <nav class="page-card-directory__pagination" data-pagination aria-label="{{ section.settings.pagination_label | escape }}" hidden></nav>
+    <div class="page-card-directory__load" data-load-wrap hidden>
+      <button type="button" class="page-card-directory__load-button" data-load-more>{{ section.settings.load_more_label | escape }}</button>
+      <span data-load-sentinel aria-hidden="true"></span>
+    </div>
+    <p class="page-card-directory__status visually-hidden" data-card-status role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page card directory",
+  "tag": "section",
+  "class": "section-page-card-directory",
+  "max_blocks": 50,
+  "settings": [
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "caption", "label": "Caption" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore our pages" },
+    { "type": "select", "id": "heading_tag", "label": "Heading tag", "options": [{ "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }], "default": "h2" },
+    { "type": "richtext", "id": "description", "label": "Intro text" },
+    { "type": "header", "content": "Cards and navigation" },
+    { "type": "select", "id": "display_mode", "label": "Display mode", "options": [{ "value": "pagination", "label": "Pagination" }, { "value": "infinite", "label": "Infinite load" }], "default": "pagination" },
+    { "type": "range", "id": "per_page", "label": "Cards per page or batch", "min": 1, "max": 50, "step": 1, "default": 9 },
+    { "type": "select", "id": "card_design", "label": "Card design", "options": [{ "value": "portrait", "label": "Portrait" }, { "value": "landscape", "label": "Landscape" }], "default": "portrait" },
+    { "type": "range", "id": "desktop_columns", "label": "Desktop columns", "min": 1, "max": 5, "step": 1, "default": 3 },
+    { "type": "range", "id": "grid_gap", "label": "Card gap", "min": 8, "max": 60, "step": 2, "default": 24, "unit": "px" },
+    { "type": "range", "id": "image_height", "label": "Desktop image height", "min": 180, "max": 600, "step": 10, "default": 310, "unit": "px" },
+    { "type": "range", "id": "mobile_image_height", "label": "Mobile image height", "min": 180, "max": 500, "step": 10, "default": 280, "unit": "px" },
+    { "type": "text", "id": "read_more", "label": "Card link text", "default": "Explore page" },
+    { "type": "text", "id": "load_more_label", "label": "Load more button text", "default": "Load more" },
+    { "type": "text", "id": "pagination_label", "label": "Pagination accessibility label", "default": "Page cards" },
+    { "type": "header", "content": "Layout and colors" },
+    { "type": "range", "id": "container_width", "label": "Container width", "min": 800, "max": 1800, "step": 20, "default": 1360, "unit": "px" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing", "min": 0, "max": 200, "step": 4, "default": 64, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing", "min": 0, "max": 200, "step": 4, "default": 64, "unit": "px" },
+    { "type": "range", "id": "mobile_padding_top", "label": "Mobile top spacing", "min": 0, "max": 120, "step": 4, "default": 40, "unit": "px" },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Mobile bottom spacing", "min": 0, "max": 120, "step": 4, "default": 40, "unit": "px" },
+    { "type": "color", "id": "section_background", "label": "Section background", "default": "#FAF5EB" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#FFF9F1" },
+    { "type": "color", "id": "border_color", "label": "Card border", "default": "#DEBB8B" },
+    { "type": "color", "id": "title_color", "label": "Titles", "default": "#4A1D0E" },
+    { "type": "color", "id": "body_color", "label": "Body text", "default": "#704636" },
+    { "type": "color", "id": "accent_color", "label": "Caption", "default": "#9A5834" },
+    { "type": "color", "id": "link_color", "label": "Card link", "default": "#713923" }
+  ],
+  "blocks": [
+    {
+      "type": "page_card",
+      "name": "Page card",
+      "settings": [
+        { "type": "page", "id": "page", "label": "Page", "info": "Optional. Uses the page title and link unless overridden below. Works with custom page templates." },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Overrides the selected page link." },
+        { "type": "textarea", "id": "description", "label": "Short description" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Page card directory" }]
+}
+{% endschema %}

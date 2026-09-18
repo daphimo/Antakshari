@@ -12,8 +12,8 @@
     "festival_hero": {
       "type": "festival-hero-banner",
       "settings": {
-        "desktop_image": "shopify://shop_images/nav-banner-fixed.png",
-        "mobile_image": "shopify://shop_images/nav-banner-fixed.png",
+        "desktop_image": "shopify://shop_images/Durga_Puja.png",
+        "mobile_image": "shopify://shop_images/Durga_Puja_Mobile.png",
         "link": "shopify://collections/navratri-collection",
         "alt_text": "Navratri collection banner"
       }
@@ -24,58 +24,24 @@
         "collection_pjYhBB": {
           "type": "collection",
           "settings": {
-            "collection": "chaniya-choli",
-            "image": "shopify://shop_images/ChatGPTImageAug25_2026_01_07_05PM.png",
-            "title": "Chaniya Choli"
+            "collection": "durga-puja",
+            "title": "Sarees"
           }
         },
         "collection_3": {
           "type": "collection",
           "settings": {
-            "collection": "navratri-blouses",
-            "title": ""
-          }
-        },
-        "collection_1": {
-          "type": "collection",
-          "settings": {
-            "collection": "dupattas",
-            "title": ""
-          }
-        },
-        "collection_2": {
-          "type": "collection",
-          "disabled": true,
-          "settings": {
-            "collection": "navratri-children",
-            "title": ""
-          }
-        },
-        "collection_zytiyz": {
-          "type": "collection",
-          "settings": {
-            "collection": "croptop",
-            "title": ""
-          }
-        },
-        "collection_Hhq6M7": {
-          "type": "collection",
-          "settings": {
-            "collection": "palazzo",
+            "collection": "blouses",
             "title": ""
           }
         }
       },
       "block_order": [
         "collection_pjYhBB",
-        "collection_3",
-        "collection_1",
-        "collection_2",
-        "collection_zytiyz",
-        "collection_Hhq6M7"
+        "collection_3"
       ],
       "settings": {
-        "title": "Navratri Curated Collections",
+        "title": "Durga Puja Curated Collections",
         "desktop_items": "6",
         "show_names": true,
         "max_width": 1400
@@ -158,7 +124,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<p>Shop Navratri Celebration</p>",
+                "text": "<p>Shop Durga Puja Celebration</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -184,7 +150,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Traditional looks, modern styles - curated for your Navratri moments.</p>",
+                "text": "<p>Traditional looks, modern styles - curated for your Durga Puja moments.</p>",
                 "width": "fit-content",
                 "max_width": "none",
                 "alignment": "left",
@@ -308,7 +274,7 @@
       ],
       "name": "t:names.products_grid",
       "settings": {
-        "collection": "navratri-collection",
+        "collection": "durga-puja",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 10,
@@ -334,6 +300,7 @@
           "type": "collection_card",
           "settings": {
             "collection": "navratri-men",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_2_2026_05_09_21_PM.png",
             "title": "",
             "link": ""
           }
@@ -360,6 +327,7 @@
         "collection_card_3MbWTw",
         "collection_card_3XQHc3"
       ],
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "background_color": "#f7f1e5",

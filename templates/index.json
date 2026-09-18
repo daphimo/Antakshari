@@ -654,618 +654,10 @@
           "block_order": [
             "group_NgaMLE"
           ]
-        },
-        "horizon_slide_4Q8YiA": {
-          "type": "horizon-slide",
-          "name": "Hero Slide",
-          "settings": {
-            "content_type": "image",
-            "desktop_image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_07_14_35_PM.png",
-            "mobile_image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_07_20_59_PM.png",
-            "alt": "Celebrate Festivals.Create Memories.Carry Culture Forward",
-            "url": "shopify://collections/rakshabandan",
-            "new_tab": false,
-            "height_desktop": 450,
-            "height_mobile": 450,
-            "overlay_color": "#000000",
-            "overlay_opacity": 20
-          },
-          "blocks": {
-            "group_QERRPb": {
-              "type": "group",
-              "name": "t:names.group",
-              "disabled": true,
-              "settings": {
-                "responsive": "both",
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fill",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 40,
-                "padding-block-end": 40,
-                "padding-inline-start": 80,
-                "padding-inline-end": 80
-              },
-              "blocks": {
-                "text_qDVikJ": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Celebrate Festivals.</p>",
-                    "width": "fit-content",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "{{ settings.color_palette.background }}",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_YnVJad": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Create Memories. </p>",
-                    "width": "fit-content",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "{{ settings.color_palette.background }}",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_CgDymA": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p><em>Carry Culture Forward</em></p>",
-                    "width": "fit-content",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "{{ settings.color_palette.background }}",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 15,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "group_DrQ4QW": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "responsive": "desktop",
-                    "content_direction": "column",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_GAk7PF": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>For modern Indian families who want to celebrate traditions beautifully — without spending weeks planning.</p>",
-                        "width": "fit-content",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_GAk7PF"
-                  ]
-                },
-                "group_xAqmrV": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "responsive": "both",
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "center",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 10,
-                    "padding-block-end": 10,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "button_7BH3Dg": {
-                      "type": "button",
-                      "name": "t:names.button",
-                      "settings": {
-                        "label": "SHOP THIS FESTIVAL",
-                        "link": "shopify://collections/all",
-                        "open_in_new_tab": false,
-                        "style_class": "button-custom",
-                        "custom_button_background": "#c56b3e",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "#c56b3e",
-                        "link_text_color": "",
-                        "width": "fit-content",
-                        "custom_width": 100,
-                        "width_mobile": "fit-content",
-                        "custom_width_mobile": 100
-                      },
-                      "blocks": {}
-                    },
-                    "button_7rRaFf": {
-                      "type": "button",
-                      "name": "t:names.button",
-                      "settings": {
-                        "label": "EXPLORE FESTIVAL GUIDE",
-                        "link": "shopify://blogs/festival-guides",
-                        "open_in_new_tab": false,
-                        "style_class": "button-custom",
-                        "custom_button_background": "rgba(0,0,0,0)",
-                        "custom_button_text": "{{ settings.color_palette.background }}",
-                        "custom_button_border": "#c56b3e",
-                        "link_text_color": "",
-                        "width": "fit-content",
-                        "custom_width": 100,
-                        "width_mobile": "fit-content",
-                        "custom_width_mobile": 100
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "button_7BH3Dg",
-                    "button_7rRaFf"
-                  ]
-                },
-                "group_wfYnNc": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "responsive": "desktop",
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_McafdF": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5><strong>✓</strong></h5>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_yU9F6j": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>Comfortable All-day Festive Wear</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_McafdF",
-                    "text_yU9F6j"
-                  ]
-                },
-                "group_QhAMjm": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "responsive": "desktop",
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_PEL7Kt": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5><strong>✓</strong></h5>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_QLkpRA": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>Curated For the Entire Family</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_PEL7Kt",
-                    "text_QLkpRA"
-                  ]
-                },
-                "group_k6mpHb": {
-                  "type": "group",
-                  "name": "t:names.group",
-                  "settings": {
-                    "responsive": "desktop",
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "text_f4fLe8": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<h5><strong>✓</strong></h5>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "text_Bb3DMt": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>Inspired By India's Regional Crafts</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "{{ settings.color_palette.background }}",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_f4fLe8",
-                    "text_Bb3DMt"
-                  ]
-                }
-              },
-              "block_order": [
-                "text_qDVikJ",
-                "text_YnVJad",
-                "text_CgDymA",
-                "group_DrQ4QW",
-                "group_xAqmrV",
-                "group_wfYnNc",
-                "group_QhAMjm",
-                "group_k6mpHb"
-              ]
-            }
-          },
-          "block_order": [
-            "group_QERRPb"
-          ]
         }
       },
       "block_order": [
-        "horizon_slide_GXgUiy",
-        "horizon_slide_4Q8YiA"
+        "horizon_slide_GXgUiy"
       ],
       "name": "Hero Slider",
       "settings": {
@@ -1278,63 +670,13 @@
         "autoplay": false,
         "autoplay_speed": 3,
         "transition_speed": 1000,
-        "show_arrows": true,
+        "show_arrows": false,
         "show_pagination": false
       }
     },
     "festival_calendar_tEEzee": {
       "type": "festival-calendar",
       "blocks": {
-        "festival_X9zVaN": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
-            "release_date": "2026-08-21",
-            "enable_sale": true,
-            "festival_name": "Varamahalakshmi",
-            "link": "shopify://collections/varmahalakshmi"
-          }
-        },
-        "festival_xwWXK6": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/onam-festival-bg.jpg",
-            "release_date": "2026-08-26",
-            "enable_sale": true,
-            "festival_name": "Onam",
-            "link": "shopify://collections/onam"
-          }
-        },
-        "festival_ACaiAF": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/rakshabandhan-bg.jpg",
-            "release_date": "2026-08-28",
-            "enable_sale": true,
-            "festival_name": "Rakshabandhan",
-            "link": "shopify://collections/rakshabandan"
-          }
-        },
-        "festival_3WE3zN": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/janmashtami-bg.jpg",
-            "release_date": "2026-09-04",
-            "enable_sale": true,
-            "festival_name": "Janamashtami",
-            "link": "shopify://collections/janmashtmi"
-          }
-        },
-        "festival_epBYLM": {
-          "type": "festival",
-          "settings": {
-            "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
-            "release_date": "2026-09-06",
-            "enable_sale": true,
-            "festival_name": "Ganesh Chaturthi",
-            "link": ""
-          }
-        },
         "festival_dQzKwc": {
           "type": "festival",
           "settings": {
@@ -1352,18 +694,68 @@
             "release_date": "oct 11",
             "enable_sale": true,
             "festival_name": "Durga Puja",
-            "link": "shopify://pages/navratri"
+            "link": "shopify://collections/durga-puja"
+          }
+        },
+        "festival_epBYLM": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/ganesh-chaturthi-bg-landscape.jpg",
+            "release_date": "2026-09-06",
+            "enable_sale": true,
+            "festival_name": "Ganesh Chaturthi",
+            "link": "shopify://collections/ganesh-chaturthi"
+          }
+        },
+        "festival_3WE3zN": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/janmashtami-bg.jpg",
+            "release_date": "2026-09-04",
+            "enable_sale": true,
+            "festival_name": "Janamashtami",
+            "link": "shopify://collections/janmashtmi"
+          }
+        },
+        "festival_ACaiAF": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/rakshabandhan-bg.jpg",
+            "release_date": "2026-08-28",
+            "enable_sale": true,
+            "festival_name": "Rakshabandhan",
+            "link": "shopify://collections/rakshabandan"
+          }
+        },
+        "festival_xwWXK6": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/onam-festival-bg.jpg",
+            "release_date": "2026-08-26",
+            "enable_sale": true,
+            "festival_name": "Onam",
+            "link": "shopify://collections/onam"
+          }
+        },
+        "festival_X9zVaN": {
+          "type": "festival",
+          "settings": {
+            "image": "shopify://shop_images/varamahalakshmi-vratam-bg.jpg",
+            "release_date": "2026-08-21",
+            "enable_sale": true,
+            "festival_name": "Varamahalakshmi",
+            "link": "shopify://collections/varmahalakshmi"
           }
         }
       },
       "block_order": [
-        "festival_X9zVaN",
-        "festival_xwWXK6",
-        "festival_ACaiAF",
-        "festival_3WE3zN",
-        "festival_epBYLM",
         "festival_dQzKwc",
-        "festival_zg9rFk"
+        "festival_zg9rFk",
+        "festival_epBYLM",
+        "festival_3WE3zN",
+        "festival_ACaiAF",
+        "festival_xwWXK6",
+        "festival_X9zVaN"
       ],
       "name": "Festival calendar",
       "settings": {
@@ -1626,10 +1018,10 @@
       "name": "Premium collection list",
       "settings": {
         "collection_list": [
-          "for-her",
-          "for-him",
-          "for-kids",
-          "for-family"
+          "women",
+          "men",
+          "kids",
+          "family-sets"
         ],
         "eyebrow": "",
         "heading": "Curated for Entire Family...",
@@ -2132,6 +1524,7 @@
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
+        "card_design": "portrait",
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
@@ -2205,6 +1598,7 @@
         "padding_bottom": 64,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
+        "card_design": "portrait",
         "card_radius": 24,
         "image_radius": 22,
         "card_border_width": 1,
@@ -2247,112 +1641,64 @@
     "testimonials_slider_kbLMTk": {
       "type": "testimonials-slider",
       "blocks": {
-        "testimonial_bLNFJr": {
+        "testimonial_fC7gXP": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (1).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_gCkXqw": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (2).mp4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_HATJTK": {
+          "type": "testimonial",
+          "settings": {
+            "video": "shopify://files/videos/new_upload (3).MP4",
+            "alt_text": ""
+          }
+        },
+        "testimonial_9Xdn3E": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (11).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_UDQmPQ": {
+        "testimonial_mhNJiE": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (14).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_TXzPkN": {
+        "testimonial_tcwnL6": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (10).mp4",
             "alt_text": ""
           }
         },
-        "testimonial_Tk9DLa": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (2).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_fcwn8K": {
+        "testimonial_PRDebM": {
           "type": "testimonial",
           "settings": {
             "video": "shopify://files/videos/1 (7).mp4",
             "alt_text": ""
           }
-        },
-        "testimonial_6wKyeR": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (13).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_JBjFJ9": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (4).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_znPKGN": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (8).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_ycbctb": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (1).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_gTE77X": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (3).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_F6wRxb": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (9).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_Q8C9FT": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (5).mp4",
-            "alt_text": ""
-          }
-        },
-        "testimonial_mKmjDB": {
-          "type": "testimonial",
-          "settings": {
-            "video": "shopify://files/videos/1 (12).mp4",
-            "alt_text": ""
-          }
         }
       },
       "block_order": [
-        "testimonial_bLNFJr",
-        "testimonial_UDQmPQ",
-        "testimonial_TXzPkN",
-        "testimonial_Tk9DLa",
-        "testimonial_fcwn8K",
-        "testimonial_6wKyeR",
-        "testimonial_JBjFJ9",
-        "testimonial_znPKGN",
-        "testimonial_ycbctb",
-        "testimonial_gTE77X",
-        "testimonial_F6wRxb",
-        "testimonial_Q8C9FT",
-        "testimonial_mKmjDB"
+        "testimonial_fC7gXP",
+        "testimonial_gCkXqw",
+        "testimonial_HATJTK",
+        "testimonial_9Xdn3E",
+        "testimonial_mhNJiE",
+        "testimonial_tcwnL6",
+        "testimonial_PRDebM"
       ],
       "name": "Testimonials slider",
       "settings": {
