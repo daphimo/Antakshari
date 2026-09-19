@@ -45,9 +45,8 @@
         },
         "collection_2": {
           "type": "collection",
-          "disabled": true,
           "settings": {
-            "collection": "navratri-children",
+            "collection": "navratri-lehenga",
             "title": ""
           }
         },
