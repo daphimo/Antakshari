@@ -50,17 +50,11 @@
             "title": ""
           }
         },
-        "collection_zytiyz": {
+        "collection_FPFh4B": {
           "type": "collection",
           "settings": {
-            "collection": "croptop",
-            "title": ""
-          }
-        },
-        "collection_Hhq6M7": {
-          "type": "collection",
-          "settings": {
-            "collection": "palazzo",
+            "collection": "indo-western",
+            "image": "shopify://shop_images/model_shot_of_black_2.png",
             "title": ""
           }
         }
@@ -70,8 +64,7 @@
         "collection_3",
         "collection_1",
         "collection_2",
-        "collection_zytiyz",
-        "collection_Hhq6M7"
+        "collection_FPFh4B"
       ],
       "settings": {
         "title": "Navratri Curated Collections",
@@ -943,9 +936,9 @@
   },
   "order": [
     "festival_hero",
-    "circular_collections",
-    "product_list_DiJmqi",
     "slider_collection_Yhd6Uf",
+    "product_list_DiJmqi",
+    "circular_collections",
     "section_AkXQkb",
     "testimonials_slider_kbLMTk",
     "trust_badges_home",
