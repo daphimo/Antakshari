@@ -1,0 +1,125 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "page_card_directory_E63Tt6": {
+      "type": "page-card-directory",
+      "blocks": {
+        "page_card_VyntRA": {
+          "type": "page_card",
+          "settings": {
+            "page": "navratri",
+            "image": "shopify://shop_images/nav-banner-no-text.png",
+            "title": "",
+            "link": "",
+            "description": "Step into the spirit of Navratri with vibrant colours, graceful silhouettes, and effortless elegance. Discover our festive collection, thoughtfully curated to make every celebration, twirl, and memorable night feel truly special."
+          }
+        },
+        "page_card_8jcBKB": {
+          "type": "page_card",
+          "settings": {
+            "page": "durga-puja",
+            "image": "shopify://shop_images/Durga_Puja.png",
+            "title": "",
+            "link": "",
+            "description": "Celebrate the timeless beauty of Durga Puja with a collection that brings together tradition, elegance, and contemporary style. Explore festive pieces designed to add grace and sophistication to every moment of the celebration."
+          }
+        }
+      },
+      "block_order": [
+        "page_card_VyntRA",
+        "page_card_8jcBKB"
+      ],
+      "name": "Page card directory",
+      "settings": {
+        "caption": "The Festive Edit",
+        "heading": "Festivals, Woven in Tradition",
+        "heading_tag": "h2",
+        "description": "<p>Discover our curated festive collections, created to bring together timeless tradition, contemporary elegance, and the joy of celebration. From vibrant Navratri nights to the grandeur of Durga Puja, find styles made for every festive moment.</p>",
+        "display_mode": "pagination",
+        "per_page": 9,
+        "card_design": "portrait",
+        "desktop_columns": 2,
+        "grid_gap": 24,
+        "image_height": 310,
+        "mobile_image_height": 280,
+        "read_more": "Explore page",
+        "load_more_label": "Load more",
+        "pagination_label": "Page cards",
+        "container_width": 1360,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "section_background": "#FAF5EB",
+        "card_background": "#FFF9F1",
+        "border_color": "#DEBB8B",
+        "title_color": "#4A1D0E",
+        "body_color": "#704636",
+        "accent_color": "#9A5834",
+        "link_color": "#713923"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "page_card_directory_E63Tt6"
+  ]
+}

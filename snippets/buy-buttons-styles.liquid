@@ -12,6 +12,20 @@
     width: 100%;
   }
 
+  .buy-buttons-block--show-desktop {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .buy-buttons-block--show-mobile {
+      display: none;
+    }
+
+    .buy-buttons-block--show-desktop {
+      display: block;
+    }
+  }
+
   .product-form-buttons {
     display: flex;
     flex-wrap: wrap;

@@ -37,7 +37,7 @@
 %}
 
 <span
-  class="buy-buttons-block buy-buttons-block--{{ block.id }}"
+  class="buy-buttons-block buy-buttons-block--{{ block.id }} buy-buttons-block--show-{{ block_settings.show_on | default: 'both' }}"
   {% if block_settings.text_color != blank %}
     style="--color: {{ block_settings.text_color }}; --color-rgb: {{ block_settings.text_color.rgb  }}"
   {% endif %}
@@ -388,6 +388,26 @@
   "name": "t:names.product_buy_buttons",
   "tag": null,
   "settings": [
+    {
+      "type": "select",
+      "id": "show_on",
+      "label": "Where to show",
+      "options": [
+        {
+          "value": "mobile",
+          "label": "Mobile only"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop only"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "both"
+    },
     {
       "type": "checkbox",
       "id": "stacking",

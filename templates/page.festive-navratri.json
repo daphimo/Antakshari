@@ -18,6 +18,101 @@
         "alt_text": "Navratri collection banner"
       }
     },
+    "slider_collection_Yhd6Uf": {
+      "type": "slider-collection",
+      "blocks": {
+        "collection_card_xCyA44": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "navratri-men",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_card_3MbWTw": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "navratri-women",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_card_3XQHc3": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "navratri-children",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_xCyA44",
+        "collection_card_3MbWTw",
+        "collection_card_3XQHc3"
+      ],
+      "name": "Collection Slider",
+      "settings": {
+        "background_color": "#f7f1e5",
+        "section_max_width": 1600,
+        "content_width": 30,
+        "column_gap": 50,
+        "content_vertical_alignment": "center",
+        "text_alignment": "left",
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_inline": 28,
+        "caption": "Shop by Category",
+        "caption_color": "#c76536",
+        "caption_size": 16,
+        "caption_mobile_size": 15,
+        "caption_spacing": 10,
+        "heading": "A wardrobe for every generation and every gathering.",
+        "heading_tag": "h2",
+        "title_color": "#111111",
+        "title_size": 32,
+        "title_mobile_size": 28,
+        "title_line_height": 100,
+        "title_max_width": 360,
+        "title_spacing": 14,
+        "description": "<p>We design across the household so the celebration feels harmonious, elegant, and personal.</p>",
+        "text_color": "#222222",
+        "text_size": 17,
+        "text_mobile_size": 16,
+        "text_line_height": 140,
+        "card_height": 340,
+        "card_mobile_height": 300,
+        "card_radius": 0,
+        "card_lift": 8,
+        "label_background": "#c56b3e",
+        "label_color": "#ffffff",
+        "label_size": 14,
+        "label_mobile_size": 13,
+        "label_radius": 5,
+        "label_padding_y": 7,
+        "label_padding_x": 12,
+        "label_top": 14,
+        "label_left": 14,
+        "slider_type": "loop",
+        "perPageDesktop": 3,
+        "perPageMobile": 1.5,
+        "perMove": 1,
+        "gap": 12,
+        "gap_mobile": 10,
+        "autoplay": false,
+        "autoplay_speed": 3,
+        "transition_speed": 700,
+        "show_arrows": true,
+        "show_pagination": false,
+        "pause_on_hover": true,
+        "pause_on_focus": true,
+        "arrow_background": "#ffffff",
+        "arrow_color": "#111111",
+        "arrow_size": 42,
+        "pagination_color": "#b8b8b8",
+        "pagination_active_color": "#111111"
+      }
+    },
     "circular_collections": {
       "type": "circular-collections",
       "blocks": {
@@ -45,23 +140,16 @@
         },
         "collection_2": {
           "type": "collection",
-          "disabled": true,
           "settings": {
-            "collection": "navratri-children",
+            "collection": "navratri-lehenga",
             "title": ""
           }
         },
-        "collection_zytiyz": {
+        "collection_FPFh4B": {
           "type": "collection",
           "settings": {
-            "collection": "croptop",
-            "title": ""
-          }
-        },
-        "collection_Hhq6M7": {
-          "type": "collection",
-          "settings": {
-            "collection": "palazzo",
+            "collection": "indo-western",
+            "image": "shopify://shop_images/model_shot_of_black_2.png",
             "title": ""
           }
         }
@@ -71,8 +159,7 @@
         "collection_3",
         "collection_1",
         "collection_2",
-        "collection_zytiyz",
-        "collection_Hhq6M7"
+        "collection_FPFh4B"
       ],
       "settings": {
         "title": "Navratri Curated Collections",
@@ -325,101 +412,6 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
-    },
-    "slider_collection_Yhd6Uf": {
-      "type": "slider-collection",
-      "blocks": {
-        "collection_card_xCyA44": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "navratri-men",
-            "title": "",
-            "link": ""
-          }
-        },
-        "collection_card_3MbWTw": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "navratri-women",
-            "title": "",
-            "link": ""
-          }
-        },
-        "collection_card_3XQHc3": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "navratri-children",
-            "title": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_card_xCyA44",
-        "collection_card_3MbWTw",
-        "collection_card_3XQHc3"
-      ],
-      "name": "Collection Slider",
-      "settings": {
-        "background_color": "#f7f1e5",
-        "section_max_width": 1600,
-        "content_width": 30,
-        "column_gap": 50,
-        "content_vertical_alignment": "center",
-        "text_alignment": "left",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "padding_inline": 28,
-        "caption": "Shop by Category",
-        "caption_color": "#c76536",
-        "caption_size": 16,
-        "caption_mobile_size": 15,
-        "caption_spacing": 10,
-        "heading": "A wardrobe for every generation and every gathering.",
-        "heading_tag": "h2",
-        "title_color": "#111111",
-        "title_size": 32,
-        "title_mobile_size": 28,
-        "title_line_height": 100,
-        "title_max_width": 360,
-        "title_spacing": 14,
-        "description": "<p>We design across the household so the celebration feels harmonious, elegant, and personal.</p>",
-        "text_color": "#222222",
-        "text_size": 17,
-        "text_mobile_size": 16,
-        "text_line_height": 140,
-        "card_height": 340,
-        "card_mobile_height": 300,
-        "card_radius": 0,
-        "card_lift": 8,
-        "label_background": "#c56b3e",
-        "label_color": "#ffffff",
-        "label_size": 14,
-        "label_mobile_size": 13,
-        "label_radius": 5,
-        "label_padding_y": 7,
-        "label_padding_x": 12,
-        "label_top": 14,
-        "label_left": 14,
-        "slider_type": "loop",
-        "perPageDesktop": 3,
-        "perPageMobile": 1.5,
-        "perMove": 1,
-        "gap": 12,
-        "gap_mobile": 10,
-        "autoplay": false,
-        "autoplay_speed": 3,
-        "transition_speed": 700,
-        "show_arrows": true,
-        "show_pagination": false,
-        "pause_on_hover": true,
-        "pause_on_focus": true,
-        "arrow_background": "#ffffff",
-        "arrow_color": "#111111",
-        "arrow_size": 42,
-        "pagination_color": "#b8b8b8",
-        "pagination_active_color": "#111111"
       }
     },
     "section_AkXQkb": {
@@ -944,9 +936,9 @@
   },
   "order": [
     "festival_hero",
+    "slider_collection_Yhd6Uf",
     "circular_collections",
     "product_list_DiJmqi",
-    "slider_collection_Yhd6Uf",
     "section_AkXQkb",
     "testimonials_slider_kbLMTk",
     "trust_badges_home",
