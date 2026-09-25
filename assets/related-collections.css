@@ -47,7 +47,7 @@
 .related-collections__title {
   display: block;
   margin-top: 12px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.35;
 }
 
@@ -82,9 +82,5 @@
     width: var(--rc-mobile-width);
     max-width: none;
     scroll-snap-align: start;
-  }
-
-  .related-collections__title {
-    font-size: 16px;
   }
 }
