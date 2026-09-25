@@ -1,0 +1,75 @@
+{{ 'related-collections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign related_collections = collection.metafields.custom.related_collections.value
+  assign section_class = 'related-collections--' | append: section.settings.visibility
+-%}
+
+{%- if collection != blank and related_collections != blank -%}
+  <div
+    id="RelatedCollections-{{ section.id }}"
+    class="related-collections {{ section_class }}"
+    style="
+      --rc-background: {{ section.settings.background_color }};
+      --rc-text: {{ section.settings.text_color }};
+      --rc-border: {{ section.settings.border_color }};
+      --rc-image-border: {{ section.settings.image_border_color }};
+      --rc-desktop-width: {{ section.settings.desktop_item_width }}px;
+      --rc-mobile-width: {{ section.settings.mobile_item_width }}px;
+      --rc-desktop-gap: {{ section.settings.desktop_gap }}px;
+      --rc-mobile-gap: {{ section.settings.mobile_gap }}px;
+      --rc-inner-desktop: {{ section.settings.inner_spacing_desktop }}px;
+      --rc-inner-mobile: {{ section.settings.inner_spacing_mobile }}px;
+      --rc-outer-desktop: {{ section.settings.outer_spacing_desktop }}px;
+      --rc-outer-mobile: {{ section.settings.outer_spacing_mobile }}px;
+      --rc-side-padding: {{ section.settings.side_padding }}px;
+    "
+  >
+    <div class="related-collections__bordered">
+      <nav class="related-collections__list" aria-label="{{ section.settings.accessibility_label | escape }}">
+        {%- for related_collection in related_collections -%}
+          {%- if related_collection != blank -%}
+            <a class="related-collections__item" href="{{ related_collection.url }}">
+              <span class="related-collections__image-wrap">
+                {%- if related_collection.image != blank -%}
+                  {{ related_collection.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '180, 240, 360, 480, 600', sizes: '(max-width: 749px) 45vw, 220px', alt: related_collection.title, class: 'related-collections__image' }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'related-collections__image related-collections__placeholder' }}
+                {%- endif -%}
+              </span>
+              <span class="related-collections__title">{{ related_collection.title | escape }}</span>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related collections",
+  "tag": "section",
+  "class": "related-collections-section",
+  "settings": [
+    { "type": "select", "id": "visibility", "label": "Show on", "options": [ { "value": "both", "label": "Desktop and mobile" }, { "value": "desktop", "label": "Desktop only" }, { "value": "mobile", "label": "Mobile only" } ], "default": "both" },
+    { "type": "text", "id": "accessibility_label", "label": "Accessibility label", "default": "Related collections" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#FFFBF2" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#302A25" },
+    { "type": "color", "id": "border_color", "label": "Top and bottom border color", "default": "#EAE2D3" },
+    { "type": "color", "id": "image_border_color", "label": "Image border color", "default": "#D9B979" },
+    { "type": "header", "content": "Item size and gaps" },
+    { "type": "range", "id": "desktop_item_width", "label": "Desktop item width", "min": 100, "max": 300, "step": 5, "unit": "px", "default": 180 },
+    { "type": "range", "id": "mobile_item_width", "label": "Mobile item width", "min": 90, "max": 240, "step": 5, "unit": "px", "default": 145 },
+    { "type": "range", "id": "desktop_gap", "label": "Desktop gap", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "mobile_gap", "label": "Mobile gap", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Border and section spacing" },
+    { "type": "range", "id": "inner_spacing_desktop", "label": "Desktop: content to border", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "inner_spacing_mobile", "label": "Mobile: content to border", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "outer_spacing_desktop", "label": "Desktop: outside border", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "outer_spacing_mobile", "label": "Mobile: outside border", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "side_padding", "label": "Side padding", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 20 }
+  ],
+  "presets": [ { "name": "Related collections" } ]
+}
+{% endschema %}
