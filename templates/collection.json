@@ -289,12 +289,34 @@
         "padding-block-start": 0,
         "padding-block-end": 32
       }
+    },
+    "related_collections_njePQB": {
+      "type": "related-collections",
+      "name": "Related collections",
+      "settings": {
+        "visibility": "mobile",
+        "accessibility_label": "Related collections",
+        "background_color": "#FFFBF2",
+        "text_color": "#302A25",
+        "border_color": "#EAE2D3",
+        "image_border_color": "#D9B979",
+        "desktop_item_width": 180,
+        "mobile_item_width": 145,
+        "desktop_gap": 24,
+        "mobile_gap": 16,
+        "inner_spacing_desktop": 24,
+        "inner_spacing_mobile": 20,
+        "outer_spacing_desktop": 24,
+        "outer_spacing_mobile": 16,
+        "side_padding": 20
+      }
     }
   },
   "order": [
     "collection_banner",
     "promotional_collections",
     "related_collections_tUWTpq",
-    "main"
+    "main",
+    "related_collections_njePQB"
   ]
 }
