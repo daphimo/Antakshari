@@ -22,6 +22,7 @@
             aria-label="{{ family_product.title | escape }}"
             {% if family_product.id == product_resource.id %}aria-current="page"{% endif %}
             role="listitem"
+            title="{{ family_product.title | escape }}"
           >
             {{
               family_product.featured_image
