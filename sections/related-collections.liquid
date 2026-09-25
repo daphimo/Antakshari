@@ -31,8 +31,8 @@
           {%- if related_collection != blank -%}
             <a class="related-collections__item" href="{{ related_collection.url }}">
               <span class="related-collections__image-wrap">
-                {%- if related_collection.image != blank -%}
-                  {{ related_collection.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '180, 240, 360, 480, 600', sizes: '(max-width: 749px) 45vw, 220px', alt: related_collection.title, class: 'related-collections__image' }}
+                {%- if related_collection.featured_image != blank -%}
+                  {{ related_collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '180, 240, 360, 480, 600', sizes: '(max-width: 749px) 45vw, 220px', alt: related_collection.title, class: 'related-collections__image' }}
                 {%- else -%}
                   {{ 'collection-1' | placeholder_svg_tag: 'related-collections__image related-collections__placeholder' }}
                 {%- endif -%}
