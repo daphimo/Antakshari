@@ -14,13 +14,23 @@
     "announce_bP8rtJ": {
       "type": "announce",
       "blocks": {
+        "announcement_hXiiCr": {
+          "type": "announcement",
+          "settings": {
+            "custom_icon": "",
+            "text": "Same/Next Day Delivery For Customers in Bengaluru!",
+            "link_label": "",
+            "link": "",
+            "open_new_tab": false
+          }
+        },
         "announcement_NnNfT8": {
           "type": "announcement",
           "settings": {
             "custom_icon": "",
             "text": "🪔 Festive Collections Live",
             "link_label": "",
-            "link": "shopify://collections/onam",
+            "link": "shopify://collections/festivals",
             "open_new_tab": false
           }
         },
@@ -36,6 +46,7 @@
         }
       },
       "block_order": [
+        "announcement_hXiiCr",
         "announcement_NnNfT8",
         "announcement_JC3jYE"
       ],
