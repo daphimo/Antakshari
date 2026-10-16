@@ -20,8 +20,8 @@
             "custom_icon": "",
             "text": "Same/Next Day Delivery For Customers in Bengaluru!",
             "link_label": "",
-            "link": "",
-            "open_new_tab": false
+            "link": "shopify://policies/shipping-policy",
+            "open_new_tab": true
           }
         },
         "announcement_NnNfT8": {
